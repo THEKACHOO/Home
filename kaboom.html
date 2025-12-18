@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KABOOM | THE KACHOO</title>
+    <!-- Same head content as index.html -->
+</head>
+<body>
+    <!-- Same header and cart modal as index.html -->
+    
+    <section class="product-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>KABOOM</h1>
+                <p>Break through creative blocks with our AI-powered idea generation platform. Fuel your next big project with KABOOM.</p>
+            </div>
+            
+            <div class="product-detail">
+                <div class="product-image">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="product-content">
+                    <h2>KABOOM Ideation Engine</h2>
+                    <p>AI-powered creative platform that combines brainstorming tools, inspiration libraries, and collaborative features to generate breakthrough ideas.</p>
+                    
+                    <div class="product-price">$89.99</div>
+                    
+                    <div class="product-features">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> AI-powered idea generation</li>
+                            <li><i class="fas fa-check"></i> Mood board and inspiration library</li>
+                            <li><i class="fas fa-check"></i> Collaborative brainstorming tools</li>
+                            <li><i class="fas fa-check"></i> Project organization and management</li>
+                            <li><i class="fas fa-check"></i> Export to multiple formats</li>
+                            <li><i class="fas fa-check"></i> Integration with creative software</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-small" style="padding: 12px 30px; font-size: 16px;" onclick="addKaboomToCart()">
+                        Add to Cart - $89.99
+                    </button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px; text-align: center;">
+                <a href="index.html" class="btn-outline">Back to Home</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function addKaboomToCart() {
+            const cart = JSON.parse(localStorage.getItem('kachooCart')) || [];
+            
+            cart.push({
+                name: 'KABOOM Ideation Engine',
+                price: '89.99',
+                category: 'KABOOM'
+            });
+            
+            localStorage.setItem('kachooCart', JSON.stringify(cart));
+            
+            // Update cart count
+            document.getElementById('cartCount').textContent = cart.length;
+            
+            alert('KABOOM Ideation Engine has been added to your cart!');
+        }
+    </script>
+</body>
+</html>
