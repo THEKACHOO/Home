@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAFKAPAGES | THE KACHOO</title>
+    <!-- Same head content as index.html -->
+</head>
+<body>
+    <!-- Same header and cart modal as index.html -->
+    
+    <section class="product-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>KAFKAPAGES</h1>
+                <p>Revolutionary document platform with AI-powered editing, real-time collaboration, and seamless integration across all your devices.</p>
+            </div>
+            
+            <div class="kafkapages-form">
+                <h2 class="form-title">Customize Your KAFKAPAGES Solution</h2>
+                <form id="kafkapagesOrderForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="plan">Select Plan</label>
+                            <select id="plan" required>
+                                <option value="">Choose a plan</option>
+                                <option value="basic">Basic - $29/month</option>
+                                <option value="pro">Professional - $79/month</option>
+                                <option value="team">Team - $199/month (up to 5 users)</option>
+                                <option value="enterprise">Enterprise - Custom Pricing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="users">Number of Users</label>
+                            <input type="number" id="users" min="1" value="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group form-full">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing">Billing Cycle</label>
+                            <select id="billing" required>
+                                <option value="monthly">Monthly</option>
+                                <option value="annual">Annual (Save 20%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group form-full">
+                            <label for="requirements">Specific Requirements</label>
+                            <textarea id="requirements" placeholder="Tell us about your specific needs..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group form-full">
+                            <button type="submit" class="checkout-btn">Submit Order Request</button>
+                            <p style="text-align: center; margin-top: 15px; color: var(--accent-color);">
+                                Our team will contact you within 24 hours to finalize your KAFKAPAGES setup.
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div style="margin-top: 60px; text-align: center;">
+                <a href="index.html" class="btn-outline">Back to Home</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // KAFKAPAGES order form submission
+        document.getElementById('kafkapagesOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const plan = document.getElementById('plan').value;
+            const users = document.getElementById('users').value;
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const billing = document.getElementById('billing').value;
+            const requirements = document.getElementById('requirements').value;
+            
+            // Prepare order summary for email
+            let orderSummary = `KAFKAPAGES ORDER REQUEST\n\n`;
+            orderSummary += `Customer: ${name}\n`;
+            orderSummary += `Company: ${company || 'Not specified'}\n`;
+            orderSummary += `Email: ${email}\n`;
+            orderSummary += `Phone: ${phone}\n\n`;
+            orderSummary += `ORDER DETAILS:\n`;
+            orderSummary += `Plan: ${plan}\n`;
+            orderSummary += `Users: ${users}\n`;
+            orderSummary += `Billing: ${billing}\n\n`;
+            
+            if (requirements) {
+                orderSummary += `Requirements: ${requirements}\n\n`;
+            }
+            
+            orderSummary += `Request sent on: ${new Date().toLocaleString()}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:gatgathurdel@gmail.com?subject=KAFKAPAGES Order from ${name}&body=${encodeURIComponent(orderSummary)}`;
+            
+            // Show confirmation and open email client
+            alert('Thank you for your KAFKAPAGES order request! Our team will contact you shortly.');
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
