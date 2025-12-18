@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE KACHOO | Online Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel warna */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-black: #121212;
+            --secondary-black: #1a1a1a;
+            --accent-black: #2a2a2a;
+            --primary-white: #ffffff;
+            --secondary-white: #f5f5f5;
+            --accent-white: #e0e0e0;
+            --gradient: linear-gradient(135deg, #121212 0%, #2a2a2a 50%, #121212 100%);
+            --gradient-reverse: linear-gradient(135deg, #2a2a2a 0%, #121212 50%, #2a2a2a 100%);
+        }
+        
+        body {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #fff, #aaa);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover h1::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .logo-icon {
+            font-size: 24px;
+            color: var(--primary-white);
+            animation: rotate 10s linear infinite;
+        }
+        
+        /* Navigasi */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent-white);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-white);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: var(--gradient-reverse);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--accent-white);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+            background-size: cover;
+            animation: moveBg 20s linear infinite;
+        }
+        
+        /* Produk Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--secondary-black);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            position: relative;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #fff, transparent);
+        }
+        
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: var(--gradient);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            cursor: pointer;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .product-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .product-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .product-icon {
+            font-size: 50px;
+            padding: 30px 0 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #2a2a2a, #121212);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .product-info p {
+            color: var(--accent-white);
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-white);
+            border: 2px solid var(--primary-white);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+            transform: scale(1.05);
+        }
+        
+        /* KAZINE Products Section */
+        .kazine-products {
+            padding: 80px 0;
+            background: var(--gradient);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .kazine-product {
+            background: var(--secondary-black);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .kazine-product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .product-img {
+            height: 200px;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary-white);
+        }
+        
+        .product-details {
+            padding: 20px;
+        }
+        
+        .product-details h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .product-details p {
+            color: var(--accent-white);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-white);
+            margin-bottom: 15px;
+        }
+        
+        .btn-small {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-white);
+            border: 1px solid var(--primary-white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-small:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-black);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--accent-black);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #fff, transparent);
+        }
+        
+        .footer-section p {
+            color: var(--accent-white);
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-black);
+            color: var(--primary-white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--accent-black);
+            color: var(--accent-white);
+            font-size: 14px;
+        }
+        
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes moveBg {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .product-cards, .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h1>THE KACHOO</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">BERANDA</a></li>
+                        <li><a href="#kafkapages">KAFKAPAGES</a></li>
+                        <li><a href="#kazine">KAZINE</a></li>
+                        <li><a href="#kaboom">KABOOM</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>KREATIVITAS TANPA BATAS</h2>
+                <p>THE KACHOO menghadirkan produk inovatif untuk kebutuhan kreatif Anda. Temukan KAFKAPAGES, KAZINE, dan KABOOM - solusi terdepan untuk produktivitas dan inspirasi.</p>
+                <a href="#products" class="btn">JELAJAHI PRODUK</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">PRODUK KAMI</h2>
+            <div class="product-cards">
+                <!-- KAFKAPAGES Card -->
+                <div class="product-card" id="kafkapages">
+                    <div class="product-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>KAFKAPAGES</h3>
+                        <p>Platform digital untuk menciptakan, mengelola, dan berbagi dokumen dengan kolaborasi real-time. Solusi lengkap untuk penulisan profesional.</p>
+                        <a href="#kafkapages" class="btn">JELAJAHI KAFKAPAGES</a>
+                    </div>
+                </div>
+                
+                <!-- KAZINE Card -->
+                <div class="product-card" id="kazine">
+                    <div class="product-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>KAZINE</h3>
+                        <p>Majalah digital interaktif dengan konten eksklusif dan desain menakjubkan. Dapatkan inspirasi dari berbagai topik kreatif.</p>
+                        <a href="#kazine" class="btn">JELAJAHI KAZINE</a>
+                    </div>
+                </div>
+                
+                <!-- KABOOM Card -->
+                <div class="product-card" id="kaboom">
+                    <div class="product-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>KABOOM</h3>
+                        <p>Alat kreatif revolusioner untuk menghasilkan ide-ide brilian dalam waktu singkat. Percikan kreativitas untuk proyek Anda.</p>
+                        <a href="#kaboom" class="btn">JELAJAHI KABOOM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KAZINE Products Section -->
+    <section class="kazine-products" id="kazine-products">
+        <div class="container">
+            <h2 class="section-title">PRODUK KAZINE</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">Temukan koleksi KAZINE terbaru kami dengan konten eksklusif dan desain yang memukau.</p>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="kazine-product">
+                    <div class="product-img">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="product-details">
+                        <h4>KAZINE Design Vol. 12</h4>
+                        <p>Edisi khusus tentang tren desain terbaru dengan wawancara eksklusif bersama desainer ternama.</p>
+                        <div class="price">IDR 89.000</div>
+                        <a href="#" class="btn-small">BELI SEKARANG</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="kazine-product">
+                    <div class="product-img">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="product-details">
+                        <h4>KAZINE Photography</h4>
+                        <p>Panduan lengkap fotografi digital dengan teknik terbaru dan ulasan peralatan profesional.</p>
+                        <div class="price">IDR 75.000</div>
+                        <a href="#" class="btn-small">BELI SEKARANG</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="kazine-product">
+                    <div class="product-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="product-details">
+                        <h4>KAZINE Tech Review</h4>
+                        <p>Analisis mendalam tentang teknologi terkini, gadget terbaru, dan inovasi di dunia digital.</p>
+                        <div class="price">IDR 82.000</div>
+                        <a href="#" class="btn-small">BELI SEKARANG</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="kazine-product">
+                    <div class="product-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="product-details">
+                        <h4>KAZINE Business</h4>
+                        <p>Strategi bisnis, kisah sukses entrepreneur, dan insight pasar untuk pengusaha modern.</p>
+                        <div class="price">IDR 78.000</div>
+                        <a href="#" class="btn-small">BELI SEKARANG</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TENTANG KAMI</h3>
+                    <p>THE KACHOO adalah perusahaan kreatif yang menghadirkan solusi inovatif untuk kebutuhan profesional dan kreatif. Dengan produk unggulan KAFKAPAGES, KAZINE, dan KABOOM, kami berkomitmen untuk meningkatkan produktivitas dan kreativitas.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>PRODUK KAMI</h3>
+                    <p><a href="#kafkapages" style="color: var(--accent-white); text-decoration: none;">KAFKAPAGES</a> - Platform penulisan profesional</p>
+                    <p><a href="#kazine" style="color: var(--accent-white); text-decoration: none;">KAZINE</a> - Majalah digital interaktif</p>
+                    <p><a href="#kaboom" style="color: var(--accent-white); text-decoration: none;">KABOOM</a> - Alat generasi ide kreatif</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>HUBUNGI KAMI</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Kreativitas No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 555-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@thekachoo.com</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 THE KACHOO. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efek hover untuk kartu produk
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Animasi pada scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Terapkan animasi pada elemen yang akan diamati
+        document.querySelectorAll('.product-card, .kazine-product').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
