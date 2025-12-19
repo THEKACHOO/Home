@@ -26,6 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
 
         body {
@@ -36,6 +37,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation; /* Improve touch responsiveness */
         }
 
         .container {
@@ -124,9 +126,10 @@
             width: 100%;
         }
 
-        /* Cart Icon */
+        /* Cart Icon - FIXED FOR MOBILE */
         .cart-icon-container {
             position: relative;
+            z-index: 1001; /* Ensure it's above other elements */
         }
 
         .cart-icon {
@@ -134,6 +137,16 @@
             color: var(--pure-black);
             cursor: pointer;
             transition: var(--transition-smooth);
+            padding: 10px; /* Add padding for better touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px; /* Minimum touch target size for mobile */
+            min-height: 44px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .cart-icon:hover {
@@ -142,18 +155,19 @@
 
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -2px; /* Adjusted for mobile */
+            right: -2px; /* Adjusted for mobile */
             background: var(--pure-black);
             color: var(--pure-white);
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
+            width: 20px; /* Slightly larger for mobile */
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 11px; /* Slightly larger */
             font-weight: 600;
+            pointer-events: none; /* Don't interfere with click */
         }
 
         .mobile-menu-btn {
@@ -163,6 +177,10 @@
             color: var(--pure-black);
             font-size: 20px;
             cursor: pointer;
+            padding: 10px;
+            min-width: 44px;
+            min-height: 44px;
+            z-index: 1001;
         }
 
         /* Hero Section */
@@ -389,6 +407,10 @@
             background: transparent;
             position: relative;
             overflow: hidden;
+            min-width: 44px; /* Mobile touch target */
+            min-height: 44px;
+            text-align: center;
+            line-height: normal;
         }
 
         .btn-outline:hover {
@@ -523,6 +545,10 @@
             transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            min-height: 44px; /* Mobile touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .add-to-cart-btn:hover {
@@ -580,7 +606,7 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* Cart Modal */
+        /* Cart Modal - IMPROVED FOR MOBILE */
         .cart-modal {
             position: fixed;
             top: 0;
@@ -590,10 +616,12 @@
             height: 100%;
             background: var(--pure-white);
             z-index: 2000;
-            transition: right 0.4s ease;
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
 
         .cart-modal.active {
@@ -601,15 +629,17 @@
         }
 
         .cart-header {
-            padding: 30px;
+            padding: 25px 20px;
             border-bottom: 1px solid var(--light-gray);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--pure-white);
+            flex-shrink: 0; /* Prevent shrinking on mobile */
         }
 
         .cart-header h3 {
-            font-size: 18px;
+            font-size: 16px; /* Slightly smaller for mobile */
             font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -622,6 +652,12 @@
             font-size: 20px;
             cursor: pointer;
             transition: var(--transition-smooth);
+            padding: 5px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-cart:hover {
@@ -632,15 +668,22 @@
         .cart-items {
             flex-grow: 1;
             overflow-y: auto;
-            padding: 30px;
+            padding: 20px;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--light-gray);
+            gap: 15px;
+        }
+
+        .item-info {
+            flex: 1;
+            min-width: 0; /* Prevent overflow */
         }
 
         .item-info h4 {
@@ -648,6 +691,9 @@
             font-weight: 400;
             margin-bottom: 5px;
             letter-spacing: 1px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .item-info p {
@@ -660,6 +706,7 @@
         .item-price {
             font-size: 14px;
             font-weight: 500;
+            white-space: nowrap; /* Prevent price wrapping */
         }
 
         .remove-item {
@@ -669,7 +716,12 @@
             cursor: pointer;
             font-size: 12px;
             transition: var(--transition-smooth);
-            padding: 5px 10px;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .remove-item:hover {
@@ -678,14 +730,16 @@
         }
 
         .cart-footer {
-            padding: 30px;
+            padding: 20px;
             border-top: 1px solid var(--light-gray);
+            background: var(--pure-white);
+            flex-shrink: 0; /* Prevent shrinking on mobile */
         }
 
         .cart-total {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 16px;
             font-weight: 500;
             letter-spacing: 1px;
@@ -705,6 +759,7 @@
             transition: var(--transition-smooth);
             text-align: center;
             text-decoration: none;
+            min-height: 44px; /* Mobile touch target */
         }
 
         .cart-modal .checkout-btn:hover {
@@ -715,6 +770,11 @@
             text-align: center;
             padding: 60px 20px;
             color: var(--medium-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .empty-cart i {
@@ -857,12 +917,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border: 1px solid var(--medium-gray);
             color: var(--pure-white);
             text-decoration: none;
             transition: var(--transition-smooth);
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .social-links a:hover {
@@ -883,7 +945,26 @@
             margin: 0 auto;
         }
 
-        /* Responsive */
+        /* Mobile Overlay for Cart */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive - FIXED FOR MOBILE */
         @media (max-width: 1200px) {
             .products-grid,
             .fashion-grid {
@@ -908,8 +989,10 @@
             }
             
             .mobile-menu-btn {
-                display: block;
+                display: flex;
                 order: 1;
+                align-items: center;
+                justify-content: center;
             }
             
             nav {
@@ -918,19 +1001,20 @@
             
             nav ul {
                 position: fixed;
-                top: 100px;
+                top: 80px; /* Adjusted for mobile header */
                 left: 0;
                 width: 100%;
                 background: var(--pure-white);
                 flex-direction: column;
                 align-items: center;
-                padding: 40px 0;
-                gap: 30px;
+                padding: 30px 0;
+                gap: 25px;
                 transform: translateY(-100%);
                 opacity: 0;
                 transition: var(--transition-smooth);
                 z-index: 999;
                 border-bottom: 1px solid var(--light-gray);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
             
             nav ul.active {
@@ -938,8 +1022,17 @@
                 opacity: 1;
             }
             
+            nav a {
+                font-size: 14px;
+                padding: 10px 20px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
             
             .magazine-container {
@@ -953,6 +1046,11 @@
             
             .commercial-content h2 {
                 font-size: 36px;
+            }
+            
+            .cart-modal {
+                max-width: 90%; /* Take more space on mobile */
+                width: 90%;
             }
         }
 
@@ -973,15 +1071,56 @@
             .ambassador-overlay {
                 bottom: 20px;
                 left: 20px;
+                right: 20px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 28px;
+            }
+            
+            .ambassador-overlay p {
+                font-size: 12px;
+                letter-spacing: 2px;
             }
             
             .magazine-content h2 {
                 font-size: 36px;
             }
             
+            .magazine-content h3 {
+                font-size: 20px;
+            }
+            
             .commercial-photo,
             .photo-placeholder {
                 height: 350px;
+            }
+            
+            .hero-ambassador {
+                padding: 150px 0 80px;
+            }
+            
+            /* Adjust header for mobile */
+            header {
+                padding: 15px 0;
+            }
+            
+            .kazine-logo-main {
+                width: 140px;
+                height: 50px;
+            }
+            
+            /* Make cart icon more prominent on mobile */
+            .cart-icon {
+                font-size: 20px;
+            }
+            
+            .cart-count {
+                width: 22px;
+                height: 22px;
+                font-size: 12px;
+                top: -4px;
+                right: -4px;
             }
         }
 
@@ -989,6 +1128,7 @@
             .products-grid,
             .fashion-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .grid-item,
@@ -997,7 +1137,7 @@
             }
             
             .hero-ambassador {
-                padding: 150px 0 60px;
+                padding: 130px 0 60px;
             }
             
             .shop-section,
@@ -1022,15 +1162,59 @@
             .ambassador-overlay h2 {
                 font-size: 24px;
             }
+            
+            .product-image {
+                height: 350px;
+            }
+            
+            .product-info {
+                padding: 20px 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .cart-modal {
+                max-width: 100%; /* Full width on very small screens */
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        /* Special styles for very small screens */
+        @media (max-width: 380px) {
+            .cart-header {
+                padding: 20px 15px;
+            }
+            
+            .cart-items {
+                padding: 15px;
+            }
+            
+            .cart-footer {
+                padding: 15px;
+            }
+            
+            .product-name {
+                font-size: 14px;
+            }
+            
+            .brand-name {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Cart Overlay for Mobile -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
     <!-- Shopping Cart Modal -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
             <h3>Shopping Bag</h3>
-            <button class="close-cart" id="closeCart">
+            <button class="close-cart" id="closeCart" aria-label="Close cart">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -1052,15 +1236,15 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
             <div class="logo-section">
                 <a href="index.html" style="text-decoration: none;">
                     <div class="kazine-logo-main">
-                        <!-- FIXED: Added alt text and proper image source -->
-                        <img src="https://via.placeholder.com/180x60/000000/FFFFFF?text=KAZINE" alt="KAZINE Logo" onerror="this.src='https://via.placeholder.com/180x60/000000/FFFFFF?text=KAZINE'">
+                        <img src="KAZINE.png" alt="KAZINE Logo" 
+                             onerror="this.src='https://via.placeholder.com/180x60/000000/FFFFFF?text=KAZINE'">
                     </div>
                 </a>
             </div>
@@ -1075,7 +1259,7 @@
             </nav>
             
             <div class="cart-icon-container">
-                <div class="cart-icon" id="openCart">
+                <div class="cart-icon" id="openCart" role="button" aria-label="Open shopping cart" tabindex="0">
                     <i class="fas fa-shopping-bag"></i>
                     <div class="cart-count" id="cartCount">0</div>
                 </div>
@@ -1087,8 +1271,8 @@
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <!-- FIXED: Added alt text -->
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Brand Ambassador - Elevated Style">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+                     alt="Brand Ambassador - Elevated Style">
                 <div class="ambassador-overlay">
                     <h2>ELEVATED STYLE</h2>
                     <p>FEATURING OUR BRAND AMBASSADOR</p>
@@ -1102,467 +1286,8 @@
         <div class="container">
             <div class="fashion-grid">
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 1">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item large">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion Editorial 2">
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 3">
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 4">
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 5">
-                </div>
-                <div class="grid-item large">
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion Editorial 6">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Commercial Section - FIXED -->
-    <section class="commercial-section" id="commercial">
-        <div class="container">
-            <div class="commercial-content">
-                <h2>MAGAZINE COLLABORATIONS</h2>
-                
-                <!-- Photo for KAFKAPAGES collaboration -->
-                <div class="single-photo-container">
-                    <div class="photo-frame">
-                        <!-- FIXED: Using proper Unsplash image for literature/fashion theme -->
-                        <img src="https://cdn.shopify.com/s/files/1/0469/3927/5428/files/SEVENTEEN-8th-Mini-Album-Your-Choice-Official-Photo-documents-2_8.jpg?v=1733301582" 
-                             alt="KAFKAPAGES Collaboration - Literature Meets Fashion" 
-                             class="commercial-photo">
-                    </div>
-                    <div class="photo-caption">KAFKAPAGES: Where Literature Meets Fashion</div>
-                </div>
-                
-                <!-- Text from your screenshot -->
-                <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
-                
-                <!-- FIXED: Button with proper href -->
-                <a href="kafkapages.html" class="btn-outline">
-                    <span>EXPLORE KAFKAPAGES</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shop Section -->
-    <section class="shop-section" id="shop">
-        <div class="container">
-            <div class="section-title">
-                <h2>CURATED COLLECTION</h2>
-                <p>FEATURING COLLABORATION BRANDS</p>
-            </div>
-            
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-product="Silk Evening Dress" data-price="499.99" data-id="kazine-dress-001">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Silk Evening Dress">
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE EXCLUSIVE</div>
-                        <h3 class="product-name">Silk Evening Dress</h3>
-                        <div class="product-price">$499.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card" data-product="Wool Tailored Blazer" data-price="389.99" data-id="kazine-blazer-002">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wool Tailored Blazer">
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE EXCLUSIVE</div>
-                        <h3 class="product-name">Wool Tailored Blazer</h3>
-                        <div class="product-price">$389.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card" data-product="Leather Crossbody Bag" data-price="299.99" data-id="kazine-bag-003">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leather Crossbody Bag">
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE EXCLUSIVE</div>
-                        <h3 class="product-name">Leather Crossbody Bag</h3>
-                        <div class="product-price">$299.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card" data-product="Cashmere Sweater Set" data-price="459.99" data-id="kazine-sweater-004">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cashmere Sweater Set">
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE EXCLUSIVE</div>
-                        <h3 class="product-name">Cashmere Sweater Set</h3>
-                        <div class="product-price">$459.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Checkout Button Container -->
-            <div class="checkout-container">
-                <a href="payment-kazine.html" class="btn-outline">
-                    <span>PROCEED TO CHECKOUT</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Magazine Section -->
-    <section class="magazine-section" id="magazine">
-        <div class="container">
-            <div class="magazine-container">
-                <div class="magazine-cover">
-                    <a href="#magazine-page" style="display: block;">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="KAZINE Magazine Volume 1">
-                        <div class="magazine-badge">VOL. 1</div>
-                    </a>
-                </div>
-                <div class="magazine-content">
-                    <h2>KAZINE!</h2>
-                    <h3>NEW YEAR NEW VIBES</h3>
-                    <p>Experience the inaugural edition of KAZINE, where fashion, culture, and lifestyle converge. Volume 1 celebrates new beginnings with exclusive interviews, editorial features, and behind-the-scenes access to the world's most influential creators.</p>
-                    <p>Discover the stories behind the styles and the visionaries shaping tomorrow's trends today.</p>
-                    <div class="coming-soon-tag">VOLUME 2 COMING SOON</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>KAZINE</h3>
-                    <p>A premium fashion and lifestyle brand under THE KACHOO, specializing in curated collaborations and exclusive magazine publications.</p>
-                    <p>Where style meets substance in every edition.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 12px;"><a href="index.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">THE KACHOO</a></li>
-                        <li style="margin-bottom: 12px;"><a href="kafkapages.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">KAFKAPAGES</a></li>
-                        <li style="margin-bottom: 12px;"><a href="#shop" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">SHOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="#magazine" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">MAGAZINE</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <p>Official Account (X): <strong>@TheKachoo</strong></p>
-                    <p>Email: ohkachoo@gmail.com</p>
-                    <div class="social-links">
-                        <a href="https://twitter.com/TheKachoo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="mailto:ohkachoo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="disclaimer">
-                <p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional and for demonstration purposes only. No real money will be charged, and no physical products will be shipped. This is a conceptual showcase of the KAZINE brand experience.</p>
-                <p style="margin-top: 15px;">&copy; 2023 KAZINE | A division of THE KACHOO. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-    // ==================== IMPROVED SHOPPING CART SYSTEM ====================
-    let kazineCart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-    const cartModal = document.getElementById('cartModal');
-    const cartCount = document.getElementById('cartCount');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const emptyCart = document.getElementById('emptyCart');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-
-    // Update cart display with improved functionality
-    function updateCartDisplay() {
-        cartCount.textContent = kazineCart.reduce((total, item) => total + (item.quantity || 1), 0);
-        cartItems.innerHTML = '';
-        
-        if (kazineCart.length === 0) {
-            emptyCart.style.display = 'block';
-            checkoutBtn.style.display = 'none';
-            cartTotal.textContent = '$0.00';
-            return;
-        }
-        
-        emptyCart.style.display = 'none';
-        checkoutBtn.style.display = 'block';
-        
-        let total = 0;
-        
-        kazineCart.forEach((item, index) => {
-            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
-            total += itemTotal;
-            
-            const cartItem = document.createElement('div');
-            cartItem.className = 'cart-item';
-            cartItem.innerHTML = `
-                <div class="item-info">
-                    <h4>${item.title || 'Product'}</h4>
-                    <p>Quantity: ${item.quantity || 1}</p>
-                </div>
-                <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                <button class="remove-item" data-index="${index}" aria-label="Remove item">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            `;
-            cartItems.appendChild(cartItem);
-        });
-        
-        // Add event listeners to remove buttons
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
-                kazineCart.splice(index, 1);
-                localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
-                updateCartDisplay();
-                showNotification('Item removed from cart', 'info');
-            });
-        });
-        
-        cartTotal.textContent = `$${total.toFixed(2)}`;
-    }
-
-    // Show notification function
-    function showNotification(message, type = 'success') {
-        // Remove existing notification
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-        
-        // Create notification
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: ${type === 'success' ? '#000' : '#333'};
-            color: #fff;
-            padding: 15px 25px;
-            border-radius: 2px;
-            z-index: 9999;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            font-size: 14px;
-            letter-spacing: 1px;
-        `;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 10);
-        
-        // Animate out and remove
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-
-    // Add to cart functionality - FIXED
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const productCard = this.closest('.product-card');
-            const productTitle = productCard.getAttribute('data-product');
-            const productPrice = productCard.getAttribute('data-price');
-            const productId = productCard.getAttribute('data-id') || productTitle.toLowerCase().replace(/\s+/g, '-');
-            
-            // Check if item already exists in cart
-            const existingItemIndex = kazineCart.findIndex(item => item.id === productId);
-            
-            if (existingItemIndex !== -1) {
-                // Update quantity if item exists
-                kazineCart[existingItemIndex].quantity = (kazineCart[existingItemIndex].quantity || 1) + 1;
-                kazineCart[existingItemIndex].totalPrice = parseFloat(kazineCart[existingItemIndex].price) * kazineCart[existingItemIndex].quantity;
-                showNotification(`${productTitle} quantity updated! (Now ${kazineCart[existingItemIndex].quantity})`, 'success');
-            } else {
-                // Add new item to cart
-                kazineCart.push({
-                    id: productId,
-                    title: productTitle,
-                    price: productPrice,
-                    quantity: 1,
-                    totalPrice: parseFloat(productPrice),
-                    date: new Date().toISOString(),
-                    store: 'KAZINE'
-                });
-                showNotification(`${productTitle} added to cart!`, 'success');
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
-            
-            // Update cart display
-            updateCartDisplay();
-            
-            // Add visual feedback to button
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> Added';
-            this.style.background = '#27ae60';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.background = '';
-            }, 1000);
-        });
-    });
-
-    // Cart icon click - Toggle cart modal
-    document.getElementById('openCart').addEventListener('click', (e) => {
-        e.stopPropagation();
-        cartModal.classList.add('active');
-        updateCartDisplay();
-        document.body.style.overflow = 'hidden';
-    });
-
-    document.getElementById('closeCart').addEventListener('click', () => {
-        cartModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-    
-    // Checkout button in cart modal
-    checkoutBtn.addEventListener('click', () => {
-        if (kazineCart.length === 0) {
-            showNotification('Your cart is empty! Please add products first.', 'info');
-            return;
-        }
-        
-        // Calculate totals
-        let subtotal = 0;
-        kazineCart.forEach(item => {
-            subtotal += parseFloat(item.price) * (item.quantity || 1);
-        });
-        
-        // Create order data
-        const orderData = {
-            items: kazineCart,
-            subtotal: subtotal,
-            discount: 0,
-            serviceFee: 2.50,
-            total: subtotal + 2.50,
-            store: 'KAZINE',
-            date: new Date().toISOString(),
-            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-        };
-        
-        // Save order to localStorage
-        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-        
-        // Close cart modal
-        cartModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        
-        // Redirect to payment page
-        setTimeout(() => {
-            window.location.href = 'payment-kazine.html';
-        }, 300);
-    });
-
-    // Close cart when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!cartModal.contains(e.target) && !e.target.closest('.cart-icon-container')) {
-            cartModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Close cart with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && cartModal.classList.contains('active')) {
-            cartModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainMenu = document.getElementById('mainMenu');
-    
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mainMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mainMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-        
-        // Close mobile menu when clicking a link
-        mainMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-    }
-
-    // Initialize cart display
-    updateCartDisplay();
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            
-            // Skip if it's just "#"
-            if (href === '#') return;
-            
-            // Don't prevent default for regular page links
-            if (href.includes('.html')) return;
-            
-            e.preventDefault();
-            
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (mainMenu.classList.contains('active')) {
-                    mainMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-    });
-    </script>
-</body>
-</html>
+                    <img src="https://images.unsplash.com/photo-149048
