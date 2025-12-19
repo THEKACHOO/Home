@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafka Company - Family Heritage Since 1895</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #9d4edd;
+            --primary-dark: #7b2cbf;
+            --secondary: #ff9e00;
+            --dark-bg: #0f0f1e;
+            --darker-bg: #0a0a14;
+            --card-bg: #1a1a2e;
+            --light-text: #f0f0f0;
+            --gray-text: #b0b0c0;
+            --border-color: #2a2a3e;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gray-text);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Offices Section */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        .offices {
+            padding: 100px 0;
+            background-color: var(--darker-bg);
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .office-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .office-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .office-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .office-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .office-location {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .office-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .office-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .office-status {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: rgba(157, 78, 221, 0.2);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .office-body {
+            padding: 25px;
+        }
+
+        .office-desc {
+            color: var(--gray-text);
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .office-features {
+            margin-top: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .feature-list {
+            list-style-type: none;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Kachoo Section */
+        .kachoo {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+        }
+
+        .kachoo-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .kachoo-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff9e00, #ffd166);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kachoo-tagline {
+            color: var(--gray-text);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.05), transparent);
+            z-index: 0;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-desc {
+            color: var(--gray-text);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--darker-bg);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 25px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            min-width: 250px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .contact-details h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-details a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #05050a;
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .footer-links {
+            list-style-type: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero {
+                padding: 180px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .office-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-crown logo-icon"></i>
+                    KAFKA<span>COMPANY</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#history">History</a>
+                    <a href="#offices">Our Offices</a>
+                    <a href="#kachoo">KACHOO Brand</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kafka Company: A Legacy of Excellence</h1>
+                <p class="hero-subtitle">Family Heritage Since 1895 • London • New York • Jakarta</p>
+                <p class="hero-desc">
+                    Founded by the Kafka family in London, our company has grown through generations while maintaining our core family values. 
+                    In <span class="highlight">2026</span>, we proudly expanded to Southeast Asia with our new branch in South Jakarta, introducing our innovative <span class="highlight">KACHOO</span> brand to the region.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offices Section -->
+    <section class="offices" id="offices">
+        <div class="container">
+            <h2 class="section-title">Our Global Offices</h2>
+            <p class="section-subtitle">With strategic locations across three major global cities, Kafka Company maintains a strong international presence while staying true to our family roots.</p>
+            
+            <div class="office-grid">
+                <!-- London Office -->
+                <div class="office-card">
+                    <div class="office-header">
+                        <div class="office-location">
+                            <i class="fas fa-landmark office-icon"></i>
+                            <h3 class="office-title">London, UK</h3>
+                        </div>
+                        <span class="office-status">First & Founding Office</span>
+                    </div>
+                    <div class="office-body">
+                        <p class="office-desc">The original Kafka Company office, established by the Kafka family in 1895. This historic location represents our roots and traditional values.</p>
+                        
+                        <div class="office-features">
+                            <h4 class="feature-title">Key Functions</h4>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> Family Heritage Preservation</li>
+                                <li><i class="fas fa-check-circle"></i> European Operations</li>
+                                <li><i class="fas fa-check-circle"></i> Historical Archives</li>
+                                <li><i class="fas fa-check-circle"></i> Traditional Craftsmanship</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New York Office -->
+                <div class="office-card">
+                    <div class="office-header">
+                        <div class="office-location">
+                            <i class="fas fa-building office-icon"></i>
+                            <h3 class="office-title">New York, USA</h3>
+                        </div>
+                        <span class="office-status">Global Headquarters</span>
+                    </div>
+                    <div class="office-body">
+                        <p class="office-desc">Our global headquarters, established in 1978. This office oversees all international operations and strategic direction for Kafka Company.</p>
+                        
+                        <div class="office-features">
+                            <h4 class="feature-title">Key Functions</h4>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> Global Strategy & Leadership</li>
+                                <li><i class="fas fa-check-circle"></i> International Operations</li>
+                                <li><i class="fas fa-check-circle"></i> Corporate Governance</li>
+                                <li><i class="fas fa-check-circle"></i> Investor Relations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jakarta Office -->
+                <div class="office-card">
+                    <div class="office-header">
+                        <div class="office-location">
+                            <i class="fas fa-globe-asia office-icon"></i>
+                            <h3 class="office-title">Jakarta, Indonesia</h3>
+                        </div>
+                        <span class="office-status">Newest Expansion (2026)</span>
+                    </div>
+                    <div class="office-body">
+                        <p class="office-desc">Our newest branch located at Jenderal Sudirman Avenue, Lots 61–62, South Jakarta. This office introduces the KACHOO brand to Southeast Asia.</p>
+                        
+                        <div class="office-features">
+                            <h4 class="feature-title">Key Functions</h4>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> KACHOO Brand Operations</li>
+                                <li><i class="fas fa-check-circle"></i> Southeast Asia Market</li>
+                                <li><i class="fas fa-check-circle"></i> Digital Innovation Hub</li>
+                                <li><i class="fas fa-check-circle"></i> Regional Publishing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kachoo Brand Section -->
+    <section class="kachoo" id="kachoo">
+        <div class="container">
+            <div class="kachoo-header">
+                <h2 class="kachoo-logo">KACHOO</h2>
+                <p class="kachoo-tagline">Our innovative brand launched from our Jakarta branch, focusing on publishing, magazines, and news media for the Southeast Asian market.</p>
+            </div>
+            
+            <div class="project-grid">
+                <!-- KAFKAPAGES -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="project-title">KAFKAPAGES</h3>
+                    <p class="project-desc">A premium book publishing house specializing in literature, business, and cultural works from both local and international authors.</p>
+                </div>
+
+                <!-- KAZINE -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="project-title">KAZINE</h3>
+                    <p class="project-desc">A high-end magazine publication featuring lifestyle, business insights, culture, and innovation trends across Southeast Asia.</p>
+                </div>
+
+                <!-- KABOOM -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="project-title">KABOOM</h3>
+                    <p class="project-desc">A dynamic digital news platform delivering breaking news, analysis, and investigative journalism with speed and accuracy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Connect with Kafka Company and our KACHOO brand through our official channels</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <a href="mailto:thekachoo@gmail.com">thekachoo@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Twitter</h3>
+                        <a href="https://twitter.com/thekachoo" target="_blank">@thekachoo</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Jakarta Office</h3>
+                        <p>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3 class="footer-title">Kafka Company</h3>
+                    <p>A family heritage business since 1895, now with global presence across London, New York, and Jakarta.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Our Offices</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">London, UK (Founding Office)</a></li>
+                        <li><a href="#">New York, USA (Headquarters)</a></li>
+                        <li><a href="#">Jakarta, Indonesia (KACHOO Brand)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">KACHOO Projects</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">KAFKAPAGES (Book Publishing)</a></li>
+                        <li><a href="#">KAZINE (Magazine)</a></li>
+                        <li><a href="#">KABOOM (News Media)</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Kafka Company. All rights reserved. A Family Heritage Business Since 1895.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add subtle animation to office cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe office cards for animation
+        document.querySelectorAll('.office-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Observe project cards for animation
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
