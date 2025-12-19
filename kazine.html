@@ -405,81 +405,6 @@
             background: var(--dark-gray);
         }
 
-        /* Magazine Section */
-        .magazine-section {
-            padding: 100px 0;
-            background: var(--pure-white);
-        }
-
-        .magazine-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .magazine-cover {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .magazine-cover img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 5s ease;
-        }
-
-        .magazine-cover:hover img {
-            transform: scale(1.03);
-        }
-
-        .magazine-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--pure-white);
-            color: var(--pure-black);
-            padding: 8px 15px;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .magazine-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .magazine-content h3 {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--medium-gray);
-            margin-bottom: 30px;
-            letter-spacing: 3px;
-        }
-
-        .magazine-content p {
-            font-size: 16px;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .coming-soon-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 20px;
-        }
-
         /* Cart Modal */
         .cart-modal {
             position: fixed;
@@ -619,6 +544,81 @@
             margin-bottom: 20px;
             display: block;
             opacity: 0.5;
+        }
+
+        /* Magazine Section */
+        .magazine-section {
+            padding: 100px 0;
+            background: var(--pure-white);
+        }
+
+        .magazine-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .magazine-cover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magazine-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 5s ease;
+        }
+
+        .magazine-cover:hover img {
+            transform: scale(1.03);
+        }
+
+        .magazine-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--pure-white);
+            color: var(--pure-black);
+            padding: 8px 15px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .magazine-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .magazine-content h3 {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+
+        .magazine-content p {
+            font-size: 16px;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
         }
 
         /* Footer */
@@ -833,45 +833,49 @@
                 <span>Total</span>
                 <span id="cartTotal">$0.00</span>
             </div>
-            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Payment</button>
         </div>
     </div>
 
     <!-- Header -->
-<header>
-    <div class="container header-container">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <div class="logo-section">
-            <a href="index.html" style="text-decoration: none;">
-                <div class="kazine-logo-main">
-                    <img src="kazine-logo.png" alt="KAZINE">
+    <header>
+        <div class="container header-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="logo-section">
+                <a href="index.html" style="text-decoration: none;">
+                    <div class="kazine-logo-main">
+                        <!-- LOGO KAZINE -->
+                        <img src="kazine-logo.png" alt="KAZINE">
+                    </div>
+                </a>
+            </div>
+            
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="index.html">THE KACHOO</a></li>
+                    <li><a href="#shop">SHOP</a></li>
+                    <li><a href="#magazine">MAGAZINE</a></li>
+                    <li><a href="#commercial">COLLABORATIONS</a></li>
+                </ul>
+            </nav>
+            
+            <div class="cart-icon-container">
+                <div class="cart-icon" id="openCart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <div class="cart-count" id="cartCount">0</div>
                 </div>
-            </a>
+            </div>
         </div>
-        
-        <nav>
-            <ul id="mainMenu">
-                <li><a href="index.html">THE KACHOO</a></li> <!-- INI BACK LINK -->
-                <li><a href="#shop">SHOP</a></li>
-                <li><a href="#magazine">MAGAZINE</a></li>
-                <li><a href="#commercial">COLLABORATIONS</a></li>
-            </ul>
-        </nav>
-        
-        <div class="cart-icon-container">
-            <!-- ... cart icon ... -->
-        </div>
-    </div>
-</header>
+    </header>
 
     <!-- Hero - Brand Ambassador -->
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <!-- BRAND AMBASSADOR IMAGE - Place your image here -->
+                <!-- BRAND AMBASSADOR IMAGE -->
                 <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Brand Ambassador">
                 <div class="ambassador-overlay">
                     <h2>ELEVATED STYLE</h2>
@@ -1055,7 +1059,7 @@
     </footer>
 
     <script>
-        // Shopping Cart Functionality
+        // ==================== SHOPPING CART SYSTEM ====================
         let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
         const cartModal = document.getElementById('cartModal');
         const cartCount = document.getElementById('cartCount');
@@ -1091,5 +1095,4 @@
                         <h4>${item.title}</h4>
                         <p>${item.brand || 'KAZINE Collection'}</p>
                     </div>
-                    <div class="item-price">$${item.price}</div>
-                    <button class="remove-item" data-index="${index}">Remove
+                    <div class="item-price
