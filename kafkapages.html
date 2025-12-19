@@ -933,102 +933,114 @@
     </footer>
 
     <script>
-        // Shopping Cart Functionality
-        let cart = JSON.parse(localStorage.getItem('kafkapagesCart')) || [];
-        const cartModal = document.getElementById('cartModal');
-        const cartCount = document.getElementById('cartCount');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        const emptyCart = document.getElementById('emptyCart');
-        const checkoutBtn = document.getElementById('checkoutBtn');
+            <script>
+    // Shopping Cart Functionality
+    let cart = JSON.parse(localStorage.getItem('kafkapagesCart')) || [];
+    const cartModal = document.getElementById('cartModal');
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const emptyCart = document.getElementById('emptyCart');
+    const checkoutBtn = document.getElementById('checkoutBtn');
 
-        // Update cart display
-        function updateCartDisplay() {
-            cartCount.textContent = cart.length;
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                emptyCart.style.display = 'block';
-                checkoutBtn.style.display = 'none';
-                cartTotal.textContent = '$0.00';
-                return;
-            }
-            
-            emptyCart.style.display = 'none';
-            checkoutBtn.style.display = 'block';
-            
-            let total = 0;
-            
-            cart.forEach((item, index) => {
-                total += parseFloat(item.price);
-                
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <div class="item-info">
-                        <h4>${item.title}</h4>
-                        <p>${item.language} Edition</p>
-                    </div>
-                    <div class="item-price">$${item.price}</div>
-                    <button class="remove-item" data-index="${index}">Remove</button>
-                `;
-                cartItems.appendChild(cartItem);
-            });
-            
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    cart.splice(index, 1);
-                    localStorage.setItem('kafkapagesCart', JSON.stringify(cart));
-                    updateCartDisplay();
-                });
-            });
-            
-            cartTotal.textContent = `$${total.toFixed(2)}`;
+    // Update cart display
+    function updateCartDisplay() {
+        cartCount.textContent = cart.length;
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            emptyCart.style.display = 'block';
+            checkoutBtn.style.display = 'none';
+            cartTotal.textContent = '$0.00';
+            return;
         }
-
-        // Add to cart functionality
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        
+        emptyCart.style.display = 'none';
+        checkoutBtn.style.display = 'block';
+        
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            total += parseFloat(item.price);
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <div class="item-info">
+                    <h4>${item.title}</h4>
+                    <p>${item.language} Edition</p>
+                </div>
+                <div class="item-price">$${item.price}</div>
+                <button class="remove-item" data-index="${index}">Remove</button>
+            `;
+            cartItems.appendChild(cartItem);
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
-                const bookCard = this.closest('.book-card');
-                const bookTitle = bookCard.getAttribute('data-book');
-                const bookPrice = this.getAttribute('data-price');
-                const languageBtn = bookCard.querySelector('.lang-btn.active');
-                const language = languageBtn ? languageBtn.getAttribute('data-lang') : 'indonesian';
-                
-                cart.push({
-                    title: bookTitle,
-                    price: bookPrice,
-                    language: language,
-                    date: new Date().toLocaleDateString()
-                });
-                
+                const index = parseInt(this.getAttribute('data-index'));
+                cart.splice(index, 1);
                 localStorage.setItem('kafkapagesCart', JSON.stringify(cart));
                 updateCartDisplay();
-                
-                alert(`${bookTitle} (${language} edition) has been added to your cart!`);
             });
         });
+        
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
 
-        // Language button selection
-        document.querySelectorAll('.lang-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const parent = this.closest('.language-buttons');
-                parent.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
+    // Add to cart functionality
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const bookCard = this.closest('.book-card');
+            const bookTitle = bookCard.getAttribute('data-book');
+            const bookPrice = this.getAttribute('data-price');
+            const languageBtn = bookCard.querySelector('.lang-btn.active');
+            const language = languageBtn ? languageBtn.getAttribute('data-lang') : 'indonesian';
+            
+            cart.push({
+                title: bookTitle,
+                price: bookPrice,
+                language: language,
+                date: new Date().toLocaleDateString()
             });
+            
+            localStorage.setItem('kafkapagesCart', JSON.stringify(cart));
+            updateCartDisplay();
+            
+            alert(`${bookTitle} (${language} edition) has been added to your cart!`);
         });
+    });
 
-// Cart modal controls - PERBAIKAN
-document.getElementById('openCart').addEventListener('click', () => {
-    // SELALU buka modal keranjang terlebih dahulu
-    cartModal.classList.add('active');
-    updateCartDisplay(); // Pastikan isi keranjang diperbarui
-});
-    } else {
-        // Jika ada item di keranjang, langsung ke payment page
+    // Language button selection
+    document.querySelectorAll('.lang-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const parent = this.closest('.language-buttons');
+            parent.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+
+    // Cart modal controls - DIKOREKSI
+    document.getElementById('openCart').addEventListener('click', () => {
+        // SELALU buka modal keranjang terlebih dahulu
+        cartModal.classList.add('active');
+        updateCartDisplay();
+    });
+
+    document.getElementById('closeCart').addEventListener('click', () => {
+        cartModal.classList.remove('active');
+    });
+    
+    // Checkout button in cart modal
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty! Please add books first.');
+            return;
+        }
+        
+        // Save cart data to localStorage for payment page
         localStorage.setItem('kafkapagesOrder', JSON.stringify({
             items: cart,
             total: parseFloat(cartTotal.textContent.replace('$', '')),
@@ -1036,80 +1048,57 @@ document.getElementById('openCart').addEventListener('click', () => {
             date: new Date().toLocaleString()
         }));
         
+        // Close cart modal
+        cartModal.classList.remove('active');
+        
+        // Redirect to payment page
         window.location.href = 'payment-kafkapages.html';
-    }
-});
+    });
 
-        document.getElementById('closeCart').addEventListener('click', () => {
-    cartModal.classList.remove('active');
-});
-
-        
-checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-        alert('Your cart is empty! Please add books first.');
-        return;
-    }
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainMenu = document.getElementById('mainMenu');
     
-    // Save cart data to localStorage for payment page
-    localStorage.setItem('kafkapagesOrder', JSON.stringify({
-        items: cart,
-        total: parseFloat(cartTotal.textContent.replace('$', '')),
-        store: 'KAFKAPAGES',
-        date: new Date().toLocaleString()
-    }));
+    mobileMenuBtn.addEventListener('click', () => {
+        mainMenu.classList.toggle('active');
+        mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
     
-    // Close cart modal
-    cartModal.classList.remove('active');
-    
-    // Redirect to payment page
-    window.location.href = 'payment-kafkapages.html';
-});
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainMenu = document.getElementById('mainMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mainMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            mainMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
         });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
+    });
 
-        // Close cart when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === cartModal) {
-                cartModal.classList.remove('active');
+    // Close cart when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === cartModal) {
+            cartModal.classList.remove('active');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if(this.getAttribute('href') === '#') return;
+            
+            e.preventDefault();
+            const targetElement = document.querySelector(this.getAttribute('href'));
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
             }
         });
+    });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Initialize cart display
-        updateCartDisplay();
-    </script>
+    // Initialize cart display
+    updateCartDisplay();
+</script>            
 </body>
 </html>
