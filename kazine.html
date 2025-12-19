@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE | Fashion & Lifestyle</title>
+    <title>KAZINE | Fashion & Lifestyle Magazine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
@@ -48,12 +48,14 @@
         /* Minimalist Header */
         header {
             background: var(--pure-white);
-            padding: 25px 0;
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--light-gray);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .header-container {
@@ -62,7 +64,7 @@
             align-items: center;
         }
 
-        /* Logo Section - Centered & Minimalist */
+        /* Logo Section */
         .logo-section {
             position: absolute;
             left: 50%;
@@ -95,7 +97,7 @@
             color: var(--pure-black);
             text-decoration: none;
             font-weight: 400;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 8px 0;
@@ -163,7 +165,7 @@
             cursor: pointer;
         }
 
-        /* Hero Section - Brand Ambassador */
+        /* Hero Section */
         .hero-ambassador {
             padding: 180px 0 100px;
             background: var(--off-white);
@@ -179,6 +181,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .ambassador-image img {
@@ -255,12 +258,23 @@
             transform: scale(1.05);
         }
 
-        /* Commercial Section */
+        /* Commercial Section - IMPROVED */
         .commercial-section {
             padding: 100px 0;
             background: var(--pure-black);
             color: var(--pure-white);
             text-align: center;
+            position: relative;
+        }
+
+        .commercial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
 
         .commercial-content {
@@ -274,6 +288,19 @@
             font-weight: 400;
             margin-bottom: 30px;
             letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .commercial-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: var(--accent-gold);
         }
 
         .commercial-content p {
@@ -281,6 +308,72 @@
             color: var(--medium-gray);
             margin-bottom: 40px;
             line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Single Photo Commercial - FIXED */
+        .single-photo-container {
+            max-width: 800px;
+            margin: 40px auto 30px;
+            position: relative;
+        }
+
+        .photo-frame {
+            background: var(--pure-white);
+            padding: 10px;
+            border-radius: 2px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .commercial-photo {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame:hover .commercial-photo {
+            transform: scale(1.02);
+        }
+
+        .photo-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+            border: none;
+        }
+
+        .photo-placeholder i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            color: var(--accent-gold);
+        }
+
+        .photo-caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 10px;
         }
 
         .btn-outline {
@@ -293,11 +386,38 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: var(--transition-smooth);
+            background: transparent;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-outline:hover {
             background: var(--pure-white);
             color: var(--pure-black);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--pure-white);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-outline:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-outline span {
+            position: relative;
+            z-index: 1;
         }
 
         /* Shop Section */
@@ -337,6 +457,8 @@
             background: var(--pure-white);
             position: relative;
             transition: var(--transition-smooth);
+            border-radius: 2px;
+            overflow: hidden;
         }
 
         .product-card:hover {
@@ -399,10 +521,63 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
 
         .add-to-cart-btn:hover {
             background: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+
+        .add-to-cart-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .add-to-cart-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        /* Checkout Button Container */
+        .checkout-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .checkout-container .btn-outline {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            padding: 18px 50px;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        .checkout-container .btn-outline:hover {
+            background: var(--dark-gray);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
         /* Cart Modal */
@@ -451,6 +626,7 @@
 
         .close-cart:hover {
             opacity: 0.7;
+            transform: rotate(90deg);
         }
 
         .cart-items {
@@ -493,10 +669,12 @@
             cursor: pointer;
             font-size: 12px;
             transition: var(--transition-smooth);
+            padding: 5px 10px;
         }
 
         .remove-item:hover {
             color: var(--pure-black);
+            background: var(--light-gray);
         }
 
         .cart-footer {
@@ -513,7 +691,7 @@
             letter-spacing: 1px;
         }
 
-        .checkout-btn {
+        .cart-modal .checkout-btn {
             display: block;
             width: 100%;
             padding: 15px;
@@ -529,7 +707,7 @@
             text-decoration: none;
         }
 
-        .checkout-btn:hover {
+        .cart-modal .checkout-btn:hover {
             background: var(--dark-gray);
         }
 
@@ -562,6 +740,7 @@
         .magazine-cover {
             position: relative;
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .magazine-cover img {
@@ -619,6 +798,12 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .coming-soon-tag:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -652,7 +837,7 @@
             left: 0;
             width: 40px;
             height: 1px;
-            background: var(--pure-white);
+            background: var(--accent-gold);
         }
 
         .footer-section p {
@@ -681,7 +866,8 @@
         }
 
         .social-links a:hover {
-            border-color: var(--pure-white);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
             transform: translateY(-3px);
         }
 
@@ -696,194 +882,7 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        /* Commercial Section Styles - TAMBAHKAN DI SINI */
-    .commercial-section {
-            padding: 80px 0;
-            background: var(--off-white);
-            text-align: center;
-        }
 
-    .commercial-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-    .commercial-content h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: var(--primary-black);
-            position: relative;
-            display: inline-block;
-}
-
-        .commercial-content h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--primary-black);
-}
-
-        .commercial-content p {
-            font-size: 18px;
-            color: var(--dark-gray);
-            margin: 30px 0;
-            line-height: 1.8;
-}
-
-/* Single Photo Commercial Styles - TAMBAHKAN DI SINI */
-.single-photo-container {
-    max-width: 800px;
-    margin: 30px auto;
-}
-
-.photo-frame {
-    background: var(--primary-white);
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 2px solid var(--light-gray);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.photo-frame:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border-color: var(--medium-gray);
-}
-
-.commercial-photo {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.5s ease;
-}
-
-.photo-frame:hover .commercial-photo {
-    transform: scale(1.02);
-}
-
-.photo-placeholder {
-    height: 400px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--medium-gray);
-    border: 2px dashed var(--medium-gray);
-}
-
-.photo-placeholder i {
-    font-size: 60px;
-    margin-bottom: 20px;
-    opacity: 0.5;
-}
-
-.photo-placeholder p {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-}
-
-.photo-caption {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--primary-black);
-    font-style: italic;
-    padding: 10px;
-    background: var(--off-white);
-    border-radius: 8px;
-}
-
-/* Button Styles - TAMBAHKAN JIKA BELUM ADA */
-.btn-outline {
-    display: inline-block;
-    padding: 15px 35px;
-    background: transparent;
-    color: var(--primary-black);
-    border: 2px solid var(--primary-black);
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.btn-outline:hover {
-    background: var(--primary-black);
-    color: var(--primary-white);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Photo - TAMBAHKAN DI SINI */
-@media (max-width: 992px) {
-    .commercial-photo,
-    .photo-placeholder {
-        height: 350px;
-    }
-    
-    .commercial-content h2 {
-        font-size: 32px;
-    }
-}
-
-@media (max-width: 768px) {
-    .commercial-section {
-        padding: 60px 0;
-    }
-    
-    .single-photo-container {
-        margin: 25px auto;
-    }
-    
-    .commercial-photo,
-    .photo-placeholder {
-        height: 300px;
-    }
-    
-    .photo-caption {
-        font-size: 16px;
-    }
-    
-    .commercial-content p {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 576px) {
-    .commercial-photo,
-    .photo-placeholder {
-        height: 250px;
-    }
-    
-    .photo-caption {
-        font-size: 15px;
-    }
-    
-    .commercial-content h2 {
-        font-size: 28px;
-    }
-    
-    .btn-outline {
-        padding: 12px 25px;
-        font-size: 14px;
-    }
-}
-        
         /* Responsive */
         @media (max-width: 1200px) {
             .products-grid,
@@ -951,6 +950,10 @@
             .ambassador-image {
                 height: 500px;
             }
+            
+            .commercial-content h2 {
+                font-size: 36px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -975,6 +978,11 @@
             .magazine-content h2 {
                 font-size: 36px;
             }
+            
+            .commercial-photo,
+            .photo-placeholder {
+                height: 350px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -996,6 +1004,23 @@
             .fashion-grid-section,
             .magazine-section {
                 padding: 60px 0;
+            }
+            
+            .commercial-section {
+                padding: 60px 0;
+            }
+            
+            .commercial-photo,
+            .photo-placeholder {
+                height: 300px;
+            }
+            
+            .commercial-content h2 {
+                font-size: 28px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 24px;
             }
         }
     </style>
@@ -1034,8 +1059,8 @@
             <div class="logo-section">
                 <a href="index.html" style="text-decoration: none;">
                     <div class="kazine-logo-main">
-                        <!-- LOGO KAZINE -->
-                        <img src="KAZINE.png" alt="KAZINE">
+                        <!-- FIXED: Added alt text and proper image source -->
+                        <img src="https://via.placeholder.com/180x60/000000/FFFFFF?text=KAZINE" alt="KAZINE Logo" onerror="this.src='https://via.placeholder.com/180x60/000000/FFFFFF?text=KAZINE'">
                     </div>
                 </a>
             </div>
@@ -1062,8 +1087,8 @@
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <!-- BRAND AMBASSADOR IMAGE -->
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Brand Ambassador">
+                <!-- FIXED: Added alt text -->
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Brand Ambassador - Elevated Style">
                 <div class="ambassador-overlay">
                     <h2>ELEVATED STYLE</h2>
                     <p>FEATURING OUR BRAND AMBASSADOR</p>
@@ -1077,62 +1102,54 @@
         <div class="container">
             <div class="fashion-grid">
                 <div class="grid-item">
-                    <!-- FASHION IMAGE 1 -->
-                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion 1">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item large">
-                    <!-- FASHION IMAGE 2 -->
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion 2">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion Editorial 2">
                 </div>
                 <div class="grid-item">
-                    <!-- FASHION IMAGE 3 -->
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion 3">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 3">
                 </div>
                 <div class="grid-item">
-                    <!-- FASHION IMAGE 4 -->
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion 4">
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 4">
                 </div>
                 <div class="grid-item">
-                    <!-- FASHION IMAGE 5 -->
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion 5">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial 5">
                 </div>
                 <div class="grid-item large">
-                    <!-- FASHION IMAGE 6 -->
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion 6">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion Editorial 6">
                 </div>
             </div>
         </div>
     </section>
 
-   <!-- Commercial Section -->
-<section class="commercial-section" id="commercial">
-    <div class="container">
-        <div class="commercial-content">
-            <h2>COMMERCIAL SESSION</h2>
-            
-            <!-- PHOTO DISINI - DI ATAS PARAGRAF -->
-            <div class="single-photo-container">
-                <div class="photo-frame">
-                    <!-- GANTI DENGAN FOTO ANDA -->
-                    <img src="YOUR_COMMERCIAL_PHOTO.jpg" alt="KAFKAPAGES Commercial Photo" class="commercial-photo">
-                    
-                    <!-- JIKA BELUM ADA FOTO, TAMPILKAN PLACEHOLDER -->
-                    <!-- <div class="photo-placeholder">
-                        <i class="fas fa-image"></i>
-                        <p>Add your commercial photo here</p>
-                    </div> -->
+    <!-- Commercial Section - FIXED -->
+    <section class="commercial-section" id="commercial">
+        <div class="container">
+            <div class="commercial-content">
+                <h2>MAGAZINE COLLABORATIONS</h2>
+                
+                <!-- Photo for KAFKAPAGES collaboration -->
+                <div class="single-photo-container">
+                    <div class="photo-frame">
+                        <!-- FIXED: Using proper Unsplash image for literature/fashion theme -->
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="KAFKAPAGES Collaboration - Literature Meets Fashion" 
+                             class="commercial-photo">
+                    </div>
+                    <div class="photo-caption">KAFKAPAGES: Where Literature Meets Fashion</div>
                 </div>
-                <div class="photo-caption">KAFKAPAGES: Where Literature Meets Fashion</div>
+                
+                <!-- Text from your screenshot -->
+                <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
+                
+                <!-- FIXED: Button with proper href -->
+                <a href="kafkapages.html" class="btn-outline">
+                    <span>EXPLORE KAFKAPAGES</span>
+                </a>
             </div>
-            
-            <!-- PARAGRAF DI BAWAH FOTO -->
-            <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
-            
-            <!-- BUTTON DI BAWAHNYA -->
-            <a href="kafkapages.html" class="btn-outline">EXPLORE KAFKAPAGES</a>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Shop Section -->
     <section class="shop-section" id="shop">
@@ -1144,13 +1161,12 @@
             
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card" data-product="Silk Evening Dress" data-price="499.99">
+                <div class="product-card" data-product="Silk Evening Dress" data-price="499.99" data-id="kazine-dress-001">
                     <div class="product-image">
-                        <!-- PRODUCT IMAGE 1 -->
                         <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Silk Evening Dress">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">COLLABORATION BRAND</div>
+                        <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Silk Evening Dress</h3>
                         <div class="product-price">$499.99</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
@@ -1158,13 +1174,12 @@
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card" data-product="Wool Tailored Blazer" data-price="389.99">
+                <div class="product-card" data-product="Wool Tailored Blazer" data-price="389.99" data-id="kazine-blazer-002">
                     <div class="product-image">
-                        <!-- PRODUCT IMAGE 2 -->
                         <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wool Tailored Blazer">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">COLLABORATION BRAND</div>
+                        <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Wool Tailored Blazer</h3>
                         <div class="product-price">$389.99</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
@@ -1172,13 +1187,12 @@
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card" data-product="Leather Crossbody Bag" data-price="299.99">
+                <div class="product-card" data-product="Leather Crossbody Bag" data-price="299.99" data-id="kazine-bag-003">
                     <div class="product-image">
-                        <!-- PRODUCT IMAGE 3 -->
                         <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leather Crossbody Bag">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">COLLABORATION BRAND</div>
+                        <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Leather Crossbody Bag</h3>
                         <div class="product-price">$299.99</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
@@ -1186,37 +1200,35 @@
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card" data-product="Cashmere Sweater Set" data-price="459.99">
+                <div class="product-card" data-product="Cashmere Sweater Set" data-price="459.99" data-id="kazine-sweater-004">
                     <div class="product-image">
-                        <!-- PRODUCT IMAGE 4 -->
                         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cashmere Sweater Set">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">COLLABORATION BRAND</div>
+                        <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Cashmere Sweater Set</h3>
                         <div class="product-price">$459.99</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
             </div>
+            
+            <!-- Checkout Button Container -->
+            <div class="checkout-container">
+                <a href="payment-kazine.html" class="btn-outline">
+                    <span>PROCEED TO CHECKOUT</span>
+                </a>
+            </div>
         </div>
     </section>
-
-    <!-- Tambahkan ini setelah products-grid di shop section -->
-<div class="checkout-container" style="text-align: center; margin-top: 40px;">
-    <a href="payment-kazine.html" class="btn-outline" style="background: #000; color: #fff; border: none; padding: 18px 50px; font-size: 14px;">
-        PROCEED TO CHECKOUT
-    </a>
-</div>
     
     <!-- Magazine Section -->
     <section class="magazine-section" id="magazine">
         <div class="container">
             <div class="magazine-container">
                 <div class="magazine-cover">
-                    <!-- MAGAZINE COVER VOL 1 -->
                     <a href="#magazine-page" style="display: block;">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="KAZINE Volume 1">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="KAZINE Magazine Volume 1">
                         <div class="magazine-badge">VOL. 1</div>
                     </a>
                 </div>
@@ -1244,10 +1256,10 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul style="list-style: none;">
-                        <li style="margin-bottom: 12px;"><a href="index.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px;">THE KACHOO</a></li>
-                        <li style="margin-bottom: 12px;"><a href="kafkapages.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px;">KAFKAPAGES</a></li>
-                        <li style="margin-bottom: 12px;"><a href="#shop" style="color: var(--medium-gray); text-decoration: none; font-size: 14px;">SHOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="#magazine" style="color: var(--medium-gray); text-decoration: none; font-size: 14px;">MAGAZINE</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">THE KACHOO</a></li>
+                        <li style="margin-bottom: 12px;"><a href="kafkapages.html" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">KAFKAPAGES</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#shop" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">SHOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#magazine" style="color: var(--medium-gray); text-decoration: none; font-size: 14px; transition: var(--transition-smooth);">MAGAZINE</a></li>
                     </ul>
                 </div>
                 
@@ -1256,7 +1268,9 @@
                     <p>Official Account (X): <strong>@TheKachoo</strong></p>
                     <p>Email: ohkachoo@gmail.com</p>
                     <div class="social-links">
-                        <a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://twitter.com/TheKachoo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:ohkachoo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1269,7 +1283,7 @@
     </footer>
 
     <script>
-    // ==================== SHOPPING CART SYSTEM FOR KAZINE PRODUCTS ====================
+    // ==================== IMPROVED SHOPPING CART SYSTEM ====================
     let kazineCart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     const cartModal = document.getElementById('cartModal');
     const cartCount = document.getElementById('cartCount');
@@ -1278,9 +1292,9 @@
     const emptyCart = document.getElementById('emptyCart');
     const checkoutBtn = document.getElementById('checkoutBtn');
 
-    // Update cart display
+    // Update cart display with improved functionality
     function updateCartDisplay() {
-        cartCount.textContent = kazineCart.length;
+        cartCount.textContent = kazineCart.reduce((total, item) => total + (item.quantity || 1), 0);
         cartItems.innerHTML = '';
         
         if (kazineCart.length === 0) {
@@ -1296,52 +1310,94 @@
         let total = 0;
         
         kazineCart.forEach((item, index) => {
-            total += parseFloat(item.price) || 0;
+            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            total += itemTotal;
             
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
                 <div class="item-info">
                     <h4>${item.title || 'Product'}</h4>
-                    <p>Quantity: 1</p>
+                    <p>Quantity: ${item.quantity || 1}</p>
                 </div>
-                <div class="item-price">$${(parseFloat(item.price) || 0).toFixed(2)}</div>
-                <button class="remove-item" data-index="${index}">Remove</button>
+                <div class="item-price">$${itemTotal.toFixed(2)}</div>
+                <button class="remove-item" data-index="${index}" aria-label="Remove item">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
             `;
             cartItems.appendChild(cartItem);
         });
         
+        // Add event listeners to remove buttons
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
                 kazineCart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
                 updateCartDisplay();
+                showNotification('Item removed from cart', 'info');
             });
         });
         
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // Add to cart functionality for KAZINE products
+    // Show notification function
+    function showNotification(message, type = 'success') {
+        // Remove existing notification
+        const existingNotification = document.querySelector('.notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+        
+        // Create notification
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${type === 'success' ? '#000' : '#333'};
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 2px;
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            font-size: 14px;
+            letter-spacing: 1px;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 10);
+        
+        // Animate out and remove
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Add to cart functionality - FIXED
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
             const productTitle = productCard.getAttribute('data-product');
             const productPrice = productCard.getAttribute('data-price');
+            const productId = productCard.getAttribute('data-id') || productTitle.toLowerCase().replace(/\s+/g, '-');
             
-            // PERBAIKAN: Tambahkan ID unik untuk setiap produk
-            const productId = productTitle.toLowerCase().replace(/\s+/g, '-');
-            
-            // Cek apakah item sudah ada di cart
-            const existingItemIndex = kazineCart.findIndex(item => 
-                item.id === productId
-            );
+            // Check if item already exists in cart
+            const existingItemIndex = kazineCart.findIndex(item => item.id === productId);
             
             if (existingItemIndex !== -1) {
-                // Update quantity jika item sudah ada
+                // Update quantity if item exists
                 kazineCart[existingItemIndex].quantity = (kazineCart[existingItemIndex].quantity || 1) + 1;
                 kazineCart[existingItemIndex].totalPrice = parseFloat(kazineCart[existingItemIndex].price) * kazineCart[existingItemIndex].quantity;
+                showNotification(`${productTitle} quantity updated! (Now ${kazineCart[existingItemIndex].quantity})`, 'success');
             } else {
                 // Add new item to cart
                 kazineCart.push({
@@ -1350,46 +1406,57 @@
                     price: productPrice,
                     quantity: 1,
                     totalPrice: parseFloat(productPrice),
-                    date: new Date().toLocaleDateString()
+                    date: new Date().toISOString(),
+                    store: 'KAZINE'
                 });
+                showNotification(`${productTitle} added to cart!`, 'success');
             }
             
+            // Save to localStorage
             localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
+            
+            // Update cart display
             updateCartDisplay();
             
-            // Show confirmation
-            const confirmationMsg = existingItemIndex !== -1 
-                ? `${productTitle} quantity updated! (Now ${kazineCart[existingItemIndex].quantity} items)` 
-                : `${productTitle} has been added to your cart!`;
+            // Add visual feedback to button
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i> Added';
+            this.style.background = '#27ae60';
             
-            alert(confirmationMsg);
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.background = '';
+            }, 1000);
         });
     });
 
     // Cart icon click - Toggle cart modal
-    document.getElementById('openCart').addEventListener('click', () => {
+    document.getElementById('openCart').addEventListener('click', (e) => {
+        e.stopPropagation();
         cartModal.classList.add('active');
         updateCartDisplay();
+        document.body.style.overflow = 'hidden';
     });
 
     document.getElementById('closeCart').addEventListener('click', () => {
         cartModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
     });
     
     // Checkout button in cart modal
     checkoutBtn.addEventListener('click', () => {
         if (kazineCart.length === 0) {
-            alert('Your cart is empty! Please add products first.');
+            showNotification('Your cart is empty! Please add products first.', 'info');
             return;
         }
         
-        // Calculate total
+        // Calculate totals
         let subtotal = 0;
         kazineCart.forEach(item => {
-            subtotal += parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
+            subtotal += parseFloat(item.price) * (item.quantity || 1);
         });
         
-        // PERBAIKAN PENTING: Simpan ke 'kazineOrder' bukan 'kazineClothingOrder'
+        // Create order data
         const orderData = {
             items: kazineCart,
             subtotal: subtotal,
@@ -1397,32 +1464,104 @@
             serviceFee: 2.50,
             total: subtotal + 2.50,
             store: 'KAZINE',
-            date: new Date().toLocaleString()
+            date: new Date().toISOString(),
+            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
         };
         
-        // PERBAIKAN: Gunakan key 'kazineOrder' untuk konsisten
+        // Save order to localStorage
         localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         
         // Close cart modal
         cartModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
         
-        // Redirect to KAZINE payment page
-        window.location.href = 'payment-kazine.html';
+        // Redirect to payment page
+        setTimeout(() => {
+            window.location.href = 'payment-kazine.html';
+        }, 300);
     });
 
     // Close cart when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === cartModal) {
+    document.addEventListener('click', (e) => {
+        if (!cartModal.contains(e.target) && !e.target.closest('.cart-icon-container')) {
             cartModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
     });
+
+    // Close cart with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && cartModal.classList.contains('active')) {
+            cartModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        mainMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    }
 
     // Initialize cart display
     updateCartDisplay();
 
-    // Mobile menu functionality
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-        document.getElementById('mainMenu').classList.toggle('active');
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if it's just "#"
+            if (href === '#') return;
+            
+            // Don't prevent default for regular page links
+            if (href.includes('.html')) return;
+            
+            e.preventDefault();
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mainMenu.classList.contains('active')) {
+                    mainMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
     });
     </script>
 </body>
