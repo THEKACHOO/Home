@@ -827,6 +827,43 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
             const isValid = name && email && selectedPaymentMethod;
             submitButton.disabled = !isValid;
         }
+    <script>
+// Ambil data pesanan dari localStorage
+const orderData = JSON.parse(localStorage.getItem('kafkapagesOrder'));
+
+// Temukan elemen untuk menampilkan item dan total
+const orderItemsContainer = document.querySelector('...'); // Ganti dengan selector yang tepat
+const totalAmountElement = document.querySelector('...'); // Ganti dengan selector untuk elemen Total Amount
+
+if (orderData && orderData.items && orderData.items.length > 0) {
+    let orderItemsHTML = '';
+    orderData.items.forEach(item => {
+        orderItemsHTML += `
+            <div class="order-item">
+                <span>${item.title} (${item.language})</span>
+                <span>$${item.price}</span>
+            </div>
+        `;
+    });
+    
+    // Masukkan item ke dalam container
+    if (orderItemsContainer) {
+        orderItemsContainer.innerHTML = orderItemsHTML;
+    }
+    
+    // Perbarui total (asumsikan 'orderData.total' sudah ada)
+    if (totalAmountElement && orderData.total) {
+        // Anda mungkin perlu menambahkan biaya layanan seperti di contoh
+        const serviceFee = 2.50;
+        const finalTotal = orderData.total + serviceFee;
+        totalAmountElement.textContent = `$${finalTotal.toFixed(2)}`;
+    }
+} else {
+    // Jika tidak ada data, tampilkan pesan atau redirect kembali
+    console.log('No order data found.');
+    // Opsional: Redirect kembali ke halaman keranjang
+    // window.location.href = 'kafkapages.html';
+}
     </script>
 </body>
 </html>
