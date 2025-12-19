@@ -592,12 +592,28 @@
             position: relative;
         }
 
-        .sponsors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
+        /* Di .sponsors-grid, update jadi: */
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* Tambahkan media query untuk mobile: */
+@media (max-width: 768px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
 
         .sponsor-item {
             background: var(--pure-white);
@@ -1030,27 +1046,35 @@
             </div>
             
             <div class="sponsors-grid">
+              <div class="sponsor-item">
+                <div class="sponsor-name">Cadence</div>
+            </div>
                 <div class="sponsor-item">
-                    <div class="sponsor-name">A+ Clothes</div>
-                </div>
+                <div class="sponsor-name">MODEX</div>
+            </div>   
                 <div class="sponsor-item">
-                    <div class="sponsor-name">Aurevo Studio</div>
-                </div>
+                <div class="sponsor-name">Aurevo Studio</div>
+            </div>
                 <div class="sponsor-item">
-                    <div class="sponsor-name">Cadence</div>
-                </div>
+                <div class="sponsor-name">Pancarona</div>
+            </div>
                 <div class="sponsor-item">
-                    <div class="sponsor-name">MODEX</div>
+                <div class="sponsor-name">Makarya</div>
+            </div>
+                <div class="sponsor-item">
+                <div class="sponsor-name">Ayu Merona</div>
+            </div>
+                <div class="sponsor-item">
+                <div class="sponsor-name">Ruang Rasa</div>
+            </div>
+                <div class="sponsor-item">
+                <div class="sponsor-name">A+ Clothes</div>
+            </div>
+                <div class="sponsor-item">
+                <div class="sponsor-name">Union Nation</div>
+            </div>
                 <div class="sponsor-item">
                     <div class="sponsor-name">TaskIt</div>
-                <div class="sponsor-item">
-                    <div class="sponsor-name">Makarya</div>
-                <div class="sponsor-item">
-                    <div class="sponsor-name">Ayu Merona</div>
-                <div class="sponsor-item">
-                    <div class="sponsor-name">Pancarona</div>
-                <div class="sponsor-item">
-                    <div class="sponsor-name">Ruang Rasa</div>
                 </div>
             </div>
         </div>
@@ -1232,18 +1256,19 @@
     });
     
     // Sponsor items animation
-    document.querySelectorAll('.sponsor-item').forEach((item, index) => {
+    // Update sponsor items animation untuk 10 item:
+document.querySelectorAll('.sponsor-item').forEach((item, index) => {
+    setTimeout(() => {
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.8) rotate(-5deg)';
+        
         setTimeout(() => {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            
-            setTimeout(() => {
-                item.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-            }, index * 100);
-        }, 1000);
-    });
+            item.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1) rotate(0)';
+        }, (index % 3) * 100); // Staggered animation
+    }, 1000 + (Math.floor(index / 3) * 200));
+});
     
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
