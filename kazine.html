@@ -916,7 +916,12 @@
             </div>
         </div>
     </section>
-
+<!-- Tambahkan ini setelah products-grid di shop section -->
+<div class="checkout-container" style="text-align: center; margin-top: 40px;">
+    <a href="payment-kazine.html" class="btn-outline" style="background: #000; color: #fff; border: none; padding: 18px 50px; font-size: 14px;">
+        PROCEED TO CHECKOUT
+    </a>
+</div>
     <!-- Commercial Section -->
     <section class="commercial-section" id="commercial">
         <div class="container">
@@ -1058,9 +1063,10 @@
         </div>
     </footer>
 
-<script>
-    // ==================== SHOPPING CART SYSTEM FOR KAZINE CLOTHING ====================
-    let cart = JSON.parse(localStorage.getItem('kazineClothingCart')) || [];
+<!-- Tambahkan script cart untuk produk KAZINE di bagian akhir sebelum </script> -->
+    <script>
+    // ==================== SHOPPING CART SYSTEM FOR KAZINE PRODUCTS ====================
+    let kazineCart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     const cartModal = document.getElementById('cartModal');
     const cartCount = document.getElementById('cartCount');
     const cartItems = document.getElementById('cartItems');
@@ -1070,10 +1076,10 @@
 
     // Update cart display
     function updateCartDisplay() {
-        cartCount.textContent = cart.length;
+        cartCount.textContent = kazineCart.length;
         cartItems.innerHTML = '';
         
-        if (cart.length === 0) {
+        if (kazineCart.length === 0) {
             emptyCart.style.display = 'block';
             checkoutBtn.style.display = 'none';
             cartTotal.textContent = '$0.00';
@@ -1085,18 +1091,19 @@
         
         let total = 0;
         
-        cart.forEach((item, index) => {
-            total += parseFloat(item.price) * item.quantity;
+        kazineCart.forEach((item, index) => {
+            total += parseFloat(item.price) || 0;
             
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
                 <div class="item-info">
-                    <h4>${item.title}</h4>
-                    <p>Size: ${item.size} | Color: ${item.color}</p>
-                    <p>Quantity: ${item.quantity}</p>
+                    <h4>${item.title || 'Product'}</h4>
+                    ${item.variant ? `<p>Variant: ${item.variant}</p>` : ''}
+                    ${item.language ? `<p>Language: ${item.language}</p>` : ''}
+                    <p>Quantity: 1</p>
                 </div>
-                <div class="item-price">$${(parseFloat(item.price) * item.quantity).toFixed(2)}</div>
+                <div class="item-price">$${(parseFloat(item.price) || 0).toFixed(2)}</div>
                 <button class="remove-item" data-index="${index}">Remove</button>
             `;
             cartItems.appendChild(cartItem);
@@ -1105,8 +1112,8 @@
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                cart.splice(index, 1);
-                localStorage.setItem('kazineClothingCart', JSON.stringify(cart));
+                kazineCart.splice(index, 1);
+                localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
                 updateCartDisplay();
             });
         });
@@ -1114,105 +1121,32 @@
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // Add to cart functionality for KAZINE CLOTHING
+    // Add to cart functionality for KAZINE products
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
-            const productTitle = productCard.getAttribute('data-title');
-            const productPrice = this.getAttribute('data-price');
+            const productTitle = productCard.getAttribute('data-product');
+            const productPrice = productCard.getAttribute('data-price');
             
-            // Get selected size
-            const sizeSelect = productCard.querySelector('.size-select');
-            const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+            // Add product to cart
+            kazineCart.push({
+                title: productTitle,
+                price: productPrice,
+                date: new Date().toLocaleDateString()
+            });
             
-            // Get selected color
-            const colorSelect = productCard.querySelector('.color-select');
-            const selectedColor = colorSelect ? colorSelect.value : 'Black';
-            
-            // Get quantity
-            const quantityInput = productCard.querySelector('.quantity-input');
-            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-            
-            // Check if item already exists in cart with same size and color
-            const existingItemIndex = cart.findIndex(item => 
-                item.title === productTitle && 
-                item.size === selectedSize && 
-                item.color === selectedColor
-            );
-            
-            if (existingItemIndex !== -1) {
-                // Update quantity if item exists
-                cart[existingItemIndex].quantity += quantity;
-            } else {
-                // Add new item to cart
-                cart.push({
-                    title: productTitle,
-                    price: productPrice,
-                    size: selectedSize,
-                    color: selectedColor,
-                    quantity: quantity,
-                    date: new Date().toLocaleDateString()
-                });
-            }
-            
-            localStorage.setItem('kazineClothingCart', JSON.stringify(cart));
+            localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
             updateCartDisplay();
             
             // Show confirmation
-            const confirmationMsg = existingItemIndex !== -1 
-                ? `${productTitle} quantity updated! (Now ${cart[existingItemIndex].quantity} items)` 
-                : `${productTitle} (${selectedSize}, ${selectedColor}) has been added to your cart!`;
-            
-            alert(confirmationMsg);
+            alert(`${productTitle} has been added to your cart!`);
         });
     });
 
-    // Quantity controls
-    document.querySelectorAll('.quantity-minus').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.nextElementSibling;
-            let value = parseInt(input.value);
-            if (value > 1) {
-                input.value = value - 1;
-            }
-        });
-    });
-
-    document.querySelectorAll('.quantity-plus').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.previousElementSibling;
-            let value = parseInt(input.value);
-            input.value = value + 1;
-        });
-    });
-
-    // Cart icon click - Go directly to payment if cart has items
+    // Cart icon click - Toggle cart modal
     document.getElementById('openCart').addEventListener('click', () => {
-        if (cart.length === 0) {
-            // If cart is empty, show the cart modal
-            cartModal.classList.add('active');
-            updateCartDisplay();
-        } else {
-            // If cart has items, go directly to payment page
-            // Calculate total
-            let total = 0;
-            cart.forEach(item => {
-                total += parseFloat(item.price) * item.quantity;
-            });
-            
-            // Save order data first
-            localStorage.setItem('kazineClothingOrder', JSON.stringify({
-                items: cart,
-                subtotal: total,
-                shipping: 5.99, // Default shipping fee
-                total: total + 5.99,
-                store: 'KAZINE CLOTHING',
-                date: new Date().toLocaleString()
-            }));
-            
-            // Redirect to KAZINE clothing payment page
-            window.location.href = 'payment-kazine-clothing.html';
-        }
+        cartModal.classList.add('active');
+        updateCartDisplay();
     });
 
     document.getElementById('closeCart').addEventListener('click', () => {
@@ -1221,32 +1155,35 @@
     
     // Checkout button in cart modal
     checkoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
+        if (kazineCart.length === 0) {
             alert('Your cart is empty! Please add products first.');
             return;
         }
         
         // Calculate total
         let total = 0;
-        cart.forEach(item => {
-            total += parseFloat(item.price) * item.quantity;
+        kazineCart.forEach(item => {
+            total += parseFloat(item.price) || 0;
         });
         
-        // Save cart data to localStorage for payment page
-        localStorage.setItem('kazineClothingOrder', JSON.stringify({
-            items: cart,
+        // Save order data for payment page
+        const orderData = {
+            items: kazineCart,
             subtotal: total,
-            shipping: 5.99, // Default shipping fee
-            total: total + 5.99,
-            store: 'KAZINE CLOTHING',
+            discount: 0,
+            serviceFee: 2.50,
+            total: total + 2.50,
+            store: 'KAZINE',
             date: new Date().toLocaleString()
-        }));
+        };
+        
+        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         
         // Close cart modal
         cartModal.classList.remove('active');
         
-        // Redirect to KAZINE clothing payment page
-        window.location.href = 'payment-kazine-clothing.html';
+        // Redirect to KAZINE payment page
+        window.location.href = 'payment-kazine.html';
     });
 
     // Close cart when clicking outside
@@ -1258,4 +1195,11 @@
 
     // Initialize cart display
     updateCartDisplay();
-</script>
+
+    // Mobile menu functionality
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('mainMenu').classList.toggle('active');
+    });
+    </script>
+</body>
+</html>
