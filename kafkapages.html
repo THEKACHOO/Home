@@ -933,7 +933,6 @@
     </footer>
 
     <script>
-            <script>
     // Shopping Cart Functionality
     let cart = JSON.parse(localStorage.getItem('kafkapagesCart')) || [];
     const cartModal = document.getElementById('cartModal');
@@ -944,16 +943,18 @@
     const checkoutBtn = document.getElementById('checkoutBtn');
 
     // Update cart display
-    function updateCartDisplay() {
-        cartCount.textContent = cart.length;
-        cartItems.innerHTML = '';
-        
-        if (cart.length === 0) {
-            emptyCart.style.display = 'block';
-            checkoutBtn.style.display = 'none';
-            cartTotal.textContent = '$0.00';
-            return;
-        }
+    // Fungsi updateCartDisplay() yang lengkap:
+function updateCartDisplay() {
+    // ... kode di dalam ...
+    
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', function() {
+            // ... handler ...
+        }); // ← TITIK KOMA DI SINI
+    }); // ← TANDA KURUNG DI SINI
+    
+    cartTotal.textContent = `$${total.toFixed(2)}`; // ← BARIS INI MASUK DALAM FUNGSI
+} // ← AKHIR FUNGSI
         
         emptyCart.style.display = 'none';
         checkoutBtn.style.display = 'block';
@@ -1099,6 +1100,6 @@
 
     // Initialize cart display
     updateCartDisplay();
-</script>            
+    </script>
 </body>
 </html>
