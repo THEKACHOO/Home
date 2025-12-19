@@ -696,7 +696,194 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        /* Commercial Section Styles - TAMBAHKAN DI SINI */
+    .commercial-section {
+            padding: 80px 0;
+            background: var(--off-white);
+            text-align: center;
+        }
 
+    .commercial-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    .commercial-content h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary-black);
+            position: relative;
+            display: inline-block;
+}
+
+        .commercial-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-black);
+}
+
+        .commercial-content p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            margin: 30px 0;
+            line-height: 1.8;
+}
+
+/* Single Photo Commercial Styles - TAMBAHKAN DI SINI */
+.single-photo-container {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.photo-frame {
+    background: var(--primary-white);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--light-gray);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.photo-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--medium-gray);
+}
+
+.commercial-photo {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+}
+
+.photo-frame:hover .commercial-photo {
+    transform: scale(1.02);
+}
+
+.photo-placeholder {
+    height: 400px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--medium-gray);
+    border: 2px dashed var(--medium-gray);
+}
+
+.photo-placeholder i {
+    font-size: 60px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.photo-placeholder p {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.photo-caption {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-black);
+    font-style: italic;
+    padding: 10px;
+    background: var(--off-white);
+    border-radius: 8px;
+}
+
+/* Button Styles - TAMBAHKAN JIKA BELUM ADA */
+.btn-outline {
+    display: inline-block;
+    padding: 15px 35px;
+    background: transparent;
+    color: var(--primary-black);
+    border: 2px solid var(--primary-black);
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-outline:hover {
+    background: var(--primary-black);
+    color: var(--primary-white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Photo - TAMBAHKAN DI SINI */
+@media (max-width: 992px) {
+    .commercial-photo,
+    .photo-placeholder {
+        height: 350px;
+    }
+    
+    .commercial-content h2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .commercial-section {
+        padding: 60px 0;
+    }
+    
+    .single-photo-container {
+        margin: 25px auto;
+    }
+    
+    .commercial-photo,
+    .photo-placeholder {
+        height: 300px;
+    }
+    
+    .photo-caption {
+        font-size: 16px;
+    }
+    
+    .commercial-content p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .commercial-photo,
+    .photo-placeholder {
+        height: 250px;
+    }
+    
+    .photo-caption {
+        font-size: 15px;
+    }
+    
+    .commercial-content h2 {
+        font-size: 28px;
+    }
+    
+    .btn-outline {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .products-grid,
@@ -917,16 +1104,35 @@
         </div>
     </section>
 
-    <!-- Commercial Section -->
-    <section class="commercial-section" id="commercial">
-        <div class="container">
-            <div class="commercial-content">
-                <h2>COMMERCIAL SESSION</h2>
-                <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
-                <a href="kafkapages.html" class="btn-outline">EXPLORE KAFKAPAGES</a>
+   <!-- Commercial Section -->
+<section class="commercial-section" id="commercial">
+    <div class="container">
+        <div class="commercial-content">
+            <h2>COMMERCIAL SESSION</h2>
+            
+            <!-- PHOTO DISINI - DI ATAS PARAGRAF -->
+            <div class="single-photo-container">
+                <div class="photo-frame">
+                    <!-- GANTI DENGAN FOTO ANDA -->
+                    <img src="YOUR_COMMERCIAL_PHOTO.jpg" alt="KAFKAPAGES Commercial Photo" class="commercial-photo">
+                    
+                    <!-- JIKA BELUM ADA FOTO, TAMPILKAN PLACEHOLDER -->
+                    <!-- <div class="photo-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Add your commercial photo here</p>
+                    </div> -->
+                </div>
+                <div class="photo-caption">KAFKAPAGES: Where Literature Meets Fashion</div>
             </div>
+            
+            <!-- PARAGRAF DI BAWAH FOTO -->
+            <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
+            
+            <!-- BUTTON DI BAWAHNYA -->
+            <a href="kafkapages.html" class="btn-outline">EXPLORE KAFKAPAGES</a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Shop Section -->
     <section class="shop-section" id="shop">
