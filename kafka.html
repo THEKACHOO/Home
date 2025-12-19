@@ -10,96 +10,109 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
         :root {
-            --primary: #9d4edd;
-            --primary-dark: #7b2cbf;
-            --secondary: #ff9e00;
-            --dark-bg: #0f0f1e;
-            --darker-bg: #0a0a14;
-            --card-bg: #1a1a2e;
-            --light-text: #f0f0f0;
-            --gray-text: #b0b0c0;
-            --border-color: #2a2a3e;
+            --pure-black: #000000;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #111111;
+            --light-card-bg: #1a1a1a;
+            --pure-white: #ffffff;
+            --light-text: #f5f5f5;
+            --gray-light: #e0e0e0;
+            --gray-medium: #b0b0b0;
+            --gray-dark: #808080;
+            --border-light: #333333;
+            --border-medium: #2a2a2a;
+            --border-dark: #222222;
+            --accent-glow: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--dark-bg);
             color: var(--light-text);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
         /* Header Styles */
         header {
-            background-color: rgba(15, 15, 30, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 10, 0.97);
+            backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-dark);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 22px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--light-text);
+            gap: 12px;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--pure-white);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .logo span {
-            color: var(--primary);
+            color: var(--gray-light);
+            font-weight: 300;
         }
 
         .logo-icon {
-            color: var(--primary);
-            font-size: 2rem;
+            color: var(--pure-white);
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         .nav-links a {
-            color: var(--gray-text);
+            color: var(--gray-medium);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            letter-spacing: 0.3px;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--pure-white);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s;
+            background-color: var(--pure-white);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-links a:hover::after {
@@ -108,8 +121,11 @@
 
         /* Hero Section */
         .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            padding: 180px 0 120px;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -121,50 +137,62 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            background: 
+                linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.01) 100%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            font-weight: 800;
+            color: var(--pure-white);
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--gray-text);
-            margin-bottom: 30px;
+            font-size: 1.6rem;
+            color: var(--gray-light);
+            margin-bottom: 35px;
             font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .hero-desc {
-            font-size: 1.1rem;
-            color: var(--gray-text);
-            margin-bottom: 40px;
-            max-width: 700px;
+            font-size: 1.18rem;
+            color: var(--gray-medium);
+            margin-bottom: 45px;
+            max-width: 750px;
+            line-height: 1.8;
         }
 
         .highlight {
-            color: var(--secondary);
+            color: var(--pure-white);
             font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Offices Section */
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: 800;
+            color: var(--pure-white);
+            letter-spacing: -0.5px;
         }
 
         .section-title::after {
@@ -173,45 +201,59 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 120px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, transparent, var(--pure-white), transparent);
         }
 
         .section-subtitle {
             text-align: center;
-            color: var(--gray-text);
-            margin-bottom: 60px;
-            max-width: 700px;
+            color: var(--gray-medium);
+            margin-bottom: 70px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
         }
 
         .offices {
-            padding: 100px 0;
+            padding: 120px 0;
             background-color: var(--darker-bg);
+            position: relative;
+        }
+
+        .offices::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
         }
 
         .office-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
         }
 
         .office-card {
             background-color: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 18px;
             overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-dark);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .office-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-color: var(--border-light);
         }
 
         .office-card::before {
@@ -220,61 +262,83 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .office-card:hover::before {
+            opacity: 1;
         }
 
         .office-header {
-            padding: 25px 25px 15px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid var(--border-dark);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .office-location {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 15px;
+            margin-bottom: 12px;
         }
 
         .office-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
+            font-size: 1.8rem;
+            color: var(--pure-white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
         }
 
         .office-title {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             font-weight: 700;
+            color: var(--pure-white);
         }
 
         .office-status {
             display: inline-block;
-            padding: 5px 15px;
-            background-color: rgba(157, 78, 221, 0.2);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--gray-light);
+            border-radius: 25px;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-top: 5px;
+            margin-top: 8px;
+            border: 1px solid var(--border-light);
+            letter-spacing: 0.5px;
         }
 
         .office-body {
-            padding: 25px;
+            padding: 30px;
         }
 
         .office-desc {
-            color: var(--gray-text);
-            margin-bottom: 20px;
-            min-height: 80px;
+            color: var(--gray-medium);
+            margin-bottom: 25px;
+            min-height: 90px;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         .office-features {
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .feature-title {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--pure-white);
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .feature-list {
@@ -282,11 +346,12 @@
         }
 
         .feature-list li {
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            color: var(--gray-light);
         }
 
         .feature-list li:last-child {
@@ -294,56 +359,91 @@
         }
 
         .feature-list i {
-            color: var(--primary);
-            font-size: 0.9rem;
+            color: var(--pure-white);
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         /* Kachoo Section */
         .kachoo {
-            padding: 100px 0;
+            padding: 120px 0;
             background-color: var(--dark-bg);
+            position: relative;
+        }
+
+        .kachoo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
         }
 
         .kachoo-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .kachoo-logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #ff9e00, #ffd166);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--pure-white);
+            letter-spacing: 2px;
+            text-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .kachoo-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pure-white), transparent);
         }
 
         .kachoo-tagline {
-            color: var(--gray-text);
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
+            color: var(--gray-medium);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.8;
         }
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
         }
 
         .project-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s;
+            background-color: var(--light-card-bg);
+            border-radius: 18px;
+            padding: 35px 30px;
+            border: 1px solid var(--border-dark);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-color: var(--border-light);
         }
 
         .project-card::before {
@@ -353,36 +453,59 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(157, 78, 221, 0.05), transparent);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
             z-index: 0;
         }
 
         .project-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: var(--pure-white);
             position: relative;
             z-index: 1;
+            background-color: rgba(255, 255, 255, 0.08);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
         }
 
         .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
             position: relative;
             z-index: 1;
+            color: var(--pure-white);
+            font-weight: 700;
         }
 
         .project-desc {
-            color: var(--gray-text);
+            color: var(--gray-medium);
             position: relative;
             z-index: 1;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         /* Contact Section */
         .contact {
-            padding: 100px 0;
+            padding: 120px 0;
             background-color: var(--darker-bg);
             text-align: center;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
         }
 
         .contact-info {
@@ -390,70 +513,93 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 60px;
         }
 
         .contact-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            padding: 25px;
-            border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            min-width: 250px;
-            transition: transform 0.3s;
+            gap: 20px;
+            padding: 35px 30px;
+            border-radius: 18px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            min-width: 280px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-color: var(--border-light);
         }
 
         .contact-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
+            font-size: 2.8rem;
+            color: var(--pure-white);
+            background-color: rgba(255, 255, 255, 0.08);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
         }
 
         .contact-details h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            color: var(--pure-white);
+            font-weight: 700;
         }
 
-        .contact-details a {
-            color: var(--gray-text);
+        .contact-details a, .contact-details p {
+            color: var(--gray-medium);
             text-decoration: none;
             transition: color 0.3s;
+            line-height: 1.6;
         }
 
         .contact-details a:hover {
-            color: var(--primary);
+            color: var(--pure-white);
         }
 
         /* Footer */
         footer {
-            background-color: #05050a;
-            padding: 50px 0 30px;
-            border-top: 1px solid var(--border-color);
+            background-color: var(--pure-black);
+            padding: 70px 0 40px;
+            border-top: 1px solid var(--border-dark);
+            position: relative;
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 60px;
         }
 
         .footer-col {
             flex: 1;
-            min-width: 250px;
+            min-width: 280px;
         }
 
         .footer-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--pure-white);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p {
+            color: var(--gray-medium);
+            line-height: 1.7;
             margin-bottom: 20px;
-            color: var(--light-text);
         }
 
         .footer-links {
@@ -461,79 +607,135 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: var(--gray-text);
+            color: var(--gray-medium);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--pure-white);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-            color: var(--gray-text);
-            font-size: 0.9rem;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--gray-dark);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .office-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px 0;
+            }
+            
+            .nav-links {
+                gap: 25px;
+            }
+            
+            .hero {
+                padding: 200px 0 100px;
+            }
+            
             .hero h1 {
                 font-size: 2.8rem;
             }
             
-            .nav-links {
-                gap: 20px;
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
             }
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
+            .office-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
-            .hero {
-                padding: 180px 0 80px;
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-item {
+                min-width: 100%;
             }
             
             .hero h1 {
-                font-size: 2.3rem;
+                font-size: 2.4rem;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.1rem;
             }
             
-            .office-grid {
-                grid-template-columns: 1fr;
+            .kachoo-logo {
+                font-size: 2.7rem;
             }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.1rem;
             }
             
             .hero-subtitle {
                 font-size: 1.2rem;
             }
             
-            .project-grid {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.9rem;
             }
             
-            .contact-item {
-                min-width: 100%;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .logo {
+                font-size: 1.7rem;
+            }
+            
+            .office-card, .project-card, .contact-item {
+                padding: 25px 20px;
             }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -555,14 +757,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="history">
         <div class="container">
             <div class="hero-content">
-                <h1>Kafka Company: A Legacy of Excellence</h1>
+                <h1>Kafka Company: A Legacy in Black & White</h1>
                 <p class="hero-subtitle">Family Heritage Since 1895 • London • New York • Jakarta</p>
                 <p class="hero-desc">
-                    Founded by the Kafka family in London, our company has grown through generations while maintaining our core family values. 
-                    In <span class="highlight">2026</span>, we proudly expanded to Southeast Asia with our new branch in South Jakarta, introducing our innovative <span class="highlight">KACHOO</span> brand to the region.
+                    Founded by the Kafka family in London, our company has maintained a tradition of excellence through generations. 
+                    In <span class="highlight">2026</span>, we expanded to Southeast Asia with our new branch in South Jakarta, introducing our innovative <span class="highlight">KACHOO</span> brand to the region. Our monochromatic philosophy reflects our commitment to clarity, precision, and timeless elegance.
                 </p>
             </div>
         </div>
@@ -571,29 +773,31 @@
     <!-- Offices Section -->
     <section class="offices" id="offices">
         <div class="container">
-            <h2 class="section-title">Our Global Offices</h2>
-            <p class="section-subtitle">With strategic locations across three major global cities, Kafka Company maintains a strong international presence while staying true to our family roots.</p>
+            <h2 class="section-title">Global Presence</h2>
+            <p class="section-subtitle">Three strategic locations that form the cornerstone of our international operations, each with a distinct role in our family business.</p>
             
             <div class="office-grid">
                 <!-- London Office -->
                 <div class="office-card">
                     <div class="office-header">
                         <div class="office-location">
-                            <i class="fas fa-landmark office-icon"></i>
+                            <div class="office-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
                             <h3 class="office-title">London, UK</h3>
                         </div>
                         <span class="office-status">First & Founding Office</span>
                     </div>
                     <div class="office-body">
-                        <p class="office-desc">The original Kafka Company office, established by the Kafka family in 1895. This historic location represents our roots and traditional values.</p>
+                        <p class="office-desc">Established in 1895, our London office is the birthplace of Kafka Company. This historic location preserves our family heritage and traditional values while serving as our European operations hub.</p>
                         
                         <div class="office-features">
-                            <h4 class="feature-title">Key Functions</h4>
+                            <h4 class="feature-title">Core Functions</h4>
                             <ul class="feature-list">
-                                <li><i class="fas fa-check-circle"></i> Family Heritage Preservation</li>
-                                <li><i class="fas fa-check-circle"></i> European Operations</li>
-                                <li><i class="fas fa-check-circle"></i> Historical Archives</li>
-                                <li><i class="fas fa-check-circle"></i> Traditional Craftsmanship</li>
+                                <li><i class="fas fa-check"></i> Family Heritage Preservation</li>
+                                <li><i class="fas fa-check"></i> European Operations Center</li>
+                                <li><i class="fas fa-check"></i> Historical Archives & Records</li>
+                                <li><i class="fas fa-check"></i> Traditional Craftsmanship</li>
                             </ul>
                         </div>
                     </div>
@@ -603,21 +807,23 @@
                 <div class="office-card">
                     <div class="office-header">
                         <div class="office-location">
-                            <i class="fas fa-building office-icon"></i>
+                            <div class="office-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
                             <h3 class="office-title">New York, USA</h3>
                         </div>
                         <span class="office-status">Global Headquarters</span>
                     </div>
                     <div class="office-body">
-                        <p class="office-desc">Our global headquarters, established in 1978. This office oversees all international operations and strategic direction for Kafka Company.</p>
+                        <p class="office-desc">Our global headquarters, established in 1978. This office directs all international operations and sets the strategic vision for Kafka Company's worldwide presence.</p>
                         
                         <div class="office-features">
-                            <h4 class="feature-title">Key Functions</h4>
+                            <h4 class="feature-title">Core Functions</h4>
                             <ul class="feature-list">
-                                <li><i class="fas fa-check-circle"></i> Global Strategy & Leadership</li>
-                                <li><i class="fas fa-check-circle"></i> International Operations</li>
-                                <li><i class="fas fa-check-circle"></i> Corporate Governance</li>
-                                <li><i class="fas fa-check-circle"></i> Investor Relations</li>
+                                <li><i class="fas fa-check"></i> Global Strategy & Leadership</li>
+                                <li><i class="fas fa-check"></i> International Operations</li>
+                                <li><i class="fas fa-check"></i> Corporate Governance</li>
+                                <li><i class="fas fa-check"></i> Investor Relations</li>
                             </ul>
                         </div>
                     </div>
@@ -627,21 +833,23 @@
                 <div class="office-card">
                     <div class="office-header">
                         <div class="office-location">
-                            <i class="fas fa-globe-asia office-icon"></i>
+                            <div class="office-icon">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
                             <h3 class="office-title">Jakarta, Indonesia</h3>
                         </div>
                         <span class="office-status">Newest Expansion (2026)</span>
                     </div>
                     <div class="office-body">
-                        <p class="office-desc">Our newest branch located at Jenderal Sudirman Avenue, Lots 61–62, South Jakarta. This office introduces the KACHOO brand to Southeast Asia.</p>
+                        <p class="office-desc">Our newest branch at Jenderal Sudirman Avenue, South Jakarta. This modern office introduces the innovative KACHOO brand to Southeast Asia's dynamic market.</p>
                         
                         <div class="office-features">
-                            <h4 class="feature-title">Key Functions</h4>
+                            <h4 class="feature-title">Core Functions</h4>
                             <ul class="feature-list">
-                                <li><i class="fas fa-check-circle"></i> KACHOO Brand Operations</li>
-                                <li><i class="fas fa-check-circle"></i> Southeast Asia Market</li>
-                                <li><i class="fas fa-check-circle"></i> Digital Innovation Hub</li>
-                                <li><i class="fas fa-check-circle"></i> Regional Publishing</li>
+                                <li><i class="fas fa-check"></i> KACHOO Brand Operations</li>
+                                <li><i class="fas fa-check"></i> Southeast Asia Market Expansion</li>
+                                <li><i class="fas fa-check"></i> Digital Innovation Hub</li>
+                                <li><i class="fas fa-check"></i> Regional Publishing Center</li>
                             </ul>
                         </div>
                     </div>
@@ -655,7 +863,7 @@
         <div class="container">
             <div class="kachoo-header">
                 <h2 class="kachoo-logo">KACHOO</h2>
-                <p class="kachoo-tagline">Our innovative brand launched from our Jakarta branch, focusing on publishing, magazines, and news media for the Southeast Asian market.</p>
+                <p class="kachoo-tagline">Launched from our Jakarta branch in 2026, KACHOO represents our commitment to innovation in publishing, magazines, and news media for the Southeast Asian market.</p>
             </div>
             
             <div class="project-grid">
@@ -665,7 +873,7 @@
                         <i class="fas fa-book-open"></i>
                     </div>
                     <h3 class="project-title">KAFKAPAGES</h3>
-                    <p class="project-desc">A premium book publishing house specializing in literature, business, and cultural works from both local and international authors.</p>
+                    <p class="project-desc">A premium book publishing house specializing in literature, business, and cultural works. We champion both established and emerging voices from across Southeast Asia and beyond.</p>
                 </div>
 
                 <!-- KAZINE -->
@@ -674,7 +882,7 @@
                         <i class="fas fa-newspaper"></i>
                     </div>
                     <h3 class="project-title">KAZINE</h3>
-                    <p class="project-desc">A high-end magazine publication featuring lifestyle, business insights, culture, and innovation trends across Southeast Asia.</p>
+                    <p class="project-desc">A high-end magazine publication featuring lifestyle, business insights, culture, and innovation trends. Each issue is a carefully curated collection of stories that matter.</p>
                 </div>
 
                 <!-- KABOOM -->
@@ -683,7 +891,7 @@
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3 class="project-title">KABOOM</h3>
-                    <p class="project-desc">A dynamic digital news platform delivering breaking news, analysis, and investigative journalism with speed and accuracy.</p>
+                    <p class="project-desc">A dynamic digital news platform delivering breaking news, in-depth analysis, and investigative journalism with unmatched speed, accuracy, and integrity.</p>
                 </div>
             </div>
         </div>
@@ -692,8 +900,8 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">Connect with Kafka Company and our KACHOO brand through our official channels</p>
+            <h2 class="section-title">Connect With Us</h2>
+            <p class="section-subtitle">Reach out to Kafka Company and explore collaboration opportunities with our KACHOO brand</p>
             
             <div class="contact-info">
                 <div class="contact-item">
@@ -703,6 +911,7 @@
                     <div class="contact-details">
                         <h3>Email</h3>
                         <a href="mailto:thekachoo@gmail.com">thekachoo@gmail.com</a>
+                        <p>Primary contact for KACHOO brand inquiries</p>
                     </div>
                 </div>
                 
@@ -713,6 +922,7 @@
                     <div class="contact-details">
                         <h3>Twitter</h3>
                         <a href="https://twitter.com/thekachoo" target="_blank">@thekachoo</a>
+                        <p>Follow us for updates and announcements</p>
                     </div>
                 </div>
                 
@@ -723,6 +933,7 @@
                     <div class="contact-details">
                         <h3>Jakarta Office</h3>
                         <p>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</p>
+                        <p>Our Southeast Asia headquarters</p>
                     </div>
                 </div>
             </div>
@@ -735,30 +946,32 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h3 class="footer-title">Kafka Company</h3>
-                    <p>A family heritage business since 1895, now with global presence across London, New York, and Jakarta.</p>
+                    <p>A family heritage business since 1895, maintaining excellence across generations with offices in London, New York, and Jakarta.</p>
+                    <p>Our monochromatic philosophy reflects clarity, precision, and timeless values.</p>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="footer-title">Our Offices</h3>
+                    <h3 class="footer-title">Global Offices</h3>
                     <ul class="footer-links">
-                        <li><a href="#">London, UK (Founding Office)</a></li>
-                        <li><a href="#">New York, USA (Headquarters)</a></li>
-                        <li><a href="#">Jakarta, Indonesia (KACHOO Brand)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> London, UK (Founding Office)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> New York, USA (Headquarters)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Jakarta, Indonesia (KACHOO Brand)</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h3 class="footer-title">KACHOO Projects</h3>
                     <ul class="footer-links">
-                        <li><a href="#">KAFKAPAGES (Book Publishing)</a></li>
-                        <li><a href="#">KAZINE (Magazine)</a></li>
-                        <li><a href="#">KABOOM (News Media)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> KAFKAPAGES (Book Publishing)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> KAZINE (Magazine)</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> KABOOM (News Media)</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>&copy; 2026 Kafka Company. All rights reserved. A Family Heritage Business Since 1895.</p>
+                <p style="margin-top: 10px;">Black & White Philosophy | Timeless Excellence | Family Values</p>
             </div>
         </div>
     </footer>
@@ -775,17 +988,17 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Add subtle animation to office cards on scroll
+        // Add animation to elements on scroll
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -80px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
@@ -797,20 +1010,51 @@
             });
         }, observerOptions);
         
-        // Observe office cards for animation
+        // Observe office cards
         document.querySelectorAll('.office-card').forEach(card => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
         
-        // Observe project cards for animation
+        // Observe project cards
         document.querySelectorAll('.project-card').forEach(card => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
             observer.observe(card);
+        });
+        
+        // Observe contact items
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s';
+            observer.observe(item);
+        });
+        
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.querySelector('header');
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 5px 25px rgba(0, 0, 0, 0.4)';
+            }
+            
+            lastScroll = currentScroll;
         });
     </script>
 </body>
