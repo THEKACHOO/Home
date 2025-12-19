@@ -943,18 +943,18 @@
     const checkoutBtn = document.getElementById('checkoutBtn');
 
     // Update cart display
-    // Fungsi updateCartDisplay() yang lengkap:
-function updateCartDisplay() {
-    // ... kode di dalam ...
-    
-    document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', function() {
-            // ... handler ...
-        }); // ← TITIK KOMA DI SINI
-    }); // ← TANDA KURUNG DI SINI
-    
-    cartTotal.textContent = `$${total.toFixed(2)}`; // ← BARIS INI MASUK DALAM FUNGSI
-} // ← AKHIR FUNGSI
+    function updateCartDisplay() {
+        cartCount.textContent = cart.length;
+        
+        // Clear existing items
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            emptyCart.style.display = 'block';
+            checkoutBtn.style.display = 'none';
+            cartTotal.textContent = '$0.00';
+            return;
+        }
         
         emptyCart.style.display = 'none';
         checkoutBtn.style.display = 'block';
@@ -977,6 +977,7 @@ function updateCartDisplay() {
             cartItems.appendChild(cartItem);
         });
         
+        // Add event listeners for remove buttons
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
@@ -1023,9 +1024,8 @@ function updateCartDisplay() {
         });
     });
 
-    // Cart modal controls - DIKOREKSI
+    // Cart modal controls
     document.getElementById('openCart').addEventListener('click', () => {
-        // SELALU buka modal keranjang terlebih dahulu
         cartModal.classList.add('active');
         updateCartDisplay();
     });
@@ -1034,17 +1034,23 @@ function updateCartDisplay() {
         cartModal.classList.remove('active');
     });
     
-    // Checkout button in cart modal
+    // Checkout button in cart modal - INI YANG DIPERBAIKI
     checkoutBtn.addEventListener('click', () => {
         if (cart.length === 0) {
             alert('Your cart is empty! Please add books first.');
             return;
         }
         
-        // Save cart data to localStorage for payment page
+        // Calculate total
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price);
+        });
+        
+        // Save order data to localStorage for payment page
         localStorage.setItem('kafkapagesOrder', JSON.stringify({
             items: cart,
-            total: parseFloat(cartTotal.textContent.replace('$', '')),
+            total: total,
             store: 'KAFKAPAGES',
             date: new Date().toLocaleString()
         }));
