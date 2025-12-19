@@ -975,4 +975,317 @@
                         </li>
                         <li class="contributor-item">
                             <i class="fas fa-camera-retro"></i>
-                            <span><strong>Elijah Gilead
+                            <span><strong>Elijah Gilead:</strong> Commercial Model for Kafkapages</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span><strong>Marcelinus Chitraditya H.P</strong> from CADENCE: Main Campaign Model Kazine Vol 1</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span><strong>Sheila Kanna</strong> from CADENCE: Main Campaign Model Kazine Vol 1</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-star"></i>
+                            <span><strong>Model from MODEX:</strong> Featured Campaign Model Kazine Vol 1</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-star"></i>
+                            <span><strong>Model from MODEX:</strong> Featured Campaign Model Kazine Vol 1</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Expert Speakers -->
+                <div class="contributor-category">
+                    <h3 class="category-title">Expert Speakers & Specialists</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>Gabriel Luca Wirakusuma</strong> from Makarya: Speaker on Makeup Artistry & Creative Expression</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-spa"></i>
+                            <span><strong>Nona Rengganis</strong> from Ayu Merona: Speaker on Skincare Science & Wellness</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-leaf"></i>
+                            <span><strong>Adiratna Danudihardja:</strong> Speaker on Modern Lifestyle & Cultural Trends</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-hands-helping"></i>
+                            <span><strong>Vaelen Sterling Roosevelt</strong> from Union Nation: Speaker on Humanity, Unity & Social Impact</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Valued Partners</h2>
+                <p>In collaboration with industry leaders and innovative brands</p>
+            </div>
+            
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <div class="sponsor-name">A+ Clothes</div>
+                </div>
+                <div class="sponsor-item">
+                    <div class="sponsor-name">Aurevo Studio</div>
+                </div>
+                <div class="sponsor-item">
+                    <div class="sponsor-name">Pancarona</div>
+                </div>
+                <div class="sponsor-item">
+                    <div class="sponsor-name">Ruang Rasa</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Volume 1</h3>
+                    <p>KAZINE Volume 1 represents a bold step forward in digital publishing. This inaugural edition blends cutting-edge design with compelling storytelling to create an immersive reading experience.</p>
+                    <p>Published by THE KACHOO • © 2023 All Rights Reserved</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Access</h3>
+                    <p><a href="index.html">← Back to KAZINE Home</a></p>
+                    <p><a href="#read-magazine">📖 Read Digital Edition</a></p>
+                    <p><a href="YOUR_GOOGLE_DRIVE_PDF_LINK_HERE" target="_blank">📥 Download PDF Version</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Email: hello@thekachoo.com</p>
+                    <p>Official: @TheKachoo</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>This publication is a conceptual showcase of digital innovation. All content represents creative vision and artistic expression.</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--fresh-accent);">
+                    KAZINE Volume 1 • The Innovation Issue • Published by THE KACHOO
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Enhanced Flipbook Navigation
+    let currentPage = 1;
+    const totalPages = 50;
+    
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageDisplay = document.getElementById('pageDisplay');
+    
+    function updatePageDisplay() {
+        pageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
+        // Add animation
+        pageDisplay.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            pageDisplay.style.transform = 'scale(1)';
+        }, 200);
+    }
+    
+    function goToPrevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            updatePageDisplay();
+            // Add click animation
+            prevBtn.style.transform = 'rotate(-15deg)';
+            setTimeout(() => {
+                prevBtn.style.transform = 'rotate(0)';
+            }, 300);
+        }
+    }
+    
+    function goToNextPage() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updatePageDisplay();
+            // Add click animation
+            nextBtn.style.transform = 'rotate(15deg)';
+            setTimeout(() => {
+                nextBtn.style.transform = 'rotate(0)';
+            }, 300);
+        }
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', goToPrevPage);
+    nextBtn.addEventListener('click', goToNextPage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            goToPrevPage();
+            e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+            goToNextPage();
+            e.preventDefault();
+        }
+    });
+    
+    // Swipe gestures for mobile
+    let startX = 0;
+    const flipbookFrame = document.getElementById('flipbookFrame');
+    
+    flipbookFrame.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    flipbookFrame.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        
+        if (Math.abs(diffX) > 50) { // Minimum swipe distance
+            if (diffX > 0) {
+                goToNextPage(); // Swipe left
+            } else {
+                goToPrevPage(); // Swipe right
+            }
+        }
+    }, { passive: true });
+    
+    // Initialize
+    updatePageDisplay();
+    
+    // PDF Embed Function
+    function embedPDF() {
+        const pdfUrl = 'YOUR_GOOGLE_DRIVE_PDF_EMBED_LINK_HERE';
+        
+        if (pdfUrl && pdfUrl !== 'YOUR_GOOGLE_DRIVE_PDF_EMBED_LINK_HERE') {
+            flipbookFrame.innerHTML = `
+                <iframe src="${pdfUrl}" 
+                        class="pdf-iframe" 
+                        allow="autoplay"
+                        allowfullscreen>
+                </iframe>
+            `;
+        }
+    }
+    
+    // Uncomment to auto-embed PDF
+    // embedPDF();
+    
+    // Interactive team cards
+    document.querySelectorAll('.team-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+            card.style.zIndex = '100';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.zIndex = '1';
+        });
+        
+        // Staggered animation on load
+        setTimeout(() => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        }, 500);
+    });
+    
+    // Contributor items animation
+    document.querySelectorAll('.contributor-item').forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.4s ease-out';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, index * 50);
+        }, 800);
+    });
+    
+    // Sponsor items animation
+    document.querySelectorAll('.sponsor-item').forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            }, index * 100);
+        }, 1000);
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroSection = document.querySelector('.hero-section');
+        
+        if (heroSection) {
+            const rate = scrolled * -0.5;
+            heroSection.style.backgroundPosition = `center ${rate}px`;
+        }
+    });
+    
+    // Initialize animations on load
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+        
+        // Animate hero elements
+        const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
+        heroElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                el.style.transition = 'all 0.6s ease-out';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 300 + (index * 100));
+        });
+    });
+    </script>
+</body>
+</html>
