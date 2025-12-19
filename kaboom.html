@@ -17,194 +17,279 @@
             background-color: #ffffff;
             color: #222;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
         }
         
         /* Header Styles */
         header {
-            padding: 30px 0;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            overflow: hidden;
+            padding: 25px 0 20px;
+            border-bottom: 2px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
         }
         
-        .header-content {
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
         }
         
         .logo-container {
             cursor: pointer;
+            width: 200px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
         }
         
         #logo {
-            height: 80px;
-            transition: transform 0.5s ease;
+            height: 100%;
+            width: auto;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.1));
         }
         
         .logo-container:hover #logo {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05) rotate(-2deg);
         }
         
-        .year-badge {
-            background: linear-gradient(135deg, #222 0%, #444 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        /* Navigation */
-        nav {
-            background: linear-gradient(to right, #f8f8f8, #ffffff);
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 40px;
-        }
-        
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 40px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            font-size: 16px;
-            padding-bottom: 5px;
-            position: relative;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #555;
-        }
-        
-        .nav-links a::after {
-            content: '';
+        .hotline-today {
+            text-align: center;
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(90deg, #222, #555);
-            transition: width 0.3s ease;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Main Content */
-        .main-headline {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .featured-article {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        
-        .featured-img {
-            height: 400px;
-            background: linear-gradient(135deg, #222 0%, #444 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        
-        .featured-content {
-            padding: 30px;
-        }
-        
-        .featured-content h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #222, #555);
+        .hotline-text {
+            background: linear-gradient(90deg, #ff3333, #ff6600);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            text-shadow: 0 2px 5px rgba(255, 51, 51, 0.2);
         }
         
-        .featured-content p {
-            color: #444;
-            margin-bottom: 20px;
-            font-size: 17px;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
         
-        .side-articles {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .side-article {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 25px;
-        }
-        
-        .side-article h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
             color: #222;
         }
         
-        .side-article p {
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 15px;
+        .menu-container {
+            position: relative;
         }
         
-        /* News Grid */
+        .menu-button {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 250px;
+            padding: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+        
+        .menu-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #222;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: linear-gradient(90deg, #f9f9f9, #fff);
+            border-left: 4px solid #ff6600;
+            padding-left: 30px;
+        }
+        
+        .menu-icon {
+            width: 20px;
+            color: #ff6600;
+        }
+        
+        .year-badge {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        /* Main Content */
+        .hero-section {
+            padding: 60px 0 40px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            color: #222;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #222, #555);
+            border-radius: 2px;
+        }
+        
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 40px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
         
         .news-card {
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #f5f5f5;
+            background: white;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        .news-card:nth-child(2) { animation-delay: 0.1s; }
+        .news-card:nth-child(3) { animation-delay: 0.2s; }
+        .news-card:nth-child(4) { animation-delay: 0.3s; }
+        .news-card:nth-child(5) { animation-delay: 0.4s; }
+        .news-card:nth-child(6) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .news-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         
         .card-img {
-            height: 200px;
-            background: linear-gradient(135deg, #333 0%, #666 100%);
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-img:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 100%);
+        }
+        
+        .nature-bg {
+            background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);
+        }
+        
+        .animals-bg {
+            background: linear-gradient(135deg, #5d4037 0%, #a1887f 100%);
+        }
+        
+        .humans-bg {
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+        }
+        
+        .gossip-bg {
+            background: linear-gradient(135deg, #8e24aa 0%, #ce93d8 100%);
+        }
+        
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
         
         .card-content {
@@ -215,12 +300,28 @@
             font-size: 22px;
             margin-bottom: 15px;
             color: #222;
+            line-height: 1.4;
         }
         
         .card-content p {
             color: #555;
             margin-bottom: 20px;
             font-size: 15.5px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .card-date {
+            color: #888;
+            font-size: 13px;
+            font-weight: 500;
         }
         
         /* Buttons */
@@ -236,6 +337,23 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover:after {
+            left: 100%;
         }
         
         .btn:hover {
@@ -244,50 +362,57 @@
             background: linear-gradient(135deg, #333 0%, #555 100%);
         }
         
-        .btn-more {
-            background: linear-gradient(135deg, #444 0%, #666 100%);
-            padding: 10px 20px;
-            font-size: 14px;
-        }
-        
         /* Footer */
         footer {
             background: linear-gradient(to bottom, #f9f9f9, #f0f0f0);
-            padding: 60px 0 30px;
+            padding: 70px 0 30px;
             margin-top: 60px;
-            border-top: 1px solid #eee;
+            border-top: 2px solid #eee;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            gap: 60px;
             margin-bottom: 50px;
         }
         
         .company-card {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
         }
         
         .company-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 25px;
             color: #222;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #222, #555);
         }
         
         .company-info {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
         
         .company-info div {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: #444;
         }
         
@@ -306,56 +431,129 @@
         
         .disclaimer {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 15px auto 0;
             font-style: italic;
-            margin-top: 10px;
             color: #888;
+            line-height: 1.5;
         }
         
         /* Responsive */
-        @media (max-width: 992px) {
-            .main-headline {
-                grid-template-columns: 1fr;
+        @media (max-width: 1100px) {
+            .hotline-text {
+                font-size: 24px;
             }
             
-            .nav-links {
-                gap: 20px;
+            .logo-container {
+                width: 180px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .header-top {
                 flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .hotline-today {
+                order: 3;
+                position: relative;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .menu-container {
+                display: flex;
+                align-items: center;
+            }
+            
+            .dropdown-menu {
+                position: fixed;
+                top: 120px;
+                right: 30px;
+                left: 30px;
+                width: auto;
             }
         }
         
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
             .news-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-container {
+                width: 150px;
+                height: 60px;
+            }
+            
+            .hotline-text {
+                font-size: 20px;
+            }
+            
+            .menu-button {
+                padding: 10px 18px;
+                font-size: 14px;
             }
         }
         
         /* Animation for logo */
-        @keyframes logoBounce {
+        @keyframes logoKaboom {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15) rotate(5deg); }
-            100% { transform: scale(1.1) rotate(0); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(0.9) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); }
         }
         
         .logo-clicked {
-            animation: logoBounce 0.6s ease;
+            animation: logoKaboom 0.8s ease;
         }
         
-        .category-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-            border-radius: 20px;
-            font-size: 12px;
+        /* Filter buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 30px;
             font-weight: 600;
-            color: #555;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            background: #e9e9e9;
+            color: #222;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -363,99 +561,158 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="header-content">
+            <div class="header-top">
+                <!-- Logo di kiri atas -->
                 <div class="logo-container" id="logoContainer">
-                    <img src="kaboom-logo.png" alt="The Kaboom! Logo" id="logo">
+                    <img src="https://via.placeholder.com/300x100/222/FFFFFF?text=KABOOM-LOGO.PNG" alt="The Kaboom! Logo" id="logo">
                 </div>
-                <div class="year-badge">2026</div>
+                
+                <!-- HOTLINE TODAY di tengah -->
+                <div class="hotline-today">
+                    <div class="hotline-text">HOTLINE TODAY</div>
+                </div>
+                
+                <!-- Menu di kanan atas -->
+                <div class="menu-container">
+                    <button class="menu-button" id="menuButton">
+                        <i class="fas fa-bars"></i> MENU
+                    </button>
+                    
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#animals" class="menu-item">
+                            <i class="fas fa-paw menu-icon"></i>
+                            <span>Animals</span>
+                        </a>
+                        <a href="#nature" class="menu-item">
+                            <i class="fas fa-tree menu-icon"></i>
+                            <span>Nature</span>
+                        </a>
+                        <a href="#humans" class="menu-item">
+                            <i class="fas fa-user menu-icon"></i>
+                            <span>Humans</span>
+                        </a>
+                        <a href="#gossip" class="menu-item">
+                            <i class="fas fa-comment-dots menu-icon"></i>
+                            <span>Gossip</span>
+                        </a>
+                    </div>
+                </div>
             </div>
+            
+            <div class="year-badge">2026 EDITION</div>
         </header>
         
-        <!-- Navigation -->
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#nature">Nature</a></li>
-                <li><a href="#animals">Animals</a></li>
-                <li><a href="#humans">Humans</a></li>
-                <li><a href="#science">Science</a></li>
-                <li><a href="#environment">Environment</a></li>
-            </ul>
-        </nav>
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All News</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="animals">Animals</button>
+            <button class="filter-btn" data-filter="humans">Humans</button>
+            <button class="filter-btn" data-filter="gossip">Gossip</button>
+        </div>
         
         <!-- Main Content -->
         <main>
-            <!-- Featured Section -->
-            <section class="main-headline">
-                <article class="featured-article">
-                    <div class="featured-img">
-                        NATURE'S LATEST WONDER
-                    </div>
-                    <div class="featured-content">
-                        <div class="category-tag">EXCLUSIVE REPORT</div>
-                        <h2>The Mysterious Blooming of Century Plants Across Arid Regions</h2>
-                        <p>In an unprecedented botanical event, agave plants across desert regions are flowering simultaneously after decades of dormancy. Scientists are scrambling to understand the environmental triggers behind this synchronized blooming phenomenon that only occurs once every 25-30 years.</p>
-                        <a href="article1.html" class="btn">Read Full Story</a>
-                    </div>
-                </article>
+            <section class="hero-section">
+                <h2 class="section-title">Today's Top Stories</h2>
                 
-                <div class="side-articles">
-                    <article class="side-article">
-                        <h3>Deep Ocean Species Discovery Stuns Marine Biologists</h3>
-                        <p>Newly discovered bioluminescent creatures challenge our understanding of life in extreme environments.</p>
-                        <a href="article2.html" class="btn btn-more">More</a>
+                <div class="news-grid">
+                    <!-- News Card 1 -->
+                    <article class="news-card" data-category="nature">
+                        <div class="card-img nature-bg">
+                            <div class="card-tag">NATURE</div>
+                            <span>AMAZON RAINFOREST</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>New Plant Species Discovered in Unexplored Amazon Region</h3>
+                            <p>Botanists have identified 12 previously unknown plant species in a remote section of the Amazon rainforest. These plants exhibit unique medicinal properties that could revolutionize modern medicine.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 15, 2026 • 5 min read</div>
+                                <a href="article1.html" class="btn">Read More</a>
+                            </div>
+                        </div>
                     </article>
                     
-                    <article class="side-article">
-                        <h3>How Urban Wildlife Adapts to City Life</h3>
-                        <p>Coyotes, raccoons, and peregrine falcons are showing remarkable evolutionary adaptations to metropolitan environments.</p>
-                        <a href="article3.html" class="btn btn-more">More</a>
+                    <!-- News Card 2 -->
+                    <article class="news-card" data-category="animals">
+                        <div class="card-img animals-bg">
+                            <div class="card-tag">ANIMALS</div>
+                            <span>MARINE BIOLOGY</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Dolphins Develop New Hunting Technique Using Sea Sponges</h3>
+                            <p>Researchers have documented a pod of dolphins in Australia using marine sponges as tools to protect their snouts while foraging on the seafloor - a sign of cultural transmission among marine mammals.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 14, 2026 • 4 min read</div>
+                                <a href="article2.html" class="btn">Read More</a>
+                            </div>
+                        </div>
                     </article>
                     
-                    <article class="side-article">
-                        <h3>The Healing Power of Forest Bathing Confirmed by Science</h3>
-                        <p>New research quantifies the physiological benefits of spending time immersed in natural woodland settings.</p>
-                        <a href="article4.html" class="btn btn-more">More</a>
+                    <!-- News Card 3 -->
+                    <article class="news-card" data-category="humans">
+                        <div class="card-img humans-bg">
+                            <div class="card-tag">HUMANS</div>
+                            <span>ANTHROPOLOGY</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Isolated Tribe Found in Papua Shows Unique Genetic Adaptations</h3>
+                            <p>A previously uncontacted tribe discovered in the Papua highlands exhibits genetic traits that allow them to consume and digest foods that would be toxic to most humans, offering new insights into human adaptation.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 13, 2026 • 6 min read</div>
+                                <a href="article3.html" class="btn">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 4 -->
+                    <article class="news-card" data-category="gossip">
+                        <div class="card-img gossip-bg">
+                            <div class="card-tag">GOSSIP</div>
+                            <span>CELEBRITY ECO-WARRIORS</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Which A-List Actor Secretly Funds Reforestation Projects?</h3>
+                            <p>Rumors are swirling about a major Hollywood star who has anonymously donated millions to rainforest conservation. Insiders suggest it might be an unlikely candidate known more for action films than environmentalism.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 12, 2026 • 3 min read</div>
+                                <a href="article4.html" class="btn">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 5 -->
+                    <article class="news-card" data-category="nature">
+                        <div class="card-img nature-bg">
+                            <div class="card-tag">NATURE</div>
+                            <span>CLIMATE PHENOMENON</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Northern Lights Visible Further South Due to Solar Storm</h3>
+                            <p>An unusually strong solar storm has made the aurora borealis visible as far south as Colorado, stunning skywatchers with brilliant displays of green and purple lights dancing across the night sky.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 11, 2026 • 4 min read</div>
+                                <a href="article5.html" class="btn">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 6 -->
+                    <article class="news-card" data-category="animals">
+                        <div class="card-img animals-bg">
+                            <div class="card-tag">ANIMALS</div>
+                            <span>URBAN WILDLIFE</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Coyotes in Chicago Developing Distinct City Accents</h3>
+                            <p>Urban coyotes in major cities appear to be developing unique vocalizations distinct from their rural counterparts, suggesting that city life is influencing animal communication patterns.</p>
+                            <div class="card-meta">
+                                <div class="card-date">March 10, 2026 • 5 min read</div>
+                                <a href="article6.html" class="btn">Read More</a>
+                            </div>
+                        </div>
                     </article>
                 </div>
-            </section>
-            
-            <!-- News Grid -->
-            <section class="news-grid">
-                <article class="news-card">
-                    <div class="card-img" style="background: linear-gradient(135deg, #2c5530 0%, #4a7856 100%);">
-                        NATURE
-                    </div>
-                    <div class="card-content">
-                        <div class="category-tag">ECOLOGY</div>
-                        <h3>Fungal Networks: The Wood Wide Web</h3>
-                        <p>Discover how mycorrhizal fungi create intricate communication systems between trees, allowing forests to function as cooperative superorganisms.</p>
-                        <a href="article5.html" class="btn btn-more">Read More</a>
-                    </div>
-                </article>
-                
-                <article class="news-card">
-                    <div class="card-img" style="background: linear-gradient(135deg, #5d4037 0%, #8d6e63 100%);">
-                        ANIMALS
-                    </div>
-                    <div class="card-content">
-                        <div class="category-tag">ZOOLOGY</div>
-                        <h3>Cephalopod Intelligence Rivals Mammals</h3>
-                        <p>Octopuses demonstrate problem-solving abilities and personalities that challenge our understanding of invertebrate cognition.</p>
-                        <a href="article6.html" class="btn btn-more">Read More</a>
-                    </div>
-                </article>
-                
-                <article class="news-card">
-                    <div class="card-img" style="background: linear-gradient(135deg, #006064 0%, #00838f 100%);">
-                        HUMANS
-                    </div>
-                    <div class="card-content">
-                        <div class="category-tag">ANTHROPOLOGY</div>
-                        <h3>High-Altitude Adaptations in Tibetan Populations</h3>
-                        <p>Genetic research reveals how Himalayan communities have evolved unique physiological traits to thrive in oxygen-thin environments.</p>
-                        <a href="article7.html" class="btn btn-more">Read More</a>
-                    </div>
-                </article>
             </section>
         </main>
     </div>
@@ -484,8 +741,9 @@
                 
                 <div>
                     <h3>About The Kaboom!</h3>
-                    <p>The Kaboom! Under The Kachoo is a premier tabloid dedicated to exploring the wonders of nature, animals, and human phenomena. Established in 2026, we bring you the most fascinating discoveries and stories from our natural world.</p>
+                    <p>The Kaboom! Under The Kachoo brings you the most explosive stories from the natural world and human phenomena. Founded in 2026, we explore nature, animals, humans, and the occasional gossip - always keeping it factual and fascinating.</p>
                     <p>No politics. No religion. Just the incredible world around us.</p>
+                    <p style="margin-top: 20px; font-weight: 600; color: #222;">HOTLINE TODAY is updated 24/7 with breaking stories from around the globe.</p>
                 </div>
             </div>
             
@@ -503,35 +761,103 @@
             logo.classList.remove('logo-clicked');
             void logo.offsetWidth; // Trigger reflow
             logo.classList.add('logo-clicked');
+            
+            // Optional: Add sound effect idea (commented out)
+            // const kaboomSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-bomb-explosion-in-the-distance-2800.mp3');
+            // kaboomSound.volume = 0.3;
+            // kaboomSound.play();
         });
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // Dropdown menu toggle
+        const menuButton = document.getElementById('menuButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+        
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                // Add active class to clicked button
+                this.classList.add('active');
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Show/hide cards based on filter
+                newsCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
         });
         
-        // Card hover effects enhancement
-        document.querySelectorAll('.news-card').forEach(card => {
+        // Card hover effects
+        newsCards.forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
+                this.style.transform = 'translateY(-10px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+        
+        // Menu item click handlers
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('href').substring(1);
+                
+                // Close dropdown
+                dropdownMenu.classList.remove('active');
+                
+                // Trigger filter for that category
+                filterButtons.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === category) {
+                        btn.click();
+                        // Scroll to news section
+                        document.querySelector('.hero-section').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Animate cards on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                newsCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 300);
         });
     </script>
 </body>
