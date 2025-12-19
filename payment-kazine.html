@@ -644,87 +644,92 @@
         </div>
     </footer>
 
-                if (!voucherCode) {
-                alert('Please enter a voucher code');
-                return;
-            }
+    <script>
+    // Get order data from localStorage - PERBAIKAN: 'kazineOrder' bukan 'kazineClothingOrder'
+    const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
+    const orderItems = document.getElementById('orderItems');
+    const emptyState = document.getElementById('emptyState');
+    const paymentContent = document.getElementById('paymentContent');
+    const subtotalElement = document.getElementById('subtotal');
+    const discountElement = document.getElementById('discount');
+    const totalAmountElement = document.getElementById('totalAmount');
+    const confirmPaymentBtn = document.getElementById('confirmPayment');
+    
+    // Service fee constant
+    const SERVICE_FEE = 2.50;
+    
+    // Check if there's order data
+    if (!orderData || !orderData.items || orderData.items.length === 0) {
+        // Show empty state if no items
+        emptyState.style.display = 'block';
+        paymentContent.style.display = 'none';
+    } else {
+        // Show payment content
+        emptyState.style.display = 'none';
+        paymentContent.style.display = 'block';
+        
+        let subtotal = 0;
+        let discount = 0;
+        
+        // Clear existing items
+        orderItems.innerHTML = '';
+        
+        // Generate order items HTML
+        orderData.items.forEach((item, index) => {
+            // Hitung harga total per item (harga × quantity)
+            const itemPrice = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
+            const itemQuantity = item.quantity || 1;
+            subtotal += itemPrice;
             
-            // Simulate voucher validation
-            let discountAmount = 0;
-            
-            // Example voucher codes (for demo purposes)
-            if (voucherCode === 'KAZI-NEW YEAR') {
-                discountAmount = subtotal * 0.10; // 10% discount
-            } else if (voucherCode === 'KAZI-NEW VIBES') {
-                discountAmount = subtotal * 0.20; // 20% discount
-            } else if (voucherCode === 'WELCOME KACHOO') {
-                discountAmount = 5.00; // $5 flat discount
-            } else {
-                alert('Invalid voucher code. Try KAZI-NEW YEAR, KAZI-NEW VIBES, or WELCOME KACHOO');
-                return;
-            }
-            
-            // Update discount and total
-            const newSubtotal = subtotal;
-            const newDiscount = discountAmount;
-            const newTotal = newSubtotal - newDiscount + SERVICE_FEE;
-            
-            discountElement.textContent = `-$${newDiscount.toFixed(2)}`;
-            totalAmountElement.textContent = `$${newTotal.toFixed(2)}`;
-            
-            // Update orderData
-            if (orderData) {
-                orderData.discount = newDiscount;
-                orderData.total = newTotal;
-                orderData.voucherCode = voucherCode;
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            }
-            
-            alert(`Voucher applied successfully! You saved $${newDiscount.toFixed(2)}`);
+            const itemElement = document.createElement('div');
+            itemElement.className = 'order-item';
+            itemElement.innerHTML = `
+                <div>
+                    <div class="item-name">${item.title || 'Magazine Item'}</div>
+                    <div class="item-details">Quantity: ${itemQuantity}</div>
+                </div>
+                <div class="item-price">$${itemPrice.toFixed(2)}</div>
+            `;
+            orderItems.appendChild(itemElement);
         });
         
-        // Confirm payment
-        confirmPaymentBtn.addEventListener('click', function() {
-            // Validate form
-            const email = document.getElementById('email').value.trim();
-            const fullName = document.getElementById('fullName').value.trim();
+        // Calculate totals
+        discount = orderData.discount || 0;
+        const total = subtotal - discount + SERVICE_FEE;
+        
+        // Update UI
+        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+        discountElement.textContent = `-$${discount.toFixed(2)}`;
+        totalAmountElement.textContent = `$${total.toFixed(2)}`;
+        
+        // Store calculated total in orderData
+        orderData.subtotal = subtotal;
+        orderData.discount = discount;
+        orderData.total = total;
+        orderData.serviceFee = SERVICE_FEE;
+        
+        // Save updated order data
+        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+    }
+    
+    // Payment method selection
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
             
-            if (!email || !fullName) {
-                alert('Please fill in your email and full name');
-                return;
-            }
+            // Add selected class to clicked option
+            this.classList.add('selected');
             
-            if (!document.querySelector('.payment-option.selected')) {
-                alert('Please select a payment method');
-                return;
-            }
-            
-            // Add customer info to orderData
+            // Store selected payment method
             if (orderData) {
-                orderData.customer = {
-                    email: email,
-                    fullName: fullName,
-                    country: document.getElementById('country').value,
-                    phone: document.getElementById('phone').value,
-                    notes: document.getElementById('notes').value,
-                    newsletter: document.getElementById('newsletter').checked
-                };
-                
-                orderData.paymentDate = new Date().toLocaleString();
-                orderData.status = 'pending';
-                
+                orderData.paymentMethod = this.getAttribute('data-method');
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
             }
-            
-            // Show confirmation
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            this.disabled = true;
-            
-            // Simulate payment processing
-            setTimeout(() => {
-                // Redirect to confirmation page (you can create this)
-    <script>
-    // ... existing code ...
+        });
+    });
     
     // Voucher application
     document.getElementById('applyVoucher').addEventListener('click', function() {
@@ -735,25 +740,24 @@
             return;
         }
         
-        // Simulate voucher validation - FIXED VOUCHER CODES
+        // Simulate voucher validation
         let discountAmount = 0;
         
-        // Valid voucher codes (tidak diubah)
+        // Example voucher codes (for demo purposes)
         if (voucherCode === 'KAZI-NEW YEAR') {
-            discountAmount = subtotal * 0.10; // 10% discount
+            discountAmount = orderData.subtotal * 0.10; // 10% discount
         } else if (voucherCode === 'KAZI-NEW VIBES') {
-            discountAmount = subtotal * 0.20; // 20% discount
+            discountAmount = orderData.subtotal * 0.20; // 20% discount
         } else if (voucherCode === 'WELCOME KACHOO') {
             discountAmount = 5.00; // $5 flat discount
         } else {
-            alert('Invalid voucher code. Try: KAZI-NEW YEAR, KAZI-NEW VIBES, or WELCOME KACHOO');
+            alert('Invalid voucher code. Try KAZI-NEW YEAR, KAZI-NEW VIBES, or WELCOME KACHOO');
             return;
         }
         
         // Update discount and total
-        const newSubtotal = subtotal;
         const newDiscount = discountAmount;
-        const newTotal = newSubtotal - newDiscount + SERVICE_FEE;
+        const newTotal = orderData.subtotal - newDiscount + SERVICE_FEE;
         
         discountElement.textContent = `-$${newDiscount.toFixed(2)}`;
         totalAmountElement.textContent = `$${newTotal.toFixed(2)}`;
@@ -766,7 +770,7 @@
             localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         }
         
-        alert(`Voucher "${voucherCode}" applied successfully! You saved $${newDiscount.toFixed(2)}`);
+        alert(`Voucher applied successfully! You saved $${newDiscount.toFixed(2)}`);
     });
     
     // Confirm payment
@@ -797,8 +801,9 @@
             };
             
             orderData.paymentDate = new Date().toLocaleString();
-            orderData.status = 'pending';
+            orderData.status = 'completed';
             orderData.paymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
+            orderData.orderNumber = 'KAZ#' + Math.floor(100000 + Math.random() * 900000);
             
             localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         }
@@ -816,6 +821,13 @@
             localStorage.removeItem('kazineCart');
         }, 2000);
     });
+    
+    // Enter key for voucher
+    document.getElementById('voucherCode').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('applyVoucher').click();
+        }
+    });
     </script>
 </body>
-    </html>
+</html>
