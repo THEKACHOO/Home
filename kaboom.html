@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Kaboom! Under The Kachoo - 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            cursor: pointer;
+        }
+        
+        #logo {
+            height: 80px;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo-container:hover #logo {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .year-badge {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(to right, #f8f8f8, #ffffff);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+            font-size: 16px;
+            padding-bottom: 5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #555;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #222, #555);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        .main-headline {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .featured-article {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .featured-img {
+            height: 400px;
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .featured-content {
+            padding: 30px;
+        }
+        
+        .featured-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #222, #555);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .featured-content p {
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        
+        .side-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .side-article {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+        
+        .side-article h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .side-article p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .news-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-img {
+            height: 200px;
+            background: linear-gradient(135deg, #333 0%, #666 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .card-content p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 15.5px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+        
+        .btn-more {
+            background: linear-gradient(135deg, #444 0%, #666 100%);
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, #f9f9f9, #f0f0f0);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .company-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .company-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #444;
+        }
+        
+        .company-info i {
+            width: 20px;
+            color: #222;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            margin-top: 10px;
+            color: #888;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-headline {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for logo */
+        @keyframes logoBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15) rotate(5deg); }
+            100% { transform: scale(1.1) rotate(0); }
+        }
+        
+        .logo-clicked {
+            animation: logoBounce 0.6s ease;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo-container" id="logoContainer">
+                    <img src="https://via.placeholder.com/300x80/222/FFFFFF?text=KABOOM-LOGO.PNG" alt="The Kaboom! Logo" id="logo">
+                </div>
+                <div class="year-badge">2026</div>
+            </div>
+        </header>
+        
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#nature">Nature</a></li>
+                <li><a href="#animals">Animals</a></li>
+                <li><a href="#humans">Humans</a></li>
+                <li><a href="#science">Science</a></li>
+                <li><a href="#environment">Environment</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <main>
+            <!-- Featured Section -->
+            <section class="main-headline">
+                <article class="featured-article">
+                    <div class="featured-img">
+                        NATURE'S LATEST WONDER
+                    </div>
+                    <div class="featured-content">
+                        <div class="category-tag">EXCLUSIVE REPORT</div>
+                        <h2>The Mysterious Blooming of Century Plants Across Arid Regions</h2>
+                        <p>In an unprecedented botanical event, agave plants across desert regions are flowering simultaneously after decades of dormancy. Scientists are scrambling to understand the environmental triggers behind this synchronized blooming phenomenon that only occurs once every 25-30 years.</p>
+                        <a href="article1.html" class="btn">Read Full Story</a>
+                    </div>
+                </article>
+                
+                <div class="side-articles">
+                    <article class="side-article">
+                        <h3>Deep Ocean Species Discovery Stuns Marine Biologists</h3>
+                        <p>Newly discovered bioluminescent creatures challenge our understanding of life in extreme environments.</p>
+                        <a href="article2.html" class="btn btn-more">More</a>
+                    </article>
+                    
+                    <article class="side-article">
+                        <h3>How Urban Wildlife Adapts to City Life</h3>
+                        <p>Coyotes, raccoons, and peregrine falcons are showing remarkable evolutionary adaptations to metropolitan environments.</p>
+                        <a href="article3.html" class="btn btn-more">More</a>
+                    </article>
+                    
+                    <article class="side-article">
+                        <h3>The Healing Power of Forest Bathing Confirmed by Science</h3>
+                        <p>New research quantifies the physiological benefits of spending time immersed in natural woodland settings.</p>
+                        <a href="article4.html" class="btn btn-more">More</a>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- News Grid -->
+            <section class="news-grid">
+                <article class="news-card">
+                    <div class="card-img" style="background: linear-gradient(135deg, #2c5530 0%, #4a7856 100%);">
+                        NATURE
+                    </div>
+                    <div class="card-content">
+                        <div class="category-tag">ECOLOGY</div>
+                        <h3>Fungal Networks: The Wood Wide Web</h3>
+                        <p>Discover how mycorrhizal fungi create intricate communication systems between trees, allowing forests to function as cooperative superorganisms.</p>
+                        <a href="article5.html" class="btn btn-more">Read More</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="card-img" style="background: linear-gradient(135deg, #5d4037 0%, #8d6e63 100%);">
+                        ANIMALS
+                    </div>
+                    <div class="card-content">
+                        <div class="category-tag">ZOOLOGY</div>
+                        <h3>Cephalopod Intelligence Rivals Mammals</h3>
+                        <p>Octopuses demonstrate problem-solving abilities and personalities that challenge our understanding of invertebrate cognition.</p>
+                        <a href="article6.html" class="btn btn-more">Read More</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="card-img" style="background: linear-gradient(135deg, #006064 0%, #00838f 100%);">
+                        HUMANS
+                    </div>
+                    <div class="card-content">
+                        <div class="category-tag">ANTHROPOLOGY</div>
+                        <h3>High-Altitude Adaptations in Tibetan Populations</h3>
+                        <p>Genetic research reveals how Himalayan communities have evolved unique physiological traits to thrive in oxygen-thin environments.</p>
+                        <a href="article7.html" class="btn btn-more">Read More</a>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>About The Kaboom!</h3>
+                    <p>The Kaboom! Under The Kachoo is a premier tabloid dedicated to exploring the wonders of nature, animals, and human phenomena. Established in 2026, we bring you the most fascinating discoveries and stories from our natural world.</p>
+                    <p>No politics. No religion. Just the incredible world around us.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">All content on this site is for roleplay purposes and is entirely fictional. Any resemblance to actual events or persons is purely coincidental.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation on click
+        document.getElementById('logoContainer').addEventListener('click', function() {
+            const logo = document.getElementById('logo');
+            logo.classList.remove('logo-clicked');
+            void logo.offsetWidth; // Trigger reflow
+            logo.classList.add('logo-clicked');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Card hover effects enhancement
+        document.querySelectorAll('.news-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
