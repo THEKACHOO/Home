@@ -160,13 +160,13 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Section - TANPA BACKGROUND IMAGE */
         .hero {
             padding: 160px 0 100px;
-            background: var(--gradient-horizontal);
+            background: var(--gradient-horizontal); /* Hanya gradient, tanpa gambar */
             position: relative;
             overflow: hidden;
-            }
+        }
 
         .hero::before {
             content: '';
@@ -303,7 +303,7 @@
         .brand-logo-placeholder img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Diubah dari cover ke contain */
         }
 
         .brand-card h3 {
@@ -681,7 +681,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - TANPA BACKGROUND IMAGE MENGANGGU -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -700,11 +700,11 @@
                 <!-- KAFKAPAGES Brand Card -->
                 <div class="brand-card" id="kafkapages">
                     <div class="brand-logo-placeholder">
-                            <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo">
+                        <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo">
                     </div>
                     <h3>KAFKAPAGES</h3>
                     <p>Advanced document platform with AI-powered editing, real-time collaboration, and seamless integration across all your devices.</p>
-                    <a href="#" class="btn-outline">Learn More</a>
+                    <div class="btn-outline">Learn More</div>
                 </div>
                 
                 <!-- KAZINE Brand Card -->
@@ -714,7 +714,7 @@
                     </div>
                     <h3>KAZINE</h3>
                     <p>Digital publishing suite for creating stunning interactive magazines with intuitive tools and multi-platform distribution.</p>
-                    <a href="#kazine-mag" class="btn-outline">Explore Magazine</a>
+                    <div class="btn-outline">Explore Magazine</div>
                 </div>
                 
                 <!-- KABOOM Brand Card -->
@@ -724,7 +724,7 @@
                     </div>
                     <h3>KABOOM</h3>
                     <p>Creative ideation engine that combines AI-powered brainstorming with collaborative tools to fuel your next big project.</p>
-                    <a href="#kaboom-news" class="btn-outline">Read News</a>
+                    <div class="btn-outline">Read News</div>
                 </div>
             </div>
         </div>
@@ -735,8 +735,7 @@
         <div class="container">
             <div class="magazine-container">
                 <div class="magazine-image">
-                    <!-- TEMPAT UNTUK GAMBAR MAJALAH KAZINE -->
-                    <!-- Ganti icon ini dengan gambar majalah KAZINE Vol 1 -->
+                    <!-- GAMBAR MAJALAH KAZINE VOL 1 - Silakan ganti dengan gambar Anda -->
                     <!-- <img src="kazine-vol1-cover.jpg" alt="KAZINE Volume 1"> -->
                     <i class="fas fa-newspaper"></i>
                     <div class="magazine-badge">VOL. 1</div>
@@ -759,8 +758,7 @@
                 <!-- News 1 -->
                 <div class="news-card">
                     <div class="news-image-placeholder">
-                        <!-- TEMPAT UNTUK FOTO BERITA KABOOM 1 -->
-                        <!-- Ganti icon ini dengan gambar berita KABOOM -->
+                        <!-- FOTO BERITA KABOOM 1 - Silakan ganti dengan gambar Anda -->
                         <!-- <img src="kaboom-news1.jpg" alt="KABOOM News 1"> -->
                         <i class="fas fa-lightbulb"></i>
                         <div class="news-badge">NEW</div>
@@ -777,8 +775,7 @@
                 <!-- News 2 -->
                 <div class="news-card">
                     <div class="news-image-placeholder">
-                        <!-- TEMPAT UNTUK FOTO BERITA KABOOM 2 -->
-                        <!-- Ganti icon ini dengan gambar berita KABOOM -->
+                        <!-- FOTO BERITA KABOOM 2 - Silakan ganti dengan gambar Anda -->
                         <!-- <img src="kaboom-news2.jpg" alt="KABOOM News 2"> -->
                         <i class="fas fa-users"></i>
                         <div class="news-badge">FEATURED</div>
@@ -795,8 +792,7 @@
                 <!-- News 3 -->
                 <div class="news-card">
                     <div class="news-image-placeholder">
-                        <!-- TEMPAT UNTUK FOTO BERITA KABOOM 3 -->
-                        <!-- Ganti icon ini dengan gambar berita KABOOM -->
+                        <!-- FOTO BERITA KABOOM 3 - Silakan ganti dengan gambar Anda -->
                         <!-- <img src="kaboom-news3.jpg" alt="KABOOM News 3"> -->
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -844,7 +840,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2026 THE KACHOO | Kafka Company. All rights reserved.</p>
+                <p>&copy; 2023 THE KACHOO | Kafka Company. All rights reserved.</p>
             </div>
         </div>
     </footer>
