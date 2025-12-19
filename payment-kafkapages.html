@@ -205,6 +205,8 @@
 
         .order-items {
             margin-bottom: 30px;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
         .order-item {
@@ -221,10 +223,18 @@
 
         .item-name {
             font-weight: 500;
+            font-size: 14px;
+        }
+
+        .item-details {
+            font-size: 12px;
+            color: var(--medium-gray);
+            margin-top: 3px;
         }
 
         .item-price {
             font-weight: 600;
+            font-size: 14px;
         }
 
         .price-breakdown {
@@ -401,6 +411,24 @@
             box-shadow: none;
         }
 
+        /* Empty Cart State */
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--medium-gray);
+        }
+
+        .empty-cart i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .empty-cart h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
         /* Footer Disclaimer */
         .footer-disclaimer {
             text-align: center;
@@ -512,10 +540,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="itemDetails">Item Details</label>
-                    <textarea id="itemDetails" rows="4" required placeholder="Example: The Man Behind Delanosa: Hide and Lost (Indonesian Edition) - 1 copy
-The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
-                    <div class="form-note">Please list all items and quantities</div>
+                    <label for="itemDetails">Order Notes</label>
+                    <textarea id="itemDetails" rows="4" placeholder="Special instructions or requests..."></textarea>
+                    <div class="form-note">Optional: Add any special requests or notes for your order</div>
                 </div>
                 
                 <!-- Payment Methods -->
@@ -557,16 +584,18 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
             <div class="order-summary">
                 <h2 class="section-title">Order Summary</h2>
                 
-                <div class="order-items">
+                <!-- Cart Items Container -->
+                <div class="order-items" id="orderItemsContainer">
+                    <div class="empty-cart" id="emptyCart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h4>Your cart is empty</h4>
+                        <p>Add books from the KAFKAPAGES store first</p>
+                        <a href="kafkapages.html" class="back-button" style="margin-top: 15px;">
+                            <i class="fas fa-store"></i>
+                            Go to Store
+                        </a>
+                    </div>
                     <!-- Order items will be populated dynamically -->
-                    <div class="order-item">
-                        <div class="item-name">Sample Book (Indonesian)</div>
-                        <div class="item-price">$24.99</div>
-                    </div>
-                    <div class="order-item">
-                        <div class="item-name">Sample Book (English)</div>
-                        <div class="item-price">$26.99</div>
-                    </div>
                 </div>
                 
                 <!-- Voucher Section -->
@@ -614,7 +643,7 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
                 <div class="price-breakdown">
                     <div class="price-row">
                         <span>Subtotal</span>
-                        <span id="subtotal">$51.98</span>
+                        <span id="subtotal">$0.00</span>
                     </div>
                     <div class="price-row">
                         <span>Discount</span>
@@ -622,16 +651,16 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
                     </div>
                     <div class="price-row">
                         <span>Service Fee</span>
-                        <span>$2.50</span>
+                        <span id="serviceFee">$2.50</span>
                     </div>
                     <div class="price-row total">
                         <span>Total Amount</span>
-                        <span id="totalAmount">$54.48</span>
+                        <span id="totalAmount">$2.50</span>
                     </div>
                 </div>
                 
                 <!-- Submit Button -->
-                <button class="submit-button" id="submitPayment">
+                <button class="submit-button" id="submitPayment" disabled>
                     PROCEED TO PAYMENT CONFIRMATION
                 </button>
                 
@@ -651,33 +680,87 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
     </footer>
 
     <script>
-        // Initial prices
-        let subtotal = 51.98;
+        // Global variables
+        let subtotal = 0;
         let discount = 0;
         let selectedVoucher = null;
         let selectedPaymentMethod = null;
         let passwordUnlocked = false;
+        let cartItems = [];
 
         // DOM Elements
+        const orderItemsContainer = document.getElementById('orderItemsContainer');
+        const emptyCart = document.getElementById('emptyCart');
         const subtotalEl = document.getElementById('subtotal');
         const discountAmountEl = document.getElementById('discountAmount');
+        const serviceFeeEl = document.getElementById('serviceFee');
         const totalAmountEl = document.getElementById('totalAmount');
         const submitButton = document.getElementById('submitPayment');
         const passwordInput = document.getElementById('passwordInput');
         const voucherPassword = document.getElementById('voucherPassword');
         const passwordMessage = document.getElementById('passwordMessage');
 
+        // Service fee constant
+        const SERVICE_FEE = 2.50;
+
+        // Load cart data from localStorage
+        function loadCartData() {
+            try {
+                // Get order data from localStorage (from kafkapages.html)
+                const orderData = JSON.parse(localStorage.getItem('kafkapagesOrder'));
+                
+                if (orderData && orderData.items && orderData.items.length > 0) {
+                    cartItems = orderData.items;
+                    displayCartItems();
+                    calculateTotals();
+                    emptyCart.style.display = 'none';
+                } else {
+                    // If no cart data, show empty state
+                    emptyCart.style.display = 'block';
+                    submitButton.disabled = true;
+                }
+            } catch (error) {
+                console.error('Error loading cart data:', error);
+                emptyCart.style.display = 'block';
+                submitButton.disabled = true;
+            }
+        }
+
+        // Display cart items
+        function displayCartItems() {
+            orderItemsContainer.innerHTML = '';
+            
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div>
+                        <div class="item-name">${item.title}</div>
+                        <div class="item-details">${item.language} Edition</div>
+                    </div>
+                    <div class="item-price">$${parseFloat(item.price).toFixed(2)}</div>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+        }
+
+        // Calculate totals
+        function calculateTotals() {
+            subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+            updatePrices();
+        }
+
         // Update price display
         function updatePrices() {
-            const serviceFee = 2.50;
-            const total = subtotal - discount + serviceFee;
+            const total = subtotal - discount + SERVICE_FEE;
             
             subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
             discountAmountEl.textContent = `-$${discount.toFixed(2)}`;
+            serviceFeeEl.textContent = `$${SERVICE_FEE.toFixed(2)}`;
             totalAmountEl.textContent = `$${total.toFixed(2)}`;
             
             // Enable/disable submit button
-            submitButton.disabled = !selectedPaymentMethod;
+            submitButton.disabled = !selectedPaymentMethod || cartItems.length === 0;
         }
 
         // Voucher selection
@@ -765,7 +848,7 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
                 });
                 this.classList.add('selected');
                 selectedPaymentMethod = this.getAttribute('data-method');
-                submitButton.disabled = false;
+                submitButton.disabled = cartItems.length === 0;
             });
         });
 
@@ -773,6 +856,11 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
         submitButton.addEventListener('click', function() {
             if (!selectedPaymentMethod) {
                 alert('Please select a payment method');
+                return;
+            }
+            
+            if (cartItems.length === 0) {
+                alert('Your cart is empty! Please add items from KAFKAPAGES first.');
                 return;
             }
             
@@ -790,32 +878,35 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
                     name: name,
                     email: email,
                     address: document.getElementById('address').value,
-                    twitter: document.getElementById('twitterAccount').value
+                    twitter: document.getElementById('twitterAccount').value,
+                    notes: document.getElementById('itemDetails').value
                 },
-                items: document.getElementById('itemDetails').value,
+                items: cartItems,
                 payment: selectedPaymentMethod,
                 voucher: selectedVoucher,
-                discount: discount,
-                total: parseFloat(totalAmountEl.textContent.replace('$', '')),
                 subtotal: subtotal,
+                discount: discount,
+                serviceFee: SERVICE_FEE,
+                total: parseFloat(totalAmountEl.textContent.replace('$', '')),
                 timestamp: new Date().toISOString()
             };
             
             // Save to localStorage for confirmation page
-            localStorage.setItem('kafkapagesOrder', JSON.stringify(orderData));
+            localStorage.setItem('kafkapagesPaymentOrder', JSON.stringify(orderData));
             
             // Show loading state
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
             this.disabled = true;
+            
+            // Clear cart after successful payment
+            localStorage.removeItem('kafkapagesCart');
+            localStorage.removeItem('kafkapagesOrder');
             
             // Redirect to confirmation page
             setTimeout(() => {
                 window.location.href = 'payment-confirmation.html';
             }, 1500);
         });
-
-        // Initialize prices
-        updatePrices();
 
         // Form validation
         document.getElementById('fullName').addEventListener('input', validateForm);
@@ -824,46 +915,32 @@ The Hidden Story Vol 1 (English Edition) - 2 copies"></textarea>
         function validateForm() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
-            const isValid = name && email && selectedPaymentMethod;
+            const isValid = name && email && selectedPaymentMethod && cartItems.length > 0;
             submitButton.disabled = !isValid;
         }
-    <script>
-// Ambil data pesanan dari localStorage
-const orderData = JSON.parse(localStorage.getItem('kafkapagesOrder'));
 
-// Temukan elemen untuk menampilkan item dan total
-const orderItemsContainer = document.querySelector('...'); // Ganti dengan selector yang tepat
-const totalAmountElement = document.querySelector('...'); // Ganti dengan selector untuk elemen Total Amount
+        // Auto-fill form from previous order if available
+        function autoFillForm() {
+            try {
+                const previousOrder = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
+                if (previousOrder && previousOrder.customer) {
+                    document.getElementById('fullName').value = previousOrder.customer.name || '';
+                    document.getElementById('email').value = previousOrder.customer.email || '';
+                    document.getElementById('address').value = previousOrder.customer.address || '';
+                    document.getElementById('twitterAccount').value = previousOrder.customer.twitter || '';
+                    document.getElementById('itemDetails').value = previousOrder.customer.notes || '';
+                }
+            } catch (error) {
+                console.log('No previous order data found');
+            }
+        }
 
-if (orderData && orderData.items && orderData.items.length > 0) {
-    let orderItemsHTML = '';
-    orderData.items.forEach(item => {
-        orderItemsHTML += `
-            <div class="order-item">
-                <span>${item.title} (${item.language})</span>
-                <span>$${item.price}</span>
-            </div>
-        `;
-    });
-    
-    // Masukkan item ke dalam container
-    if (orderItemsContainer) {
-        orderItemsContainer.innerHTML = orderItemsHTML;
-    }
-    
-    // Perbarui total (asumsikan 'orderData.total' sudah ada)
-    if (totalAmountElement && orderData.total) {
-        // Anda mungkin perlu menambahkan biaya layanan seperti di contoh
-        const serviceFee = 2.50;
-        const finalTotal = orderData.total + serviceFee;
-        totalAmountElement.textContent = `$${finalTotal.toFixed(2)}`;
-    }
-} else {
-    // Jika tidak ada data, tampilkan pesan atau redirect kembali
-    console.log('No order data found.');
-    // Opsional: Redirect kembali ke halaman keranjang
-    // window.location.href = 'kafkapages.html';
-}
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartData();
+            autoFillForm();
+            updatePrices();
+        });
     </script>
 </body>
-</html>
+                    </html>
