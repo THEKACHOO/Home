@@ -1022,22 +1022,49 @@
         });
 
         // Cart modal controls
-        document.getElementById('openCart').addEventListener('click', () => {
-            cartModal.classList.add('active');
-            updateCartDisplay();
-        });
+document.getElementById('openCart').addEventListener('click', () => {
+    if (cart.length === 0) {
+        // Jika keranjang kosong, tampilkan modal
+        cartModal.classList.add('active');
+        updateCartDisplay();
+    } else {
+        // Jika ada item di keranjang, langsung ke payment page
+        localStorage.setItem('kafkapagesOrder', JSON.stringify({
+            items: cart,
+            total: parseFloat(cartTotal.textContent.replace('$', '')),
+            store: 'KAFKAPAGES',
+            date: new Date().toLocaleString()
+        }));
+        
+        window.location.href = 'payment-kafkapages.html';
+    }
+});
 
         document.getElementById('closeCart').addEventListener('click', () => {
             cartModal.classList.remove('active');
         });
 
-        // Checkout button
-        checkoutBtn.addEventListener('click', () => {
-            cartModal.classList.remove('active');
-            alert('Proceeding to checkout... [This is where the payment page would appear]');
-            // In a real implementation, this would redirect to a payment page
-            // window.location.href = 'payment.html';
-        });
+        
+checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) {
+        alert('Your cart is empty! Please add books first.');
+        return;
+    }
+    
+    // Save cart data to localStorage for payment page
+    localStorage.setItem('kafkapagesOrder', JSON.stringify({
+        items: cart,
+        total: parseFloat(cartTotal.textContent.replace('$', '')),
+        store: 'KAFKAPAGES',
+        date: new Date().toLocaleString()
+    }));
+    
+    // Close cart modal
+    cartModal.classList.remove('active');
+    
+    // Redirect to payment page
+    window.location.href = 'payment-kafkapages.html';
+});
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
