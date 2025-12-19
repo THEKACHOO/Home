@@ -862,9 +862,9 @@
                     <div class="book-tag">Utara dan Selatan</div>
                     <div class="book-tag">The Malevolent</div>
                     <div class="book-tag">The Lost Soulmate</div>
-                    <div class="book-tag">Diselimuti Samudera</div>
-                    <div class="book-tag">Echoes of Silence</div>
-                    <div class="book-tag">Chronicles of the Forgotten</div>
+                    <div class="book-tag">The Madman : Evelyn</div>
+                    <div class="book-tag">Atmosphere</div>
+                    <div class="book-tag">Kafkaism : Poetry</div>
                 </div>
                 
                 <p>Sign up for our newsletter to be the first to know when these books become available for pre-order!</p>
@@ -906,7 +906,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>KAFKAPAGES</h3>
-                    <p>A division of THE KACHOO | Kafka Company, dedicated to publishing compelling stories in multiple languages.</p>
+                    <p>The Publisher from THE KACHOO | Kafka Company, dedicated to publishing compelling stories in multiple languages.</p>
                 </div>
                 
                 <div class="footer-section">
@@ -927,7 +927,7 @@
             
             <div class="disclaimer">
                 <p><strong>IMPORTANT NOTE:</strong> All payments and transactions on this website are fictional and for demonstration purposes only. No real money will be charged, and no physical products will be shipped.</p>
-                <p style="margin-top: 10px;">&copy; 2023 KAFKAPAGES | A division of THE KACHOO. All rights reserved.</p>
+                <p style="margin-top: 10px;">&copy; 2026 KAFKAPAGES | The Publisher by THE KACHOO. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1021,12 +1021,12 @@
             });
         });
 
-        // Cart modal controls
+// Cart modal controls - PERBAIKAN
 document.getElementById('openCart').addEventListener('click', () => {
-    if (cart.length === 0) {
-        // Jika keranjang kosong, tampilkan modal
-        cartModal.classList.add('active');
-        updateCartDisplay();
+    // SELALU buka modal keranjang terlebih dahulu
+    cartModal.classList.add('active');
+    updateCartDisplay(); // Pastikan isi keranjang diperbarui
+});
     } else {
         // Jika ada item di keranjang, langsung ke payment page
         localStorage.setItem('kafkapagesOrder', JSON.stringify({
@@ -1041,8 +1041,8 @@ document.getElementById('openCart').addEventListener('click', () => {
 });
 
         document.getElementById('closeCart').addEventListener('click', () => {
-            cartModal.classList.remove('active');
-        });
+    cartModal.classList.remove('active');
+});
 
         
 checkoutBtn.addEventListener('click', () => {
