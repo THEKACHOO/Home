@@ -916,12 +916,7 @@
             </div>
         </div>
     </section>
-<!-- Tambahkan ini setelah products-grid di shop section -->
-<div class="checkout-container" style="text-align: center; margin-top: 40px;">
-    <a href="payment-kazine.html" class="btn-outline" style="background: #000; color: #fff; border: none; padding: 18px 50px; font-size: 14px;">
-        PROCEED TO CHECKOUT
-    </a>
-</div>
+
     <!-- Commercial Section -->
     <section class="commercial-section" id="commercial">
         <div class="container">
@@ -1001,6 +996,13 @@
         </div>
     </section>
 
+    <!-- Tambahkan ini setelah products-grid di shop section -->
+<div class="checkout-container" style="text-align: center; margin-top: 40px;">
+    <a href="payment-kazine.html" class="btn-outline" style="background: #000; color: #fff; border: none; padding: 18px 50px; font-size: 14px;">
+        PROCEED TO CHECKOUT
+    </a>
+</div>
+    
     <!-- Magazine Section -->
     <section class="magazine-section" id="magazine">
         <div class="container">
@@ -1063,7 +1065,6 @@
         </div>
     </footer>
 
-<!-- Tambahkan script cart untuk produk KAZINE di bagian akhir sebelum </script> -->
     <script>
     // ==================== SHOPPING CART SYSTEM FOR KAZINE PRODUCTS ====================
     let kazineCart = JSON.parse(localStorage.getItem('kazineCart')) || [];
@@ -1099,8 +1100,6 @@
             cartItem.innerHTML = `
                 <div class="item-info">
                     <h4>${item.title || 'Product'}</h4>
-                    ${item.variant ? `<p>Variant: ${item.variant}</p>` : ''}
-                    ${item.language ? `<p>Language: ${item.language}</p>` : ''}
                     <p>Quantity: 1</p>
                 </div>
                 <div class="item-price">$${(parseFloat(item.price) || 0).toFixed(2)}</div>
@@ -1128,18 +1127,39 @@
             const productTitle = productCard.getAttribute('data-product');
             const productPrice = productCard.getAttribute('data-price');
             
-            // Add product to cart
-            kazineCart.push({
-                title: productTitle,
-                price: productPrice,
-                date: new Date().toLocaleDateString()
-            });
+            // PERBAIKAN: Tambahkan ID unik untuk setiap produk
+            const productId = productTitle.toLowerCase().replace(/\s+/g, '-');
+            
+            // Cek apakah item sudah ada di cart
+            const existingItemIndex = kazineCart.findIndex(item => 
+                item.id === productId
+            );
+            
+            if (existingItemIndex !== -1) {
+                // Update quantity jika item sudah ada
+                kazineCart[existingItemIndex].quantity = (kazineCart[existingItemIndex].quantity || 1) + 1;
+                kazineCart[existingItemIndex].totalPrice = parseFloat(kazineCart[existingItemIndex].price) * kazineCart[existingItemIndex].quantity;
+            } else {
+                // Add new item to cart
+                kazineCart.push({
+                    id: productId,
+                    title: productTitle,
+                    price: productPrice,
+                    quantity: 1,
+                    totalPrice: parseFloat(productPrice),
+                    date: new Date().toLocaleDateString()
+                });
+            }
             
             localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
             updateCartDisplay();
             
             // Show confirmation
-            alert(`${productTitle} has been added to your cart!`);
+            const confirmationMsg = existingItemIndex !== -1 
+                ? `${productTitle} quantity updated! (Now ${kazineCart[existingItemIndex].quantity} items)` 
+                : `${productTitle} has been added to your cart!`;
+            
+            alert(confirmationMsg);
         });
     });
 
@@ -1161,22 +1181,23 @@
         }
         
         // Calculate total
-        let total = 0;
+        let subtotal = 0;
         kazineCart.forEach(item => {
-            total += parseFloat(item.price) || 0;
+            subtotal += parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
         });
         
-        // Save order data for payment page
+        // PERBAIKAN PENTING: Simpan ke 'kazineOrder' bukan 'kazineClothingOrder'
         const orderData = {
             items: kazineCart,
-            subtotal: total,
+            subtotal: subtotal,
             discount: 0,
             serviceFee: 2.50,
-            total: total + 2.50,
+            total: subtotal + 2.50,
             store: 'KAZINE',
             date: new Date().toLocaleString()
         };
         
+        // PERBAIKAN: Gunakan key 'kazineOrder' untuk konsisten
         localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         
         // Close cart modal
