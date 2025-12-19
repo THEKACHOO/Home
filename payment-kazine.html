@@ -472,16 +472,16 @@
 </head>
 <body>
     <!-- Header -->
+<!-- Ganti header section dengan yang lebih sederhana -->
 <header>
     <div class="container header-container">
         <div class="logo-container">
-            <!-- Logo KAZINE -->
+            <!-- Logo KAZINE saja -->
             <div class="logo-image">
-                <img src="KAZINE.png" alt="KAZINE Logo" id="kazineLogo">
+                <img src="KAZINE.png" alt="KAZINE Logo" id="kazineLogo" style="height: 50px;">
             </div>
             <div class="logo-text">
-                <h1>KAZINE</h1>
-                <p>SECURE PAYMENT</p>
+                <p style="font-size: 11px; letter-spacing: 2px; color: var(--dark-gray); margin-top: 5px;">SECURE PAYMENT</p>
             </div>
         </div>
         <a href="kazine.html" class="back-to-store">
@@ -490,13 +490,6 @@
         </a>
     </div>
 </header>
-            <a href="kazine.html" class="back-to-store">
-                <i class="fas fa-arrow-left"></i>
-                Back to Store
-            </a>
-        </div>
-    </header>
-
     <!-- Main Content -->
     <main>
         <div class="container">
@@ -651,92 +644,7 @@
         </div>
     </footer>
 
-    <script>
-        // Get order data from localStorage
-        const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
-        const orderItems = document.getElementById('orderItems');
-        const emptyState = document.getElementById('emptyState');
-        const paymentContent = document.getElementById('paymentContent');
-        const subtotalElement = document.getElementById('subtotal');
-        const discountElement = document.getElementById('discount');
-        const totalAmountElement = document.getElementById('totalAmount');
-        const confirmPaymentBtn = document.getElementById('confirmPayment');
-        
-        // Service fee constant
-        const SERVICE_FEE = 2.50;
-        
-        // Check if there's order data
-        if (!orderData || !orderData.items || orderData.items.length === 0) {
-            // Show empty state if no items
-            emptyState.style.display = 'block';
-            paymentContent.style.display = 'none';
-        } else {
-            // Show payment content
-            emptyState.style.display = 'none';
-            paymentContent.style.display = 'block';
-            
-            let subtotal = 0;
-            let discount = 0;
-            
-            // Generate order items HTML
-            orderData.items.forEach((item, index) => {
-                subtotal += parseFloat(item.price) || 0;
-                
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item';
-                itemElement.innerHTML = `
-                    <div>
-                        <div class="item-name">${item.title || 'Magazine Item'}</div>
-                        ${item.variant ? `<div class="item-details">${item.variant}</div>` : ''}
-                        ${item.language ? `<div class="item-details">${item.language} Edition</div>` : ''}
-                    </div>
-                    <div class="item-price">$${(parseFloat(item.price) || 0).toFixed(2)}</div>
-                `;
-                orderItems.appendChild(itemElement);
-            });
-            
-            // Calculate totals
-            const total = subtotal - discount + SERVICE_FEE;
-            
-            // Update UI
-            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            discountElement.textContent = `-$${discount.toFixed(2)}`;
-            totalAmountElement.textContent = `$${total.toFixed(2)}`;
-            
-            // Store calculated total in orderData
-            orderData.subtotal = subtotal;
-            orderData.discount = discount;
-            orderData.total = total;
-            orderData.serviceFee = SERVICE_FEE;
-            
-            // Save updated order data
-            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-        }
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from all options
-                document.querySelectorAll('.payment-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                
-                // Add selected class to clicked option
-                this.classList.add('selected');
-                
-                // Store selected payment method
-                if (orderData) {
-                    orderData.paymentMethod = this.getAttribute('data-method');
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                }
-            });
-        });
-        
-        // Voucher application
-        document.getElementById('applyVoucher').addEventListener('click', function() {
-            const voucherCode = document.getElementById('voucherCode').value.trim();
-            
-            if (!voucherCode) {
+                if (!voucherCode) {
                 alert('Please enter a voucher code');
                 return;
             }
@@ -815,25 +723,99 @@
             // Simulate payment processing
             setTimeout(() => {
                 // Redirect to confirmation page (you can create this)
-                // window.location.href = 'confirmation-kazine.html';
-                
-                // For now, show success message
-                alert('Payment successful! Thank you for your purchase.');
-                
-                // Clear cart after successful payment
-                localStorage.removeItem('kazineCart');
-                
-                // Redirect back to store
-                window.location.href = 'kazine.html';
-            }, 2000);
-        });
+    <script>
+    // ... existing code ...
+    
+    // Voucher application
+    document.getElementById('applyVoucher').addEventListener('click', function() {
+        const voucherCode = document.getElementById('voucherCode').value.trim();
         
-        // Enter key for voucher
-        document.getElementById('voucherCode').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('applyVoucher').click();
-            }
-        });
+        if (!voucherCode) {
+            alert('Please enter a voucher code');
+            return;
+        }
+        
+        // Simulate voucher validation - FIXED VOUCHER CODES
+        let discountAmount = 0;
+        
+        // Valid voucher codes (tidak diubah)
+        if (voucherCode === 'KAZI-NEW YEAR') {
+            discountAmount = subtotal * 0.10; // 10% discount
+        } else if (voucherCode === 'KAZI-NEW VIBES') {
+            discountAmount = subtotal * 0.20; // 20% discount
+        } else if (voucherCode === 'WELCOME KACHOO') {
+            discountAmount = 5.00; // $5 flat discount
+        } else {
+            alert('Invalid voucher code. Try: KAZI-NEW YEAR, KAZI-NEW VIBES, or WELCOME KACHOO');
+            return;
+        }
+        
+        // Update discount and total
+        const newSubtotal = subtotal;
+        const newDiscount = discountAmount;
+        const newTotal = newSubtotal - newDiscount + SERVICE_FEE;
+        
+        discountElement.textContent = `-$${newDiscount.toFixed(2)}`;
+        totalAmountElement.textContent = `$${newTotal.toFixed(2)}`;
+        
+        // Update orderData
+        if (orderData) {
+            orderData.discount = newDiscount;
+            orderData.total = newTotal;
+            orderData.voucherCode = voucherCode;
+            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+        }
+        
+        alert(`Voucher "${voucherCode}" applied successfully! You saved $${newDiscount.toFixed(2)}`);
+    });
+    
+    // Confirm payment
+    confirmPaymentBtn.addEventListener('click', function() {
+        // Validate form
+        const email = document.getElementById('email').value.trim();
+        const fullName = document.getElementById('fullName').value.trim();
+        
+        if (!email || !fullName) {
+            alert('Please fill in your email and full name');
+            return;
+        }
+        
+        if (!document.querySelector('.payment-option.selected')) {
+            alert('Please select a payment method');
+            return;
+        }
+        
+        // Add customer info to orderData
+        if (orderData) {
+            orderData.customer = {
+                email: email,
+                fullName: fullName,
+                country: document.getElementById('country').value,
+                phone: document.getElementById('phone').value,
+                notes: document.getElementById('notes').value,
+                newsletter: document.getElementById('newsletter').checked
+            };
+            
+            orderData.paymentDate = new Date().toLocaleString();
+            orderData.status = 'pending';
+            orderData.paymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
+            
+            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+        }
+        
+        // Show confirmation
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        this.disabled = true;
+        
+        // Simulate payment processing
+        setTimeout(() => {
+            // Redirect to confirmation page
+            window.location.href = 'confirmation-kazine.html';
+            
+            // Clear cart after successful payment
+            localStorage.removeItem('kazineCart');
+        }, 2000);
+    });
     </script>
 </body>
     </html>
