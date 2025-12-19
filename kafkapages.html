@@ -1176,8 +1176,23 @@
     });
 
     // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainMenu = document.getElementById('mainMenu');
+   function toggleMobileMenu() {
+    mainMenu.classList.toggle('active');
+    if (mainMenu.classList.contains('active')) {
+        mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        mobileMenuBtn.style.color = 'var(--dark-gray)';
+    } else {
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        mobileMenuBtn.style.color = 'var(--primary-black)';
+    }
+}
+
+// TAMBAHKAN event listener untuk mobile menu
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    toggleMobileMenu();
+});
     
     mobileMenuBtn.addEventListener('click', () => {
         mainMenu.classList.toggle('active');
