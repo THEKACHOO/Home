@@ -671,15 +671,13 @@
                     : 0;
                 
                 // Format notes dengan warna item (color masuk ke sini, bukan di display)
-                // Format notes dengan informasi yang tersedia
+                // Format notes lebih lengkap
 const notes = orderData.items && orderData.items.length > 0 
-    ? orderData.items.map(item => {
+    ? `Items: ${orderData.items.map(item => {
         const quantity = item.quantity || 1;
-        const price = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
-        const title = item.title || 'Fashion Item';
-        return `${title} ×${quantity} ($${price.toFixed(2)})`;
-    }).join(' | ')
-    : 'No items';
+        return `${item.title || 'Item'} ×${quantity}`;
+    }).join(' | ')} | Twitter: ${orderData.customer?.twitter || 'Not provided'}`
+    : `No items | Twitter: ${orderData.customer?.twitter || 'Not provided'}`;
                 
                 // Data untuk dikirim ke Google Sheets
                 const spreadsheetData = {
