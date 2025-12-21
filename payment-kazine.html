@@ -195,6 +195,11 @@
             font-size: 15px;
         }
 
+        .required-field::after {
+            content: ' *';
+            color: #dc3545;
+        }
+
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -220,6 +225,31 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+        }
+
+        .twitter-input-group {
+            position: relative;
+        }
+
+        .twitter-prefix {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        .twitter-input-group input {
+            padding-left: 40px;
+        }
+
+        .form-note {
+            font-size: 13px;
+            color: var(--medium-gray);
+            margin-top: 5px;
+            display: block;
         }
 
         @media (max-width: 576px) {
@@ -721,34 +751,27 @@
                         <h3>Customer Information</h3>
                         
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="your.email@example.com">
-                            <small style="color: var(--medium-gray); display: block; margin-top: 5px; font-size: 13px;">
+                            <label for="email" class="required-field">Email Address</label>
+                            <input type="email" id="email" placeholder="your.email@example.com" required>
+                            <small class="form-note">
                                 Digital products will be delivered via email
                             </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" placeholder="John Doe">
+                            <label for="fullName" class="required-field">Full Name</label>
+                            <input type="text" id="fullName" placeholder="John Doe" required>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <select id="country">
-                                    <option value="">Select Country</option>
-                                    <option value="ID">Indonesia</option>
-                                    <option value="US">United States</option>
-                                    <option value="UK">United Kingdom</option>
-                                    <option value="SG">Singapore</option>
-                                    <option value="MY">Malaysia</option>
-                                </select>
+                        <div class="form-group">
+                            <label for="twitter" class="required-field">Twitter (X) Username</label>
+                            <div class="twitter-input-group">
+                                <span class="twitter-prefix">@</span>
+                                <input type="text" id="twitter" placeholder="username" required>
                             </div>
-                            <div class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" id="city" placeholder="Your city">
-                            </div>
+                            <small class="form-note">
+                                Required for order verification and updates
+                            </small>
                         </div>
 
                         <div class="form-group">
@@ -1065,15 +1088,17 @@
             // Validate form
             const email = document.getElementById('email').value.trim();
             const fullName = document.getElementById('fullName').value.trim();
-            const country = document.getElementById('country').value;
+            const twitter = document.getElementById('twitter').value.trim();
             
-            if (!email || !fullName) {
-                alert('Please fill in your email and full name');
+            if (!email || !fullName || !twitter) {
+                alert('Please fill in all required fields: Email, Full Name, and Twitter Username');
                 return;
             }
             
-            if (!country) {
-                alert('Please select your country');
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
                 return;
             }
             
@@ -1100,13 +1125,12 @@
                 orderData.customer = {
                     email: email,
                     fullName: fullName,
-                    country: country,
-                    city: document.getElementById('city').value,
+                    twitter: twitter.startsWith('@') ? twitter : '@' + twitter,
                     notes: document.getElementById('notes').value
                 };
                 
                 orderData.paymentDate = new Date().toLocaleString();
-                orderData.status = 'pending';
+                orderData.status = 'completed'; // Langsung completed karena ini demo
                 orderData.paymentMethod = selectedMethod;
                 
                 // Add specific payment details
@@ -1127,18 +1151,11 @@
             
             // Simulate processing delay
             setTimeout(() => {
-                // Redirect to confirmation page (you can set the URL)
-                window.location.href = '#'; // Set your confirmation page URL here
-                
-                // For now, just show a message
-                alert('Payment processed successfully! You will be redirected to the confirmation page.');
-                
-                // Reset button
-                this.innerHTML = '<i class="fas fa-lock"></i> Proceed to Checkout';
-                this.disabled = false;
+                // Redirect to confirmation page
+                window.location.href = 'confirmation-kazine.html';
                 
                 // Clear cart after successful payment
-                // localStorage.removeItem('kazineCart');
+                localStorage.removeItem('kazineCart');
             }, 1500);
         });
     </script>
