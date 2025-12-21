@@ -727,37 +727,58 @@
     </footer>
 
     <script>
+    // ============================================
+    // KAZINE ORDER CONFIRMATION SCRIPT
+    // ============================================
+    
     // Google Apps Script URL (kosong - bisa diisi nanti)
-    const KAZINE_SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbz1yqiYQ_IJwvuq5vL2hNHm-KAsQCndoOd62Qnf7foHlr4evbDAwOuA3GFNoR2hfCFM/exec';
+    const KAZINE_SPREADSHEET_WEBHOOK = '';
+    
+    // Track if order has been processed in this session
+    let orderProcessedThisSession = false;
+    let currentOrderNumber = null;
     
     // Function to send data to Google Spreadsheet
-    async function sendToKazineSpreadsheet(orderData) {
+    async function sendToKazineSpreadsheet(orderData, orderNumber) {
         try {
             console.log('📤 Sending KAZINE data to spreadsheet...');
             
-            // Prepare data for spreadsheet
+            // Calculate total items and item names
+            let totalItems = 0;
+            let itemNames = [];
+            
+            if (orderData.items && Array.isArray(orderData.items)) {
+                orderData.items.forEach(item => {
+                    const quantity = parseInt(item.quantity) || 1;
+                    totalItems += quantity;
+                    if (item.title) {
+                        itemNames.push(item.title);
+                    }
+                });
+            }
+            
+            // Prepare data for spreadsheet - SESUAI DENGAN TEMPLATE
             const spreadsheetData = {
                 timestamp: new Date().toISOString(),
-                orderNumber: generateOrderNumber(),
-                customerName: orderData.customer.name || 'Customer',
-                customerEmail: orderData.customer.email || 'No email',
-                customerTwitter: orderData.customer.twitter || 'Not provided',
-                items: orderData.items ? orderData.items.length : 0,
-                itemNames: orderData.items ? orderData.items.map(item => item.title).join(', ') : 'No items',
-                notes: orderData.notes || 'No notes',
+                orderNumber: orderNumber,
+                customerName: orderData.customer?.name || 'Customer',
+                customerEmail: orderData.customer?.email || 'No email',
+                customerTwitter: orderData.customer?.twitter || 'Not provided',
+                items: totalItems,
+                itemNames: itemNames.join(', '),
+                notes: orderData.notes || orderData.customer?.notes || 'No notes',
                 subtotal: parseFloat(orderData.subtotal) || 0,
                 discount: parseFloat(orderData.discount) || 0,
                 serviceFee: parseFloat(orderData.serviceFee) || 2.50,
                 total: parseFloat(orderData.total) || 0,
-                paymentMethod: orderData.payment || 'Unknown',
-                voucher: orderData.voucher || 'None',
-                platform: 'KAZINE Fashion Store'
+                paymentMethod: orderData.payment?.toUpperCase() || 'UNKNOWN',
+                voucher: orderData.voucher || 'None'
             };
             
             console.log('📊 Spreadsheet data prepared:', spreadsheetData);
             
             // Only send if webhook URL is provided
-            if (KAZINE_SPREADSHEET_WEBHOOK) {
+            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== 'https://script.google.com/macros/s/AKfycbz1yqiYQ_IJwvuq5vL2hNHm-KAsQCndoOd62Qnf7foHlr4evbDAwOuA3GFNoR2hfCFM/exec') {
                 const response = await fetch(KAZINE_SPREADSHEET_WEBHOOK, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -771,48 +792,33 @@
                 console.log('ℹ️ No webhook URL provided, skipping spreadsheet update');
             }
             
-            return { success: true };
+            return { success: true, data: spreadsheetData };
             
         } catch (error) {
             console.error('❌ Error sending to spreadsheet:', error);
             return { success: false, error: error.message };
         }
     }
-
+    
     // Generate random order number untuk KAZINE
     function generateOrderNumber() {
         const prefix = 'KAZINE';
         const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
         return `${prefix}-${randomNum}`;
     }
-
+    
     // Format currency
     function formatCurrency(amount) {
         return `$${parseFloat(amount).toFixed(2)}`;
     }
-
-    // Get order data from URL parameters (for testing)
-    function getOrderFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderData = {};
-        
-        if (urlParams.has('name')) orderData.customerName = urlParams.get('name');
-        if (urlParams.has('email')) orderData.customerEmail = urlParams.get('email');
-        if (urlParams.has('total')) orderData.total = urlParams.get('total');
-        if (urlParams.has('payment')) orderData.payment = urlParams.get('payment');
-        
-        return orderData;
-    }
-
+    
     // Display order data
-    function displayOrderData(orderData) {
-        console.log('📋 Displaying order data:', orderData);
+    function displayOrderData(orderData, orderNumber) {
+        console.log('📋 Displaying order data for order:', orderNumber);
         
-        // Generate order number
-        const orderNumber = generateOrderNumber();
+        // Set order details
         document.getElementById('orderNumber').textContent = orderNumber;
         
-        // Set order date
         const orderDate = new Date().toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -823,8 +829,8 @@
         document.getElementById('orderDate').textContent = orderDate;
         
         // Set customer info
-        document.getElementById('customerName').textContent = orderData.customer.name || 'Customer';
-        document.getElementById('customerEmailDisplay').textContent = orderData.customer.email || 'customer@example.com';
+        document.getElementById('customerName').textContent = orderData.customer?.name || 'Customer';
+        document.getElementById('customerEmailDisplay').textContent = orderData.customer?.email || 'customer@example.com';
         document.getElementById('paymentMethod').textContent = orderData.payment ? orderData.payment.toUpperCase() : 'PayPal';
         
         // Display order items
@@ -833,8 +839,8 @@
         
         let totalItems = 0;
         
-        if (orderData.items && orderData.items.length > 0) {
-            orderData.items.forEach(item => {
+        if (orderData.items && Array.isArray(orderData.items) && orderData.items.length > 0) {
+            orderData.items.forEach((item, index) => {
                 const quantity = parseInt(item.quantity) || 1;
                 totalItems += quantity;
                 
@@ -845,42 +851,30 @@
                         <div class="item-name">${item.title || 'Fashion Item'}</div>
                         <div class="item-quantity">Qty: ${quantity}</div>
                         ${item.notes ? `<div class="item-notes">Notes: ${item.notes}</div>` : ''}
+                        ${item.color ? `<div class="item-notes">Color: ${item.color}</div>` : ''}
+                        ${item.size ? `<div class="item-notes">Size: ${item.size}</div>` : ''}
                     </div>
                     <div class="item-price">${formatCurrency(item.price || 0)}</div>
                 `;
                 orderItemsList.appendChild(itemElement);
             });
         } else {
-            // Fallback items for testing
-            const fallbackItems = [
-                { title: 'Kazine T-Shirt', price: 25.00, quantity: 1 },
-                { title: 'Fashion Jacket', price: 45.00, quantity: 1 }
-            ];
-            
-            fallbackItems.forEach(item => {
-                totalItems += item.quantity;
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item';
-                itemElement.innerHTML = `
-                    <div>
-                        <div class="item-name">${item.title}</div>
-                        <div class="item-quantity">Qty: ${item.quantity}</div>
-                    </div>
-                    <div class="item-price">${formatCurrency(item.price)}</div>
-                `;
-                orderItemsList.appendChild(itemElement);
-            });
-            
-            // Update order data with fallback values
-            orderData.items = fallbackItems;
-            orderData.subtotal = 70.00;
-            orderData.discount = 0.00;
-            orderData.serviceFee = 2.50;
-            orderData.total = 72.50;
+            // Fallback if no items
+            const itemElement = document.createElement('div');
+            itemElement.className = 'order-item';
+            itemElement.innerHTML = `
+                <div>
+                    <div class="item-name">Fashion Item</div>
+                    <div class="item-quantity">Qty: 1</div>
+                </div>
+                <div class="item-price">${formatCurrency(0)}</div>
+            `;
+            orderItemsList.appendChild(itemElement);
+            totalItems = 1;
         }
         
         // Update total items count
-        document.getElementById('totalItemsCount').textContent = `${totalItems} Items`;
+        document.getElementById('totalItemsCount').textContent = `${totalItems} Item${totalItems !== 1 ? 's' : ''}`;
         
         // Display prices
         document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal || 0);
@@ -888,38 +882,43 @@
         document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee || 2.50);
         document.getElementById('totalAmount').textContent = formatCurrency(orderData.total || 0);
         
-        // Save order number for reference
-        localStorage.setItem('lastKazineOrderNumber', orderNumber);
-        localStorage.setItem('lastKazineOrderData', JSON.stringify(orderData));
-        
-        console.log('💾 Saved order data');
-        return orderData;
+        console.log('✅ Order displayed successfully');
+        return totalItems;
     }
-
+    
     // Setup print receipt functionality
-    function setupPrintReceipt() {
-        document.getElementById('printReceipt').addEventListener('click', function(e) {
+    function setupPrintReceipt(orderData, orderNumber) {
+        const printBtn = document.getElementById('printReceipt');
+        if (!printBtn) return;
+        
+        printBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
-            let orderData;
-            try {
-                orderData = JSON.parse(localStorage.getItem('lastKazineOrderData')) || 
-                           JSON.parse(localStorage.getItem('kazineOrder'));
-            } catch (error) {
-                console.error('Error parsing order data:', error);
-                orderData = {};
-            }
-            
-            const orderNumber = document.getElementById('orderNumber').textContent;
             const customerName = document.getElementById('customerName').textContent;
             const customerEmail = document.getElementById('customerEmailDisplay').textContent;
             const orderDate = document.getElementById('orderDate').textContent;
             
             // Calculate total items
             let totalItems = 0;
-            if (orderData.items) {
+            let itemsHTML = '';
+            
+            if (orderData.items && Array.isArray(orderData.items)) {
                 orderData.items.forEach(item => {
-                    totalItems += parseInt(item.quantity) || 1;
+                    const quantity = parseInt(item.quantity) || 1;
+                    totalItems += quantity;
+                    
+                    itemsHTML += `
+                        <tr>
+                            <td>
+                                <div><strong>${item.title || 'Fashion Item'}</strong></div>
+                                ${item.notes ? `<div style="font-size: 11px; color: #8b4513;">Notes: ${item.notes}</div>` : ''}
+                                ${item.color ? `<div style="font-size: 11px; color: #666;">Color: ${item.color}</div>` : ''}
+                                ${item.size ? `<div style="font-size: 11px; color: #666;">Size: ${item.size}</div>` : ''}
+                            </td>
+                            <td>${quantity}</td>
+                            <td>${formatCurrency(item.price || 0)}</td>
+                        </tr>
+                    `;
                 });
             }
             
@@ -928,60 +927,39 @@
                 <!DOCTYPE html>
                 <html>
                 <head>
-                    <title>KAZINE Order Receipt</title>
+                    <title>KAZINE Order Receipt - ${orderNumber}</title>
                     <style>
                         body { 
-                            font-family: 'Inter', Arial, sans-serif; 
-                            padding: 25px; 
+                            font-family: Arial, sans-serif; 
+                            padding: 20px; 
                             max-width: 600px; 
                             margin: 0 auto; 
-                            color: #212529;
+                            color: #333;
                         }
                         .header { 
                             text-align: center; 
                             margin-bottom: 30px; 
                             padding-bottom: 20px; 
-                            border-bottom: 3px solid #d4a574; 
+                            border-bottom: 2px solid #d4a574; 
                         }
                         .logo { 
-                            font-size: 28px; 
-                            font-weight: 800; 
+                            font-size: 24px; 
+                            font-weight: bold; 
                             color: #d4a574; 
-                            letter-spacing: 2px;
-                            margin-bottom: 5px;
-                        }
-                        .store-info { 
-                            font-size: 14px; 
-                            color: #666; 
-                            margin-bottom: 10px;
                         }
                         .order-number { 
                             font-size: 18px; 
                             font-weight: bold; 
                             color: #8b4513; 
-                            margin-top: 10px;
+                            margin: 10px 0;
                         }
-                        .thank-you {
-                            background: #f8f9fa;
-                            padding: 15px;
-                            border-radius: 8px;
-                            margin: 20px 0;
-                            border-left: 4px solid #28a745;
-                            font-size: 14px;
+                        .info-section { 
+                            margin: 20px 0; 
                         }
-                        .thank-you i {
-                            color: #28a745;
-                            margin-right: 5px;
-                        }
-                        .section { 
-                            margin: 25px 0; 
-                        }
-                        .section-title { 
-                            font-weight: bold; 
-                            border-bottom: 2px solid #ddd; 
+                        .info-section h3 { 
+                            border-bottom: 1px solid #ddd; 
                             padding-bottom: 8px; 
                             margin-bottom: 15px; 
-                            font-size: 16px; 
                             color: #8b4513; 
                         }
                         .info-grid { 
@@ -993,43 +971,32 @@
                         table { 
                             width: 100%; 
                             border-collapse: collapse; 
-                            margin: 20px 0; 
+                            margin: 15px 0; 
                         }
                         th { 
                             text-align: left; 
-                            padding: 12px 8px; 
+                            padding: 10px; 
                             border-bottom: 2px solid #ddd; 
-                            font-weight: bold; 
-                            font-size: 14px;
+                            background: #f8f9fa;
                         }
                         td { 
-                            padding: 12px 8px; 
+                            padding: 10px; 
                             border-bottom: 1px solid #eee; 
-                            font-size: 14px;
                         }
                         .total-row { 
                             font-weight: bold; 
                             border-top: 2px solid #8b4513; 
-                            font-size: 16px;
+                            background: #f8f9fa;
                         }
-                        .notes {
-                            background: #fff8e1;
-                            padding: 15px;
-                            border-radius: 8px;
-                            margin: 20px 0;
-                            font-size: 13px;
-                            border-left: 3px solid #ffc107;
-                        }
-                        .shipping-info {
-                            background: #e8f5e9;
-                            padding: 15px;
-                            border-radius: 8px;
-                            margin: 25px 0;
-                            font-size: 14px;
+                        .thank-you { 
+                            background: #e8f5e9; 
+                            padding: 15px; 
+                            border-radius: 8px; 
+                            margin: 20px 0; 
                             border-left: 4px solid #28a745;
                         }
                         .footer { 
-                            margin-top: 40px; 
+                            margin-top: 30px; 
                             text-align: center; 
                             font-size: 12px; 
                             color: #666; 
@@ -1037,42 +1004,41 @@
                             border-top: 1px solid #ddd; 
                         }
                         @media print {
-                            body { padding: 15px; }
-                            .no-print { display: none; }
+                            body { padding: 0; }
+                            button { display: none; }
                         }
                     </style>
                 </head>
                 <body>
                     <div class="header">
-                        <div class="logo">KAZINE FASHION</div>
-                        <div class="store-info">Premium Fashion Store</div>
-                        <div style="font-size: 20px; font-weight: 600; margin: 10px 0;">ORDER RECEIPT</div>
+                        <div class="logo">KAZINE FASHION STORE</div>
+                        <div style="font-size: 20px; margin: 10px 0;">ORDER RECEIPT</div>
                         <div class="order-number">#${orderNumber}</div>
-                        <div style="font-size: 13px; margin-top: 5px;">${orderDate}</div>
+                        <div style="font-size: 14px;">${orderDate}</div>
                     </div>
                     
                     <div class="thank-you">
-                        <p><i class="fas fa-check-circle"></i> <strong>Terima Kasih!</strong> Order Anda telah diterima.</p>
-                        <p><i class="fas fa-check-circle"></i> Order akan dikirim paling lambat 2 hari setelah pemesanan.</p>
-                        <p><i class="fas fa-check-circle"></i> Total: <strong>${totalItems} Items</strong></p>
+                        <strong>TERIMA KASIH TELAH BERBELANJA!</strong><br>
+                        Order Anda telah diterima dan akan diproses segera.<br>
+                        <em>Order akan dikirim paling lambat 2 hari setelah pemesanan.</em>
                     </div>
                     
-                    <div class="section">
-                        <div class="section-title">Customer Information</div>
+                    <div class="info-section">
+                        <h3>Customer Information</h3>
                         <div class="info-grid">
                             <div>
-                                <div style="font-size: 12px; color: #666;">Customer Name</div>
-                                <div style="font-size: 16px; font-weight: 600;">${customerName}</div>
+                                <strong>Name:</strong><br>
+                                ${customerName}
                             </div>
                             <div>
-                                <div style="font-size: 12px; color: #666;">Customer Email</div>
-                                <div style="font-size: 16px; font-weight: 600;">${customerEmail}</div>
+                                <strong>Email:</strong><br>
+                                ${customerEmail}
                             </div>
                         </div>
                     </div>
                     
-                    <div class="section">
-                        <div class="section-title">Order Items (${totalItems} Items)</div>
+                    <div class="info-section">
+                        <h3>Order Items (${totalItems} Item${totalItems !== 1 ? 's' : ''})</h3>
                         <table>
                             <thead>
                                 <tr>
@@ -1082,26 +1048,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                ${orderData.items && orderData.items.length > 0 ? orderData.items.map(item => {
-                                    const quantity = parseInt(item.quantity) || 1;
-                                    const price = parseFloat(item.price) || 0;
-                                    return `
-                                        <tr>
-                                            <td>
-                                                <div>${item.title || 'Fashion Item'}</div>
-                                                ${item.notes ? `<div style="font-size: 11px; color: #8b4513; font-style: italic; margin-top: 2px;">Notes: ${item.notes}</div>` : ''}
-                                            </td>
-                                            <td>${quantity}</td>
-                                            <td>${formatCurrency(price)}</td>
-                                        </tr>
-                                    `;
-                                }).join('') : '<tr><td colspan="3">No items</td></tr>'}
+                                ${itemsHTML || '<tr><td colspan="3">No items</td></tr>'}
                             </tbody>
                         </table>
                     </div>
                     
-                    <div class="section">
-                        <div class="section-title">Payment Summary</div>
+                    <div class="info-section">
+                        <h3>Payment Summary</h3>
                         <table>
                             <tr>
                                 <td>Subtotal:</td>
@@ -1122,41 +1075,47 @@
                         </table>
                     </div>
                     
-                    <div class="shipping-info">
-                        <strong>Shipping Information:</strong>
-                        <p>• Processing time: 1-2 business days</p>
-                        <p>• Shipping time: 3-7 business days</p>
-                        <p>• Order will be shipped within 2 days maximum</p>
-                        <p>• Tracking information will be sent to your email</p>
-                        <p>• Contact: ohkachoo@gmail.com or @ohkachoo on X</p>
-                    </div>
-                    
-                    <div class="notes">
-                        <strong>Important Notes:</strong>
-                        <p>• This is a digital receipt</p>
-                        <p>• Keep this receipt for reference</p>
-                        <p>• Order Number: <strong>#${orderNumber}</strong></p>
+                    <div class="info-section">
+                        <h3>Shipping Information</h3>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 5px;">
+                            • Processing: 1-2 business days<br>
+                            • Shipping: 3-7 business days<br>
+                            • Max shipping time: 2 days after order<br>
+                            • Contact: ohkachoo@gmail.com / @ohkachoo
+                        </div>
                     </div>
                     
                     <div class="footer">
-                        <p>Thank you for shopping at KAZINE Fashion Store!</p>
-                        <p>Premium Fashion Apparel & Accessories</p>
-                        <p>KAZINE FASHION © ${new Date().getFullYear()}</p>
-                        <p style="font-size: 11px; margin-top: 10px; color: #999;">
-                            This receipt was generated on ${new Date().toLocaleString()}
-                        </p>
+                        <p>Thank you for shopping at KAZINE Fashion Store</p>
+                        <p>This is a digital receipt. Please keep for your records.</p>
+                        <p>KAZINE © ${new Date().getFullYear()}</p>
                     </div>
                     
-                    <div class="no-print" style="text-align: center; margin-top: 30px; padding: 20px; border-top: 1px solid #eee;">
-                        <button onclick="window.print()" style="background: #d4a574; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-weight: bold; cursor: pointer;">
-                            <i class="fas fa-print"></i> Print Receipt
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button onclick="window.print()" style="
+                            background: #d4a574; 
+                            color: white; 
+                            border: none; 
+                            padding: 10px 20px; 
+                            border-radius: 5px; 
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">
+                            🖨️ Print Receipt
                         </button>
-                        <button onclick="window.close()" style="background: #6c757d; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-left: 10px;">
-                            Close Window
+                        <button onclick="window.close()" style="
+                            background: #6c757d; 
+                            color: white; 
+                            border: none; 
+                            padding: 10px 20px; 
+                            border-radius: 5px; 
+                            cursor: pointer;
+                            margin-left: 10px;
+                            font-weight: bold;
+                        ">
+                            ✕ Close
                         </button>
                     </div>
-                    
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"><\/script>
                 </body>
                 </html>
             `;
@@ -1165,31 +1124,61 @@
             const printWindow = window.open('', '_blank', 'width=800,height=900');
             printWindow.document.write(printContent);
             printWindow.document.close();
-            
-            // Auto-print after a short delay
-            setTimeout(() => {
-                printWindow.focus();
-                printWindow.print();
-            }, 500);
         });
     }
-
+    
+    // Check if order was already processed (prevent duplicate on refresh)
+    function checkExistingOrder() {
+        const processedOrder = localStorage.getItem('kazineLastProcessedOrder');
+        if (processedOrder) {
+            try {
+                return JSON.parse(processedOrder);
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+    
+    // Save that order was processed
+    function markOrderAsProcessed(orderData, orderNumber) {
+        const processedData = {
+            orderNumber: orderNumber,
+            timestamp: new Date().toISOString(),
+            data: orderData
+        };
+        localStorage.setItem('kazineLastProcessedOrder', JSON.stringify(processedData));
+        orderProcessedThisSession = true;
+        currentOrderNumber = orderNumber;
+    }
+    
     // Main initialization
     document.addEventListener('DOMContentLoaded', async function() {
         console.log('🚀 KAZINE Confirmation Page Loading...');
         
         const loadingState = document.getElementById('loadingState');
         const successState = document.getElementById('successState');
+        const alreadyProcessedState = document.getElementById('alreadyProcessedState');
         const errorState = document.getElementById('errorState');
         const errorMessage = document.getElementById('errorMessage');
-        const alreadyProcessedState = document.getElementById('alreadyProcessedState');
         
         try {
-            // Simulate loading for better UX
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Check if this order was already processed
+            const existingOrder = checkExistingOrder();
+            
+            if (existingOrder && existingOrder.orderNumber) {
+                console.log('⚠️ Order already processed in previous session:', existingOrder.orderNumber);
+                
+                // Show already processed state
+                loadingState.style.display = 'none';
+                alreadyProcessedState.style.display = 'block';
+                document.getElementById('processedOrderNumber').textContent = existingOrder.orderNumber;
+                
+                return;
+            }
             
             // Get order data from localStorage
-            console.log('🔍 Checking localStorage for order data...');
+            console.log('🔍 Checking for new order data...');
             let orderData = null;
             
             // Try multiple possible storage keys
@@ -1199,7 +1188,10 @@
                 if (stored) {
                     try {
                         orderData = JSON.parse(stored);
-                        console.log(`✅ Found order data in ${key}:`, orderData);
+                        console.log(`✅ Found order data in ${key}`);
+                        
+                        // Remove the data so it won't be processed again
+                        localStorage.removeItem(key);
                         break;
                     } catch (e) {
                         console.warn(`⚠️ Could not parse ${key}:`, e);
@@ -1207,89 +1199,53 @@
                 }
             }
             
-            // If no order data found, check URL parameters
+            // If no order data found, show error
             if (!orderData) {
-                orderData = getOrderFromURL();
-                if (orderData.customerName || orderData.customerEmail) {
-                    console.log('✅ Found order data in URL parameters');
-                }
+                throw new Error('No order data found. Please complete your payment first.');
             }
             
-            // If still no data, create sample data for testing
-            if (!orderData || Object.keys(orderData).length === 0) {
-                console.log('⚠️ No order data found, using sample data');
-                orderData = {
-                    customer: {
-                        name: 'John Doe',
-                        email: 'john@example.com',
-                        twitter: '@johndoe'
-                    },
-                    items: [
-                        { title: 'Kazine Premium T-Shirt', price: 29.99, quantity: 2, notes: 'Size: L, Color: Black' },
-                        { title: 'Fashion Denim Jacket', price: 59.99, quantity: 1, notes: 'Size: M' }
-                    ],
-                    subtotal: 119.97,
-                    discount: 10.00,
-                    serviceFee: 2.50,
-                    total: 112.47,
-                    payment: 'paypal',
-                    notes: 'Please pack carefully'
-                };
-            }
+            // Normalize data structure
+            const normalizedData = normalizeOrderData(orderData);
             
-            // Normalize customer data
-            if (!orderData.customer) {
-                orderData.customer = {
-                    name: orderData.customerName || 'Customer',
-                    email: orderData.customerEmail || 'customer@example.com',
-                    twitter: orderData.customerTwitter || 'Not provided'
-                };
-            }
+            // Generate order number
+            const orderNumber = generateOrderNumber();
+            currentOrderNumber = orderNumber;
             
-            // Normalize items
-            if (!orderData.items) {
-                orderData.items = [
-                    { title: 'Fashion Item', price: orderData.total || 0, quantity: 1 }
-                ];
-            }
-            
-            // Ensure numeric values
-            orderData.subtotal = parseFloat(orderData.subtotal) || 0;
-            orderData.discount = parseFloat(orderData.discount) || 0;
-            orderData.serviceFee = parseFloat(orderData.serviceFee) || 2.50;
-            orderData.total = parseFloat(orderData.total) || 
-                (orderData.subtotal - orderData.discount + orderData.serviceFee);
-            
-            console.log('📊 Final order data:', orderData);
-            
-            // Display order data
-            displayOrderData(orderData);
-            
-            // Setup print receipt
-            setupPrintReceipt();
-            
-            // Show success state
+            // Show success state immediately
             loadingState.style.display = 'none';
             successState.style.display = 'block';
             
-            // Send data to spreadsheet in background
-            setTimeout(() => {
-                sendToKazineSpreadsheet(orderData).then(result => {
-                    if (result.success) {
-                        console.log('✅ Admin system updated successfully');
-                    } else {
-                        console.warn('⚠️ Admin system update failed:', result.error);
+            // Display order data
+            const totalItems = displayOrderData(normalizedData, orderNumber);
+            
+            // Setup print receipt
+            setupPrintReceipt(normalizedData, orderNumber);
+            
+            // Mark order as processed
+            markOrderAsProcessed(normalizedData, orderNumber);
+            
+            // Clear cart data
+            localStorage.removeItem('kazineCart');
+            
+            // Send to spreadsheet in background (non-blocking)
+            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== '') {
+                setTimeout(async () => {
+                    try {
+                        const result = await sendToKazineSpreadsheet(normalizedData, orderNumber);
+                        if (result.success) {
+                            console.log('✅ Order sent to spreadsheet successfully');
+                        } else {
+                            console.warn('⚠️ Failed to send to spreadsheet:', result.error);
+                        }
+                    } catch (error) {
+                        console.warn('⚠️ Spreadsheet error (non-critical):', error);
                     }
-                });
-            }, 500);
+                }, 1000);
+            }
             
-            // Clear sensitive data after a delay
-            setTimeout(() => {
-                localStorage.removeItem('kazineCart');
-                console.log('🧹 Cleared cart data');
-            }, 5000);
-            
-            console.log('✅ Order confirmation completed successfully');
+            console.log('✅ Order processed successfully:', orderNumber);
+            console.log('📦 Total items:', totalItems);
+            console.log('💰 Total amount:', formatCurrency(normalizedData.total || 0));
             
         } catch (error) {
             console.error('❌ Error processing order:', error);
@@ -1299,10 +1255,106 @@
             errorState.style.display = 'block';
             
             if (errorMessage) {
-                errorMessage.textContent = `Error: ${error.message}. Please contact support or try again.`;
+                errorMessage.textContent = `Error: ${error.message}`;
             }
         }
     });
+    
+    // Normalize order data structure
+    function normalizeOrderData(data) {
+        console.log('🔄 Normalizing order data...', data);
+        
+        const normalized = { ...data };
+        
+        // Ensure customer object exists
+        if (!normalized.customer) {
+            normalized.customer = {};
+        }
+        
+        // Map possible field names to standard structure
+        const fieldMap = {
+            // Customer fields
+            'customer-name': 'customer.name',
+            'customerName': 'customer.name',
+            'name': 'customer.name',
+            'customer-email': 'customer.email',
+            'customerEmail': 'customer.email',
+            'email': 'customer.email',
+            'customer-twitter': 'customer.twitter',
+            'customerTwitter': 'customer.twitter',
+            'twitter': 'customer.twitter',
+            
+            // Order fields
+            'order-notes': 'notes',
+            'customerNotes': 'notes',
+            'notes': 'notes',
+            'order-total': 'total',
+            'orderTotal': 'total',
+            'totalAmount': 'total',
+            'payment-method': 'payment',
+            'paymentMethod': 'payment'
+        };
+        
+        // Apply field mapping
+        for (const [source, target] of Object.entries(fieldMap)) {
+            if (normalized[source] !== undefined && !getValueByPath(normalized, target)) {
+                setValueByPath(normalized, target, normalized[source]);
+            }
+        }
+        
+        // Ensure required fields
+        if (!normalized.customer.name) normalized.customer.name = 'Customer';
+        if (!normalized.customer.email) normalized.customer.email = 'customer@example.com';
+        
+        // Ensure items array exists
+        if (!normalized.items || !Array.isArray(normalized.items)) {
+            normalized.items = [];
+            if (normalized.cart && Array.isArray(normalized.cart)) {
+                normalized.items = normalized.cart;
+            }
+        }
+        
+        // Calculate totals if missing
+        if (!normalized.subtotal && normalized.items.length > 0) {
+            normalized.subtotal = normalized.items.reduce((sum, item) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity) || 1;
+                return sum + (price * quantity);
+            }, 0);
+        }
+        
+        if (!normalized.total) {
+            const subtotal = parseFloat(normalized.subtotal) || 0;
+            const discount = parseFloat(normalized.discount) || 0;
+            const serviceFee = parseFloat(normalized.serviceFee) || 2.50;
+            normalized.total = subtotal - discount + serviceFee;
+        }
+        
+        if (!normalized.discount) normalized.discount = 0;
+        if (!normalized.serviceFee) normalized.serviceFee = 2.50;
+        if (!normalized.payment) normalized.payment = 'paypal';
+        
+        console.log('✅ Normalized data:', normalized);
+        return normalized;
+    }
+    
+    // Helper function to get value by path
+    function getValueByPath(obj, path) {
+        return path.split('.').reduce((o, p) => o && o[p], obj);
+    }
+    
+    // Helper function to set value by path
+    function setValueByPath(obj, path, value) {
+        const parts = path.split('.');
+        const last = parts.pop();
+        const target = parts.reduce((o, p) => o[p] = o[p] || {}, obj);
+        target[last] = value;
+    }
+    
+    // Prevent form resubmission on refresh
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
     </script>
 </body>
 </html>
