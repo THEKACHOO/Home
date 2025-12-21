@@ -353,22 +353,6 @@
             color: var(--medium-gray);
         }
 
-        .voucher-codes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .voucher-code-tag {
-            background: rgba(73, 80, 87, 0.1);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--kazine-primary);
-        }
-
         .price-breakdown {
             background: var(--primary-white);
             padding: 18px;
@@ -787,13 +771,6 @@
                                 <input type="text" id="voucherCode" placeholder="Enter voucher code">
                                 <button class="apply-voucher" id="applyVoucher">Apply</button>
                             </div>
-                            <div class="voucher-note">
-                                <p>Available vouchers:</p>
-                                <div class="voucher-codes">
-                                    <div class="voucher-code-tag">WELCOMEKAZINE (30% OFF)</div>
-                                    <div class="voucher-code-tag">KACHOOBESTIE (50% OFF)</div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="price-breakdown">
@@ -1050,7 +1027,7 @@
             } else if (voucherCode === 'KACHOOBESTIE') {
                 discountRate = 0.50; // 50% discount
             } else {
-                alert('Invalid voucher code. Try WELCOMEKAZINE (30% OFF) or KACHOOBESTIE (50% OFF)');
+                alert('Invalid voucher code');
                 return;
             }
             
@@ -1073,7 +1050,7 @@
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
             }
             
-            alert(`Voucher "${voucherCode}" applied successfully! You saved $${newDiscount.toFixed(2)} (${discountRate * 100}% OFF)`);
+            alert(`Voucher applied successfully! You saved $${newDiscount.toFixed(2)}`);
         }
         
         // Enter key for voucher
