@@ -237,7 +237,7 @@
         }
         
         .year-badge {
-            display: none; /* Hidden on desktop, shown only on mobile */
+            display: none;
         }
         
         /* Hero Section - IMPROVED */
@@ -784,23 +784,6 @@
             .featured-excerpt {
                 font-size: 18px;
             }
-            
-            .year-badge {
-                display: block;
-                position: absolute;
-                bottom: -12px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: var(--white);
-                padding: 5px 22px;
-                border-radius: 20px;
-                font-size: 13px;
-                font-weight: 700;
-                letter-spacing: 1px;
-                color: var(--gray-700);
-                border: 1px solid var(--gray-300);
-                box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-            }
         }
         
         /* Large Desktop (1200px and up) */
@@ -847,23 +830,6 @@
             
             .menu-container {
                 order: 2;
-            }
-            
-            .year-badge {
-                display: block;
-                background: var(--white);
-                padding: 6px 20px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 700;
-                letter-spacing: 1px;
-                color: var(--gray-700);
-                border: 1px solid var(--gray-300);
-                box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-                margin-top: 5px;
-                text-align: center;
-                width: 100%;
-                order: 4;
             }
             
             .dropdown-menu {
@@ -977,15 +943,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Utility classes */
-        .text-center {
-            text-align: center;
-        }
-        
-        .mb-0 {
-            margin-bottom: 0;
-        }
     </style>
 </head>
 <body>
@@ -1028,6 +985,9 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </header>
     
     <!-- Hero Section -->
     <section class="hero">
@@ -1060,7 +1020,7 @@
                 <span class="featured-tag">Breaking News</span>
                 <h2 class="featured-title">THE KACHOO Launching three projects!</h2>
                 <p class="featured-excerpt">THE KACHOO bring a new era in 2026, launching KAFKAPAGES, KAZINE, and KABOOM!</p>
-              <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
+                <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
             </div>
         </article>
         
@@ -1069,8 +1029,7 @@
             <div class="news-grid">
                 <!-- Card 1 -->
                 <article class="news-card scroll-animate" data-category="nature">
-                    <div class="card-img">
-    <div class="card-img" style="background: url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
                         <div class="card-tag">Nature</div>
                     </div>
                     <div class="card-content">
@@ -1085,8 +1044,7 @@
                 
                 <!-- Card 2 -->
                 <article class="news-card scroll-animate" data-category="animals">
-                    <div class="card-img">
-    <div class="card-img" style="background: url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
                         <div class="card-tag">Animals</div>
                     </div>
                     <div class="card-content">
@@ -1094,26 +1052,25 @@
                         <p class="card-excerpt">One by one, rare species are pushed closer to extinction by habitat loss, illegal hunting, and human neglect. Saving them is no longer about conservation alone; it is about preserving balance, responsibility, and the future of life on this planet.</p>
                         <div class="card-meta">
                             <span class="card-date">March 14, 2026</span>
-                          <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
+                            <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
                         </div>
                     </div>
                 </article>
                 
                 <!-- Card 3 -->
                 <article class="news-card scroll-animate" data-category="humans">
-    <div class="card-img" style="background: url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
-    <div class="card-tag">Humans</div>
-</div>
-    <div class="card-content">
-        <h3 class="card-title">Humanity and Unity : What Connect Us Beyond Borders</h3>
-        <p class="card-excerpt">In a world increasingly divided by borders, beliefs, and algorithms, humanity remains the one language we all understand.</p>
-        <div class="card-meta">
-            <span class="card-date">January 3, 2026</span>
-            <!-- UBAH INI: -->
-            <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
-        </div>
-    </div>
-</article>
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                        <div class="card-tag">Humans</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Humanity and Unity : What Connect Us Beyond Borders</h3>
+                        <p class="card-excerpt">In a world increasingly divided by borders, beliefs, and algorithms, humanity remains the one language we all understand.</p>
+                        <div class="card-meta">
+                            <span class="card-date">January 3, 2026</span>
+                            <button class="card-btn" onclick="window.location.href='Human1.html'">Read More</button>
+                        </div>
+                    </div>
+                </article>
                 
                 <!-- Card 4 -->
                 <article class="news-card scroll-animate" data-category="kabuts">
