@@ -661,9 +661,7 @@
                 const itemsString = orderData.items && orderData.items.length > 0 
                     ? orderData.items.map(item => {
                         const quantity = item.quantity || 1;
-                        const size = item.size || 'M';
-                        const color = item.color || 'Black';
-                        return `${item.title || 'Fashion Item'} (Size: ${size}) ×${quantity}`;
+                        return `${item.title || 'Fashion Item'} ×${quantity}`;
                     }).join(' | ')
                     : 'No items';
                 
@@ -816,12 +814,11 @@
                     itemElement.className = 'order-item';
                     const quantity = item.quantity || 1;
                     const price = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
-                    const size = item.size || 'M';
                     
                     itemElement.innerHTML = `
                         <div>
                             <div class="item-name">${item.title || 'Fashion Item'}</div>
-                            <div class="item-details">Size: ${size} | Qty: ${quantity}</div>
+                            <div class="item-details">Qty: ${quantity}</div>
                         </div>
                         <div class="item-price">${formatCurrency(price)}</div>
                     `;
@@ -924,7 +921,6 @@
                                 <thead>
                                     <tr>
                                         <th>Item</th>
-                                        <th>Size</th>
                                         <th>Qty</th>
                                         <th>Price</th>
                                     </tr>
@@ -933,7 +929,6 @@
                                     ${orderData.items ? orderData.items.map(item => `
                                         <tr>
                                             <td>${item.title || 'Fashion Item'}</td>
-                                            <td>${item.size || 'M'}</td>
                                             <td>${item.quantity || 1}</td>
                                             <td>${formatCurrency(parseFloat(item.totalPrice) || parseFloat(item.price) || 0)}</td>
                                         </tr>
