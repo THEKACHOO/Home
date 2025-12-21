@@ -644,7 +644,7 @@ async function sendToSpreadsheet(orderData) {
 
         // Generate random order number
         function generateOrderNumber() {
-            const prefix = 'KAFKA';
+            const prefix = 'KAFKAPAGES';
             const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
             return `${prefix}-${randomNum}`;
         }
