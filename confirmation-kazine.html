@@ -671,12 +671,15 @@
                     : 0;
                 
                 // Format notes dengan warna item (color masuk ke sini, bukan di display)
-                const notes = orderData.items && orderData.items.length > 0 
-                    ? orderData.items.map(item => {
-                        const color = item.color || 'Black';
-                        return `${item.title}: ${color}`;
-                    }).join(' | ')
-                    : 'No items';
+                // Format notes dengan informasi yang tersedia
+const notes = orderData.items && orderData.items.length > 0 
+    ? orderData.items.map(item => {
+        const quantity = item.quantity || 1;
+        const price = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
+        const title = item.title || 'Fashion Item';
+        return `${title} ×${quantity} ($${price.toFixed(2)})`;
+    }).join(' | ')
+    : 'No items';
                 
                 // Data untuk dikirim ke Google Sheets
                 const spreadsheetData = {
