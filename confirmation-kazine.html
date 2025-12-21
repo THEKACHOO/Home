@@ -780,7 +780,7 @@
             console.log('📊 Spreadsheet data prepared:', spreadsheetData);
             
             // Only send if webhook URL is provided
-            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== '') {
+            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== 'https://script.google.com/macros/s/AKfycbxTYzPBPkeQqN4dTqe5JsoyI44h7Ry3pfuOInnFVnHVCso57vivMTAhOMHQjJY6qgg-/exec') {
                 const response = await fetch(KAZINE_SPREADSHEET_WEBHOOK, {
                     method: 'POST',
                     mode: 'no-cors',
