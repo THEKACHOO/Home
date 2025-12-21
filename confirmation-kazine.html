@@ -69,7 +69,7 @@
             gap: 15px;
         }
 
-        .logo-img-placeholder {
+        .logo-img {
             width: 50px;
             height: 50px;
             border-radius: 10px;
@@ -78,9 +78,12 @@
             align-items: center;
             justify-content: center;
             border: 2px solid var(--kazine-primary);
-            background: var(--kazine-primary);
-            color: white;
-            font-size: 24px;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo-text h1 {
@@ -528,8 +531,8 @@
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <div class="logo-img-placeholder">
-                    <i class="fas fa-tshirt"></i>
+                <div class="logo-img">
+                    <img src="KAZINE.png" alt="KAZINE Logo">
                 </div>
                 <div class="logo-text">
                     <h1>KAZINE</h1>
@@ -728,70 +731,104 @@
 
     <script>
     // ============================================
-    // KAZINE ORDER CONFIRMATION SCRIPT
+    // KAZINE ORDER CONFIRMATION SCRIPT - DIPERBAIKI
     // ============================================
     
-    // Google Apps Script URL (kosong - bisa diisi nanti)
     const KAZINE_SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxTYzPBPkeQqN4dTqe5JsoyI44h7Ry3pfuOInnFVnHVCso57vivMTAhOMHQjJY6qgg-/exec';
     
-    // Track if order has been processed in this session
+    // Gunakan sessionStorage untuk mencegah double order pada refresh
     let orderProcessedThisSession = false;
     let currentOrderNumber = null;
     let currentOrderData = null;
     
-    // Function to send data to Google Spreadsheet
+    // Fungsi untuk mengirim data ke spreadsheet dengan struktur yang benar
     async function sendToKazineSpreadsheet(orderData, orderNumber) {
         try {
             console.log('📤 Sending KAZINE data to spreadsheet...');
             
-            // Calculate total items and item names
+            // Hitung total items dan ambil nama item
             let totalItems = 0;
             let itemNames = [];
+            let itemDetails = [];
             
             if (orderData.items && Array.isArray(orderData.items)) {
                 orderData.items.forEach(item => {
                     const quantity = parseInt(item.quantity) || 1;
                     totalItems += quantity;
-                    if (item.title) {
-                        itemNames.push(`${item.title} (x${quantity})`);
-                    }
+                    
+                    // Format item name dengan detail
+                    let itemName = item.title || 'Fashion Item';
+                    if (item.color) itemName += ` (Color: ${item.color})`;
+                    if (item.size) itemName += ` (Size: ${item.size})`;
+                    if (item.notes) itemName += ` - ${item.notes}`;
+                    
+                    itemNames.push(itemName);
+                    
+                    // Simpan detail lengkap untuk spreadsheet
+                    itemDetails.push({
+                        name: item.title || 'Fashion Item',
+                        quantity: quantity,
+                        color: item.color || '',
+                        size: item.size || '',
+                        notes: item.notes || '',
+                        price: parseFloat(item.price) || 0
+                    });
                 });
             }
             
-            // Prepare data for spreadsheet - SESUAI DENGAN TEMPLATE
+            // Siapkan data untuk spreadsheet - SESUAI DENGAN FORMAT YANG DIBUTUHKAN
             const spreadsheetData = {
                 timestamp: new Date().toISOString(),
                 orderNumber: orderNumber,
                 customerName: orderData.customer?.name || 'Customer',
                 customerEmail: orderData.customer?.email || 'No email',
-                customerTwitter: orderData.customer?.twitter || 'Not provided',
-                items: totalItems,
-                itemNames: itemNames.join(', '),
-                notes: orderData.notes || orderData.customer?.notes || 'No notes',
+                customerTwitter: orderData.customer?.twitter || orderData.customer?.x || 'Not provided',
+                totalItems: totalItems,
+                itemDetails: JSON.stringify(itemDetails), // Simpan detail lengkap sebagai JSON
+                itemNames: itemNames.join(' | '), // Gabungkan semua nama item
+                customerNotes: orderData.notes || orderData.customer?.notes || 'No notes',
                 subtotal: parseFloat(orderData.subtotal) || 0,
                 discount: parseFloat(orderData.discount) || 0,
                 serviceFee: parseFloat(orderData.serviceFee) || 2.50,
-                total: parseFloat(orderData.total) || 0,
+                totalAmount: parseFloat(orderData.total) || 0,
                 paymentMethod: orderData.payment?.toUpperCase() || 'UNKNOWN',
-                voucher: orderData.voucher || 'None',
-                platform: 'KAZINE Fashion Store'
+                voucherCode: orderData.voucher || 'None',
+                orderStatus: 'PROCESSED',
+                platform: 'KAZINE Fashion Store',
+                action: 'addOrder' // Tambahkan action untuk identifikasi di Google Apps Script
             };
             
             console.log('📊 Spreadsheet data prepared:', spreadsheetData);
             
-            // Only send if webhook URL is provided
-            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== 'https://script.google.com/macros/s/AKfycbxTYzPBPkeQqN4dTqe5JsoyI44h7Ry3pfuOInnFVnHVCso57vivMTAhOMHQjJY6qgg-/exec') {
-                const response = await fetch(KAZINE_SPREADSHEET_WEBHOOK, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(spreadsheetData)
-                });
-                console.log('✅ Data sent to Google Sheets successfully');
+            // Cek jika webhook valid
+            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.includes('https://script.google.com/macros/s/AKfycbxTYzPBPkeQqN4dTqe5JsoyI44h7Ry3pfuOInnFVnHVCso57vivMTAhOMHQjJY6qgg-/exec')) {
+                try {
+                    // Gunakan mode 'cors' untuk mendapatkan feedback
+                    const response = await fetch(KAZINE_SPREADSHEET_WEBHOOK, {
+                        method: 'POST',
+                        mode: 'no-cors', // Google Apps Script memerlukan no-cors
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(spreadsheetData)
+                    });
+                    
+                    // Dengan no-cors, kita tidak bisa membaca response
+                    console.log('✅ Data sent to Google Sheets (no-cors mode)');
+                    
+                    // Simpan status pengiriman di localStorage untuk debugging
+                    localStorage.setItem('kazineLastSpreadsheetSend', JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        orderNumber: orderNumber,
+                        status: 'sent'
+                    }));
+                    
+                } catch (fetchError) {
+                    console.warn('⚠️ Fetch error (may still be successful):', fetchError);
+                    // Tetap lanjutkan karena no-cors sering menghasilkan error meski berhasil
+                }
             } else {
-                console.log('ℹ️ No webhook URL provided, skipping spreadsheet update');
+                console.log('ℹ️ No valid webhook URL provided');
             }
             
             return { success: true, data: spreadsheetData };
@@ -805,8 +842,9 @@
     // Generate random order number untuk KAZINE
     function generateOrderNumber() {
         const prefix = 'KAZINE';
-        const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-        return `${prefix}-${randomNum}`;
+        const timestamp = Date.now().toString().slice(-6);
+        const randomNum = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        return `${prefix}-${timestamp}${randomNum}`;
     }
     
     // Format currency
@@ -866,18 +904,17 @@
                 orderItemsList.appendChild(itemElement);
             });
         } else {
-            // Fallback if no items
+            // Fallback jika tidak ada item
             const itemElement = document.createElement('div');
             itemElement.className = 'order-item';
             itemElement.innerHTML = `
                 <div>
-                    <div class="item-name">Fashion Item</div>
-                    <div class="item-quantity">Qty: 1</div>
+                    <div class="item-name">No items found</div>
+                    <div class="item-quantity">Qty: 0</div>
                 </div>
                 <div class="item-price">${formatCurrency(0)}</div>
             `;
             orderItemsList.appendChild(itemElement);
-            totalItems = 1;
         }
         
         // Update total items count
@@ -1252,28 +1289,59 @@
         });
     }
     
-    // Check if order was already processed (prevent duplicate on refresh)
+    // Periksa apakah order sudah diproses - menggunakan BOTH sessionStorage dan localStorage
     function checkExistingOrder() {
-        const processedOrder = localStorage.getItem('kazineLastProcessedOrder');
-        if (processedOrder) {
+        // Cek sessionStorage dulu (untuk mencegah refresh)
+        const sessionProcessed = sessionStorage.getItem('kazineOrderProcessed');
+        if (sessionProcessed) {
             try {
-                return JSON.parse(processedOrder);
+                return JSON.parse(sessionProcessed);
             } catch (e) {
-                console.warn('⚠️ Could not parse processed order:', e);
-                return null;
+                console.warn('⚠️ Could not parse session processed order:', e);
             }
         }
+        
+        // Cek localStorage (untuk mencegah buka ulang tab)
+        const localProcessed = localStorage.getItem('kazineLastProcessedOrder');
+        if (localProcessed) {
+            try {
+                const parsed = JSON.parse(localProcessed);
+                // Jika order lebih dari 5 menit yang lalu, biarkan order baru
+                const processedTime = new Date(parsed.timestamp);
+                const currentTime = new Date();
+                const diffMinutes = (currentTime - processedTime) / (1000 * 60);
+                
+                if (diffMinutes < 5) { // Dalam 5 menit terakhir
+                    return parsed;
+                } else {
+                    console.log('🕒 Old order detected (>5 mins), allowing new order');
+                    localStorage.removeItem('kazineLastProcessedOrder');
+                }
+            } catch (e) {
+                console.warn('⚠️ Could not parse local processed order:', e);
+            }
+        }
+        
         return null;
     }
     
-    // Save that order was processed
+    // Tandai order sebagai diproses
     function markOrderAsProcessed(orderData, orderNumber) {
         const processedData = {
             orderNumber: orderNumber,
             timestamp: new Date().toISOString(),
             data: orderData
         };
+        
+        // Simpan di sessionStorage (untuk refresh)
+        sessionStorage.setItem('kazineOrderProcessed', JSON.stringify(processedData));
+        
+        // Simpan di localStorage (untuk cross-tab)
         localStorage.setItem('kazineLastProcessedOrder', JSON.stringify(processedData));
+        
+        // Juga simpan sebagai flag sederhana
+        localStorage.setItem('kazineOrderProcessedFlag', 'true');
+        
         orderProcessedThisSession = true;
         currentOrderNumber = orderNumber;
         currentOrderData = orderData;
@@ -1285,12 +1353,34 @@
         
         const normalized = { ...data };
         
-        // Ensure customer object exists
+        // Pastikan customer object ada
         if (!normalized.customer) {
             normalized.customer = {};
         }
         
-        // Map possible field names to standard structure
+        // Pastikan items array ada - INI PERBAIKAN UTAMA
+        if (!normalized.items && normalized.cart) {
+            normalized.items = normalized.cart;
+            console.log('  Using cart as items:', normalized.items);
+        }
+        
+        if (!normalized.items) {
+            normalized.items = [];
+            console.warn('⚠️ No items found in order data');
+        }
+        
+        // Pastikan setiap item memiliki field yang diperlukan
+        if (Array.isArray(normalized.items)) {
+            normalized.items = normalized.items.map((item, index) => {
+                const normalizedItem = { ...item };
+                if (!normalizedItem.title) normalizedItem.title = `Fashion Item ${index + 1}`;
+                if (!normalizedItem.price) normalizedItem.price = 0;
+                if (!normalizedItem.quantity) normalizedItem.quantity = 1;
+                return normalizedItem;
+            });
+        }
+        
+        // Map field names ke struktur standar
         const fieldMap = {
             // Customer fields
             'customer-name': 'customer.name',
@@ -1302,13 +1392,12 @@
             'customer-twitter': 'customer.twitter',
             'customerTwitter': 'customer.twitter',
             'twitter': 'customer.twitter',
-            'customer-notes': 'customer.notes',
+            'customer-x': 'customer.twitter',
             'customerNotes': 'customer.notes',
+            'notes': 'notes',
             
             // Order fields
             'order-notes': 'notes',
-            'notes': 'notes',
-            'order-total': 'total',
             'orderTotal': 'total',
             'totalAmount': 'total',
             'payment-method': 'payment',
@@ -1319,8 +1408,15 @@
         
         // Apply field mapping
         for (const [source, target] of Object.entries(fieldMap)) {
-            if (normalized[source] !== undefined && !getValueByPath(normalized, target)) {
-                setValueByPath(normalized, target, normalized[source]);
+            if (normalized[source] !== undefined) {
+                // Helper untuk set value by path
+                const parts = target.split('.');
+                let obj = normalized;
+                for (let i = 0; i < parts.length - 1; i++) {
+                    if (!obj[parts[i]]) obj[parts[i]] = {};
+                    obj = obj[parts[i]];
+                }
+                obj[parts[parts.length - 1]] = normalized[source];
                 console.log(`  Mapped ${source} → ${target}: ${normalized[source]}`);
             }
         }
@@ -1329,25 +1425,9 @@
         if (!normalized.customer.name) normalized.customer.name = 'Customer';
         if (!normalized.customer.email) normalized.customer.email = 'customer@example.com';
         if (!normalized.customer.twitter) normalized.customer.twitter = 'Not provided';
+        if (!normalized.notes) normalized.notes = 'No notes';
         
-        // Ensure items array exists
-        if (!normalized.items || !Array.isArray(normalized.items)) {
-            normalized.items = [];
-            if (normalized.cart && Array.isArray(normalized.cart)) {
-                normalized.items = normalized.cart;
-                console.log('  Using cart as items');
-            }
-        }
-        
-        // Ensure each item has required fields
-        normalized.items = normalized.items.map((item, index) => {
-            if (!item.title) item.title = `Fashion Item ${index + 1}`;
-            if (!item.price) item.price = 0;
-            if (!item.quantity) item.quantity = 1;
-            return item;
-        });
-        
-        // Calculate totals if missing
+        // Calculate totals jika tidak ada
         if (!normalized.subtotal || normalized.subtotal === 0) {
             normalized.subtotal = normalized.items.reduce((sum, item) => {
                 const price = parseFloat(item.price) || 0;
@@ -1370,29 +1450,61 @@
         if (!normalized.serviceFee) normalized.serviceFee = 2.50;
         if (!normalized.payment) normalized.payment = 'paypal';
         if (!normalized.voucher) normalized.voucher = 'None';
-        if (!normalized.notes) normalized.notes = 'No notes';
         
         console.log('✅ Normalized data:', normalized);
         return normalized;
     }
     
-    // Helper function to get value by path
-    function getValueByPath(obj, path) {
-        return path.split('.').reduce((o, p) => o && o[p], obj);
-    }
-    
-    // Helper function to set value by path
-    function setValueByPath(obj, path, value) {
-        const parts = path.split('.');
-        const last = parts.pop();
-        const target = parts.reduce((o, p) => o[p] = o[p] || {}, obj);
-        target[last] = value;
+    // Helper untuk mendapatkan data dari payment-kazine.html
+    function getOrderDataFromPaymentPage() {
+        // Coba berbagai key yang mungkin digunakan
+        const possibleKeys = [
+            'kazineOrderData',
+            'kazinePaymentData',
+            'kazineCheckoutData',
+            'kazineFormData',
+            'kazineCartData'
+        ];
+        
+        for (const key of possibleKeys) {
+            const stored = localStorage.getItem(key);
+            if (stored) {
+                try {
+                    const data = JSON.parse(stored);
+                    console.log(`✅ Found order data in ${key}:`, data);
+                    
+                    // Simpan salinan untuk backup
+                    localStorage.setItem('kazineOrderBackup', stored);
+                    
+                    // Hapus data asli untuk mencegah pemrosesan ulang
+                    localStorage.removeItem(key);
+                    
+                    return data;
+                } catch (e) {
+                    console.warn(`⚠️ Could not parse ${key}:`, e);
+                }
+            }
+        }
+        
+        // Coba ambil dari URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderDataParam = urlParams.get('orderData');
+        if (orderDataParam) {
+            try {
+                const data = JSON.parse(decodeURIComponent(orderDataParam));
+                console.log('✅ Found order data in URL parameters');
+                return data;
+            } catch (e) {
+                console.warn('⚠️ Could not parse URL parameters:', e);
+            }
+        }
+        
+        return null;
     }
     
     // Main initialization
     document.addEventListener('DOMContentLoaded', async function() {
         console.log('🚀 KAZINE Confirmation Page Loading...');
-        console.log('📍 Current URL:', window.location.href);
         
         const loadingState = document.getElementById('loadingState');
         const successState = document.getElementById('successState');
@@ -1401,13 +1513,13 @@
         const errorMessage = document.getElementById('errorMessage');
         
         try {
-            // Check if this order was already processed
+            // Cek apakah order sudah diproses
             const existingOrder = checkExistingOrder();
             
             if (existingOrder && existingOrder.orderNumber) {
-                console.log('⚠️ Order already processed in previous session:', existingOrder.orderNumber);
+                console.log('⚠️ Order already processed:', existingOrder.orderNumber);
                 
-                // Show already processed state
+                // Tampilkan state already processed
                 loadingState.style.display = 'none';
                 alreadyProcessedState.style.display = 'block';
                 successState.style.display = 'none';
@@ -1418,98 +1530,94 @@
                 return;
             }
             
-            // Get order data from localStorage
-            console.log('🔍 Checking for new order data...');
-            let orderData = null;
+            // Dapatkan data order
+            console.log('🔍 Getting order data...');
+            let orderData = getOrderDataFromPaymentPage();
             
-            // Try multiple possible storage keys (priority order)
-            const possibleKeys = [
-                'kazineOrder',
-                'kazinePaymentData', 
-                'kazineCheckoutData',
-                'kazineFormData'
-            ];
-            
-            for (const key of possibleKeys) {
-                const stored = localStorage.getItem(key);
-                if (stored) {
+            // Jika tidak ada data, cek localStorage backup
+            if (!orderData) {
+                const backup = localStorage.getItem('kazineOrderBackup');
+                if (backup) {
                     try {
-                        orderData = JSON.parse(stored);
-                        console.log(`✅ Found order data in ${key}:`, orderData);
-                        
-                        // Remove the data so it won't be processed again
-                        localStorage.removeItem(key);
-                        break;
+                        orderData = JSON.parse(backup);
+                        console.log('✅ Using backup order data');
                     } catch (e) {
-                        console.warn(`⚠️ Could not parse ${key}:`, e);
+                        console.warn('⚠️ Could not parse backup data:', e);
                     }
                 }
             }
             
-            // If no order data found, show error
+            // Jika masih tidak ada data, error
             if (!orderData) {
-                console.log('❌ No order data found in localStorage');
-                console.log('📊 localStorage contents:');
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    console.log(`  ${key}:`, localStorage.getItem(key));
-                }
-                
+                console.log('❌ No order data found');
                 throw new Error('No order data found. Please complete your payment first.');
             }
             
             // Normalize data structure
             const normalizedData = normalizeOrderData(orderData);
             
+            // Pastikan ada item
+            if (!normalizedData.items || normalizedData.items.length === 0) {
+                console.warn('⚠️ No items in order data, checking cart...');
+                const cartData = localStorage.getItem('kazineCart');
+                if (cartData) {
+                    try {
+                        const cart = JSON.parse(cartData);
+                        normalizedData.items = cart;
+                        console.log('✅ Added items from cart:', cart);
+                    } catch (e) {
+                        console.warn('⚠️ Could not parse cart:', e);
+                    }
+                }
+            }
+            
             // Generate order number
             const orderNumber = generateOrderNumber();
             currentOrderNumber = orderNumber;
             currentOrderData = normalizedData;
             
-            // Show success state
+            // Tampilkan success state
             loadingState.style.display = 'none';
             successState.style.display = 'block';
             alreadyProcessedState.style.display = 'none';
             errorState.style.display = 'none';
             
-            // Display order data
+            // Tampilkan order data
             const displayResult = displayOrderData(normalizedData, orderNumber);
             
             // Setup print receipt
             setupPrintReceipt(normalizedData, orderNumber);
             
-            // Mark order as processed
+            // Tandai order sebagai diproses
             markOrderAsProcessed(normalizedData, orderNumber);
             
-            // Clear cart data
+            // Hapus cart data
             localStorage.removeItem('kazineCart');
             
-            // Send to spreadsheet in background (non-blocking)
-            if (KAZINE_SPREADSHEET_WEBHOOK && KAZINE_SPREADSHEET_WEBHOOK.trim() !== '') {
-                setTimeout(async () => {
-                    try {
-                        const result = await sendToKazineSpreadsheet(normalizedData, orderNumber);
-                        if (result.success) {
-                            console.log('✅ Order sent to spreadsheet successfully');
-                        } else {
-                            console.warn('⚠️ Failed to send to spreadsheet:', result.error);
-                        }
-                    } catch (error) {
-                        console.warn('⚠️ Spreadsheet error (non-critical):', error);
-                    }
-                }, 1000);
+            // Kirim ke spreadsheet di background
+            console.log('📤 Sending to spreadsheet...');
+            try {
+                const result = await sendToKazineSpreadsheet(normalizedData, orderNumber);
+                if (result.success) {
+                    console.log('✅ Order sent to spreadsheet successfully');
+                } else {
+                    console.warn('⚠️ Failed to send to spreadsheet:', result.error);
+                }
+            } catch (spreadsheetError) {
+                console.warn('⚠️ Spreadsheet error (non-critical):', spreadsheetError);
             }
             
             console.log('✅ Order processed successfully!');
             console.log('📦 Order Number:', orderNumber);
             console.log('👤 Customer:', normalizedData.customer?.name);
             console.log('📧 Email:', normalizedData.customer?.email);
+            console.log('🛍️ Items:', normalizedData.items?.length || 0);
             console.log('💰 Total:', formatCurrency(normalizedData.total));
             
         } catch (error) {
             console.error('❌ Error processing order:', error);
             
-            // Show error state
+            // Tampilkan error state
             loadingState.style.display = 'none';
             successState.style.display = 'none';
             alreadyProcessedState.style.display = 'none';
@@ -1521,22 +1629,33 @@
         }
     });
     
-    // Prevent form resubmission on refresh
+    // Mencegah form resubmission pada refresh
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
     
-    // Clear processed order when leaving page (except for navigation buttons)
+    // Clear processed order ketika meninggalkan page
     window.addEventListener('beforeunload', function() {
-        // Only clear if user is navigating away (not clicking our buttons)
+        // Hanya clear jika bukan navigasi ke halaman store/payment kita
         const activeElement = document.activeElement;
-        const isNavigationButton = activeElement && 
-            (activeElement.tagName === 'A' && 
-             (activeElement.href.includes('kazine.html') || 
-              activeElement.href.includes('payment-kazine.html')));
+        const isOurNavigation = activeElement && 
+            activeElement.tagName === 'A' && 
+            (activeElement.href.includes('kazine.html') || 
+             activeElement.href.includes('payment-kazine.html'));
         
-        if (!isNavigationButton) {
-            localStorage.removeItem('kazineLastProcessedOrder');
+        if (!isOurNavigation) {
+            // Jangan hapus sessionStorage, biar tetap terdeteksi sebagai sudah diproses
+            // localStorage tetap kita pertahankan untuk cross-tab consistency
+        }
+    });
+    
+    // Tambahkan listener untuk tombol Back to Store
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('a[href*="kazine.html"]') || 
+            e.target.closest('a[href*="payment-kazine.html"]')) {
+            // Hapus flag processed agar bisa order baru
+            sessionStorage.removeItem('kazineOrderProcessed');
+            localStorage.removeItem('kazineOrderProcessedFlag');
         }
     });
     </script>
