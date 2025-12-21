@@ -1221,6 +1221,41 @@
         min-width: 44px;
         padding: 12px;
     }
+
+    /* Active state untuk tombol di mobile */
+@media (max-width: 768px) {
+    .add-to-cart-btn:active {
+        background-color: #333 !important;
+        transform: scale(0.98);
+        transition: transform 0.1s ease, background-color 0.1s ease;
+    }
+    
+    /* Remove hover effects on mobile */
+    .add-to-cart-btn:hover {
+        background: var(--pure-black);
+        transform: none;
+    }
+    
+    /* Better touch target spacing */
+    .products-grid {
+        gap: 20px;
+    }
+    
+    .product-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Simple click animation */
+@keyframes quickPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.96); }
+    100% { transform: scale(1); }
+}
+
+.add-to-cart-btn.clicked {
+    animation: quickPulse 0.2s ease;
+}
     
     /* Spacing lebih besar antar item produk */
     .products-grid {
@@ -1642,15 +1677,13 @@
     </footer>
 
     <script>
-    // ==================== MOBILE-FRIENDLY SHOPPING CART SYSTEM ====================
-// WITH DEBOUNCING AND TOUCH PREVENTION
+    // ==================== SIMPLE MOBILE-FRIENDLY CART ====================
 
-// Initialize cart from localStorage
+// Initialize cart
 let kazineCart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-let isProcessing = false; // Flag untuk mencegah multiple clicks
-let lastTapTime = 0; // Untuk mencegah double tap
-const TAP_DELAY = 500; // Delay 500ms antar tap
+let canClick = true; // Simple flag untuk mencegah multiple clicks
 
+// DOM Elements
 const cartModal = document.getElementById('cartModal');
 const cartOverlay = document.getElementById('cartOverlay');
 const cartCount = document.getElementById('cartCount');
@@ -1661,54 +1694,20 @@ const checkoutBtn = document.getElementById('checkoutBtn');
 const openCartBtn = document.getElementById('openCart');
 const closeCartBtn = document.getElementById('closeCart');
 
-// Check if device is mobile
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-           window.innerWidth <= 768;
+// Simple check for mobile
+function isMobile() {
+    return window.innerWidth <= 768;
 }
 
-// Debounce function untuk mencegah multiple rapid clicks
-function debounce(func, wait = 300) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Prevent double tap
-function preventDoubleTap(func) {
-    return function(e) {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTapTime;
-        
-        if (tapLength < TAP_DELAY && tapLength > 0) {
-            // Double tap detected, prevent
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
-        
-        lastTapTime = currentTime;
-        func(e);
-    };
-}
-
-// Open cart function
+// Open cart
 function openCart() {
-    if (isProcessing) return;
-    
     cartModal.classList.add('active');
     cartOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     updateCartDisplay();
 }
 
-// Close cart function
+// Close cart
 function closeCart() {
     cartModal.classList.remove('active');
     cartOverlay.classList.remove('active');
@@ -1752,278 +1751,241 @@ function updateCartDisplay() {
         cartItems.appendChild(cartItem);
     });
     
-    // Add event listeners to remove buttons dengan debounce
+    // Add remove item listeners
     document.querySelectorAll('.remove-item').forEach(button => {
-        const debouncedRemove = debounce(function(e) {
-            e.stopPropagation();
+        button.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
             kazineCart.splice(index, 1);
             localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
             updateCartDisplay();
-            showNotification('Item removed from cart', 'info');
-        }, 300);
-        
-        button.addEventListener('click', debouncedRemove);
-        // Hanya gunakan click untuk mobile, bukan touchstart
+            showNotification('Item removed from cart');
+        });
     });
     
     cartTotal.textContent = `$${total.toFixed(2)}`;
 }
 
-// Show notification
-function showNotification(message, type = 'success') {
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+// Show simple notification
+function showNotification(message) {
+    // Remove existing notification
+    const existing = document.querySelector('.cart-notification');
+    if (existing) existing.remove();
     
+    // Create new notification
     const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
+    notification.className = 'cart-notification';
+    notification.textContent = message;
     notification.style.cssText = `
         position: fixed;
-        top: ${isMobileDevice() ? '80px' : '100px'};
-        right: 20px;
-        background: ${type === 'success' ? '#000' : '#333'};
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background: #000;
         color: #fff;
-        padding: 15px 25px;
+        padding: 12px 24px;
         border-radius: 2px;
         z-index: 9999;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
+        opacity: 0;
+        transition: all 0.3s ease;
         font-size: 14px;
-        letter-spacing: 1px;
-        max-width: ${isMobileDevice() ? 'calc(100% - 40px)' : '300px'};
-        word-wrap: break-word;
+        white-space: nowrap;
         pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     `;
-    notification.textContent = message;
+    
     document.body.appendChild(notification);
     
+    // Animate in
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(-50%) translateY(0)';
     }, 10);
     
+    // Animate out and remove
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(-50%) translateY(-20px)';
         setTimeout(() => notification.remove(), 300);
-    }, 3000);
+    }, 2000);
 }
 
-// Handle add to cart dengan protection dari multiple clicks
-function handleAddToCart(e) {
-    // Prevenir default untuk touch events
-    if (e.type === 'touchstart') {
-        e.preventDefault();
-    }
-    
-    // Mencegah multiple clicks
-    if (isProcessing) {
-        return;
-    }
-    
-    // Debounce manual
-    const now = Date.now();
-    if (this.lastClick && (now - this.lastClick) < 1000) {
-        return;
-    }
-    this.lastClick = now;
-    
-    isProcessing = true;
-    
-    const productCard = this.closest('.product-card');
-    const productTitle = productCard.getAttribute('data-product');
-    const productPrice = productCard.getAttribute('data-price');
-    const productId = productCard.getAttribute('data-id') || productTitle.toLowerCase().replace(/\s+/g, '-');
-    
-    // Disable button sementara
-    this.classList.add('btn-disabled');
-    const originalText = this.innerHTML;
-    const originalBg = this.style.background;
-    
-    // Check if item already exists in cart
-    const existingItemIndex = kazineCart.findIndex(item => item.id === productId);
-    
-    if (existingItemIndex !== -1) {
-        kazineCart[existingItemIndex].quantity = (kazineCart[existingItemIndex].quantity || 1) + 1;
-        kazineCart[existingItemIndex].totalPrice = parseFloat(kazineCart[existingItemIndex].price) * kazineCart[existingItemIndex].quantity;
-        showNotification(`${productTitle} quantity updated! (Now ${kazineCart[existingItemIndex].quantity})`, 'success');
-    } else {
-        kazineCart.push({
-            id: productId,
-            title: productTitle,
-            price: productPrice,
-            quantity: 1,
-            totalPrice: parseFloat(productPrice),
-            date: new Date().toISOString(),
-            store: 'KAZINE'
-        });
-        showNotification(`${productTitle} added to cart!`, 'success');
-    }
-    
-    // Save to localStorage
-    localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
-    
-    // Update cart display
-    updateCartDisplay();
-    
-    // Visual feedback
-    this.innerHTML = '<i class="fas fa-check"></i> Added';
-    this.style.background = '#27ae60';
-    
-    // Reset setelah delay
-    setTimeout(() => {
-        this.innerHTML = originalText;
-        this.style.background = originalBg;
-        this.classList.remove('btn-disabled');
-        isProcessing = false;
-    }, 1000);
-}
-
-// Setup event listeners untuk tombol Add to Cart
+// SIMPLE add to cart handler - FIXED for mobile
 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-    // Gunakan hanya click event, bukan touchstart
-    const debouncedAddToCart = debounce(handleAddToCart, 300);
-    const safeAddToCart = preventDoubleTap(debouncedAddToCart);
+    // Remove all existing event listeners first
+    const newButton = button.cloneNode(true);
+    button.parentNode.replaceChild(newButton, button);
     
-    button.addEventListener('click', safeAddToCart);
+    // Add fresh event listener
+    newButton.addEventListener('click', function(e) {
+        // Simple click prevention
+        if (!canClick) return;
+        canClick = false;
+        
+        // Get product data
+        const productCard = this.closest('.product-card');
+        const productTitle = productCard.getAttribute('data-product');
+        const productPrice = productCard.getAttribute('data-price');
+        const productId = productCard.getAttribute('data-id');
+        
+        // Check if item exists
+        const existingIndex = kazineCart.findIndex(item => item.id === productId);
+        
+        if (existingIndex !== -1) {
+            // Update quantity
+            kazineCart[existingIndex].quantity = (kazineCart[existingIndex].quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated`);
+        } else {
+            // Add new item
+            kazineCart.push({
+                id: productId,
+                title: productTitle,
+                price: productPrice,
+                quantity: 1
+            });
+            showNotification(`${productTitle} added to cart`);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('kazineCart', JSON.stringify(kazineCart));
+        
+        // Update cart
+        updateCartDisplay();
+        
+        // Visual feedback
+        const originalText = this.innerHTML;
+        const originalBg = this.style.background;
+        this.innerHTML = '<i class="fas fa-check"></i> Added';
+        this.style.background = '#27ae60';
+        this.classList.add('btn-disabled');
+        
+        // Reset button after delay
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.background = originalBg;
+            this.classList.remove('btn-disabled');
+            canClick = true;
+        }, 1000);
+    });
     
-    // Untuk mobile, kita gunakan touchstart tapi dengan prevention
-    if (isMobileDevice()) {
-        button.addEventListener('touchstart', function(e) {
-            // Hanya mencegah default jika ini adalah double tap
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTapTime;
-            
-            if (tapLength < TAP_DELAY && tapLength > 0) {
-                e.preventDefault();
-                return;
-            }
-            lastTapTime = currentTime;
+    // Add touch event for mobile with prevention
+    if (isMobile()) {
+        newButton.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent double tap zoom
+            this.click(); // Trigger the click event
         }, { passive: false });
     }
 });
 
-// Cart icon event listeners
-const debouncedOpenCart = debounce(openCart, 300);
-const safeOpenCart = preventDoubleTap(debouncedOpenCart);
-
-openCartBtn.addEventListener('click', safeOpenCart);
+// Cart icon events
+openCartBtn.addEventListener('click', openCart);
 openCartBtn.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    safeOpenCart(e);
+    openCart();
 }, { passive: false });
 
-// Close cart event listeners
-closeCartBtn.addEventListener('click', debounce(closeCart, 300));
+// Close cart events
+closeCartBtn.addEventListener('click', closeCart);
 closeCartBtn.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    debounce(closeCart, 300)();
+    closeCart();
 }, { passive: false });
 
-// Overlay click to close cart
-cartOverlay.addEventListener('click', debounce(closeCart, 300));
+// Overlay close
+cartOverlay.addEventListener('click', closeCart);
 cartOverlay.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    debounce(closeCart, 300)();
+    closeCart();
 }, { passive: false });
 
-// Checkout button in cart modal
-checkoutBtn.addEventListener('click', debounce(handleCheckout, 300));
-
-function handleCheckout() {
-    if (isProcessing) return;
-    isProcessing = true;
-    
+// Checkout button
+checkoutBtn.addEventListener('click', function() {
     if (kazineCart.length === 0) {
-        showNotification('Your cart is empty! Please add products first.', 'info');
-        isProcessing = false;
+        showNotification('Your cart is empty');
         return;
     }
     
-    // Calculate totals
+    // Save order data
     let subtotal = 0;
     kazineCart.forEach(item => {
         subtotal += parseFloat(item.price) * (item.quantity || 1);
     });
     
-    // Create order data
     const orderData = {
         items: kazineCart,
         subtotal: subtotal,
-        discount: 0,
-        serviceFee: 2.50,
         total: subtotal + 2.50,
         store: 'KAZINE',
-        date: new Date().toISOString(),
         orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
     };
     
-    // Save order to localStorage
     localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-    
-    // Close cart modal
     closeCart();
     
-    // Redirect to payment page
     setTimeout(() => {
         window.location.href = 'payment-kazine.html';
-        isProcessing = false;
-    }, 400);
-}
-
-// Close cart with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && cartModal.classList.contains('active')) {
-        closeCart();
-    }
+    }, 300);
 });
 
-// Mobile menu functionality
+// Mobile menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mainMenu = document.getElementById('mainMenu');
 
-if (mobileMenuBtn) {
-    const debouncedToggleMenu = debounce(toggleMobileMenu, 300);
-    const safeToggleMenu = preventDoubleTap(debouncedToggleMenu);
+if (mobileMenuBtn && mainMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+        mainMenu.classList.toggle('active');
+        this.innerHTML = mainMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
     
-    mobileMenuBtn.addEventListener('click', safeToggleMenu);
-    mobileMenuBtn.addEventListener('touchstart', function(e) {
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mainMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+    
+    // Close menu when clicking links
+    mainMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mainMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+}
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || href.includes('.html')) return;
+        
         e.preventDefault();
-        safeToggleMenu(e);
-    }, { passive: false });
-}
-
-function toggleMobileMenu() {
-    mainMenu.classList.toggle('active');
-    mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-    
-    // Close cart if open when opening mobile menu
-    if (mainMenu.classList.contains('active') && cartModal.classList.contains('active')) {
-        closeCart();
-    }
-}
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mainMenu.classList.remove('active');
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    }
-});
-
-// Close mobile menu when clicking a link
-mainMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        mainMenu.classList.remove('active');
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (mainMenu && mainMenu.classList.contains('active')) {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
     });
 });
 
-// Initialize cart display
+// Initialize cart
 updateCartDisplay();
-
+        
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
