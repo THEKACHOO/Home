@@ -703,9 +703,15 @@ async function sendToSpreadsheet(orderData) {
                 e.preventDefault();
                 
                 const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
-                if (!orderData) return;
-                
-                const orderNumber = localStorage.getItem('lastOrderNumber') || generateOrderNumber();
+
+if (!orderData) {
+    throw new Error('No order data found');
+}
+                const orderNumber = generateOrderNumber();
+                localStorage.setItem('lastOrderNumber', orderNumber);
+                localStorage.removeItem('kafkapagesCart');
+                localStorage.removeItem('kafkapagesOrder');
+                localStorage.removeItem('kafkapagesPaymentOrder');
                 
                 // Create printable content
                 const printContent = `
