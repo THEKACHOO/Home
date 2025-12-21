@@ -574,6 +574,43 @@
             animation: ripple 1s ease-out;
         }
 
+        /* Magazine overlay hover effect */
+.magazine-cover a:hover .magazine-overlay {
+    background: rgba(0,0,0,0.1);
+    opacity: 1;
+}
+
+.magazine-cover a:hover .magazine-overlay div {
+    transform: translateY(0);
+}
+
+/* Badge hover effect */
+.magazine-badge {
+    transition: var(--transition-smooth);
+}
+
+.magazine-cover a:hover .magazine-badge {
+    background: var(--accent-gold);
+    color: var(--pure-black);
+}
+
+/* Coming soon tag as button */
+.coming-soon-tag[href] {
+    background: var(--pure-black);
+    color: var(--pure-white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.coming-soon-tag[href]:hover {
+    background: var(--accent-gold);
+    color: var(--pure-black);
+    transform: translateY(-2px);
+}
+        
         @keyframes ripple {
             0% {
                 transform: scale(0, 0);
@@ -978,57 +1015,98 @@
         }
 
         @media (max-width: 992px) {
-            .logo-section {
-                position: static;
-                transform: none;
-                order: 2;
-            }
-            
-            .header-container {
-                justify-content: space-between;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-                order: 1;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            nav {
-                order: 3;
-            }
-            
-            nav ul {
-                position: fixed;
-                top: 80px; /* Adjusted for mobile header */
-                left: 0;
-                width: 100%;
-                background: var(--pure-white);
-                flex-direction: column;
-                align-items: center;
-                padding: 30px 0;
-                gap: 25px;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: var(--transition-smooth);
-                z-index: 999;
-                border-bottom: 1px solid var(--light-gray);
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            nav a {
-                font-size: 14px;
-                padding: 10px 20px;
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
+    /* Logo tetap di tengah */
+    .logo-section {
+        position: static;
+        transform: none;
+        order: 1;
+        text-align: center;
+        width: 100%;
+    }
+    
+    /* Header container layout baru */
+    .header-container {
+        display: grid;
+        grid-template-columns: 50px 1fr 50px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    
+    /* Cart di pojok kiri */
+    .cart-icon-container {
+        order: 0;
+        justify-self: start;
+    }
+    
+    /* Logo di tengah */
+    .logo-section {
+        order: 1;
+        justify-self: center;
+    }
+    
+    /* Menu button di pojok kanan */
+    .mobile-menu-btn {
+        display: flex;
+        order: 2;
+        justify-self: end;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: var(--pure-black);
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+        z-index: 1001;
+    }
+    
+    /* Navigation menu */
+    nav {
+        order: 3;
+        grid-column: 1 / -1;
+        margin-top: 20px;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--pure-white);
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        gap: 25px;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: var(--transition-smooth);
+        z-index: 999;
+        border-bottom: 1px solid var(--light-gray);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav ul.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    nav a {
+        font-size: 14px;
+        padding: 10px 20px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Logo size untuk mobile */
+    .kazine-logo-main {
+        width: 150px;
+        height: 50px;
+    }
+}
             
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1055,60 +1133,36 @@
         }
 
         @media (max-width: 768px) {
-            .fashion-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .grid-item,
-            .grid-item.large {
-                height: 300px;
-            }
-            
-            .ambassador-overlay h2 {
-                font-size: 32px;
-            }
-            
-            .ambassador-overlay {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-            }
-            
-            .ambassador-overlay h2 {
-                font-size: 28px;
-            }
-            
-            .ambassador-overlay p {
-                font-size: 12px;
-                letter-spacing: 2px;
-            }
-            
-            .magazine-content h2 {
-                font-size: 36px;
-            }
-            
-            .magazine-content h3 {
-                font-size: 20px;
-            }
-            
-            .commercial-photo,
-            .photo-placeholder {
-                height: 350px;
-            }
-            
-            .hero-ambassador {
-                padding: 150px 0 80px;
-            }
-            
-            /* Adjust header for mobile */
-            header {
-                padding: 15px 0;
-            }
-            
-            .kazine-logo-main {
-                width: 140px;
-                height: 50px;
-            }
+    /* Adjust header untuk layar lebih kecil */
+    .header-container {
+        grid-template-columns: 40px 1fr 40px;
+        gap: 10px;
+    }
+    
+    .kazine-logo-main {
+        width: 130px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        grid-template-columns: 35px 1fr 35px;
+    }
+    
+    .kazine-logo-main {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .cart-icon {
+        font-size: 18px;
+    }
+    
+    .mobile-menu-btn {
+        font-size: 18px;
+    }
+}
             
             /* Make cart icon more prominent on mobile */
             .cart-icon {
@@ -1421,29 +1475,74 @@
     </section>
     
     <!-- Magazine Section -->
-    <section class="magazine-section" id="magazine">
-        <div class="container">
-            <div class="magazine-container">
-                <div class="magazine-cover">
-                    <a href="#magazine-page" style="display: block;" aria-label="View KAZINE Magazine Volume 1">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="KAZINE Magazine Volume 1">
-                        <div class="magazine-badge">VOL. 1</div>
-                    </a>
-                </div>
-                <div class="magazine-content">
-                    <h2>KAZINE!</h2>
-                    <h3>NEW YEAR NEW VIBES</h3>
-                    <p>Experience the inaugural edition of KAZINE, where fashion, culture, and lifestyle converge. Volume 1 celebrates new beginnings with exclusive interviews, editorial features, and behind-the-scenes access to the world's most influential creators.</p>
-                    <p>Discover the stories behind the styles and the visionaries shaping tomorrow's trends today.</p>
-                    <div class="coming-soon-tag" role="status" aria-label="Volume 2 coming soon">
-                        VOLUME 2 COMING SOON
+    <!-- Magazine Section -->
+<section class="magazine-section" id="magazine">
+    <div class="container">
+        <div class="magazine-container">
+            <div class="magazine-cover">
+                <!-- Tanda klik dan link ke halaman magazine -->
+                <a href="kazinevol1.html" style="display: block; position: relative;" aria-label="View KAZINE Magazine Volume 1">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="KAZINE Magazine Volume 1">
+                    <!-- Badge dengan tanda klik -->
+                    <div class="magazine-badge" style="cursor: pointer;">
+                        <i class="fas fa-external-link-alt" style="margin-right: 5px; font-size: 10px;"></i>
+                        VOL. 1 - CLICK TO VIEW
                     </div>
+                    <!-- Overlay untuk indikasi klik -->
+                    <div class="magazine-overlay" style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0);
+                        transition: var(--transition-smooth);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                    ">
+                        <div style="
+                            background: var(--pure-black);
+                            color: var(--pure-white);
+                            padding: 15px 30px;
+                            font-size: 12px;
+                            letter-spacing: 2px;
+                            text-transform: uppercase;
+                            transform: translateY(20px);
+                            transition: var(--transition-smooth);
+                        ">
+                            <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                            VIEW MAGAZINE
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="magazine-content">
+                <h2>KAZINE!</h2>
+                <h3>NEW YEAR NEW VIBES</h3>
+                <p>Experience the inaugural edition of KAZINE, where fashion, culture, and lifestyle converge. Volume 1 celebrates new beginnings with exclusive interviews, editorial features, and behind-the-scenes access to the world's most influential creators.</p>
+                <p>Discover the stories behind the styles and the visionaries shaping tomorrow's trends today.</p>
+                <!-- Tombol untuk melihat magazine -->
+                <a href="kazinevol1.html" class="coming-soon-tag" style="
+                    text-decoration: none;
+                    cursor: pointer;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                " role="button" aria-label="View Volume 1 Magazine">
+                    <i class="fas fa-book-open" style="font-size: 12px;"></i>
+                    <span>VIEW VOLUME 1</span>
+                </a>
+                <div class="coming-soon-tag" role="status" aria-label="Volume 2 coming soon" style="margin-top: 15px;">
+                    VOLUME 2 COMING SOON
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1741,16 +1840,23 @@
     });
 
     // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainMenu = document.getElementById('mainMenu');
+    // Mobile menu functionality - UPDATED
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mainMenu = document.getElementById('mainMenu');
+
+if (mobileMenuBtn) {
+    // For mobile touch devices
+    mobileMenuBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleMobileMenu();
+    }, { passive: false });
     
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileMenuBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            toggleMobileMenu();
-        }, { passive: false });
-    }
+    // For click (desktop and mobile)
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleMobileMenu();
+    });
+}
     
     function toggleMobileMenu() {
         mainMenu.classList.toggle('active');
