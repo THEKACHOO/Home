@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protect the Earth, It's Our Home | KABOOM!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            --accent: #000000;
+            --primary: #000000;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kaboom {
+            animation: kaboomEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes kaboomEffect {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3) rotate(5deg); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--black);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--black);
+            color: var(--black);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0,128,0,0.02));
+            z-index: 0;
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .article-title {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: #2d5a27;
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: #38a169;
+            border-radius: 2px;
+        }
+
+        .article-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ===== SPEAKER INFO ===== */
+        .speaker-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 250px;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #2d5a27;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .speaker-role {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .speaker-btn {
+            background: transparent;
+            border: 2px solid var(--gray-300);
+            color: var(--gray-600);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-btn {
+            border-color: #38a169;
+            color: #38a169;
+            background: #38a169;
+            color: var(--white);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content-section {
+            padding: 80px 0;
+        }
+
+        .article-content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(45deg, #1a202c, #2d3748);
+            border-radius: 20px;
+            margin: 40px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,100,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .image-credit {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-credit a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .image-credit a:hover {
+            color: var(--gray-300);
+            text-decoration: underline;
+        }
+
+        .article-body {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--gray-700);
+        }
+
+        .article-body p {
+            margin-bottom: 30px;
+        }
+
+        .article-body h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 60px 0 30px;
+            color: #2d5a27;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .article-body h2:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: #38a169;
+            border-radius: 2px;
+        }
+
+        .article-body h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: #2d5a27;
+        }
+
+        .highlight-quote {
+            border-left: 4px solid #38a169;
+            padding-left: 30px;
+            margin: 50px 0;
+            font-style: italic;
+            font-size: 24px;
+            color: #2d5a27;
+            line-height: 1.5;
+            position: relative;
+            background: #f0fff4;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .highlight-quote:before {
+            content: '"';
+            position: absolute;
+            left: 15px;
+            top: -10px;
+            font-size: 60px;
+            color: #c6f6d5;
+            font-family: Georgia, serif;
+        }
+
+        /* ===== BIOGRAPHY MODAL ===== */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bio-modal.active {
+            display: flex;
+        }
+
+        .bio-modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .bio-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-400);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bio-close:hover {
+            color: var(--black);
+            background: var(--gray-100);
+        }
+
+        .bio-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .bio-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #2d5a27;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .bio-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .bio-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        .bio-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .bio-content p {
+            margin-bottom: 20px;
+        }
+
+        .bio-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .bio-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bio-social a:hover {
+            border-color: #38a169;
+            color: #38a169;
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #f0fff4;
+            padding: 80px 0 40px;
+            border-top: 1px solid #c6f6d5;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #c6f6d5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: #2d5a27;
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #38a169;
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: #2d5a27;
+            font-size: 18px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: #2d5a27;
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #38a169;
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #c6f6d5;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 40px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .article-image {
+                height: 400px;
+            }
+            
+            .article-body h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+            }
+            
+            .speaker-info {
+                gap: 30px;
+            }
+            
+            .speaker-card {
+                max-width: 200px;
+            }
+            
+            .bio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .bio-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .speaker-info {
+                gap: 20px;
+            }
+            
+            .speaker-card {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .image-placeholder {
+                font-size: 24px;
+            }
+            
+            .article-body {
+                font-size: 17px;
+            }
+            
+            .highlight-quote {
+                font-size: 20px;
+                padding-left: 20px;
+                margin: 30px 0;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='kaboom.html'">
+                    <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
+                    <div class="article-category">NATURE</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="kaboom.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#speakers'">
+                        <i class="fas fa-users"></i> Speakers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">APRIL 22, 2026</span>
+                <h1 class="article-title scroll-animate">Protect the Earth,<br>It's Our Home</h1>
+                <p class="article-subtitle scroll-animate">Exploring the urgent need for environmental conservation and discovering how every action counts in preserving our planet for future generations. The Earth is not just a place we live in—it's our only home.</p>
+                
+                <div class="speaker-info scroll-animate" id="speakers">
+                    <!-- Speaker 1 -->
+                    <div class="speaker-card" onclick="openBio('sean')">
+                        <div class="speaker-avatar">SK</div>
+                        <h3 class="speaker-name">Sean Kastara</h3>
+                        <p class="speaker-role">Chief Operating Officer<br>TN Eco Nusantara</p>
+                        <button class="speaker-btn">View Profile</button>
+                    </div>
+                    
+                    <!-- Photographer -->
+                    <div class="speaker-card" onclick="openBio('pancarona')">
+                        <div class="speaker-avatar">P</div>
+                        <h3 class="speaker-name">Pancarona Collective</h3>
+                        <p class="speaker-role">Environmental Photographers<br>Visual Storytellers</p>
+                        <button class="speaker-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <!-- Hero Image -->
+                <div class="article-image scroll-animate">
+                    <div class="image-placeholder">EARTH'S BEAUTY</div>
+                    <div class="image-credit">
+                        Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                    </div>
+                </div>
+                
+                <!-- Article Body -->
+                <div class="article-body scroll-animate">
+                    <p>In an era marked by climate change, biodiversity loss, and environmental degradation, the call to protect our planet has never been more critical. The Earth—our only home—is facing unprecedented challenges, but it's also showing remarkable resilience. This exploration takes us from the depths of our oceans to the highest mountain peaks, revealing why conservation matters now more than ever.</p>
+                    
+                    <h2>The Fragile Balance of Ecosystems</h2>
+                    
+                    <p>Every ecosystem on Earth exists in a delicate balance, where each species plays a crucial role in maintaining the health of the whole. From the smallest microorganisms in the soil to the largest predators in the oceans, every creature contributes to the planet's life-support systems. When we disrupt these balances, we risk triggering cascading effects that can undermine the very foundations of life on Earth.</p>
+                    
+                    <div class="highlight-quote">
+                        "We don't inherit the Earth from our ancestors; we borrow it from our children. Every tree planted, every plastic bottle refused, every species protected is an investment in our collective future."
+                    </div>
+                    
+                    <p>Modern science reveals that healthy ecosystems provide essential services worth trillions of dollars annually—from clean air and water to pollination and climate regulation. Yet, we often take these services for granted until they're compromised or lost entirely.</p>
+                    
+                    <h2>The Ocean's Cry for Help</h2>
+                    
+                    <p>Covering 71% of our planet, oceans are the lifeblood of Earth, regulating climate, producing oxygen, and feeding billions. Yet, they face immense threats: plastic pollution that outnumbers fish in some areas, coral bleaching from warming waters, overfishing that depletes marine populations, and acidification that threatens shell-building organisms.</p>
+                    
+                    <h3>The Plastic Problem</h3>
+                    
+                    <p>Every year, approximately 8 million tons of plastic enter our oceans. This plastic breaks down into microplastics that enter the food chain, affecting marine life and ultimately human health. The Great Pacific Garbage Patch—a floating island of plastic waste—now covers an area three times the size of France.</p>
+                    
+                    <p><strong>Ocean conservation initiatives</strong> are showing promising results. Marine protected areas, sustainable fishing practices, and plastic reduction campaigns are making a difference, but global cooperation and individual action are needed to scale these efforts.</p>
+                    
+                    <p><strong>Coral reef restoration</strong> - Scientists are developing coral species resistant to warming waters and replanting damaged reefs. Community-led programs are training local divers to become coral gardeners, nurturing new growth on artificial structures.</p>
+                    
+                    <p><strong>Blue carbon ecosystems</strong> - Mangrove forests, seagrass meadows, and salt marshes sequester carbon at rates up to 10 times higher than terrestrial forests. Protecting and restoring these ecosystems offers a powerful climate solution.</p>
+                    
+                    <h2>Forests: The Lungs of Our Planet</h2>
+                    
+                    <p>Forests cover approximately 31% of the Earth's land area, hosting 80% of terrestrial biodiversity and playing a crucial role in climate regulation. Yet, deforestation continues at alarming rates, with football-field-sized areas of forest lost every second.</p>
+                    
+                    <div class="article-image scroll-animate" style="height: 400px; margin: 50px 0;">
+                        <div class="image-placeholder">FOREST CONSERVATION</div>
+                        <div class="image-credit">
+                            Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                        </div>
+                    </div>
+                    
+                    <p>Indigenous communities, who protect approximately 80% of the world's remaining biodiversity, are on the frontlines of forest conservation. Their traditional knowledge and sustainable practices offer valuable lessons for the rest of the world.</p>
+                    
+                    <p>As Sean Kastara of TN Eco Nusantara emphasizes, "Conservation isn't about putting nature in a museum. It's about creating sustainable systems where humans and nature thrive together. Every restored hectare of forest creates jobs, captures carbon, protects watersheds, and preserves cultural heritage."</p>
+                    
+                    <h2>Individual Actions with Collective Impact</h2>
+                    
+                    <p>While global challenges require systemic solutions, individual actions create powerful ripples of change. Consider these everyday choices with significant environmental impact:</p>
+                    
+                    <p>1. <strong>Reduce single-use plastics</strong> - Carry reusable bags, bottles, and containers. Choose products with minimal packaging.<br>
+                    2. <strong>Conserve water</strong> - Fix leaks promptly, install water-saving fixtures, and be mindful of consumption.<br>
+                    3. <strong>Support sustainable products</strong> - Look for certifications like Fair Trade, Rainforest Alliance, and MSC for seafood.<br>
+                    4. <strong>Reduce food waste</strong> - Plan meals, store food properly, and compost organic waste.<br>
+                    5. <strong>Choose sustainable transportation</strong> - Walk, bike, use public transit, or carpool when possible.</p>
+                    
+                    <h2>Innovation and Hope</h2>
+                    
+                    <p>Across the globe, innovative solutions are emerging. From vertical farming that produces food with 95% less water to biodegradable materials replacing plastics, from renewable energy surpassing fossil fuels in affordability to circular economy models eliminating waste—human ingenuity is rising to meet environmental challenges.</p>
+                    
+                    <p>Youth-led movements like Fridays for Future are mobilizing millions worldwide, demonstrating that concern for the planet transcends generations and borders. Corporations are increasingly adopting Environmental, Social, and Governance (ESG) principles, recognizing that sustainability is good for business and essential for long-term survival.</p>
+                    
+                    <p>The Earth has shown remarkable resilience throughout its 4.5-billion-year history. It has survived ice ages, asteroid impacts, and volcanic super-eruptions. Now, it faces a new challenge: human activity. The good news is that as the cause of the problem, we also hold the solution. By working with nature rather than against it, we can create a future where both humanity and the natural world flourish.</p>
+                    
+                    <p>As the Pancarona Collective's photographs remind us, our planet's beauty is worth protecting—not as a distant wilderness, but as our shared home, our life-support system, and our legacy to future generations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Modals -->
+    <!-- Sean Kastara Bio -->
+    <div class="bio-modal" id="seanBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('sean')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">SK</div>
+                <div>
+                    <h2 class="bio-title">Sean Kastara</h2>
+                    <p class="bio-subtitle">Chief Operating Officer, TN Eco Nusantara<br>Environmental Strategist • Conservation Leader • Sustainability Expert</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>Sean Kastara serves as the Chief Operating Officer at TN Eco Nusantara, Indonesia's leading environmental conservation organization. With over 15 years of experience in sustainable development, Kastara has pioneered innovative approaches to balancing ecological preservation with community economic development.</p>
+                
+                <p>Under his leadership, TN Eco Nusantara has successfully implemented conservation programs across Indonesia's diverse ecosystems—from the rainforests of Sumatra and Borneo to the coral reefs of Raja Ampat and the mangrove forests of Java.</p>
+                
+                <p>Kastara's "Eco-Synergy Framework" has gained international recognition for its holistic approach to conservation, emphasizing four interconnected pillars:</p>
+                
+                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
+                    <li><strong>Ecological Integrity</strong> - Protecting and restoring natural habitats and biodiversity</li>
+                    <li><strong>Community Empowerment</strong> - Creating sustainable livelihoods for local communities</li>
+                    <li><strong>Economic Viability</strong> - Developing conservation as an economically sustainable model</li>
+                    <li><strong>Cultural Preservation</strong> - Honoring and integrating indigenous knowledge and practices</li>
+                </ul>
+                
+                <p>Prior to joining TN Eco Nusantara, Kastara worked with international organizations including the World Wildlife Fund and Conservation International, focusing on marine conservation in Southeast Asia. He holds a Master's degree in Environmental Management from Yale University and a Bachelor's in Biology from Universitas Indonesia.</p>
+                
+                <p>Kastara has been instrumental in several landmark conservation achievements, including the establishment of the 2.5-million-hectare Sebangau National Park in Central Kalimantan and the development of Indonesia's first community-managed marine protected area network in Eastern Indonesia.</p>
+                
+                <p>He is a frequent speaker at international conferences and has advised governments and corporations on sustainable development strategies. Kastara believes that "conservation succeeds when it benefits both nature and people, creating a virtuous cycle of protection and prosperity."</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pancarona Collective Bio -->
+    <div class="bio-modal" id="pancaronaBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('pancarona')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">P</div>
+                <div>
+                    <h2 class="bio-title">Pancarona Collective</h2>
+                    <p class="bio-subtitle">Environmental Photography Collective<br>Visual Storytellers • Conservation Advocates</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>The Pancarona Collective is an award-winning international photography collective dedicated to documenting the beauty and fragility of our natural world. With a special focus on environmental conservation, the collective's work bridges the gap between scientific understanding and public awareness.</p>
+                
+                <p>Founded in 2018, Pancarona brings together photographers, scientists, and conservationists to create visual narratives that inspire action and foster connection with nature. The collective's name reflects their mission: "pancarona" derives from ancient words meaning "to illuminate the whole," representing their comprehensive approach to environmental storytelling.</p>
+                
+                <p>Specializing in long-term documentary projects, Pancarona has documented critical environmental issues across six continents, with particular emphasis on:</p>
+                
+                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
+                    <li>Climate change impacts on vulnerable ecosystems</li>
+                    <li>Wildlife conservation success stories and challenges</li>
+                    <li>Indigenous conservation practices and traditional ecological knowledge</li>
+                    <li>Innovative solutions to environmental problems</li>
+                </ul>
+                
+                <p>The collective's groundbreaking project "Vanishing Ice" documented glacier retreat across the Himalayas, Andes, Alps, and Rockies over a five-year period, creating powerful visual evidence of climate change. This work has been exhibited at the United Nations Climate Conference and featured in National Geographic.</p>
+                
+                <p>Pancarona's "Guardians of the Forest" series, created in collaboration with indigenous communities in the Amazon and Congo basins, highlights traditional conservation practices that have protected biodiversity for generations. This project has influenced policy discussions on recognizing indigenous land rights as a conservation strategy.</p>
+                
+                <p>Operating on a collaborative model, Pancarona shares profits from commercial work to fund conservation photography grants for emerging photographers from the Global South. They also conduct photography workshops for conservation rangers and community monitors, equipping them with skills to document biodiversity and environmental changes.</p>
+                
+                <p>The collective believes that "seeing leads to caring, and caring leads to action." Through their visually stunning and scientifically accurate work, they aim to create emotional connections that translate into conservation action.</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fas fa-camera"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>About This Article</h3>
+                    <p>This feature is part of KABOOM!'s "Nature Conservation" series, exploring urgent environmental issues and innovative solutions. Through scientific research, on-the-ground reporting, and powerful visual storytelling, we examine what it will take to protect our planet for future generations.</p>
+                    <p>Our mission is to move beyond doom-and-gloom narratives to showcase practical solutions, inspiring stories, and the scientific basis for hope. We believe that informed awareness leads to meaningful action.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">All content on this site is for educational and awareness purposes. Environmental data and conservation strategies are based on current scientific research and best practices.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Biography Modal Functions
+        function openBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.bio-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add pulse animation to speaker cards
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
