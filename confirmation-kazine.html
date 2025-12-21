@@ -646,19 +646,6 @@
     </footer>
 
     <script>
-    // Di VERY TOP script, sebelum apapun:
-console.log('=== DEBUG LOCALSTORAGE ===');
-console.log('kazineOrder:', localStorage.getItem('kazineOrder'));
-console.log('Parsed:', JSON.parse(localStorage.getItem('kazineOrder')));
-console.log('All localStorage:');
-for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key.includes('kazine')) {
-        console.log(key + ':', localStorage.getItem(key));
-    }
-}
-console.log('=== END DEBUG ===');
-        
         // ✅ GOOGLE APPS SCRIPT URL UNTUK KAZINE
     const KAZINE_SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbz1yqiYQ_IJwvuq5vL2hNHm-KAsQCndoOd62Qnf7foHlr4evbDAwOuA3GFNoR2hfCFM/exec';
     
@@ -938,77 +925,73 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     try {
         // Get order data from localStorage
-        console.log('🔍 Checking localStorage for order data...');
-        const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
-        
-        console.log('📦 Order data from localStorage:', orderData);
-        
-        if (!orderData) {
-            throw new Error('No order data found. Please complete your payment first.');
-        }
-        
-        // ⚠️ PROBLEM AREA - Validasi yang terlalu ketat
-        // GANTI bagian ini:
-        if (!orderData.customer || !orderData.customer.name || !orderData.customer.email) {
-            throw new Error('Incomplete customer information.');
-        }
-        
-        // MENJADI INI (validasi yang lebih fleksibel):
-        console.log('👤 Customer data structure:', orderData.customer);
-        
-        // Jika customer data dalam format berbeda
-        if (!orderData.customer) {
-            // Coba format alternatif
-            if (orderData.customerName || orderData.customerEmail) {
-                // Reformat data ke struktur yang diharapkan
-                orderData.customer = {
-                    name: orderData.customerName || 'Customer',
-                    email: orderData.customerEmail || 'No email provided',
-                    twitter: orderData.customerTwitter || orderData.twitter || 'Not provided'
-                };
-                console.log('🔄 Reformatted customer data:', orderData.customer);
-            } else {
-                // Data minimal
-                orderData.customer = {
-                    name: 'Customer',
-                    email: 'No email provided',
-                    twitter: 'Not provided'
-                };
-                console.log('⚡ Using fallback customer data');
-            }
-        }
-        
-        // Pastikan ada data minimal
-        if (!orderData.customer.name) orderData.customer.name = 'Customer';
-        if (!orderData.customer.email) orderData.customer.email = 'No email provided';
-        
-        // Juga cek items (mungkin format berbeda)
-        if (!orderData.items && orderData.cart) {
-            orderData.items = orderData.cart;
-            console.log('🔄 Using cart as items');
-        }
-        
-        // Pastikan ada items array
-        if (!orderData.items || !Array.isArray(orderData.items) || orderData.items.length === 0) {
-            orderData.items = [{
-                title: 'Fashion Item',
-                price: orderData.subtotal || 0,
-                quantity: 1
-            }];
-            console.log('⚡ Using fallback items');
-        }
-        
-        // Pastikan ada subtotal dan total
-        if (!orderData.subtotal && orderData.items && orderData.items.length > 0) {
-            orderData.subtotal = orderData.items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
-            console.log('🧮 Calculated subtotal:', orderData.subtotal);
-        }
-        
-        if (!orderData.total) {
-            orderData.total = (parseFloat(orderData.subtotal) || 0) 
-                - (parseFloat(orderData.discount) || 0) 
-                + (parseFloat(orderData.serviceFee) || 2.50);
-            console.log('🧮 Calculated total:', orderData.total);
+        // Get order data from localStorage
+console.log('🔍 Checking localStorage for order data...');
+const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
+
+console.log('📦 Order data from localStorage:', orderData);
+
+if (!orderData) {
+    throw new Error('No order data found. Please complete your payment first.');
+}
+
+// 🔥 PERBAIKAN: Validasi yang lebih fleksibel
+console.log('👤 Customer data structure:', orderData.customer);
+
+// Jika customer data dalam format berbeda
+if (!orderData.customer) {
+    // Coba format alternatif - lihat struktur data yang sebenarnya
+    if (orderData.customerName || orderData.customerEmail) {
+        // Reformat data ke struktur yang diharapkan
+        orderData.customer = {
+            name: orderData.customerName || 'Customer',
+            email: orderData.customerEmail || 'No email provided',
+            twitter: orderData.customerTwitter || orderData.twitter || 'Not provided'
+        };
+        console.log('🔄 Reformatted customer data:', orderData.customer);
+    } else {
+        // Data minimal
+        orderData.customer = {
+            name: 'Customer',
+            email: 'No email provided',
+            twitter: 'Not provided'
+        };
+        console.log('⚡ Using fallback customer data');
+    }
+} else {
+    // Jika customer object ada, pastikan properti minimal ada
+    orderData.customer.name = orderData.customer.name || 'Customer';
+    orderData.customer.email = orderData.customer.email || 'No email provided';
+}
+
+// Juga cek items (mungkin format berbeda)
+if (!orderData.items && orderData.cart) {
+    orderData.items = orderData.cart;
+    console.log('🔄 Using cart as items');
+}
+
+// Pastikan ada items array
+if (!orderData.items || !Array.isArray(orderData.items) || orderData.items.length === 0) {
+    orderData.items = [{
+        title: 'Fashion Item',
+        price: orderData.subtotal || 0,
+        quantity: 1
+    }];
+    console.log('⚡ Using fallback items');
+}
+
+// Pastikan ada subtotal dan total
+if (!orderData.subtotal && orderData.items && orderData.items.length > 0) {
+    orderData.subtotal = orderData.items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+    console.log('🧮 Calculated subtotal:', orderData.subtotal);
+}
+
+if (!orderData.total) {
+    orderData.total = (parseFloat(orderData.subtotal) || 0) 
+        - (parseFloat(orderData.discount) || 0) 
+        + (parseFloat(orderData.serviceFee) || 2.50);
+    console.log('🧮 Calculated total:', orderData.total);
+}
         }
         
         // Display order data to customer FIRST
