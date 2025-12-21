@@ -97,7 +97,11 @@
             letter-spacing: 1px;
         }
 
-        /* Navigation */
+        /* Navigation - HIDDEN IN MOBILE */
+        nav {
+            display: flex;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -167,13 +171,9 @@
             font-weight: 700;
         }
 
+        /* Mobile menu button - REMOVED */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: var(--primary-black);
-            font-size: 24px;
-            cursor: pointer;
         }
 
         /* Hero Section */
@@ -635,38 +635,9 @@
         padding: 0 15px;
     }
     
-    .mobile-menu-btn {
-        display: block;
-        z-index: 1001;
-    }
-    
+    /* HIDE NAVIGATION IN MOBILE */
     nav {
-        order: 3;
-        width: 100%;
-    }
-    
-    nav ul {
-        position: fixed;
-        top: 90px;
-        left: 0;
-        width: 100%;
-        background: var(--primary-white);
-        flex-direction: column;
-        align-items: center;
-        padding: 30px 0;
-        gap: 20px;
-        transform: translateY(-100%);
-        opacity: 0;
-        transition: all 0.5s ease;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        max-height: calc(100vh - 90px);
-        overflow-y: auto;
-    }
-    
-    nav ul.active {
-        transform: translateY(0);
-        opacity: 1;
+        display: none;
     }
     
     .cart-modal {
@@ -838,17 +809,7 @@
                 </div>
             </div>
             
-            <div class="cart-icon-container">
-                <div class="cart-icon" id="openCart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div class="cart-count" id="cartCount">0</div>
-                </div>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
+            <!-- Navigation HIDDEN IN MOBILE -->
             <nav>
                 <ul id="mainMenu">
                     <li><a href="index.html">HOME</a></li>
@@ -857,6 +818,13 @@
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </nav>
+            
+            <div class="cart-icon-container">
+                <div class="cart-icon" id="openCart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cartCount">0</div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1147,7 +1115,7 @@
         cartModal.classList.remove('active');
     });
     
-    // Checkout button in cart modal - INI YANG DIPERBAIKI
+    // Checkout button in cart modal
     checkoutBtn.addEventListener('click', () => {
         if (cart.length === 0) {
             alert('Your cart is empty! Please add books first.');
@@ -1173,40 +1141,6 @@
         
         // Redirect to payment page
         window.location.href = 'payment-kafkapages.html';
-    });
-
-    // Mobile menu toggle
-   function toggleMobileMenu() {
-    mainMenu.classList.toggle('active');
-    if (mainMenu.classList.contains('active')) {
-        mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
-        mobileMenuBtn.style.color = 'var(--dark-gray)';
-    } else {
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-        mobileMenuBtn.style.color = 'var(--primary-black)';
-    }
-}
-
-// TAMBAHKAN event listener untuk mobile menu
-mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-mobileMenuBtn.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    toggleMobileMenu();
-});
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mainMenu.classList.toggle('active');
-        mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-            ? '<i class="fas fa-times"></i>' 
-            : '<i class="fas fa-bars"></i>';
-    });
-    
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            mainMenu.classList.remove('active');
-            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-        });
     });
 
     // Close cart when clicking outside
