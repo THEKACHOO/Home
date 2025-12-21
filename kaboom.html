@@ -42,28 +42,30 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 24px;
+            width: 100%;
         }
         
-        /* Header */
+        /* Header - FIXED */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.98);
             z-index: 1000;
             border-bottom: 1px solid var(--gray-200);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            height: 80px;
+            padding: 16px 0;
+            min-height: 80px;
+            gap: 20px;
         }
         
         .logo-container {
@@ -77,7 +79,7 @@
         }
         
         #logo {
-            height: 45px;
+            height: 40px;
             width: auto;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -92,24 +94,31 @@
             100% { transform: scale(1); opacity: 1; }
         }
         
+        /* Hotline Section - Improved */
         .hotline-today {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+            padding: 0 15px;
         }
         
         .hotline-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            position: relative;
-            padding: 8px 20px;
+            padding: 12px 28px;
             background: var(--black);
             color: var(--white);
             border-radius: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             animation: hotlinePulse 3s infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            text-align: center;
         }
         
         @keyframes hotlinePulse {
@@ -117,15 +126,17 @@
             100% { box-shadow: 0 4px 30px rgba(0,0,0,0.25); }
         }
         
+        /* Menu Container */
         .menu-container {
             position: relative;
+            flex: 0 0 auto;
         }
         
         .menu-button {
             background: transparent;
             border: 2px solid var(--black);
             color: var(--black);
-            padding: 12px 28px;
+            padding: 10px 22px;
             border-radius: 30px;
             font-weight: 600;
             font-size: 14px;
@@ -134,7 +145,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             position: relative;
             overflow: hidden;
         }
@@ -168,8 +179,8 @@
             background: var(--white);
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            width: 280px;
-            padding: 20px 0;
+            width: 260px;
+            padding: 16px 0;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
@@ -185,16 +196,17 @@
         }
         
         .menu-item {
-            padding: 16px 30px;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
             color: var(--black);
             text-decoration: none;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
             position: relative;
             overflow: hidden;
+            font-size: 15px;
         }
         
         .menu-item:after {
@@ -215,63 +227,40 @@
         .menu-item:hover {
             background: var(--gray-50);
             border-left: 4px solid var(--black);
-            padding-left: 35px;
+            padding-left: 28px;
         }
         
         .menu-icon {
-            font-size: 18px;
-            width: 24px;
+            font-size: 16px;
+            width: 22px;
             text-align: center;
         }
         
         .year-badge {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--white);
-            padding: 4px 20px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--gray-700);
-            border: 1px solid var(--gray-300);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: none; /* Hidden on desktop, shown only on mobile */
         }
         
-        /* Hero Section */
+        /* Hero Section - IMPROVED */
         .hero {
-            padding: 140px 0 80px;
+            padding: 140px 0 60px;
             background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0,0,0,0.02));
-            z-index: 0;
+            margin-top: 80px;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 1;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .hero-title {
-            font-size: 68px;
+            font-size: clamp(36px, 6vw, 68px);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             letter-spacing: -1px;
             position: relative;
             display: inline-block;
@@ -280,7 +269,7 @@
         .hero-title:after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
@@ -290,35 +279,38 @@
         }
         
         .hero-subtitle {
-            font-size: 22px;
+            font-size: clamp(16px, 2vw, 22px);
             color: var(--gray-600);
             max-width: 700px;
-            margin: 0 auto 50px;
+            margin: 0 auto 40px;
             font-weight: 400;
             line-height: 1.6;
+            padding: 0 10px;
         }
         
-        /* Filter Buttons */
+        /* Filter Buttons - IMPROVED */
         .filter-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
+            gap: 12px;
+            margin: 40px 0 60px;
             flex-wrap: wrap;
+            padding: 0 10px;
         }
         
         .filter-btn {
-            padding: 14px 28px;
+            padding: 12px 24px;
             background: transparent;
             border: 2px solid var(--gray-300);
             border-radius: 30px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--gray-600);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
         
         .filter-btn:before {
@@ -349,23 +341,23 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         
-        /* News Grid */
+        /* News Grid - IMPROVED */
         .news-section {
-            padding: 80px 0;
+            padding: 40px 0 80px;
         }
         
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
         
         .news-card {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             border: 1px solid var(--gray-200);
             opacity: 0;
@@ -387,13 +379,13 @@
         .news-card:nth-child(6) { animation-delay: 0.5s; }
         
         .news-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
             border-color: transparent;
         }
         
         .card-img {
-            height: 240px;
+            height: 220px;
             background: var(--gray-900);
             position: relative;
             overflow: hidden;
@@ -406,7 +398,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
             z-index: 1;
         }
         
@@ -420,38 +412,40 @@
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 20px;
+            font-size: clamp(18px, 2.5vw, 22px);
             font-weight: 700;
             letter-spacing: 1px;
             z-index: 2;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            padding: 20px;
+            text-align: center;
         }
         
         .card-tag {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 18px;
+            left: 18px;
             background: var(--white);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
             z-index: 3;
             color: var(--black);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .card-content {
-            padding: 30px;
+            padding: 24px;
         }
         
         .card-title {
-            font-size: 24px;
+            font-size: clamp(18px, 2vw, 22px);
             font-weight: 700;
             line-height: 1.4;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--black);
             transition: color 0.3s ease;
         }
@@ -462,22 +456,22 @@
         
         .card-excerpt {
             color: var(--gray-600);
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .card-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 20px;
+            padding-top: 18px;
             border-top: 1px solid var(--gray-200);
         }
         
         .card-date {
             color: var(--gray-500);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
         }
         
@@ -485,14 +479,15 @@
             background: transparent;
             border: 2px solid var(--black);
             color: var(--black);
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
         
         .card-btn:before {
@@ -517,91 +512,88 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         
-        /* Featured Article */
+        /* Featured Article - IMPROVED */
         .featured-article {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr;
+            gap: 0;
             background: var(--white);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--gray-200);
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             opacity: 0;
             transform: translateY(30px);
             animation: cardAppear 0.8s forwards 0.6s;
         }
         
         .featured-img {
-            height: 400px;
+            height: 300px;
             background: var(--gray-900);
             position: relative;
         }
         
         .featured-content {
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 36px;
         }
         
         .featured-tag {
             display: inline-block;
             background: var(--black);
             color: var(--white);
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             letter-spacing: 1px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
         
         .featured-title {
-            font-size: 42px;
+            font-size: clamp(28px, 4vw, 40px);
             font-weight: 900;
             line-height: 1.2;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             letter-spacing: -0.5px;
         }
         
         .featured-excerpt {
-            font-size: 18px;
+            font-size: clamp(16px, 1.8vw, 18px);
             color: var(--gray-600);
             line-height: 1.7;
-            margin-bottom: 35px;
+            margin-bottom: 28px;
         }
         
-        /* Footer */
+        /* Footer - IMPROVED */
         footer {
             background: var(--gray-50);
-            padding: 80px 0 40px;
+            padding: 60px 0 30px;
             border-top: 1px solid var(--gray-200);
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px;
-            margin-bottom: 60px;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
         .company-card {
             background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 30px;
+            border-radius: 18px;
             border: 1px solid var(--gray-200);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
         
         .company-card h3 {
-            font-size: 28px;
+            font-size: clamp(22px, 3vw, 26px);
             font-weight: 900;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         
         .company-card h3:after {
@@ -609,8 +601,8 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 4px;
+            width: 50px;
+            height: 3px;
             background: var(--black);
             border-radius: 2px;
         }
@@ -618,28 +610,32 @@
         .company-info {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
         
         .company-info div {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            align-items: flex-start;
+            gap: 12px;
             color: var(--gray-700);
+            font-size: 15px;
+            line-height: 1.5;
         }
         
         .company-info i {
-            width: 20px;
+            width: 18px;
             color: var(--black);
-            font-size: 18px;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
         }
         
         .footer-about h3 {
-            font-size: 28px;
+            font-size: clamp(22px, 3vw, 26px);
             font-weight: 900;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         
         .footer-about h3:after {
@@ -647,8 +643,8 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 4px;
+            width: 50px;
+            height: 3px;
             background: var(--black);
             border-radius: 2px;
         }
@@ -656,13 +652,13 @@
         .footer-about p {
             color: var(--gray-600);
             line-height: 1.7;
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 16px;
+            font-size: 15px;
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid var(--gray-300);
             color: var(--gray-500);
             font-size: 14px;
@@ -670,130 +666,303 @@
         
         .disclaimer {
             max-width: 800px;
-            margin: 20px auto 0;
+            margin: 16px auto 0;
             font-style: italic;
             color: var(--gray-500);
             line-height: 1.6;
+            font-size: 13px;
         }
         
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .hero-title {
-                font-size: 58px;
-            }
-            
-            .featured-article {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-img {
-                height: 300px;
-            }
-        }
+        /* ==================== */
+        /* RESPONSIVE BREAKPOINTS */
+        /* ==================== */
         
-        @media (max-width: 992px) {
+        /* Tablet (768px - 991px) */
+        @media (min-width: 768px) {
             .container {
-                padding: 0 30px;
+                padding: 0 32px;
             }
             
-            .hero-title {
-                font-size: 48px;
-            }
-            
-            .hero-subtitle {
-                font-size: 20px;
-            }
-            
-            .news-grid {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 30px;
+            .header-content {
+                padding: 18px 0;
             }
             
             .hotline-text {
-                font-size: 20px;
-                padding: 8px 16px;
+                font-size: 22px;
+                padding: 14px 32px;
             }
             
             #logo {
-                height: 40px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-wrap: wrap;
-                height: auto;
-                padding: 15px 0;
-            }
-            
-            .hotline-today {
-                position: relative;
-                left: 0;
-                transform: none;
-                order: 3;
-                width: 100%;
-                margin-top: 15px;
-            }
-            
-            .hotline-text {
-                display: inline-block;
-            }
-            
-            .hero {
-                padding: 120px 0 60px;
-            }
-            
-            .hero-title {
-                font-size: 40px;
-            }
-            
-            .featured-title {
-                font-size: 32px;
-            }
-            
-            .featured-content {
-                padding: 30px;
-            }
-            
-            .year-badge {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                transform: none;
-                display: inline-block;
-                margin-top: 10px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero-title {
-                font-size: 36px;
-            }
-            
-            .hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .news-grid {
-                grid-template-columns: 1fr;
+                height: 45px;
             }
             
             .menu-button {
-                padding: 10px 20px;
+                padding: 12px 24px;
+            }
+            
+            .hero {
+                padding: 150px 0 70px;
+            }
+            
+            .hero-title:after {
+                bottom: -14px;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 35px;
+            }
+            
+            .featured-article {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 0;
+            }
+            
+            .featured-img {
+                height: 100%;
+                min-height: 350px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+            }
+        }
+        
+        /* Desktop (992px and up) */
+        @media (min-width: 992px) {
+            .container {
+                padding: 0 40px;
+            }
+            
+            .header-content {
+                padding: 20px 0;
+            }
+            
+            .hotline-text {
+                font-size: 24px;
+                padding: 16px 36px;
+            }
+            
+            #logo {
+                height: 50px;
+            }
+            
+            .hero {
+                padding: 160px 0 80px;
+            }
+            
+            .hero-title {
+                font-size: 68px;
+            }
+            
+            .hero-title:after {
+                bottom: -16px;
+            }
+            
+            .hero-subtitle {
+                font-size: 22px;
+                margin-bottom: 50px;
+            }
+            
+            .news-grid {
+                gap: 40px;
+            }
+            
+            .news-card:hover {
+                transform: translateY(-12px) scale(1.02);
+            }
+            
+            .featured-article {
+                grid-template-columns: 2fr 1fr;
+            }
+            
+            .featured-title {
+                font-size: 42px;
+            }
+            
+            .featured-excerpt {
+                font-size: 18px;
+            }
+            
+            .year-badge {
+                display: block;
+                position: absolute;
+                bottom: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--white);
+                padding: 5px 22px;
+                border-radius: 20px;
                 font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                color: var(--gray-700);
+                border: 1px solid var(--gray-300);
+                box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+            }
+        }
+        
+        /* Large Desktop (1200px and up) */
+        @media (min-width: 1200px) {
+            .featured-article {
+                grid-template-columns: 2.5fr 1fr;
+            }
+            
+            .featured-img {
+                min-height: 400px;
+            }
+            
+            .featured-content {
+                padding: 50px;
+            }
+        }
+        
+        /* Mobile-specific fixes */
+        @media (max-width: 767px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 15px;
+                min-height: 70px;
+            }
+            
+            .logo-container {
+                order: 1;
+            }
+            
+            .hotline-today {
+                order: 3;
+                width: 100%;
+                padding: 10px 0 0;
+                margin-top: 5px;
+            }
+            
+            .hotline-text {
+                font-size: 18px;
+                padding: 10px 24px;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .menu-container {
+                order: 2;
+            }
+            
+            .year-badge {
+                display: block;
+                background: var(--white);
+                padding: 6px 20px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                color: var(--gray-700);
+                border: 1px solid var(--gray-300);
+                box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+                margin-top: 5px;
+                text-align: center;
+                width: 100%;
+                order: 4;
             }
             
             .dropdown-menu {
-                width: 250px;
-                right: -20px;
+                position: fixed;
+                top: 70px;
+                right: 20px;
+                left: 20px;
+                width: auto;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            }
+            
+            .hero {
+                margin-top: 70px;
+                padding: 100px 0 40px;
+            }
+            
+            .filter-container {
+                gap: 8px;
+                margin: 30px 0 40px;
+            }
+            
+            .filter-btn {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+            
+            .news-grid {
+                gap: 25px;
+            }
+            
+            .card-img {
+                height: 200px;
+            }
+            
+            .featured-img {
+                height: 250px;
+            }
+            
+            .featured-content {
+                padding: 28px;
+            }
+            
+            .footer-content {
+                gap: 30px;
             }
             
             .company-card {
-                padding: 30px;
+                padding: 25px;
+            }
+            
+            footer {
+                padding: 50px 0 25px;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hotline-text {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            
+            #logo {
+                height: 35px;
+            }
+            
+            .menu-button {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .featured-content {
+                padding: 24px;
+            }
+            
+            .company-card {
+                padding: 22px;
             }
         }
         
@@ -808,6 +977,15 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-0 {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -815,17 +993,17 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <!-- Logo kiri atas -->
+                <!-- Logo -->
                 <div class="logo-container" id="logoContainer">
                     <img src="kaboom-logo.png" alt="The Kaboom! Logo" id="logo">
                 </div>
                 
-                <!-- HOTLINE TODAY tengah -->
+                <!-- Hotline -->
                 <div class="hotline-today">
                     <div class="hotline-text">HOTLINE TODAY</div>
                 </div>
                 
-                <!-- Menu kanan atas -->
+                <!-- Menu -->
                 <div class="menu-container">
                     <button class="menu-button" id="menuButton">
                         <i class="fas fa-bars"></i> MENU
@@ -851,7 +1029,7 @@
                     </div>
                 </div>
                 
-                <!-- Tahun -->
+                <!-- Year Badge (shown on desktop) -->
                 <div class="year-badge">2026</div>
             </div>
         </div>
@@ -861,7 +1039,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content scroll-animate">
-                <h1 class="hero-title">KABOOM!<br> THE NEWS IS ALWAYS HOTTER THAN YOU!</h1>
+                <h1 class="hero-title">KABOOM!<br>THE NEWS IS ALWAYS HOTTER</h1>
                 <p class="hero-subtitle">Where nature's wonders, animal mysteries, human stories, and the juiciest gossip collide. No politics. No religion. Just pure, unfiltered discovery.</p>
             </div>
         </div>
@@ -903,7 +1081,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Dormant Volcano Shows Signs of Life After 800 Years</h3>
-                        <p class="card-excerpt">Seismic activity detected beneath Mount Kachoo suggests the long-dormant volcano may be reawakening, presenting both risks and research opportunities.</p>
+                        <p class="card-excerpt">Seismic activity detected beneath Mount Kachoo suggests the long-dormant volcano may be reawakening.</p>
                         <div class="card-meta">
                             <span class="card-date">March 15, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -919,7 +1097,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Whale Song Patterns Changing Due to Climate Shifts</h3>
-                        <p class="card-excerpt">Marine biologists document altered communication patterns among humpback whales, suggesting adaptation to changing ocean conditions.</p>
+                        <p class="card-excerpt">Marine biologists document altered communication patterns among humpback whales.</p>
                         <div class="card-meta">
                             <span class="card-date">March 14, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -935,7 +1113,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">New Evidence of Human-Neanderthal Coexistence Found</h3>
-                        <p class="card-excerpt">Archaeological discoveries in France suggest humans and Neanderthals lived side by side for centuries longer than previously believed.</p>
+                        <p class="card-excerpt">Archaeological discoveries suggest humans and Neanderthals lived side by side longer than believed.</p>
                         <div class="card-meta">
                             <span class="card-date">March 13, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -944,14 +1122,14 @@
                 </article>
                 
                 <!-- Card 4 -->
-                <article class="news-card scroll-animate" data-category="gossip">
+                <article class="news-card scroll-animate" data-category="kabuts">
                     <div class="card-img">
                         <div class="img-placeholder">CELEBRITY SCOOP</div>
                         <div class="card-tag">Kabuts</div>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Which Tech Billionaire is Secretly a Birdwatcher?</h3>
-                        <p class="card-excerpt">Sources reveal a silicon valley mogul spends weekends disguised as an amateur ornithologist. Who could it be?</p>
+                        <p class="card-excerpt">Sources reveal a silicon valley mogul spends weekends disguised as an amateur ornithologist.</p>
                         <div class="card-meta">
                             <span class="card-date">March 12, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -967,7 +1145,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">City Foxes Developing Distinct "Accents"</h3>
-                        <p class="card-excerpt">Research shows urban foxes communicate differently than their rural counterparts, adapting to noisy city environments.</p>
+                        <p class="card-excerpt">Research shows urban foxes communicate differently than their rural counterparts.</p>
                         <div class="card-meta">
                             <span class="card-date">March 11, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -983,7 +1161,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Rare Flower Blooms for First Time in 40 Years</h3>
-                        <p class="card-excerpt">The elusive "Midnight Orchid" has flowered at the Royal Botanical Gardens, a event that occurs only once every four decades.</p>
+                        <p class="card-excerpt">The elusive "Midnight Orchid" has flowered at the Royal Botanical Gardens.</p>
                         <div class="card-meta">
                             <span class="card-date">March 10, 2026</span>
                             <button class="card-btn">Read More</button>
@@ -1018,7 +1196,7 @@
                 
                 <div class="footer-about scroll-animate">
                     <h3>About Us</h3>
-                    <p>The Kaboom! Under The Kachoo is a revolutionary tabloid founded in 2026 that explores the intersection of nature, animals, humans, and lighthearted gossip. We believe in curiosity without boundaries.</p>
+                    <p>The Kaboom! Under The Kachoo is a revolutionary tabloid founded in 2026 that explores the intersection of nature, animals, humans, and lighthearted gossip.</p>
                     <p>Just pure discovery. From the depths of the ocean to the latest celebrity eco-venture, we cover it all with style and substance.</p>
                     <p>The HOTLINE TODAY section is updated round-the-clock with breaking stories that matter.</p>
                 </div>
@@ -1040,11 +1218,6 @@
             logo.classList.remove('logo-kaboom');
             void logo.offsetWidth;
             logo.classList.add('logo-kaboom');
-            
-            // Add subtle sound effect idea (commented out)
-            // const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-arrow-whoosh-2526.mp3');
-            // audio.volume = 0.3;
-            // audio.play();
         });
         
         // Dropdown menu toggle
@@ -1068,10 +1241,7 @@
         
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
                 this.classList.add('active');
                 
                 const filterValue = this.getAttribute('data-filter');
@@ -1099,17 +1269,6 @@
                         }
                     });
                 }, 300);
-            });
-        });
-        
-        // Card hover effects
-        newsCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '10';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '1';
             });
         });
         
@@ -1155,10 +1314,12 @@
                         btn.click();
                         
                         // Scroll to news section
-                        document.querySelector('.news-section').scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        setTimeout(() => {
+                            document.querySelector('.news-section').scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 400);
                     }
                 });
             });
@@ -1167,14 +1328,22 @@
         // Button clicks
         document.querySelectorAll('.card-btn').forEach(btn => {
             btn.addEventListener('click', function() {
+                const originalText = this.innerHTML;
                 this.innerHTML = 'Opening...';
                 this.style.background = 'var(--gray-800)';
                 
                 setTimeout(() => {
-                    this.innerHTML = 'Read More';
+                    this.innerHTML = originalText;
                     this.style.background = '';
-                }, 1000);
+                }, 1500);
             });
+        });
+        
+        // Close dropdown on mobile when clicking outside
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 767) {
+                dropdownMenu.classList.remove('active');
+            }
         });
     </script>
 </body>
