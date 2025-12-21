@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanity and Unity: What Connect Us Beyond Borders | KABOOM!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            --accent: #000000;
+            --primary: #000000;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kaboom {
+            animation: kaboomEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes kaboomEffect {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3) rotate(5deg); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--black);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--black);
+            color: var(--black);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0,0,0,0.02));
+            z-index: 0;
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .article-title {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--black);
+            border-radius: 2px;
+        }
+
+        .article-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ===== SPEAKER INFO ===== */
+        .speaker-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 250px;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gray-900);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .speaker-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .speaker-role {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .speaker-btn {
+            background: transparent;
+            border: 2px solid var(--gray-300);
+            color: var(--gray-600);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-btn {
+            border-color: var(--black);
+            color: var(--black);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content-section {
+            padding: 80px 0;
+        }
+
+        .article-content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            background: var(--gray-900);
+            border-radius: 20px;
+            margin: 40px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .image-credit {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-credit a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .image-credit a:hover {
+            color: var(--gray-300);
+            text-decoration: underline;
+        }
+
+        .article-body {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--gray-700);
+        }
+
+        .article-body p {
+            margin-bottom: 30px;
+        }
+
+        .article-body h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 60px 0 30px;
+            color: var(--black);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .article-body h2:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: var(--black);
+            border-radius: 2px;
+        }
+
+        .article-body h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--gray-800);
+        }
+
+        .highlight-quote {
+            border-left: 4px solid var(--black);
+            padding-left: 30px;
+            margin: 50px 0;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--gray-600);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .highlight-quote:before {
+            content: '"';
+            position: absolute;
+            left: 15px;
+            top: -10px;
+            font-size: 60px;
+            color: var(--gray-300);
+            font-family: Georgia, serif;
+        }
+
+        /* ===== BIOGRAPHY MODAL ===== */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bio-modal.active {
+            display: flex;
+        }
+
+        .bio-modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .bio-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-400);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bio-close:hover {
+            color: var(--black);
+            background: var(--gray-100);
+        }
+
+        .bio-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .bio-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gray-900);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .bio-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .bio-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        .bio-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .bio-content p {
+            margin-bottom: 20px;
+        }
+
+        .bio-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .bio-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bio-social a:hover {
+            border-color: var(--black);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--gray-50);
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--gray-200);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--black);
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: var(--black);
+            font-size: 18px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--black);
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-300);
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 40px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .article-image {
+                height: 400px;
+            }
+            
+            .article-body h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+            }
+            
+            .speaker-info {
+                gap: 30px;
+            }
+            
+            .speaker-card {
+                max-width: 200px;
+            }
+            
+            .bio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .bio-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .speaker-info {
+                gap: 20px;
+            }
+            
+            .speaker-card {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .image-placeholder {
+                font-size: 24px;
+            }
+            
+            .article-body {
+                font-size: 17px;
+            }
+            
+            .highlight-quote {
+                font-size: 20px;
+                padding-left: 20px;
+                margin: 30px 0;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='kaboom.html'">
+                    <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
+                    <div class="article-category">HUMANS</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="kaboom.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#speakers'">
+                        <i class="fas fa-users"></i> Speakers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">MARCH 20, 2026</span>
+                <h1 class="article-title scroll-animate">Humanity and Unity:<br>What Connect Us Beyond Borders</h1>
+                <p class="article-subtitle scroll-animate">Exploring the invisible threads that bind us together in an increasingly divided world, and discovering the shared humanity that transcends geographical, cultural, and political boundaries.</p>
+                
+                <div class="speaker-info scroll-animate" id="speakers">
+                    <!-- Speaker 1 -->
+                    <div class="speaker-card" onclick="openBio('vaelen')">
+                        <div class="speaker-avatar">VS</div>
+                        <h3 class="speaker-name">Vaelen Sterling Roosevelt</h3>
+                        <p class="speaker-role">Special Envoy for Global Unity<br>Union Nation</p>
+                        <button class="speaker-btn">View Profile</button>
+                    </div>
+                    
+                    <!-- Photographer -->
+                    <div class="speaker-card" onclick="openBio('pancarona')">
+                        <div class="speaker-avatar">P</div>
+                        <h3 class="speaker-name">Pancarona Collective</h3>
+                        <p class="speaker-role">Documentary Photographers<br>Visual Storytellers</p>
+                        <button class="speaker-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <!-- Hero Image -->
+                <div class="article-image scroll-animate">
+                    <div class="image-placeholder">HUMAN CONNECTION</div>
+                    <div class="image-credit">
+                        Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                    </div>
+                </div>
+                
+                <!-- Article Body -->
+                <div class="article-body scroll-animate">
+                    <p>In a world increasingly defined by division and discord, the quest for genuine human connection has never been more urgent. What are the invisible forces that bind us together across continents, cultures, and creeds? This exploration takes us beyond political rhetoric and social media echo chambers to uncover the fundamental human experiences that unite us all.</p>
+                    
+                    <h2>The Universal Language of Emotion</h2>
+                    
+                    <p>Across every culture studied, researchers have identified six basic emotions that are universally recognized: happiness, sadness, fear, anger, surprise, and disgust. This shared emotional vocabulary forms the foundation of our human experience. When a mother in Kenya comforts her child, the emotional resonance is the same as when a father in Japan does the same. These emotional connections transcend language barriers and cultural differences.</p>
+                    
+                    <div class="highlight-quote">
+                        "We may speak different languages, but our hearts beat to the same rhythm of hope, fear, love, and longing."
+                    </div>
+                    
+                    <p>Modern neuroscience reveals that our brains respond similarly to emotional stimuli regardless of cultural background. The same neural pathways light up when we experience joy or sorrow, suggesting that our emotional hardware is remarkably consistent across humanity.</p>
+                    
+                    <h2>Shared Rituals and Celebrations</h2>
+                    
+                    <p>From birth celebrations to funeral rites, every culture has developed rituals to mark life's significant moments. While the specific practices vary, the underlying purpose remains constant: to create meaning, foster community, and navigate life's transitions together.</p>
+                    
+                    <h3>The Common Threads</h3>
+                    
+                    <p>Consider these universal human experiences:</p>
+                    
+                    <p><strong>Breaking bread together</strong> - Whether it's sharing a meal in Italy, participating in a Japanese tea ceremony, or gathering for Thanksgiving in America, the act of eating together creates bonds that transcend cultural boundaries.</p>
+                    
+                    <p><strong>Storytelling traditions</strong> - Every culture has its myths, legends, and folk tales. These narratives, while culturally specific, often explore universal themes of heroism, love, sacrifice, and redemption.</p>
+                    
+                    <p><strong>Music and dance</strong> - The human response to rhythm and melody appears to be hardwired. Music can evoke emotions and create connections that bypass intellectual understanding entirely.</p>
+                    
+                    <h2>Modern Bridges of Connection</h2>
+                    
+                    <p>In our digital age, new forms of connection are emerging. Social media, while often criticized for creating division, also enables unprecedented cross-cultural exchange. Young people in different hemispheres can collaborate on projects, share artistic expressions, and develop friendships that would have been impossible a generation ago.</p>
+                    
+                    <div class="article-image scroll-animate" style="height: 400px; margin: 50px 0;">
+                        <div class="image-placeholder">GLOBAL COMMUNITY</div>
+                        <div class="image-credit">
+                            Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                        </div>
+                    </div>
+                    
+                    <p>The global response to shared challenges - from climate change to pandemics - demonstrates our capacity for collective action. When disaster strikes anywhere in the world, offers of help and support flow across borders, reminding us of our shared vulnerability and interdependence.</p>
+                    
+                    <h2>The Path Forward</h2>
+                    
+                    <p>Building genuine unity requires moving beyond superficial tolerance to deep understanding. It involves:</p>
+                    
+                    <p>1. <strong>Active listening</strong> - Hearing not just words, but the experiences and emotions behind them<br>
+                    2. <strong>Cultivating curiosity</strong> - Approaching differences with genuine interest rather than judgment<br>
+                    3. <strong>Finding common projects</strong> - Working together toward shared goals that benefit all<br>
+                    4. <strong>Celebrating diversity</strong> - Recognizing that our differences enrich rather than divide us</p>
+                    
+                    <p>As Vaelen Sterling Roosevelt of the Union Nation emphasizes, "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."</p>
+                    
+                    <p>The connections that bind us are stronger than the forces that divide us. By focusing on our shared humanity - our capacity for love, our need for belonging, our hopes for our children's future - we can build bridges across even the widest chasms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Modals -->
+    <!-- Vaelen Sterling Roosevelt Bio -->
+    <div class="bio-modal" id="vaelenBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('vaelen')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">VS</div>
+                <div>
+                    <h2 class="bio-title">Vaelen Sterling Roosevelt</h2>
+                    <p class="bio-subtitle">Special Envoy for Global Unity, Union Nation<br>Diplomat • Peace Advocate • Humanitarian</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>Vaelen Sterling Roosevelt serves as the Special Envoy for Global Unity at the Union Nation, where she leads initiatives focused on cross-cultural understanding, conflict resolution, and building sustainable peace frameworks.</p>
+                
+                <p>With over 20 years of diplomatic experience, Roosevelt has facilitated peace talks in conflict zones across three continents, earning recognition for her innovative approach to mediation that focuses on shared human values rather than political positions.</p>
+                
+                <p>Her "Human-First Diplomacy" framework has been adopted by numerous international organizations and has been credited with resolving longstanding disputes in several regions. The approach emphasizes:</p>
+                
+                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
+                    <li>Identifying shared human needs across conflict lines</li>
+                    <li>Creating spaces for authentic personal storytelling</li>
+                    <li>Focusing on practical cooperation before political agreement</li>
+                    <li>Building relationships at multiple societal levels simultaneously</li>
+                </ul>
+                
+                <p>Prior to her current role, Roosevelt served as Ambassador to several nations and headed the Union Nation's Department of Humanitarian Affairs. She holds degrees in International Relations from Oxford University and Conflict Resolution from Harvard Kennedy School.</p>
+                
+                <p>Roosevelt is the author of "Beyond Borders: The Art of Human Connection in a Divided World," which has been translated into 34 languages. She has received numerous awards for her work, including the Global Peace Prize and the Humanitarian Excellence Award.</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pancarona Collective Bio -->
+    <div class="bio-modal" id="pancaronaBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('pancarona')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">P</div>
+                <div>
+                    <h2 class="bio-title">Pancarona Collective</h2>
+                    <p class="bio-subtitle">Documentary Photography Collective<br>Visual Storytellers • Cultural Archivists</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>The Pancarona Collective is an award-winning international photography collective dedicated to documenting human experiences across cultures and continents. Founded in 2018, the collective brings together photographers from diverse backgrounds united by a common mission: to capture the shared humanity that connects us all.</p>
+                
+                <p>The name "Pancarona" comes from an ancient word meaning "to see completely" - reflecting the collective's commitment to comprehensive, nuanced visual storytelling that goes beyond stereotypes and superficial representation.</p>
+                
+                <p>With members based in 12 countries, the collective has documented stories in over 80 nations, focusing on:</p>
+                
+                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
+                    <li>Everyday life and rituals across cultures</li>
+                    <li>Responses to global challenges and crises</li>
+                    <li>Traditions in transition in a globalizing world</li>
+                    <li>Universal human emotions and experiences</li>
+                </ul>
+                
+                <p>The collective's work has been featured in major publications worldwide and exhibited in prestigious institutions including the International Center of Photography, the Victoria and Albert Museum, and the National Geographic Museum.</p>
+                
+                <p>Their groundbreaking project "One World, Many Stories" documented parallel days in the lives of families across 24 time zones, revealing striking similarities in daily routines, family interactions, and personal moments despite vast cultural differences.</p>
+                
+                <p>Pancarona operates on a cooperative model where all members share equally in creative decisions, assignments, and recognition. The collective also runs mentorship programs for emerging photographers from underrepresented regions.</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fas fa-camera"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>About This Article</h3>
+                    <p>This feature is part of KABOOM!'s "Human Connections" series, exploring what unites us in an increasingly divided world. Through in-depth interviews, personal stories, and cross-cultural research, we examine the fundamental human experiences that transcend borders and differences.</p>
+                    <p>Our mission is to move beyond surface-level diversity discussions to explore the deep connections that make us human. We believe that by understanding what we share, we can better navigate our differences.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">All content on this site is for educational and inspirational purposes. Quotes and references are based on real principles of human connection and unity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Biography Modal Functions
+        function openBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.bio-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add pulse animation to speaker cards
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
