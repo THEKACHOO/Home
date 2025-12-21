@@ -587,7 +587,7 @@
     <!-- Footer Disclaimer -->
     <footer class="container">
         <div class="footer-disclaimer">
-            <p><strong>IMPORTANT NOTE:</strong> This is a demonstration website. No actual payment has been processed and no physical products will be shipped. All order details are simulated for demonstration purposes.</p>
+            <p><strong>IMPORTANT NOTE:</strong> This is KACHOO website. No actual payment has been processed and no physical products will be shipped. All order details are simulated for roleplay purposes.</p>
             <p style="margin-top: 10px;">&copy; 2026 THE KACHOO | KAFKAPAGES. All rights reserved.</p>
         </div>
     </footer>
@@ -703,15 +703,9 @@ async function sendToSpreadsheet(orderData) {
                 e.preventDefault();
                 
                 const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
-
-if (!orderData) {
-    throw new Error('No order data found');
-}
-                const orderNumber = generateOrderNumber();
-                localStorage.setItem('lastOrderNumber', orderNumber);
-                localStorage.removeItem('kafkapagesCart');
-                localStorage.removeItem('kafkapagesOrder');
-                localStorage.removeItem('kafkapagesPaymentOrder');
+                if (!orderData) return;
+                
+                const orderNumber = localStorage.getItem('lastOrderNumber') || generateOrderNumber();
                 
                 // Create printable content
                 const printContent = `
