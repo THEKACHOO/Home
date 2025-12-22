@@ -587,60 +587,95 @@
     <!-- Footer Disclaimer -->
     <footer class="container">
         <div class="footer-disclaimer">
-            <p><strong>IMPORTANT NOTE:</strong> This is KACHOO website. No actual payment has been processed and no physical products will be shipped. All order details are simulated for roleplay purposes.</p>
+            <p><strong>IMPORTANT NOTE:</strong> This is a demonstration website. No actual payment has been processed and no physical products will be shipped. All order details are simulated for demonstration purposes.</p>
             <p style="margin-top: 10px;">&copy; 2026 THE KACHOO | KAFKAPAGES. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Google Apps Script URL (HANYA UNTUK ADMIN - tidak ditampilkan ke customer)
+        // Google Apps Script URL untuk mengirim data ke Google Sheets dan email
         const SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzkbXUH-1B2M4H417zycZBeYLnIm6_97bWVKNZlnzZA_5ALKMr_iGxV_4qZYUWo55k/exec';
         
-        // Function to send data to Google Spreadsheet (REAL VERSION)
-async function sendToSpreadsheet(orderData) {
-  try {
-    const spreadsheetData = {
-      timestamp: new Date().toISOString(),
-      orderNumber: generateOrderNumber(),
-      customer: {
-        name: orderData.customer.name,
-        email: orderData.customer.email,
-        twitter: orderData.customer.twitter || 'Not provided'
-      },
-      items: orderData.items.map(item => ({
-        title: item.title,
-        language: item.language,
-        price: parseFloat(item.price)
-      })),
-      subtotal: parseFloat(orderData.subtotal),
-      discount: parseFloat(orderData.discount),
-      serviceFee: parseFloat(orderData.serviceFee),
-      total: parseFloat(orderData.total),
-      payment: orderData.payment,
-      voucher: orderData.voucher || null
-    };
-    
-    // REAL API CALL to Google Apps Script
-    const response = await fetch(SPREADSHEET_WEBHOOK, {
-      method: 'POST',
-      mode: 'no-cors', // Important for Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(spreadsheetData)
-    });
-    
-    console.log('📊 Data sent to Google Sheets successfully');
-    console.log('📧 Email sent to ohkachoo@gmail.com');
-    
-    return { success: true };
-    
-  } catch (error) {
-    console.error('Error sending to spreadsheet:', error);
-    // Even if API fails, order is still processed for customer
-    return { success: false, error: error.message };
-  }
-}
+        // Flag untuk mencegah pengiriman data berulang saat refresh
+        let orderProcessed = false;
+        let currentOrderNumber = '';
+        
+        // Function to send data to Google Spreadsheet dan email
+        async function sendToSpreadsheetAndEmail(orderData) {
+            try {
+                // Cek apakah order sudah diproses sebelumnya
+                if (localStorage.getItem('lastOrderProcessed') === 'true') {
+                    console.log('✅ Order sudah diproses sebelumnya, tidak mengirim data lagi');
+                    return { success: true, alreadyProcessed: true };
+                }
+                
+                const spreadsheetData = {
+                    timestamp: new Date().toISOString(),
+                    orderNumber: currentOrderNumber,
+                    customerName: orderData.customer.name,
+                    customerEmail: orderData.customer.email,
+                    customerTwitter: orderData.customer.twitter || 'Not provided',
+                    items: orderData.items.map(item => ({
+                        title: item.title,
+                        language: item.language,
+                        quantity: 1, // Setiap item selalu 1 copy
+                        price: parseFloat(item.price)
+                    })),
+                    subtotal: parseFloat(orderData.subtotal),
+                    discount: parseFloat(orderData.discount),
+                    serviceFee: parseFloat(orderData.serviceFee),
+                    total: parseFloat(orderData.total),
+                    paymentMethod: orderData.payment,
+                    voucherCode: orderData.voucher || 'None'
+                };
+                
+                // Format data untuk Google Sheets sesuai dengan kolom yang ada
+                const sheetData = {
+                    Timestamp: new Date().toLocaleString(),
+                    'Order Number': currentOrderNumber,
+                    'Customer Name': orderData.customer.name,
+                    'Customer Email': orderData.customer.email,
+                    'Customer Twitter': orderData.customer.twitter || 'Not provided',
+                    'Items': orderData.items.map(item => 
+                        `${item.title} (${item.language} Edition) - $${parseFloat(item.price).toFixed(2)}`
+                    ).join(' | '),
+                    'Total Items': orderData.items.length,
+                    'Subtotal': `$${parseFloat(orderData.subtotal).toFixed(2)}`,
+                    'Discount': `-$${parseFloat(orderData.discount).toFixed(2)}`,
+                    'Service Fee': `$${parseFloat(orderData.serviceFee).toFixed(2)}`,
+                    'Total Amount': `$${parseFloat(orderData.total).toFixed(2)}`,
+                    'Payment Method': orderData.payment.toUpperCase(),
+                    'Voucher Code': orderData.voucher || 'None',
+                    'Status': 'Pending Delivery'
+                };
+                
+                // REAL API CALL to Google Apps Script
+                const response = await fetch(SPREADSHEET_WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetData)
+                });
+                
+                console.log('📊 Data sent to Google Sheets successfully');
+                console.log('📧 Email notification sent to ohkachoo@gmail.com');
+                console.log('📋 Order details:', sheetData);
+                
+                // Set flag bahwa order sudah diproses
+                localStorage.setItem('lastOrderProcessed', 'true');
+                localStorage.setItem('lastOrderNumber', currentOrderNumber);
+                localStorage.setItem('lastOrderTime', new Date().toISOString());
+                
+                return { success: true };
+                
+            } catch (error) {
+                console.error('Error sending to spreadsheet:', error);
+                // Even if API fails, order is still processed for customer
+                return { success: false, error: error.message };
+            }
+        }
 
         // Generate random order number
         function generateOrderNumber() {
@@ -656,9 +691,16 @@ async function sendToSpreadsheet(orderData) {
 
         // Display order data
         function displayOrderData(orderData) {
+            // Gunakan order number yang sudah ada jika sudah diproses
+            if (localStorage.getItem('lastOrderProcessed') === 'true') {
+                currentOrderNumber = localStorage.getItem('lastOrderNumber') || generateOrderNumber();
+                orderProcessed = true;
+            } else {
+                currentOrderNumber = generateOrderNumber();
+            }
+            
             // Set order details
-            const orderNumber = generateOrderNumber();
-            document.getElementById('orderNumber').textContent = orderNumber;
+            document.getElementById('orderNumber').textContent = currentOrderNumber;
             document.getElementById('orderDate').textContent = new Date(orderData.timestamp).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
@@ -693,8 +735,8 @@ async function sendToSpreadsheet(orderData) {
             document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee);
             document.getElementById('totalAmount').textContent = formatCurrency(orderData.total);
             
-            // Save order number for reference
-            localStorage.setItem('lastOrderNumber', orderNumber);
+            // Save order data for printing
+            localStorage.setItem('lastOrderDisplayData', JSON.stringify(orderData));
         }
 
         // Print receipt function
@@ -702,10 +744,11 @@ async function sendToSpreadsheet(orderData) {
             document.getElementById('printReceipt').addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
+                const orderData = JSON.parse(localStorage.getItem('lastOrderDisplayData')) || 
+                                 JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
                 if (!orderData) return;
                 
-                const orderNumber = localStorage.getItem('lastOrderNumber') || generateOrderNumber();
+                const orderNumber = currentOrderNumber || localStorage.getItem('lastOrderNumber') || generateOrderNumber();
                 
                 // Create printable content
                 const printContent = `
@@ -850,18 +893,15 @@ async function sendToSpreadsheet(orderData) {
                 const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
                 
                 if (!orderData) {
-                    throw new Error('No order data found');
-                }
-                
-                // Send data to admin spreadsheet (background process)
-                // This runs in background, doesn't affect customer experience
-                sendToSpreadsheet(orderData).then(result => {
-                    if (result.success) {
-                        console.log('✅ Admin system updated successfully');
-                    } else {
-                        console.warn('⚠️ Admin system update failed, but order still processed');
+                    // Coba ambil data dari session storage jika tidak ada di localStorage
+                    const sessionOrderData = JSON.parse(sessionStorage.getItem('kafkapagesOrder'));
+                    if (!sessionOrderData) {
+                        throw new Error('No order data found');
                     }
-                });
+                    
+                    // Gunakan data dari session storage
+                    orderData = sessionOrderData;
+                }
                 
                 // Display order data to customer
                 displayOrderData(orderData);
@@ -869,20 +909,43 @@ async function sendToSpreadsheet(orderData) {
                 // Setup print receipt
                 setupPrintReceipt();
                 
+                // Cek apakah order sudah diproses sebelumnya
+                const alreadyProcessed = localStorage.getItem('lastOrderProcessed') === 'true';
+                
+                if (!alreadyProcessed) {
+                    // Send data to admin spreadsheet dan email (hanya sekali)
+                    sendToSpreadsheetAndEmail(orderData).then(result => {
+                        if (result.success) {
+                            if (result.alreadyProcessed) {
+                                console.log('✅ Order already processed previously');
+                            } else {
+                                console.log('✅ Admin system updated successfully');
+                                console.log('📧 Email sent to ohkachoo@gmail.com with order details');
+                            }
+                        } else {
+                            console.warn('⚠️ Admin system update failed, but order still processed for customer');
+                        }
+                    });
+                    
+                    // Clear cart data after successful order
+                    localStorage.removeItem('kafkapagesCart');
+                    localStorage.removeItem('kafkapagesOrder');
+                    sessionStorage.removeItem('kafkapagesOrder');
+                } else {
+                    console.log('🔄 Order already processed, showing confirmation page only');
+                }
+                
                 // Show success state
                 loadingState.style.display = 'none';
                 successState.style.display = 'block';
                 
-                // Clear cart data after successful order
-                localStorage.removeItem('kafkapagesCart');
-                localStorage.removeItem('kafkapagesOrder');
-                
                 // Log to console for debugging
-                console.log('✅ Order processed successfully for customer');
-                console.log('📋 Order Number:', localStorage.getItem('lastOrderNumber'));
+                console.log('✅ Order confirmation page loaded');
+                console.log('📋 Order Number:', currentOrderNumber);
                 console.log('👤 Customer:', orderData.customer.name);
                 console.log('📧 Customer Email:', orderData.customer.email);
-                console.log('🔒 Admin notified via email and spreadsheet');
+                console.log('📚 Items ordered:', orderData.items.length);
+                console.log('🔄 Order processed status:', alreadyProcessed ? 'Already processed' : 'First time processing');
                 
             } catch (error) {
                 console.error('❌ Error processing order:', error);
