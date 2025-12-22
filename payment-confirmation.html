@@ -593,204 +593,79 @@
     </footer>
 
     <script>
-        // Google Apps Script URL
-        const SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzkbXUH-1B2M4H417zycZBeYLnIm6_97bWVKNZlnzZA_5ALKMr_iGxV_4qZYUWo55k/exec';
+        // 🎯 GANTI URL INI DENGAN URL WEB APPS ANDA YANG BARU
+        const SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzT-L-HKzQ75iP_eDRHSIsPdyc9XW3rYPP2HNXdHButuWlkH4v3Mw_rMKUCVunAprfg/exec';
         
         // Flag untuk mencegah pengiriman data berulang saat refresh
-        let orderProcessed = false;
         let currentOrderNumber = '';
         
         // Function to send data to Google Spreadsheet dan email
-        // Function to send data to Google Spreadsheet dan email (Cocok dengan doPost)
-async function sendToSpreadsheetAndEmail(orderData) {
-    try {
-        // Cek apakah order sudah diproses sebelumnya
-        const orderKey = `order_processed_${orderData.timestamp}`;
-        if (localStorage.getItem(orderKey) === 'true') {
-            console.log('✅ Order sudah diproses sebelumnya, tidak mengirim data lagi');
-            return { success: true, alreadyProcessed: true };
-        }
-
-        // --- FORMAT DATA SESUAI DENGAN doPost(e) DI APPS SCRIPT ---
-        // Ini adalah struktur data yang DIPERLUKAN oleh fungsi doPost Anda
-        const postData = {
-            timestamp: orderData.timestamp || new Date().toISOString(),
-            orderNumber: currentOrderNumber, // Pastikan variabel ini sudah ada
-            customer: {
-                name: orderData.customer.name || 'Not provided',
-                email: orderData.customer.email || 'Not provided',
-                twitter: orderData.customer.twitter || 'Not provided'
-            },
-            items: orderData.items.map(item => ({
-                title: item.title,
-                language: item.language,
-                price: parseFloat(item.price)
-            })),
-            subtotal: parseFloat(orderData.subtotal),
-            discount: parseFloat(orderData.discount),
-            serviceFee: parseFloat(orderData.serviceFee),
-            total: parseFloat(orderData.total),
-            payment: orderData.payment || 'Unknown'
-            // voucher bisa ditambahkan jika diperlukan: voucher: orderData.voucher
-        };
-
-        console.log('📤 Mengirim data ke Apps Script:', postData);
-
-        // KIRIM DATA SEBAGAI JSON (POST) - HAPUS 'mode: no-cors'
-        const response = await fetch(https://script.google.com/macros/s/AKfycbzkbXUH-1B2M4H417zycZBeYLnIm6_97bWVKNZlnzZA_5ALKMr_iGxV_4qZYUWo55k/exec, {
-            method: 'POST',
-            // HAPUS baris mode: 'no-cors' agar bisa membaca respons
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData)
-        });
-
-        // Periksa respons dari server (Apps Script)
-        const result = await response.json();
-        console.log('📥 Respons dari Apps Script:', result);
-
-        if (result.success) {
-            console.log('✅ Data berhasil dikirim ke Google Sheets & Email terkirim.');
-            // Tandai sudah diproses
-            localStorage.setItem(orderKey, 'true');
-            localStorage.setItem('lastOrderNumber', currentOrderNumber);
-            return { success: true };
-        } else {
-            console.error('❌ Apps Script melaporkan error:', result.error);
-            return { success: false, error: result.error };
-        }
-
-    } catch (error) {
-        console.error('❌ Gagal mengirim data:', error);
-        // Tetap lanjutkan untuk pengalaman customer
-        return { success: false, error: error.message };
-    }
-}
+        async function sendToSpreadsheetAndEmail(orderData) {
+            try {
+                // Cek apakah order sudah diproses sebelumnya
+                const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
+                if (localStorage.getItem(orderKey) === 'true') {
+                    console.log('✅ Order sudah diproses sebelumnya, tidak mengirim data lagi');
+                    return { success: true, alreadyProcessed: true };
+                }
                 
-                // Format items menjadi string yang mudah dibaca
-                const itemsString = orderData.items.map(item => 
-                    `${item.title} (${item.language} Edition) x1 - $${parseFloat(item.price).toFixed(2)}`
-                ).join(' | ');
-                
-                // Format data sesuai dengan kolom di Google Sheets Anda
-                const sheetData = {
-                    'Timestamp': new Date().toLocaleString(),
-                    'Order Number': currentOrderNumber,
-                    'Customer Name': orderData.customer.name || 'Not provided',
-                    'Customer Email': orderData.customer.email || 'Not provided',
-                    'Customer Twitter': orderData.customer.twitter || 'Not provided',
-                    'Items': itemsString,
-                    'Total Items': orderData.items.length.toString(),
-                    'Subtotal': `$${parseFloat(orderData.subtotal).toFixed(2)}`,
-                    'Discount': `-$${parseFloat(orderData.discount).toFixed(2)}`,
-                    'Service Fee': `$${parseFloat(orderData.serviceFee).toFixed(2)}`,
-                    'Total Amount': `$${parseFloat(orderData.total).toFixed(2)}`,
-                    'Payment Method': orderData.payment ? orderData.payment.toUpperCase() : 'Unknown',
-                    'Voucher Code': orderData.voucher || 'None',
-                    'Status': 'Pending Delivery',
-                    'Notes': 'Order placed via KAFKAPAGES website'
+                // Format data sesuai dengan struktur yang diharapkan oleh doPost di Apps Script
+                const postData = {
+                    timestamp: orderData.timestamp || new Date().toISOString(),
+                    orderNumber: currentOrderNumber,
+                    customer: {
+                        name: orderData.customer.name || 'Not provided',
+                        email: orderData.customer.email || 'Not provided',
+                        twitter: orderData.customer.twitter || 'Not provided'
+                    },
+                    items: orderData.items.map(item => ({
+                        title: item.title,
+                        language: item.language,
+                        price: parseFloat(item.price)
+                    })),
+                    subtotal: parseFloat(orderData.subtotal),
+                    discount: parseFloat(orderData.discount),
+                    serviceFee: parseFloat(orderData.serviceFee),
+                    total: parseFloat(orderData.total),
+                    payment: orderData.payment || 'Unknown',
+                    voucher: orderData.voucher || 'None'
                 };
                 
-                console.log('📤 Mengirim data ke Google Sheets:', sheetData);
+                console.log('📤 Mengirim data ke Apps Script:', postData);
                 
-                // Kirim data menggunakan FormData (cara yang lebih kompatibel)
-                const formData = new FormData();
-                for (const key in sheetData) {
-                    formData.append(key, sheetData[key]);
+                // Kirim data menggunakan POST request dengan JSON
+                const response = await fetch(SPREADSHEET_WEBHOOK, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(postData)
+                });
+                
+                // Cek respons
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                // REAL API CALL to Google Apps Script dengan GET parameters
-                const params = new URLSearchParams();
-                for (const key in sheetData) {
-                    params.append(key, sheetData[key]);
-                }
+                const result = await response.json();
+                console.log('📥 Respons dari Apps Script:', result);
                 
-                const url = `${https://script.google.com/macros/s/AKfycbzkbXUH-1B2M4H417zycZBeYLnIm6_97bWVKNZlnzZA_5ALKMr_iGxV_4qZYUWo55k/exec}?${params.toString()}`;
-                
-                // Coba dengan fetch biasa terlebih dahulu
-                try {
-                    const response = await fetch(url, {
-                        method: 'GET',
-                        mode: 'no-cors' // Mode no-cors untuk Google Apps Script
-                    });
+                if (result.success) {
+                    console.log('✅ Data berhasil dikirim ke Google Sheets & Email terkirim.');
                     
-                    console.log('✅ Data berhasil dikirim ke Google Sheets');
-                } catch (fetchError) {
-                    console.log('Mencoba metode alternatif...');
+                    // Tandai order sudah diproses
+                    localStorage.setItem(orderKey, 'true');
+                    localStorage.setItem('lastOrderNumber', currentOrderNumber);
+                    localStorage.setItem('lastOrderTime', new Date().toISOString());
                     
-                    // Metode alternatif dengan img tag (untuk no-cors)
-                    const img = new Image();
-                    img.src = url;
-                    console.log('✅ Data dikirim melalui metode alternatif');
+                    return { success: true };
+                } else {
+                    throw new Error(result.error || 'Unknown error from Apps Script');
                 }
-                
-                // Kirim email notifikasi ke ohkachoo@gmail.com
-                sendEmailNotification(orderData, currentOrderNumber);
-                
-                // Set flag bahwa order sudah diproses
-                localStorage.setItem(orderKey, 'true');
-                localStorage.setItem('lastOrderNumber', currentOrderNumber);
-                localStorage.setItem('lastOrderTime', new Date().toISOString());
-                
-                return { success: true };
                 
             } catch (error) {
                 console.error('❌ Error sending to spreadsheet:', error);
-                // Tetap lanjutkan meski gagal kirim data
                 return { success: false, error: error.message };
-            }
-        }
-        
-        // Function to send email notification
-        function sendEmailNotification(orderData, orderNumber) {
-            try {
-                // Format email body
-                const emailBody = `
-                    NEW ORDER RECEIVED - KAFKAPAGES
-                    
-                    Order Number: ${orderNumber}
-                    Date: ${new Date().toLocaleString()}
-                    
-                    CUSTOMER DETAILS:
-                    Name: ${orderData.customer.name}
-                    Email: ${orderData.customer.email}
-                    Twitter: ${orderData.customer.twitter || 'Not provided'}
-                    
-                    ORDER ITEMS:
-                    ${orderData.items.map(item => 
-                        `• ${item.title} (${item.language} Edition) - $${parseFloat(item.price).toFixed(2)}`
-                    ).join('\n')}
-                    
-                    Total Items: ${orderData.items.length}
-                    
-                    PAYMENT SUMMARY:
-                    Subtotal: $${parseFloat(orderData.subtotal).toFixed(2)}
-                    Discount: -$${parseFloat(orderData.discount).toFixed(2)}
-                    Service Fee: $${parseFloat(orderData.serviceFee).toFixed(2)}
-                    TOTAL: $${parseFloat(orderData.total).toFixed(2)}
-                    
-                    Payment Method: ${orderData.payment ? orderData.payment.toUpperCase() : 'Unknown'}
-                    Voucher Code: ${orderData.voucher || 'None'}
-                    
-                    Status: Pending Delivery
-                    
-                    ---
-                    This is an automated notification from KAFKAPAGES.
-                    Data has been recorded in Google Sheets.
-                `;
-                
-                // Kirim email melalui Google Apps Script yang sama
-                const emailUrl = `${https://script.google.com/macros/s/AKfycbzkbXUH-1B2M4H417zycZBeYLnIm6_97bWVKNZlnzZA_5ALKMr_iGxV_4qZYUWo55k/exec}?action=email&subject=New Order: ${orderNumber}&body=${encodeURIComponent(emailBody)}`;
-                
-                // Gunakan img tag untuk request no-cors
-                const img = new Image();
-                img.src = emailUrl;
-                
-                console.log('📧 Email notification sent to ohkachoo@gmail.com');
-                
-            } catch (error) {
-                console.error('Error sending email:', error);
             }
         }
 
@@ -810,9 +685,10 @@ async function sendToSpreadsheetAndEmail(orderData) {
         function displayOrderData(orderData) {
             // Gunakan order number yang sudah ada jika sudah diproses
             const existingOrderNumber = localStorage.getItem('lastOrderNumber');
-            if (existingOrderNumber && localStorage.getItem(`order_processed_${orderData.timestamp}`) === 'true') {
+            const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
+            
+            if (existingOrderNumber && localStorage.getItem(orderKey) === 'true') {
                 currentOrderNumber = existingOrderNumber;
-                orderProcessed = true;
             } else {
                 currentOrderNumber = generateOrderNumber();
             }
@@ -1025,29 +901,26 @@ async function sendToSpreadsheetAndEmail(orderData) {
                 setupPrintReceipt();
                 
                 // Cek apakah order sudah diproses sebelumnya
-                const orderKey = `order_processed_${orderData.timestamp}`;
+                const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
                 const alreadyProcessed = localStorage.getItem(orderKey) === 'true';
                 
                 if (!alreadyProcessed) {
-                    // Send data to admin spreadsheet dan email (hanya sekali)
                     console.log('🔄 Mengirim data order baru ke Google Sheets...');
                     
-                    sendToSpreadsheetAndEmail(orderData).then(result => {
-                        if (result.success) {
-                            if (result.alreadyProcessed) {
-                                console.log('✅ Order sudah diproses sebelumnya');
-                            } else {
-                                console.log('✅ Data berhasil dikirim ke Google Sheets');
-                                console.log('📧 Email notifikasi dikirim ke ohkachoo@gmail.com');
-                            }
-                        } else {
-                            console.warn('⚠️ Gagal mengirim data ke admin system, tetapi order tetap diproses untuk customer');
-                        }
-                    });
+                    // Kirim data ke Google Sheets dan email
+                    const result = await sendToSpreadsheetAndEmail(orderData);
                     
-                    // Clear cart data setelah order berhasil
-                    localStorage.removeItem('kafkapagesCart');
-                    sessionStorage.removeItem('kafkapagesOrder');
+                    if (result.success) {
+                        console.log('✅ Data berhasil dikirim ke Google Sheets');
+                        console.log('📧 Email notifikasi dikirim ke ohkachoo@gmail.com');
+                        
+                        // Hapus data cart setelah order berhasil
+                        localStorage.removeItem('kafkapagesCart');
+                        sessionStorage.removeItem('kafkapagesOrder');
+                    } else {
+                        console.warn('⚠️ Gagal mengirim data ke admin system:', result.error);
+                        console.log('📝 Order tetap diproses untuk customer, admin akan diperiksa manual');
+                    }
                 } else {
                     console.log('🔄 Order sudah diproses sebelumnya, hanya menampilkan konfirmasi');
                 }
