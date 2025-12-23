@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protecting Endangered Species: Our Shared Responsibility | KABOOM!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            
+            /* Nature-inspired color palette */
+            --sun-yellow: #fbbf24;
+            --sun-yellow-light: #fde68a;
+            --sun-yellow-dark: #f59e0b;
+            --forest-green: #16a34a;
+            --forest-green-light: #bbf7d0;
+            --forest-green-dark: #15803d;
+            --earth-brown: #a16207;
+            --earth-brown-light: #fef3c7;
+            --earth-brown-dark: #854d0e;
+            --sky-blue: #0ea5e9;
+            --sky-blue-light: #e0f2fe;
+            
+            --accent: var(--earth-brown);
+            --primary: var(--forest-green);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kaboom {
+            animation: kaboomEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes kaboomEffect {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3) rotate(5deg); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--forest-green), var(--earth-brown));
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--earth-brown);
+            color: var(--earth-brown);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(161, 98, 7, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--earth-brown);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(161, 98, 7, 0.2);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--sun-yellow-light) 0%, var(--forest-green-light) 50%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(22, 163, 74, 0.05), rgba(251, 191, 36, 0.05));
+            z-index: 0;
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--earth-brown);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .article-title {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: var(--earth-brown-dark);
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            border-radius: 2px;
+        }
+
+        .article-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--earth-brown);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content-section {
+            padding: 80px 0 40px;
+        }
+
+        .article-content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(45deg, #1a202c, #2d3748);
+            border-radius: 20px;
+            margin: 60px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(161, 98, 7, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .image-credit {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+        }
+
+        .article-body {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--gray-700);
+        }
+
+        .article-body p {
+            margin-bottom: 30px;
+        }
+
+        .article-body h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 80px 0 40px;
+            color: var(--earth-brown-dark);
+            position: relative;
+            padding-left: 0;
+            padding-bottom: 20px;
+        }
+
+        .article-body h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            border-radius: 2px;
+        }
+
+        .article-body h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 60px 0 25px;
+            color: var(--forest-green-dark);
+            line-height: 1.3;
+        }
+
+        .highlight-quote {
+            border-left: 4px solid var(--sun-yellow);
+            padding: 30px 40px;
+            margin: 60px 0;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--earth-brown);
+            line-height: 1.5;
+            position: relative;
+            background: linear-gradient(135deg, var(--sun-yellow-light), var(--earth-brown-light));
+            border-radius: 0 20px 20px 0;
+        }
+
+        .highlight-quote:before {
+            content: '"';
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            font-size: 60px;
+            color: var(--sun-yellow);
+            font-family: Georgia, serif;
+        }
+
+        .insight-section {
+            margin: 80px 0;
+            padding: 60px 0;
+            border-top: 1px solid var(--sun-yellow-light);
+        }
+
+        .interview-note {
+            background: linear-gradient(135deg, var(--sun-yellow-light), var(--forest-green-light));
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--forest-green);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--earth-brown);
+        }
+
+        .interview-note strong {
+            color: var(--forest-green-dark);
+            font-weight: 700;
+        }
+
+        .species-spotlight {
+            background: var(--forest-green-light);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 2px solid var(--forest-green);
+        }
+
+        .species-spotlight h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--forest-green-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .species-spotlight h4 i {
+            color: var(--sun-yellow-dark);
+        }
+
+        /* ===== SPEAKER SECTION ===== */
+        .speaker-section {
+            background: linear-gradient(135deg, var(--earth-brown-light), var(--sun-yellow-light));
+            padding: 80px 0;
+            margin: 60px 0 0;
+            border-top: 1px solid var(--earth-brown);
+            border-bottom: 1px solid var(--earth-brown);
+        }
+
+        .speaker-section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--earth-brown-dark);
+        }
+
+        .speaker-container {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 400px;
+            width: 100%;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--earth-brown);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(161, 98, 7, 0.2);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--earth-brown), var(--forest-green));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .speaker-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--earth-brown-dark);
+        }
+
+        .speaker-role {
+            font-size: 16px;
+            color: var(--earth-brown);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .speaker-btn {
+            background: transparent;
+            border: 2px solid var(--earth-brown);
+            color: var(--earth-brown);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speaker-card:hover .speaker-btn {
+            border-color: var(--forest-green);
+            background: var(--forest-green);
+            color: var(--white);
+        }
+
+        /* ===== BIOGRAPHY MODAL ===== */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bio-modal.active {
+            display: flex;
+        }
+
+        .bio-modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .bio-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-400);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bio-close:hover {
+            color: var(--black);
+            background: var(--gray-100);
+        }
+
+        .bio-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .bio-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--earth-brown), var(--forest-green));
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .bio-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .bio-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        .bio-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .bio-content p {
+            margin-bottom: 20px;
+        }
+
+        .bio-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .bio-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bio-social a:hover {
+            border-color: var(--forest-green);
+            color: var(--forest-green);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--sun-yellow-light), var(--forest-green-light));
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--earth-brown);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--earth-brown);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--earth-brown-dark);
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: var(--earth-brown);
+            font-size: 18px;
+        }
+
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--earth-brown-light);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--earth-brown-dark);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--earth-brown-dark);
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--earth-brown);
+            color: var(--earth-brown);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--earth-brown);
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 60px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .article-image {
+                height: 400px;
+            }
+            
+            .article-body h2 {
+                font-size: 32px;
+            }
+            
+            .speaker-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+            }
+            
+            .bio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .bio-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+            
+            .speaker-section-title {
+                font-size: 32px;
+            }
+            
+            .speaker-card {
+                padding: 30px;
+            }
+            
+            .highlight-quote {
+                padding: 25px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .image-placeholder {
+                font-size: 24px;
+            }
+            
+            .article-body {
+                font-size: 17px;
+            }
+            
+            .highlight-quote {
+                font-size: 20px;
+                padding: 20px;
+                margin: 40px 0;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+            
+            .article-body h2 {
+                font-size: 28px;
+                margin: 60px 0 30px;
+            }
+            
+            .article-body h3 {
+                font-size: 24px;
+                margin: 40px 0 20px;
+            }
+            
+            .speaker-section-title {
+                font-size: 28px;
+            }
+            
+            .speaker-name {
+                font-size: 22px;
+            }
+            
+            .species-spotlight {
+                padding: 20px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='kaboom.html'">
+                    <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
+                    <div class="article-category">ANIMALS</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="kaboom.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#speaker'">
+                        <i class="fas fa-users"></i> Conservationist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">MAY 15, 2026</span>
+                <h1 class="article-title scroll-animate">Vanishing Voices:<br>Protecting Earth's Endangered Species</h1>
+                <p class="article-subtitle scroll-animate">Exploring the urgent crisis facing our planet's most vulnerable creatures and discovering how collective action can prevent the silent disappearance of irreplaceable biodiversity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <!-- Introduction -->
+                <div class="article-body scroll-animate">
+                    <p>In the grand tapestry of life on Earth, every species represents a unique thread, a story millions of years in the making. Yet today, countless threads are unraveling at an unprecedented rate, as endangered species face threats from habitat loss, climate change, poaching, and human encroachment. The loss of any species represents not just the disappearance of a creature, but the silencing of a unique evolutionary narrative and the erosion of ecosystems that support all life.</p>
+                    
+                    <div class="interview-note scroll-animate">
+                        <strong>Editor's Note:</strong> This article features insights from Bumi Senandika, a renowned wildlife conservationist whose work bridges traditional ecological knowledge with modern conservation science in protecting Indonesia's most vulnerable species.
+                    </div>
+                </div>
+
+                <!-- First Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">ENDANGERED SPECIES</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>The Silent Crisis: Understanding the Sixth Mass Extinction</h2>
+                    
+                    <p>Scientists warn that Earth is experiencing its sixth mass extinction event—the first caused by human activity. Current extinction rates are estimated to be 100 to 1,000 times higher than natural background rates, with approximately one million species threatened with extinction in the coming decades.</p>
+                    
+                    <div class="highlight-quote scroll-animate">
+                        "Every species lost is like removing a rivet from an airplane. You might lose a few and still fly, but eventually, the whole system collapses. Each creature, no matter how small or seemingly insignificant, plays a role in the delicate balance of life."
+                    </div>
+                    
+                    <p>Bumi Senandika emphasizes the interconnectedness of this crisis: "When we lose a species, we're not just losing an animal or plant. We're losing complex relationships that have evolved over millennia. Pollinators support food systems, predators regulate populations, and even the smallest microorganisms contribute to soil health and nutrient cycles."</p>
+                    
+                    <div class="species-spotlight">
+                        <h4><i class="fas fa-paw"></i> Spotlight: Sumatran Tiger</h4>
+                        <p>Fewer than 400 Sumatran tigers remain in the wild, confined to fragmented forests on the Indonesian island of Sumatra. These magnificent predators face habitat loss from palm oil plantations, poaching for their beautiful pelts and body parts, and human-wildlife conflict as their forest homes shrink.</p>
+                    </div>
+                </div>
+
+                <!-- Second Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">HABITAT LOSS</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>The Disappearing Homes: Habitat Loss and Fragmentation</h2>
+                    
+                    <p>Habitat destruction represents the single greatest threat to biodiversity worldwide. Forests are cleared for agriculture, wetlands drained for development, oceans polluted and overfished, and grasslands converted to monoculture crops. This loss of habitat is compounded by fragmentation—when once-continuous ecosystems are divided into isolated patches, creating "islands" of habitat surrounded by human-dominated landscapes.</p>
+                    
+                    <h3>The Domino Effect of Fragmentation</h3>
+                    
+                    <p>Fragmented habitats create multiple challenges for wildlife. Genetic diversity decreases as populations become isolated, increasing vulnerability to disease and reducing adaptability to environmental changes. Migration routes are disrupted, separating animals from seasonal food sources and breeding grounds. Edge effects—changes in environmental conditions at habitat boundaries—further degrade the quality of remaining habitat.</p>
+                    
+                    <p>Senandika describes the situation in Indonesia: "Our rainforests, among the most biodiverse on Earth, are being fragmented at alarming rates. Orangutans, elephants, and rhinoceroses that once roamed freely now find themselves trapped in shrinking pockets of forest, increasingly coming into conflict with humans as they search for food and space."</p>
+                    
+                    <div class="species-spotlight">
+                        <h4><i class="fas fa-tree"></i> Spotlight: Bornean Orangutan</h4>
+                        <p>Over the past 60 years, Bornean orangutan populations have declined by more than 50%, primarily due to habitat loss from logging, palm oil plantations, and mining. These highly intelligent great apes, known as "persons of the forest" in Malay, require large territories of intact forest to survive.</p>
+                    </div>
+                </div>
+
+                <!-- Third Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">WILDLIFE TRADE</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>The Illegal Wildlife Trade: A Multi-Billion Dollar Crisis</h2>
+                    
+                    <p>The illegal wildlife trade ranks among the world's most lucrative criminal enterprises, valued at an estimated $7-23 billion annually. This trade threatens thousands of species, from iconic elephants and rhinos to lesser-known reptiles, birds, and plants. Driven by demand for exotic pets, traditional medicine, luxury goods, and trophies, this trade operates through sophisticated international networks.</p>
+                    
+                    <h3>Beyond Iconic Species: The Hidden Victims</h3>
+                    
+                    <p>While attention often focuses on charismatic megafauna like elephants and tigers, countless less-celebrated species face equal peril. Pangolins—the world's most trafficked mammal—are hunted to near extinction for their scales and meat. Tropical birds are captured for the pet trade, with mortality rates during capture and transport reaching 80%. Freshwater turtles are harvested by the ton for food and traditional medicine markets.</p>
+                    
+                    <p>Senandika notes, "The wildlife trade isn't just about poaching in remote forests. It's connected to global economic systems, corruption, and consumer demand thousands of miles away. Addressing it requires tackling the entire supply chain, from local hunters to international smugglers to end consumers."</p>
+                    
+                    <div class="species-spotlight">
+                        <h4><i class="fas fa-shield-alt"></i> Spotlight: Javan Rhino</h4>
+                        <p>With only around 70 individuals remaining in Ujung Kulon National Park, the Javan rhinoceros is one of the rarest large mammals on Earth. Once widespread across Southeast Asia, this species was hunted to near extinction for its horn, which is valued in traditional medicine despite having no proven medicinal properties.</p>
+                    </div>
+                </div>
+
+                <!-- Fourth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">CONSERVATION SUCCESS</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Stories of Hope: Successful Conservation Models</h2>
+                    
+                    <p>Amid the challenges, inspiring conservation success stories demonstrate that species recovery is possible with dedicated effort, adequate funding, and community involvement. These stories provide valuable models for protecting other endangered species and restoring damaged ecosystems.</p>
+                    
+                    <h3>Community-Based Conservation: Local Stewards, Global Impact</h3>
+                    
+                    <p>Increasingly, conservationists recognize that lasting protection requires involving local communities as partners rather than treating them as obstacles. Community-based conservation programs provide alternative livelihoods, education, and shared benefits from protected areas, creating incentives for long-term stewardship.</p>
+                    
+                    <p>Senandika emphasizes this approach: "True conservation cannot happen without the people who live alongside wildlife. When communities benefit from protecting species—through ecotourism, sustainable harvesting, or compensation for coexistence—they become the most effective guardians of biodiversity."</p>
+                    
+                    <h3>Technological Innovations in Conservation</h3>
+                    
+                    <p>Modern technology offers powerful new tools for protecting endangered species. Camera traps monitor elusive animals without disturbance. Drones survey large areas and track poaching activity. Genetic analysis helps manage captive breeding programs and combat wildlife trafficking. Satellite imagery tracks habitat changes in real-time.</p>
+                    
+                    <div class="species-spotlight">
+                        <h4><i class="fas fa-feather-alt"></i> Spotlight: Bali Starling</h4>
+                        <p>Once reduced to just 15 individuals in the wild due to trapping for the pet trade, the Bali starling has rebounded through intensive conservation efforts. A combination of captive breeding, habitat protection, and strict anti-poaching measures has increased wild populations to over 100 birds, demonstrating that even critically endangered species can recover with sustained effort.</p>
+                    </div>
+                </div>
+
+                <!-- Fifth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">INDIVIDUAL ACTION</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>What You Can Do: Individual Actions with Collective Impact</h2>
+                    
+                    <p>While global challenges require systemic solutions, individual choices create powerful ripples of change. Every person can contribute to protecting endangered species through informed decisions and advocacy.</p>
+                    
+                    <div class="highlight-quote scroll-animate">
+                        "Conservation isn't just the work of scientists in remote field stations. It happens in our daily choices—what we buy, what we eat, how we travel, and what voices we amplify. Each of us holds a piece of the solution."
+                    </div>
+                    
+                    <h3>Conscious Consumer Choices</h3>
+                    
+                    <p>Support sustainable products certified by organizations like the Forest Stewardship Council (FSC) and Marine Stewardship Council (MSC). Avoid products containing palm oil from unsustainable sources, which drives deforestation in critical wildlife habitats. Choose cruelty-free cosmetics and avoid products containing wildlife-derived ingredients.</p>
+                    
+                    <h3>Responsible Tourism</h3>
+                    
+                    <p>When visiting natural areas, follow guidelines to minimize impact on wildlife. Choose ecotourism operators that prioritize animal welfare and contribute to conservation. Never purchase souvenirs made from endangered species products like ivory, tortoiseshell, or coral.</p>
+                    
+                    <h3>Advocacy and Education</h3>
+                    
+                    <p>Support conservation organizations through donations, volunteering, or spreading awareness. Advocate for stronger wildlife protection laws and enforcement. Educate others about the importance of biodiversity and the threats facing endangered species.</p>
+                    
+                    <p>As Senandika concludes, "Protecting endangered species is about more than saving individual animals. It's about preserving the intricate web of life that sustains us all. Each species lost diminishes our world in ways we may not immediately see but will certainly feel. The time for action is now—before more voices fall silent forever."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section -->
+    <section class="speaker-section" id="speaker">
+        <div class="container">
+            <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
+            
+            <div class="speaker-container">
+                <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
+                    <div class="speaker-avatar">BS</div>
+                    <h3 class="speaker-name">Bumi Senandika</h3>
+                    <p class="speaker-role">Wildlife Conservationist<br>Indigenous Ecology Advocate</p>
+                    <button class="speaker-btn">
+                        <i class="fas fa-user-circle"></i> View Full Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Modals -->
+    <!-- Bumi Senandika Bio -->
+    <div class="bio-modal" id="bumiBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('bumi')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">BS</div>
+                <div>
+                    <h2 class="bio-title">Bumi Senandika</h2>
+                    <p class="bio-subtitle">Wildlife Conservationist • Indigenous Ecology Advocate<br>Protector of Indonesia's Endangered Species</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>Bumi Senandika is a renowned wildlife conservationist dedicated to protecting Indonesia's most vulnerable species through an approach that bridges traditional ecological knowledge with modern conservation science. With over two decades of experience, Senandika has become a leading voice for inclusive conservation that respects both biodiversity and human communities.</p>
+                
+                <h3>Philosophy and Approach</h3>
+                
+                <p>Senandika believes that effective conservation must recognize the deep interconnection between cultural heritage and biological diversity. "In many indigenous traditions, animals are not simply resources to be managed but relatives to be respected," Senandika explains. This philosophy informs a conservation approach that integrates scientific research with traditional ecological knowledge passed down through generations.</p>
+                
+                <p>Senandika's work emphasizes that protecting endangered species requires addressing the needs and rights of local communities who share their landscapes with wildlife. By developing conservation programs that provide tangible benefits to these communities—through ecotourism, sustainable livelihoods, and shared governance—Senandika has helped reduce human-wildlife conflict and build local support for conservation initiatives.</p>
+                
+                <h3>Key Conservation Projects</h3>
+                
+                <p>Among Senandika's most significant contributions is the development of community-led monitoring programs for critically endangered species. These programs train local community members as wildlife monitors, providing them with employment while creating a robust network of eyes and ears across vast protected areas. This approach has proven particularly effective in monitoring populations of Sumatran tigers, Javan rhinos, and orangutans.</p>
+                
+                <p>Senandika has also pioneered innovative human-wildlife coexistence strategies, developing early warning systems to prevent conflicts between elephants and farmers, creating wildlife corridors to reconnect fragmented habitats, and establishing compensation schemes for farmers who lose crops to wildlife.</p>
+                
+                <h3>Education and Background</h3>
+                
+                <p>Senandika's conservation journey began with a childhood spent in the forests of West Kalimantan, where traditional practices emphasized living in harmony with nature. This early education was later complemented by formal training in conservation biology and ecological management. This unique combination of traditional wisdom and scientific knowledge has become the hallmark of Senandika's approach.</p>
+                
+                <p>Senandika frequently collaborates with international conservation organizations while maintaining a strong commitment to ensuring that conservation efforts are led by and benefit local communities. This balanced approach has earned recognition from both scientific institutions and indigenous communities.</p>
+                
+                <h3>Vision for the Future</h3>
+                
+                <p>Looking forward, Senandika envisions a conservation model where protected areas are not isolated islands but connected landscapes where wildlife can move freely, and where local communities are empowered as stewards of biodiversity. "The future of conservation lies in recognizing that humans are part of nature, not separate from it," Senandika asserts. "When we protect wildlife, we're also protecting the ecological systems that sustain us all."</p>
+                
+                <p>Through writing, speaking, and on-the-ground conservation work, Senandika continues to advocate for a more inclusive and effective approach to protecting endangered species—one that honors both scientific understanding and traditional wisdom in the shared mission of preserving Earth's biological heritage.</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-info">
+                        <h4>Visual Production</h4>
+                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in wildlife photography and conservation journalism that captures the beauty and urgency of protecting endangered species.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>About This Article</h3>
+                    <p>This feature is part of KABOOM!'s "Endangered Species" series, exploring the urgent crisis facing Earth's most vulnerable creatures and the innovative solutions being developed to protect them. Through scientific research, on-the-ground reporting, and powerful visual storytelling, we examine what it will take to preserve biodiversity for future generations.</p>
+                    <p>Our mission is to move beyond simple awareness to showcase practical conservation strategies, inspiring success stories, and meaningful actions everyone can take. We believe that every species has intrinsic value and that protecting biodiversity is essential for a healthy planet.</p>
+                    <p>This article incorporates insights from Bumi Senandika and examines both the challenges facing endangered species and the hopeful pathways toward their protection and recovery.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">All content on this site is for educational and awareness purposes. Conservation data and species information are based on current scientific research from organizations including IUCN, WWF, and Conservation International. Visual content produced by The Kadio Studio.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Biography Modal Functions
+        function openBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.bio-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add pulse animation to speaker cards
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
