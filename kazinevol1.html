@@ -366,11 +366,24 @@
             font-size: 16px;
         }
 
-        .pdf-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+/* Tambahkan di bagian CSS */
+.pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--pure-white);
+}
+
+/* Jika PDF lambat load, tampilkan loading */
+.flipbook-frame.pdf-loading::after {
+    content: 'Loading magazine...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--deep-accent);
+    font-weight: 600;
+}
 
         .view-full-btn {
             display: block;
@@ -893,9 +906,12 @@
                 </div>
             </div>
             
-            <a href="https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing" target="_blank" class="view-full-btn">
-                <i class="fas fa-external-link-alt"></i> VIEW FULL DIGITAL EDITION
-            </a>
+            <a href="https://raw.githubusercontent.com/username/repo/main/CONTOHSAJA.pdf" 
+   target="_blank" 
+   class="view-full-btn"
+   download="KAZINE-Volume1.pdf">
+    <i class="fas fa-download"></i> DOWNLOAD FULL PDF EDITION
+</a>
         </div>
     </section>
 
@@ -1196,22 +1212,32 @@
     updatePageDisplay();
     
     // PDF Embed Function
-    function embedPDF() {
-        const pdfUrl = 'https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing';
-        
-        if (pdfUrl && pdfUrl !== 'https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=drivesdk') {
-            flipbookFrame.innerHTML = `
-                <iframe src="${pdfUrl}" 
-                        class="pdf-iframe" 
-                        allow="autoplay"
-                        allowfullscreen>
-                </iframe>
-            `;
-        }
-    }
+   function embedPDFWithFallback() {
+    const pdfUrl = 'https://raw.githubusercontent.com/username/repo/main/CONTOHSAJA.pdf';
+    const flipbookFrame = document.getElementById('flipbookFrame');
     
-    // Uncomment to auto-embed PDF
-    // embedPDF();
+    // Tampilkan loading dulu
+    flipbookFrame.innerHTML = `
+        <div style="text-align:center; padding:50px;">
+            <i class="fas fa-spinner fa-spin" style="font-size:40px;color:var(--vibrant-primary);margin-bottom:20px;"></i>
+            <p>Loading KAZINE Volume 1...</p>
+        </div>
+    `;
+    
+    // Load PDF setelah 500ms
+    setTimeout(() => {
+        flipbookFrame.innerHTML = `
+            <iframe src="${pdfUrl}#toolbar=0&navpanes=0" 
+                    class="pdf-iframe"
+                    onload="console.log('PDF loaded successfully')"
+                    onerror="this.onerror=null; this.src='https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/preview'">
+            </iframe>
+        `;
+    }, 500);
+}
+
+// Panggil function
+embedPDFWithFallback();
     
     // Interactive team cards
     document.querySelectorAll('.team-card').forEach((card, index) => {
