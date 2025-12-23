@@ -21,8 +21,18 @@
             --gray-700: #404040;
             --gray-800: #262626;
             --gray-900: #171717;
-            --accent: #000000;
-            --primary: #000000;
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-200: #bbf7d0;
+            --green-300: #86efac;
+            --green-400: #4ade80;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --green-700: #15803d;
+            --green-800: #166534;
+            --green-900: #14532d;
+            --accent: #16a34a;
+            --primary: #16a34a;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -113,7 +123,7 @@
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            background: var(--black);
+            background: var(--green-600);
             color: var(--white);
             padding: 6px 15px;
             border-radius: 20px;
@@ -127,8 +137,8 @@
 
         .nav-btn {
             background: transparent;
-            border: 2px solid var(--black);
-            color: var(--black);
+            border: 2px solid var(--green-600);
+            color: var(--green-600);
             padding: 10px 22px;
             border-radius: 30px;
             font-weight: 600;
@@ -150,7 +160,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(22, 163, 74, 0.1), transparent);
             transition: left 0.7s;
         }
 
@@ -159,17 +169,17 @@
         }
 
         .nav-btn:hover {
-            background: var(--black);
+            background: var(--green-600);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 25px rgba(22, 163, 74, 0.2);
         }
 
         /* ===== ARTICLE HERO ===== */
         .article-hero-section {
             margin-top: 120px;
-            padding: 60px 0;
-            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--green-50) 0%, var(--white) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -181,7 +191,7 @@
             right: 0;
             width: 30%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0,128,0,0.02));
+            background: linear-gradient(45deg, transparent, rgba(22, 163, 74, 0.03));
             z-index: 0;
         }
 
@@ -196,8 +206,8 @@
 
         .article-date {
             font-size: 14px;
-            color: var(--gray-500);
-            font-weight: 500;
+            color: var(--green-600);
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -212,7 +222,7 @@
             letter-spacing: -1.5px;
             position: relative;
             display: inline-block;
-            color: #2d5a27;
+            color: var(--green-800);
         }
 
         .article-title:after {
@@ -223,7 +233,7 @@
             transform: translateX(-50%);
             width: 120px;
             height: 4px;
-            background: #38a169;
+            background: var(--green-500);
             border-radius: 2px;
         }
 
@@ -234,90 +244,11 @@
             margin: 0 auto 40px;
             font-weight: 400;
             line-height: 1.6;
-            font-style: italic;
-        }
-
-        /* ===== SPEAKER INFO ===== */
-        .speaker-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            padding-top: 50px;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        .speaker-card {
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            max-width: 250px;
-        }
-
-        .speaker-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .speaker-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #2d5a27;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 40px;
-            font-weight: 700;
-            overflow: hidden;
-            border: 4px solid var(--white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .speaker-card:hover .speaker-avatar {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .speaker-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--black);
-        }
-
-        .speaker-role {
-            font-size: 14px;
-            color: var(--gray-600);
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .speaker-btn {
-            background: transparent;
-            border: 2px solid var(--gray-300);
-            color: var(--gray-600);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .speaker-card:hover .speaker-btn {
-            border-color: #38a169;
-            color: #38a169;
-            background: #38a169;
-            color: var(--white);
         }
 
         /* ===== ARTICLE CONTENT ===== */
         .article-content-section {
-            padding: 80px 0;
+            padding: 80px 0 40px;
         }
 
         .article-content-wrapper {
@@ -330,7 +261,7 @@
             height: 500px;
             background: linear-gradient(45deg, #1a202c, #2d3748);
             border-radius: 20px;
-            margin: 40px 0;
+            margin: 60px 0;
             overflow: hidden;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
@@ -343,7 +274,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,100,0,0.3) 100%);
+            background: linear-gradient(to bottom, transparent 0%, rgba(22, 163, 74, 0.2) 100%);
             z-index: 1;
         }
 
@@ -377,17 +308,6 @@
             backdrop-filter: blur(5px);
         }
 
-        .image-credit a {
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .image-credit a:hover {
-            color: var(--gray-300);
-            text-decoration: underline;
-        }
-
         .article-body {
             font-size: 19px;
             line-height: 1.9;
@@ -401,52 +321,175 @@
         .article-body h2 {
             font-size: 36px;
             font-weight: 800;
-            margin: 60px 0 30px;
-            color: #2d5a27;
+            margin: 80px 0 40px;
+            color: var(--green-800);
             position: relative;
-            padding-left: 20px;
+            padding-left: 0;
+            padding-bottom: 20px;
         }
 
-        .article-body h2:before {
+        .article-body h2:after {
             content: '';
             position: absolute;
+            bottom: 0;
             left: 0;
-            top: 10px;
-            bottom: 10px;
-            width: 4px;
-            background: #38a169;
+            width: 80px;
+            height: 4px;
+            background: var(--green-500);
             border-radius: 2px;
         }
 
         .article-body h3 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            margin: 40px 0 20px;
-            color: #2d5a27;
+            margin: 60px 0 25px;
+            color: var(--green-700);
+            line-height: 1.3;
         }
 
         .highlight-quote {
-            border-left: 4px solid #38a169;
-            padding-left: 30px;
-            margin: 50px 0;
+            border-left: 4px solid var(--green-500);
+            padding: 30px 40px;
+            margin: 60px 0;
             font-style: italic;
             font-size: 24px;
-            color: #2d5a27;
+            color: var(--green-700);
             line-height: 1.5;
             position: relative;
-            background: #f0fff4;
-            padding: 30px;
-            border-radius: 10px;
+            background: var(--green-50);
+            border-radius: 0 20px 20px 0;
         }
 
         .highlight-quote:before {
             content: '"';
             position: absolute;
-            left: 15px;
-            top: -10px;
+            left: 20px;
+            top: 10px;
             font-size: 60px;
-            color: #c6f6d5;
+            color: var(--green-200);
             font-family: Georgia, serif;
+        }
+
+        .insight-section {
+            margin: 80px 0;
+            padding: 60px 0;
+            border-top: 1px solid var(--green-200);
+        }
+
+        .interview-note {
+            background: var(--green-50);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--green-500);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--green-800);
+        }
+
+        .interview-note strong {
+            color: var(--green-700);
+            font-weight: 700;
+        }
+
+        /* ===== SPEAKER SECTION ===== */
+        .speaker-section {
+            background: var(--green-50);
+            padding: 80px 0;
+            margin: 60px 0 0;
+            border-top: 1px solid var(--green-200);
+            border-bottom: 1px solid var(--green-200);
+        }
+
+        .speaker-section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--green-800);
+        }
+
+        .speaker-container {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 400px;
+            width: 100%;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--green-200);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--green-700);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .speaker-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--green-800);
+        }
+
+        .speaker-role {
+            font-size: 16px;
+            color: var(--green-600);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .speaker-btn {
+            background: transparent;
+            border: 2px solid var(--green-300);
+            color: var(--green-600);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speaker-card:hover .speaker-btn {
+            border-color: var(--green-600);
+            background: var(--green-600);
+            color: var(--white);
         }
 
         /* ===== BIOGRAPHY MODAL ===== */
@@ -478,7 +521,7 @@
             background: var(--white);
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -525,7 +568,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: #2d5a27;
+            background: var(--green-700);
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -580,16 +623,16 @@
         }
 
         .bio-social a:hover {
-            border-color: #38a169;
-            color: #38a169;
+            border-color: var(--green-600);
+            color: var(--green-600);
             transform: translateY(-3px);
         }
 
         /* ===== FOOTER ===== */
         footer {
-            background: #f0fff4;
+            background: var(--green-50);
             padding: 80px 0 40px;
-            border-top: 1px solid #c6f6d5;
+            border-top: 1px solid var(--green-200);
             position: relative;
         }
 
@@ -604,7 +647,7 @@
             background: var(--white);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid #c6f6d5;
+            border: 1px solid var(--green-200);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             animation: float 6s ease-in-out infinite;
         }
@@ -620,7 +663,7 @@
             margin-bottom: 30px;
             position: relative;
             padding-bottom: 15px;
-            color: #2d5a27;
+            color: var(--green-800);
         }
 
         .company-card h3:after {
@@ -630,7 +673,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: #38a169;
+            background: var(--green-500);
             border-radius: 2px;
         }
 
@@ -649,8 +692,27 @@
 
         .company-info i {
             width: 20px;
-            color: #2d5a27;
+            color: var(--green-600);
             font-size: 18px;
+        }
+
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--green-200);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--green-800);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
         }
 
         .footer-about h3 {
@@ -659,7 +721,7 @@
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
-            color: #2d5a27;
+            color: var(--green-800);
         }
 
         .footer-about h3:after {
@@ -669,7 +731,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: #38a169;
+            background: var(--green-500);
             border-radius: 2px;
         }
 
@@ -683,7 +745,7 @@
         .footer-bottom {
             text-align: center;
             padding-top: 40px;
-            border-top: 1px solid #c6f6d5;
+            border-top: 1px solid var(--green-300);
             color: var(--gray-500);
             font-size: 14px;
         }
@@ -700,7 +762,7 @@
         @media (max-width: 992px) {
             .article-hero-section {
                 margin-top: 100px;
-                padding: 40px 0;
+                padding: 60px 0;
             }
             
             .article-title {
@@ -713,6 +775,10 @@
             
             .article-body h2 {
                 font-size: 32px;
+            }
+            
+            .speaker-section {
+                padding: 60px 0;
             }
         }
 
@@ -737,14 +803,6 @@
                 margin-top: 130px;
             }
             
-            .speaker-info {
-                gap: 30px;
-            }
-            
-            .speaker-card {
-                max-width: 200px;
-            }
-            
             .bio-header {
                 flex-direction: column;
                 text-align: center;
@@ -756,6 +814,19 @@
                 height: 80px;
                 font-size: 28px;
             }
+            
+            .speaker-section-title {
+                font-size: 32px;
+            }
+            
+            .speaker-card {
+                padding: 30px;
+            }
+            
+            .highlight-quote {
+                padding: 25px;
+                font-size: 22px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -765,15 +836,6 @@
             
             .article-subtitle {
                 font-size: 18px;
-            }
-            
-            .speaker-info {
-                gap: 20px;
-            }
-            
-            .speaker-card {
-                max-width: 100%;
-                width: 100%;
             }
             
             .article-image {
@@ -790,12 +852,30 @@
             
             .highlight-quote {
                 font-size: 20px;
-                padding-left: 20px;
-                margin: 30px 0;
+                padding: 20px;
+                margin: 40px 0;
             }
             
             .company-card {
                 padding: 30px;
+            }
+            
+            .article-body h2 {
+                font-size: 28px;
+                margin: 60px 0 30px;
+            }
+            
+            .article-body h3 {
+                font-size: 24px;
+                margin: 40px 0 20px;
+            }
+            
+            .speaker-section-title {
+                font-size: 28px;
+            }
+            
+            .speaker-name {
+                font-size: 22px;
             }
         }
 
@@ -836,8 +916,8 @@
                     <a href="kaboom.html" class="nav-btn">
                         <i class="fas fa-home"></i> Home
                     </a>
-                    <button class="nav-btn" onclick="window.location.href='#speakers'">
-                        <i class="fas fa-users"></i> Speakers
+                    <button class="nav-btn" onclick="window.location.href='#speaker'">
+                        <i class="fas fa-users"></i> Expert Insight
                     </button>
                 </div>
             </div>
@@ -851,24 +931,6 @@
                 <span class="article-date">APRIL 22, 2026</span>
                 <h1 class="article-title scroll-animate">Protect the Earth,<br>It's Our Home</h1>
                 <p class="article-subtitle scroll-animate">Exploring the urgent need for environmental conservation and discovering how every action counts in preserving our planet for future generations. The Earth is not just a place we live in—it's our only home.</p>
-                
-                <div class="speaker-info scroll-animate" id="speakers">
-                    <!-- Speaker 1 -->
-                    <div class="speaker-card" onclick="openBio('sean')">
-                        <div class="speaker-avatar">SK</div>
-                        <h3 class="speaker-name">Sean Kastara</h3>
-                        <p class="speaker-role">Chief Operating Officer<br>TN Eco Nusantara</p>
-                        <button class="speaker-btn">View Profile</button>
-                    </div>
-                    
-                    <!-- Photographer -->
-                    <div class="speaker-card" onclick="openBio('pancarona')">
-                        <div class="speaker-avatar">P</div>
-                        <h3 class="speaker-name">Pancarona Collective</h3>
-                        <p class="speaker-role">Environmental Photographers<br>Visual Storytellers</p>
-                        <button class="speaker-btn">View Profile</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -877,76 +939,145 @@
     <section class="article-content-section">
         <div class="container">
             <div class="article-content-wrapper">
-                <!-- Hero Image -->
-                <div class="article-image scroll-animate">
-                    <div class="image-placeholder">EARTH'S BEAUTY</div>
-                    <div class="image-credit">
-                        Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
-                    </div>
-                </div>
-                
-                <!-- Article Body -->
+                <!-- Introduction -->
                 <div class="article-body scroll-animate">
                     <p>In an era marked by climate change, biodiversity loss, and environmental degradation, the call to protect our planet has never been more critical. The Earth—our only home—is facing unprecedented challenges, but it's also showing remarkable resilience. This exploration takes us from the depths of our oceans to the highest mountain peaks, revealing why conservation matters now more than ever.</p>
+                    
+                    <div class="interview-note scroll-animate">
+                        <strong>Editor's Note:</strong> This article incorporates insights from Sean Kastara, Chief Operating Officer of TN Eco Nusantara, whose work demonstrates practical approaches to balancing environmental conservation with sustainable development.
+                    </div>
+                </div>
+
+                <!-- First Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">ECOSYSTEM BALANCE</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
                     
                     <h2>The Fragile Balance of Ecosystems</h2>
                     
                     <p>Every ecosystem on Earth exists in a delicate balance, where each species plays a crucial role in maintaining the health of the whole. From the smallest microorganisms in the soil to the largest predators in the oceans, every creature contributes to the planet's life-support systems. When we disrupt these balances, we risk triggering cascading effects that can undermine the very foundations of life on Earth.</p>
                     
-                    <div class="highlight-quote">
+                    <div class="highlight-quote scroll-animate">
                         "We don't inherit the Earth from our ancestors; we borrow it from our children. Every tree planted, every plastic bottle refused, every species protected is an investment in our collective future."
                     </div>
                     
                     <p>Modern science reveals that healthy ecosystems provide essential services worth trillions of dollars annually—from clean air and water to pollination and climate regulation. Yet, we often take these services for granted until they're compromised or lost entirely.</p>
                     
-                    <h2>The Ocean's Cry for Help</h2>
-                    
-                    <p>Covering 71% of our planet, oceans are the lifeblood of Earth, regulating climate, producing oxygen, and feeding billions. Yet, they face immense threats: plastic pollution that outnumbers fish in some areas, coral bleaching from warming waters, overfishing that depletes marine populations, and acidification that threatens shell-building organisms.</p>
-                    
-                    <h3>The Plastic Problem</h3>
-                    
-                    <p>Every year, approximately 8 million tons of plastic enter our oceans. This plastic breaks down into microplastics that enter the food chain, affecting marine life and ultimately human health. The Great Pacific Garbage Patch—a floating island of plastic waste—now covers an area three times the size of France.</p>
-                    
-                    <p><strong>Ocean conservation initiatives</strong> are showing promising results. Marine protected areas, sustainable fishing practices, and plastic reduction campaigns are making a difference, but global cooperation and individual action are needed to scale these efforts.</p>
-                    
-                    <p><strong>Coral reef restoration</strong> - Scientists are developing coral species resistant to warming waters and replanting damaged reefs. Community-led programs are training local divers to become coral gardeners, nurturing new growth on artificial structures.</p>
-                    
-                    <p><strong>Blue carbon ecosystems</strong> - Mangrove forests, seagrass meadows, and salt marshes sequester carbon at rates up to 10 times higher than terrestrial forests. Protecting and restoring these ecosystems offers a powerful climate solution.</p>
-                    
-                    <h2>Forests: The Lungs of Our Planet</h2>
-                    
-                    <p>Forests cover approximately 31% of the Earth's land area, hosting 80% of terrestrial biodiversity and playing a crucial role in climate regulation. Yet, deforestation continues at alarming rates, with football-field-sized areas of forest lost every second.</p>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px; margin: 50px 0;">
-                        <div class="image-placeholder">FOREST CONSERVATION</div>
+                    <p>Sean Kastara emphasizes the interconnectedness of these systems: "Humans, nature, and wildlife are deeply interconnected. The Earth is a shared home that must be protected collectively. Sustainability isn't solely about protecting nature, but about reshaping how humanity lives, operates, and grows alongside the environment in a responsible and ethical manner."</p>
+                </div>
+
+                <!-- Second Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">OCEAN CONSERVATION</div>
                         <div class="image-credit">
-                            Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                            Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
                     
-                    <p>Indigenous communities, who protect approximately 80% of the world's remaining biodiversity, are on the frontlines of forest conservation. Their traditional knowledge and sustainable practices offer valuable lessons for the rest of the world.</p>
+                    <h2>The Ocean's Cry for Help: A Blue Planet in Peril</h2>
                     
-                    <p>As Sean Kastara of TN Eco Nusantara emphasizes, "Conservation isn't about putting nature in a museum. It's about creating sustainable systems where humans and nature thrive together. Every restored hectare of forest creates jobs, captures carbon, protects watersheds, and preserves cultural heritage."</p>
+                    <p>Covering 71% of our planet, oceans are the lifeblood of Earth, regulating climate, producing oxygen, and feeding billions. Yet, they face immense threats: plastic pollution that outnumbers fish in some areas, coral bleaching from warming waters, overfishing that depletes marine populations, and acidification that threatens shell-building organisms.</p>
                     
-                    <h2>Individual Actions with Collective Impact</h2>
+                    <h3>The Plastic Problem: From Convenience to Crisis</h3>
                     
-                    <p>While global challenges require systemic solutions, individual actions create powerful ripples of change. Consider these everyday choices with significant environmental impact:</p>
+                    <p>Every year, approximately 8 million tons of plastic enter our oceans. This plastic breaks down into microplastics that enter the food chain, affecting marine life and ultimately human health. The Great Pacific Garbage Patch—a floating island of plastic waste—now covers an area three times the size of France.</p>
                     
-                    <p>1. <strong>Reduce single-use plastics</strong> - Carry reusable bags, bottles, and containers. Choose products with minimal packaging.<br>
-                    2. <strong>Conserve water</strong> - Fix leaks promptly, install water-saving fixtures, and be mindful of consumption.<br>
-                    3. <strong>Support sustainable products</strong> - Look for certifications like Fair Trade, Rainforest Alliance, and MSC for seafood.<br>
-                    4. <strong>Reduce food waste</strong> - Plan meals, store food properly, and compost organic waste.<br>
-                    5. <strong>Choose sustainable transportation</strong> - Walk, bike, use public transit, or carpool when possible.</p>
+                    <p>Despite these challenges, conservation initiatives are showing promising results. Marine protected areas, sustainable fishing practices, and plastic reduction campaigns are making a difference. Community-led programs are training local divers to become coral gardeners, nurturing new growth on artificial structures and developing coral species resistant to warming waters.</p>
                     
-                    <h2>Innovation and Hope</h2>
+                    <p>Blue carbon ecosystems—mangrove forests, seagrass meadows, and salt marshes—sequester carbon at rates up to 10 times higher than terrestrial forests. Protecting and restoring these ecosystems offers a powerful climate solution that benefits both the environment and coastal communities.</p>
+                </div>
+
+                <!-- Third Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">FOREST RESTORATION</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
                     
-                    <p>Across the globe, innovative solutions are emerging. From vertical farming that produces food with 95% less water to biodegradable materials replacing plastics, from renewable energy surpassing fossil fuels in affordability to circular economy models eliminating waste—human ingenuity is rising to meet environmental challenges.</p>
+                    <h2>Forests: The Lungs of Our Planet and Keepers of Biodiversity</h2>
+                    
+                    <p>Forests cover approximately 31% of the Earth's land area, hosting 80% of terrestrial biodiversity and playing a crucial role in climate regulation. Yet, deforestation continues at alarming rates, with football-field-sized areas of forest lost every second.</p>
+                    
+                    <p>Indigenous communities, who protect approximately 80% of the world's remaining biodiversity, are on the frontlines of forest conservation. Their traditional knowledge and sustainable practices offer valuable lessons for the rest of the world. As Kastara notes from his experience with Green Horizon Initiative, "Working closely with various stakeholders to integrate conservation values into corporate strategies and operational frameworks ensures that environmental responsibility remains central to organizational growth and impact."</p>
+                    
+                    <h3>From Degradation to Restoration</h3>
+                    
+                    <p>Forest restoration projects across the tropics demonstrate that damaged ecosystems can recover. In Indonesia, where Kastara has led sustainability-focused projects across forestry and biodiversity conservation, community-based restoration initiatives are showing remarkable success. These projects not only capture carbon and protect watersheds but also create sustainable livelihoods for local communities.</p>
+                    
+                    <p>"Conservation isn't about putting nature in a museum," Kastara emphasizes. "It's about creating sustainable systems where humans and nature thrive together. Every restored hectare of forest creates jobs, captures carbon, protects watersheds, and preserves cultural heritage."</p>
+                </div>
+
+                <!-- Fourth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">SUSTAINABLE LIVING</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Individual Actions with Collective Impact: The Power of Everyday Choices</h2>
+                    
+                    <p>While global challenges require systemic solutions, individual actions create powerful ripples of change. Sustainable living isn't about perfection but about progress—making better choices where possible and advocating for systemic change where needed.</p>
+                    
+                    <h3>Practical Steps Toward Sustainability</h3>
+                    
+                    <p>Reducing single-use plastics by carrying reusable bags, bottles, and containers represents one of the most immediate impacts individuals can make. Choosing products with minimal packaging and supporting brands with credible sustainability certifications like Fair Trade or Rainforest Alliance sends market signals that influence corporate behavior.</p>
+                    
+                    <p>Food waste reduction represents another significant opportunity. Planning meals, storing food properly, and composting organic waste not only conserves resources but also reduces methane emissions from landfills. According to the UN Food and Agriculture Organization, if food waste were a country, it would be the third-largest emitter of greenhouse gases after China and the United States.</p>
+                    
+                    <p>Transportation choices also matter significantly. Walking, biking, using public transit, or carpooling reduces carbon emissions while improving personal health and community connectivity. As electric vehicles become more accessible, they offer another pathway to reducing transportation-related emissions.</p>
+                </div>
+
+                <!-- Fifth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">INNOVATION & HOPE</div>
+                        <div class="image-credit">
+                            Visuals by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Innovation and Hope: Building a Sustainable Future Together</h2>
+                    
+                    <p>Across the globe, innovative solutions are emerging that offer hope for a sustainable future. From vertical farming that produces food with 95% less water to biodegradable materials replacing plastics, from renewable energy surpassing fossil fuels in affordability to circular economy models eliminating waste—human ingenuity is rising to meet environmental challenges.</p>
+                    
+                    <div class="highlight-quote scroll-animate">
+                        "Sustainability is not a destination but a journey of continuous improvement. It requires transparency, collective responsibility, and a commitment to long-term environmental balance."
+                    </div>
                     
                     <p>Youth-led movements like Fridays for Future are mobilizing millions worldwide, demonstrating that concern for the planet transcends generations and borders. Corporations are increasingly adopting Environmental, Social, and Governance (ESG) principles, recognizing that sustainability is good for business and essential for long-term survival.</p>
                     
+                    <p>Kastara's educational background in Environmental Management & Sustainability from Sogang University informs his approach: "Developing a strong academic foundation in sustainable development, environmental policy, and strategic resource management strengthens our ability to approach environmental challenges through both scientific understanding and practical, long-term solutions."</p>
+                    
                     <p>The Earth has shown remarkable resilience throughout its 4.5-billion-year history. It has survived ice ages, asteroid impacts, and volcanic super-eruptions. Now, it faces a new challenge: human activity. The good news is that as the cause of the problem, we also hold the solution. By working with nature rather than against it, we can create a future where both humanity and the natural world flourish.</p>
                     
-                    <p>As the Pancarona Collective's photographs remind us, our planet's beauty is worth protecting—not as a distant wilderness, but as our shared home, our life-support system, and our legacy to future generations.</p>
+                    <p>As we move forward, Kastara's perspective offers guidance: "Through leadership roles, consistently advocating for responsible environmental stewardship as the foundation of long-term sustainability. Integrating conservation values into organizational strategy, operational execution, and public communication creates lasting impact."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section -->
+    <section class="speaker-section" id="speaker">
+        <div class="container">
+            <h2 class="speaker-section-title scroll-animate">Expert Insight</h2>
+            
+            <div class="speaker-container">
+                <div class="speaker-card scroll-animate" onclick="openBio('sean')">
+                    <div class="speaker-avatar">SK</div>
+                    <h3 class="speaker-name">Sean Kastara</h3>
+                    <p class="speaker-role">Chief Operating Officer<br>TN Eco Nusantara</p>
+                    <button class="speaker-btn">
+                        <i class="fas fa-user-circle"></i> View Full Profile
+                    </button>
                 </div>
             </div>
         </div>
@@ -964,82 +1095,34 @@
                 <div class="bio-avatar">SK</div>
                 <div>
                     <h2 class="bio-title">Sean Kastara</h2>
-                    <p class="bio-subtitle">Chief Operating Officer, TN Eco Nusantara<br>Environmental Strategist • Conservation Leader • Sustainability Expert</p>
+                    <p class="bio-subtitle">Chief Operating Officer, TN Eco Nusantara<br>Sustainability Executive • Environmental Strategist</p>
                 </div>
             </div>
             
             <div class="bio-content">
-                <p>Sean Kastara serves as the Chief Operating Officer at TN Eco Nusantara, Indonesia's leading environmental conservation organization. With over 15 years of experience in sustainable development, Kastara has pioneered innovative approaches to balancing ecological preservation with community economic development.</p>
+                <p>Sean Kastara is a sustainability-focused executive with a strong background in environmental operations and strategic leadership. As Chief Operating Officer of TN Eco Nusantara, Kastara believes that humans, nature, and wildlife are deeply interconnected, and that the Earth is a shared home that must be protected collectively.</p>
                 
-                <p>Under his leadership, TN Eco Nusantara has successfully implemented conservation programs across Indonesia's diverse ecosystems—from the rainforests of Sumatra and Borneo to the coral reefs of Raja Ampat and the mangrove forests of Java.</p>
+                <p>Through leadership roles, Kastara consistently advocates for responsible environmental stewardship as the foundation of long-term sustainability. He strives to integrate conservation values into organizational strategy, operational execution, and public communication.</p>
                 
-                <p>Kastara's "Eco-Synergy Framework" has gained international recognition for its holistic approach to conservation, emphasizing four interconnected pillars:</p>
+                <h3>Professional Experience</h3>
                 
-                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
-                    <li><strong>Ecological Integrity</strong> - Protecting and restoring natural habitats and biodiversity</li>
-                    <li><strong>Community Empowerment</strong> - Creating sustainable livelihoods for local communities</li>
-                    <li><strong>Economic Viability</strong> - Developing conservation as an economically sustainable model</li>
-                    <li><strong>Cultural Preservation</strong> - Honoring and integrating indigenous knowledge and practices</li>
-                </ul>
+                <p>Previously, as Director of Sustainable Operations at Green Horizon Initiative, Kastara led and managed sustainability-focused projects across forestry, biodiversity conservation, and ecosystem restoration. He worked closely with various stakeholders to integrate conservation values into corporate strategies and operational frameworks, ensuring that environmental responsibility remained central to organizational growth and impact.</p>
                 
-                <p>Prior to joining TN Eco Nusantara, Kastara worked with international organizations including the World Wildlife Fund and Conservation International, focusing on marine conservation in Southeast Asia. He holds a Master's degree in Environmental Management from Yale University and a Bachelor's in Biology from Universitas Indonesia.</p>
+                <p>Kastara holds a degree in Environmental Management & Sustainability from Sogang University, where he developed a strong academic foundation in sustainable development, environmental policy, and strategic resource management. His studies strengthened his ability to approach environmental challenges through both scientific understanding and practical, long-term solutions.</p>
                 
-                <p>Kastara has been instrumental in several landmark conservation achievements, including the establishment of the 2.5-million-hectare Sebangau National Park in Central Kalimantan and the development of Indonesia's first community-managed marine protected area network in Eastern Indonesia.</p>
+                <h3>Philosophy and Approach</h3>
                 
-                <p>He is a frequent speaker at international conferences and has advised governments and corporations on sustainable development strategies. Kastara believes that "conservation succeeds when it benefits both nature and people, creating a virtuous cycle of protection and prosperity."</p>
+                <p>Kastara is known for his strong perspective on the interconnected relationship between humans, nature, and wildlife. He believes sustainability is not solely about protecting nature, but about reshaping how humanity lives, operates, and grows alongside the environment in a responsible and ethical manner.</p>
+                
+                <p>His work reflects a commitment to long-term environmental balance, transparency, and collective responsibility. Kastara's approach emphasizes that effective environmental stewardship requires integrating ecological considerations into every aspect of organizational and societal functioning.</p>
+                
+                <p>Under Kastara's leadership, TN Eco Nusantara has implemented innovative conservation strategies that balance ecological preservation with community development, demonstrating that environmental responsibility and economic viability can be mutually reinforcing rather than contradictory objectives.</p>
                 
                 <div class="bio-social">
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fas fa-globe"></i></a>
                     <a href="#"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pancarona Collective Bio -->
-    <div class="bio-modal" id="pancaronaBio">
-        <div class="bio-modal-content">
-            <button class="bio-close" onclick="closeBio('pancarona')">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="bio-header">
-                <div class="bio-avatar">P</div>
-                <div>
-                    <h2 class="bio-title">Pancarona Collective</h2>
-                    <p class="bio-subtitle">Environmental Photography Collective<br>Visual Storytellers • Conservation Advocates</p>
-                </div>
-            </div>
-            
-            <div class="bio-content">
-                <p>The Pancarona Collective is an award-winning international photography collective dedicated to documenting the beauty and fragility of our natural world. With a special focus on environmental conservation, the collective's work bridges the gap between scientific understanding and public awareness.</p>
-                
-                <p>Founded in 2018, Pancarona brings together photographers, scientists, and conservationists to create visual narratives that inspire action and foster connection with nature. The collective's name reflects their mission: "pancarona" derives from ancient words meaning "to illuminate the whole," representing their comprehensive approach to environmental storytelling.</p>
-                
-                <p>Specializing in long-term documentary projects, Pancarona has documented critical environmental issues across six continents, with particular emphasis on:</p>
-                
-                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
-                    <li>Climate change impacts on vulnerable ecosystems</li>
-                    <li>Wildlife conservation success stories and challenges</li>
-                    <li>Indigenous conservation practices and traditional ecological knowledge</li>
-                    <li>Innovative solutions to environmental problems</li>
-                </ul>
-                
-                <p>The collective's groundbreaking project "Vanishing Ice" documented glacier retreat across the Himalayas, Andes, Alps, and Rockies over a five-year period, creating powerful visual evidence of climate change. This work has been exhibited at the United Nations Climate Conference and featured in National Geographic.</p>
-                
-                <p>Pancarona's "Guardians of the Forest" series, created in collaboration with indigenous communities in the Amazon and Congo basins, highlights traditional conservation practices that have protected biodiversity for generations. This project has influenced policy discussions on recognizing indigenous land rights as a conservation strategy.</p>
-                
-                <p>Operating on a collaborative model, Pancarona shares profits from commercial work to fund conservation photography grants for emerging photographers from the Global South. They also conduct photography workshops for conservation rangers and community monitors, equipping them with skills to document biodiversity and environmental changes.</p>
-                
-                <p>The collective believes that "seeing leads to caring, and caring leads to action." Through their visually stunning and scientifically accurate work, they aim to create emotional connections that translate into conservation action.</p>
-                
-                <div class="bio-social">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fas fa-camera"></i></a>
-                    <a href="#"><i class="fas fa-globe"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -1065,18 +1148,24 @@
                             <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
                         </div>
                     </div>
+                    
+                    <div class="studio-info">
+                        <h4>Visual Production</h4>
+                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in environmental photography and conservation journalism that captures the beauty and urgency of our natural world.</p>
+                    </div>
                 </div>
                 
                 <div class="footer-about scroll-animate">
                     <h3>About This Article</h3>
                     <p>This feature is part of KABOOM!'s "Nature Conservation" series, exploring urgent environmental issues and innovative solutions. Through scientific research, on-the-ground reporting, and powerful visual storytelling, we examine what it will take to protect our planet for future generations.</p>
                     <p>Our mission is to move beyond doom-and-gloom narratives to showcase practical solutions, inspiring stories, and the scientific basis for hope. We believe that informed awareness leads to meaningful action.</p>
+                    <p>This article incorporates insights from Sean Kastara of TN Eco Nusantara and examines both global environmental challenges and practical pathways toward sustainability.</p>
                 </div>
             </div>
             
             <div class="footer-bottom scroll-animate">
                 <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
-                <p class="disclaimer">All content on this site is for educational and awareness purposes. Environmental data and conservation strategies are based on current scientific research and best practices.</p>
+                <p class="disclaimer">All content on this site is for educational and awareness purposes. Environmental data and conservation strategies are based on current scientific research and best practices. Visual content produced by The Kadio Studio.</p>
             </div>
         </div>
     </footer>
