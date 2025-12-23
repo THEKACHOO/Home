@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kachoo Launching: Three Major Projects to Transform Media | KABOOM!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            
+            /* Elegant red theme */
+            --red-primary: #dc2626;
+            --red-light: #fecaca;
+            --red-lighter: #fee2e2;
+            --red-dark: #b91c1c;
+            --red-darker: #991b1b;
+            --accent-red: #ef4444;
+            
+            /* Complementary colors */
+            --gold: #d97706;
+            --gold-light: #fef3c7;
+            --navy: #1e3a8a;
+            --navy-light: #dbeafe;
+            
+            --accent: var(--red-primary);
+            --primary: var(--red-primary);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-100%); 
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kaboom {
+            animation: kaboomEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes kaboomEffect {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1);
+            }
+            25% { 
+                transform: scale(1.2) rotate(-5deg); 
+                filter: brightness(1.2);
+            }
+            50% { 
+                transform: scale(1.3) rotate(5deg); 
+                filter: brightness(1.3);
+            }
+            75% { 
+                transform: scale(1.2) rotate(-3deg); 
+                filter: brightness(1.2);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1);
+            }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold));
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            animation: pulseCategory 2s infinite alternate;
+        }
+
+        @keyframes pulseCategory {
+            0% {
+                box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+            }
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--red-primary);
+            color: var(--red-primary);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--red-primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--white) 0%, var(--red-lighter) 100%);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInHero 1.2s ease-out;
+        }
+
+        @keyframes fadeInHero {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(220, 38, 38, 0.03));
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(220, 38, 38, 0.05);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg); 
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg); 
+            }
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--red-primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-title {
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: var(--red-darker);
+            animation: fadeInUp 0.8s 0.4s both;
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-primary), var(--gold));
+            border-radius: 2px;
+            animation: expandLine 1s 1s both;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; opacity: 0; }
+            to { width: 120px; opacity: 1; }
+        }
+
+        .article-subtitle {
+            font-size: clamp(20px, 2vw, 24px);
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s 0.6s both;
+        }
+
+        /* ===== PROJECTS SHOWCASE ===== */
+        .projects-showcase {
+            padding: 40px 0 80px;
+            position: relative;
+        }
+
+        .project-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--gray-700);
+            animation: fadeInUp 0.8s 0.8s both;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--red-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.8s; }
+        .project-card:nth-child(2) { animation-delay: 1s; }
+        .project-card:nth-child(3) { animation-delay: 1.2s; }
+
+        .project-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-primary), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.1);
+        }
+
+        .project-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--red-light), var(--gold-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: var(--red-primary);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .project-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--red-darker);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .project-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--red-primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .project-card:hover .project-title:after {
+            width: 60px;
+        }
+
+        .project-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: var(--red-lighter);
+            color: var(--red-primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        .quote-section {
+            background: linear-gradient(135deg, var(--red-lighter), var(--white));
+            padding: 80px 0;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dc2626' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote {
+            font-size: 28px;
+            line-height: 1.5;
+            color: var(--red-darker);
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 40px;
+            animation: fadeInUp 0.8s both;
+        }
+
+        .quote:before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -20px;
+            font-size: 80px;
+            color: var(--red-light);
+            font-family: Georgia, serif;
+            opacity: 0.5;
+        }
+
+        .quote:after {
+            content: '"';
+            position: absolute;
+            right: 0;
+            bottom: -40px;
+            font-size: 80px;
+            color: var(--red-light);
+            font-family: Georgia, serif;
+            opacity: 0.5;
+        }
+
+        .quote-author {
+            text-align: center;
+            font-size: 18px;
+            color: var(--red-primary);
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        /* ===== SPEAKER SECTION ===== */
+        .speaker-section {
+            background: linear-gradient(135deg, var(--white), var(--red-lighter));
+            padding: 80px 0;
+            margin: 60px 0 0;
+            border-top: 1px solid var(--red-light);
+            border-bottom: 1px solid var(--red-light);
+        }
+
+        .speaker-section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--red-darker);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .speaker-container {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .speaker-card {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 400px;
+            width: 100%;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--red-light);
+            animation: fadeInUp 0.8s 0.4s both;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .speaker-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--red-darker);
+        }
+
+        .speaker-role {
+            font-size: 16px;
+            color: var(--red-primary);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .speaker-btn {
+            background: transparent;
+            border: 2px solid var(--red-light);
+            color: var(--red-primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speaker-card:hover .speaker-btn {
+            border-color: var(--red-primary);
+            background: var(--red-primary);
+            color: var(--white);
+        }
+
+        /* ===== BIOGRAPHY MODAL ===== */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bio-modal.active {
+            display: flex;
+        }
+
+        .bio-modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .bio-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-400);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bio-close:hover {
+            color: var(--red-primary);
+            background: var(--red-lighter);
+        }
+
+        .bio-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .bio-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold));
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .bio-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .bio-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        .bio-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .bio-content p {
+            margin-bottom: 20px;
+        }
+
+        .bio-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .bio-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bio-social a:hover {
+            border-color: var(--red-primary);
+            color: var(--red-primary);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--red-lighter), var(--white));
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--red-light);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--red-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--red-darker);
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-primary), var(--gold));
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: var(--red-primary);
+            font-size: 18px;
+        }
+
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--red-light);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--red-darker);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--red-darker);
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-primary), var(--gold));
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--red-light);
+            color: var(--red-primary);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--red-primary);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 80px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 60px auto 0;
+            }
+            
+            .speaker-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+                padding: 60px 0;
+            }
+            
+            .bio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .bio-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+            
+            .speaker-section-title {
+                font-size: 32px;
+            }
+            
+            .speaker-card {
+                padding: 30px;
+            }
+            
+            .quote {
+                font-size: 24px;
+                padding: 0 20px;
+            }
+            
+            .quote:before,
+            .quote:after {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .project-card {
+                padding: 30px;
+            }
+            
+            .project-title {
+                font-size: 24px;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+            
+            .article-body h2 {
+                font-size: 28px;
+                margin: 60px 0 30px;
+            }
+            
+            .speaker-section-title {
+                font-size: 28px;
+            }
+            
+            .speaker-name {
+                font-size: 22px;
+            }
+            
+            .floating-element {
+                display: none;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='kaboom.html'">
+                    <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
+                    <div class="article-category">LAUNCH</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="kaboom.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#speaker'">
+                        <i class="fas fa-users"></i> Director
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">JUNE 10, 2026</span>
+                <h1 class="article-title">KACHOO Launches<br>Three Major Projects</h1>
+                <p class="article-subtitle">A transformative media ecosystem combining publishing, fashion, and journalism to create meaningful connections and foster positive change in the digital age.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="projects-showcase">
+        <div class="container">
+            <div class="project-intro scroll-animate">
+                <p>THE KACHOO, under the visionary leadership of Gathur Delano Kafka, is proud to announce the launch of three groundbreaking projects designed to revolutionize how we connect, create, and consume media. This integrated ecosystem represents a bold step forward in building meaningful platforms that serve diverse creative and intellectual communities.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Kafkapages -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="project-title">KAFKAPAGES</h3>
+                    <p class="project-description">A comprehensive bookstore and publishing house that celebrates the written word in all its forms. KAFKAPAGES serves as both a curated marketplace for exceptional literature and a supportive platform for emerging authors seeking publication.</p>
+                    <p class="project-description">With a focus on diverse voices and quality content, KAFKAPAGES bridges the gap between readers seeking meaningful stories and writers looking to share their unique perspectives with the world.</p>
+                    <span class="project-tag">Bookstore & Publishing House</span>
+                </div>
+
+                <!-- Project 2: Kazine -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="project-title">KAZINE</h3>
+                    <p class="project-description">An innovative fusion of fashion magazine and clothing boutique that redefines style journalism. KAZINE combines editorial excellence with curated fashion retail, creating an immersive experience where readers can directly engage with the styles and stories they love.</p>
+                    <p class="project-description">Each issue features exclusive collections, designer spotlights, and thought-provoking fashion commentary, while the accompanying boutique offers carefully selected pieces that reflect the magazine's aesthetic vision.</p>
+                    <span class="project-tag">Magazine & Clothing Boutique</span>
+                </div>
+
+                <!-- Project 3: Kaboom -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="project-title">KABOOM!</h3>
+                    <p class="project-description">A dynamic news platform committed to delivering insightful, accurate, and engaging journalism. KABOOM! covers a wide range of topics from global affairs to cultural trends, with a particular emphasis on stories that inspire positive change and meaningful dialogue.</p>
+                    <p class="project-description">Through in-depth reporting, compelling narratives, and multimedia storytelling, KABOOM! aims to inform, challenge, and connect readers with the issues that shape our world.</p>
+                    <span class="project-tag">News & Journalism Platform</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote-container">
+                <div class="quote scroll-animate">
+                    "I created these projects to make things easier for everyone, expand network connections, and also plan to get closer to education. At KAZINE Volume 2, I will likely expand and broaden my network—there will be auditions for models, writers, and journalists too. I'm willing to invest significant resources to support positive change."
+                </div>
+                <div class="quote-author scroll-animate">— Gathur Delano Kafka</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section -->
+    <section class="speaker-section" id="speaker">
+        <div class="container">
+            <h2 class="speaker-section-title scroll-animate">Visionary Director</h2>
+            
+            <div class="speaker-container">
+                <div class="speaker-card scroll-animate" onclick="openBio('kafka')">
+                    <div class="speaker-avatar">GK</div>
+                    <h3 class="speaker-name">Gathur Delano Kafka</h3>
+                    <p class="speaker-role">Managing Director<br>THE KACHOO Indonesia, South Jakarta</p>
+                    <button class="speaker-btn">
+                        <i class="fas fa-user-circle"></i> View Full Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Modals -->
+    <!-- Gathur Delano Kafka Bio -->
+    <div class="bio-modal" id="kafkaBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('kafka')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">GK</div>
+                <div>
+                    <h2 class="bio-title">Gathur Delano Kafka</h2>
+                    <p class="bio-subtitle">Managing Director, THE KACHOO Indonesia<br>Media Entrepreneur • Cultural Enthusiast • Visionary Leader</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <p>Gathur Delano Kafka is the visionary Managing Director of THE KACHOO Indonesia, leading the organization's South Jakarta operations with a unique blend of creative insight and strategic business acumen. Born in London in 1992, Kafka brings an international perspective to his leadership role, shaped by his diverse educational background and deep appreciation for global cultures.</p>
+                
+                <h3>Education and Intellectual Development</h3>
+                
+                <p>Kafka pursued his higher education at the University of Oxford, where he studied Modern Languages and Literature, developing a profound understanding of cultural narratives and communication across linguistic boundaries. His academic journey fostered a deep passion for world cultures, languages, and political systems, which continues to inform his approach to media and publishing.</p>
+                
+                <p>During his time at Oxford, Kafka became particularly fascinated with how stories shape societies and how media platforms can bridge cultural divides. This intellectual foundation, combined with practical business training, equipped him with the tools to envision and execute transformative media projects.</p>
+                
+                <h3>Philosophy and Vision</h3>
+                
+                <p>Kafka believes in the power of media to connect people, foster understanding, and drive positive social change. His leadership philosophy centers on creating platforms that serve both practical needs and higher purposes—making information accessible, amplifying diverse voices, and building communities around shared interests and values.</p>
+                
+                <p>"I created these projects to make things easier for everyone, expand network connections, and also plan to get closer to education," Kafka explains. This educational focus is reflected in all three KACHOO initiatives, each designed to inform, inspire, and empower its audience.</p>
+                
+                <h3>The KACHOO Vision</h3>
+                
+                <p>Under Kafka's leadership, THE KACHOO has launched three integrated platforms: KAFKAPAGES (bookstore and publishing house), KAZINE (fashion magazine and boutique), and KABOOM! (news platform). Each project reflects Kafka's commitment to quality, innovation, and social impact.</p>
+                
+                <p>Kafka's ambitious plans for KAZINE Volume 2 demonstrate his willingness to invest in growth and opportunity: "I will likely expand and broaden my network—there will be auditions for models, writers, and journalists too. I'm willing to invest significant resources to support positive change."</p>
+                
+                <h3>Cultural Engagement and Future Directions</h3>
+                
+                <p>With his deep appreciation for world cultures, languages, and political systems, Kafka envisions THE KACHOO as a bridge between diverse communities and perspectives. His projects are designed not just as commercial ventures but as cultural platforms that celebrate creativity, foster dialogue, and contribute to educational advancement.</p>
+                
+                <p>Looking forward, Kafka aims to expand THE KACHOO's reach while maintaining its commitment to quality and social responsibility. His vision extends beyond immediate business success to building lasting institutions that will continue to inform, inspire, and connect people for generations to come.</p>
+                
+                <div class="bio-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-info">
+                        <h4>Visual Production</h4>
+                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in brand documentation and corporate storytelling that captures the vision and impact of innovative projects.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>About This Launch</h3>
+                    <p>This announcement marks the official launch of THE KACHOO's three flagship projects: KAFKAPAGES (bookstore & publishing), KAZINE (fashion magazine & boutique), and KABOOM! (news platform). Together, these initiatives represent a comprehensive media ecosystem designed to inform, inspire, and connect diverse communities.</p>
+                    <p>Our mission is to create platforms that combine commercial viability with social impact, delivering quality content while fostering positive change. We believe in the power of integrated media to build bridges, amplify voices, and create meaningful connections in an increasingly fragmented digital landscape.</p>
+                    <p>This launch represents the culmination of years of planning and development, guided by the visionary leadership of Gathur Delano Kafka and executed by a dedicated team of creatives, journalists, and business professionals committed to excellence and innovation.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">All content on this site represents the official launch announcement for THE KACHOO's three major projects. Product details, launch dates, and service offerings are subject to change as projects develop and grow. Visual content produced by The Kadio Studio.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Biography Modal Functions
+        function openBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.bio-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Enhanced scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        // Add scroll listener with throttling
+        let scrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!scrolling) {
+                scrolling = true;
+                setTimeout(() => {
+                    handleScrollAnimation();
+                    scrolling = false;
+                }, 100);
+            }
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add enhanced hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px rgba(220, 38, 38, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+            });
+        });
+        
+        // Add pulse animation to speaker card
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Enhanced smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Floating elements animation on scroll
+        const floatingElements = document.querySelectorAll('.floating-element');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            floatingElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.05}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1500);
+            }
+            
+            // Add initial animation to hero elements
+            const heroElements = document.querySelectorAll('.article-date, .article-title, .article-subtitle');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
