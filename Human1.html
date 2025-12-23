@@ -314,6 +314,37 @@
             color: var(--white);
         }
 
+        /* ===== PHOTOGRAPHER SECTION ===== */
+        .photographer-section {
+            margin: 60px auto 40px;
+            max-width: 800px;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .photographer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .photographer-tag {
+            font-size: 14px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .photographer-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
         /* ===== ARTICLE CONTENT ===== */
         .article-content-section {
             padding: 80px 0;
@@ -445,6 +476,39 @@
             font-family: Georgia, serif;
         }
 
+        .questions-section {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            border-left: 5px solid var(--black);
+        }
+
+        .questions-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--gray-300);
+            transition: var(--transition);
+        }
+
+        .question-item:hover {
+            border-left-color: var(--black);
+        }
+
+        .question-item h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gray-800);
+        }
+
         /* ===== BIOGRAPHY MODAL ===== */
         .bio-modal {
             position: fixed;
@@ -474,7 +538,7 @@
             background: var(--white);
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -750,6 +814,10 @@
                 height: 80px;
                 font-size: 28px;
             }
+            
+            .questions-section {
+                padding: 30px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -790,6 +858,14 @@
             
             .company-card {
                 padding: 30px;
+            }
+            
+            .questions-section {
+                padding: 20px;
+            }
+            
+            .questions-title {
+                font-size: 24px;
             }
         }
 
@@ -849,17 +925,9 @@
                 <div class="speaker-info scroll-animate" id="speakers">
                     <!-- Speaker 1 -->
                     <div class="speaker-card" onclick="openBio('vaelen')">
-                        <div class="speaker-avatar">VS</div>
-                        <h3 class="speaker-name">Vaelen Sterling Roosevelt</h3>
-                        <p class="speaker-role">Special Envoy for Global Unity<br>Union Nation</p>
-                        <button class="speaker-btn">View Profile</button>
-                    </div>
-                    
-                    <!-- Photographer -->
-                    <div class="speaker-card" onclick="openBio('pancarona')">
-                        <div class="speaker-avatar">P</div>
-                        <h3 class="speaker-name">Pancarona Collective</h3>
-                        <p class="speaker-role">Documentary Photographers<br>Visual Storytellers</p>
+                        <div class="speaker-avatar">VSR</div>
+                        <h3 class="speaker-name">Dr. Vaelen Sterling Roosevelt</h3>
+                        <p class="speaker-role">Global Thought Leader & Visionary<br>Architect of Restorative Sovereignty</p>
                         <button class="speaker-btn">View Profile</button>
                     </div>
                 </div>
@@ -871,11 +939,20 @@
     <section class="article-content-section">
         <div class="container">
             <div class="article-content-wrapper">
+                <!-- Photographer Section -->
+                <div class="photographer-section scroll-animate">
+                    <div class="photographer-tag">Visual Documentation</div>
+                    <div class="photographer-info">
+                        <div class="photographer-name">THE KADIO</div>
+                        <div style="font-size: 14px; color: var(--gray-500);">(The Kachoo Studio)</div>
+                    </div>
+                </div>
+                
                 <!-- Hero Image -->
                 <div class="article-image scroll-animate">
                     <div class="image-placeholder">HUMAN CONNECTION</div>
                     <div class="image-credit">
-                        Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                        Photo by <span>The Kadio</span>
                     </div>
                 </div>
                 
@@ -914,7 +991,7 @@
                     <div class="article-image scroll-animate" style="height: 400px; margin: 50px 0;">
                         <div class="image-placeholder">GLOBAL COMMUNITY</div>
                         <div class="image-credit">
-                            Photo by <a href="javascript:void(0)" onclick="openBio('pancarona')">Pancarona Collective</a>
+                            Photo by <span>The Kadio</span>
                         </div>
                     </div>
                     
@@ -929,9 +1006,34 @@
                     3. <strong>Finding common projects</strong> - Working together toward shared goals that benefit all<br>
                     4. <strong>Celebrating diversity</strong> - Recognizing that our differences enrich rather than divide us</p>
                     
-                    <p>As Vaelen Sterling Roosevelt of the Union Nation emphasizes, "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."</p>
+                    <p>As Dr. Vaelen Sterling Roosevelt emphasizes, "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."</p>
                     
                     <p>The connections that bind us are stronger than the forces that divide us. By focusing on our shared humanity - our capacity for love, our need for belonging, our hopes for our children's future - we can build bridges across even the widest chasms.</p>
+                    
+                    <!-- Questions Section -->
+                    <div class="questions-section scroll-animate">
+                        <h3 class="questions-title">Critical Questions for Our Time</h3>
+                        
+                        <div class="question-item">
+                            <h4>1. How should institutions and governments in the region define humanity while navigating diverse cultures, political systems, and levels of development?</h4>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h4>2. Where is the gap most visible between policy-driven ideas of unity and the everyday realities faced by communities?</h4>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h4>3. If institutions fall short, what role can regional movements, civil society, and cross-border communities play in preserving shared humanity?</h4>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h4>4. How can cooperation between governments in the Asia-Pacific move beyond formal diplomacy and become genuinely people-centered?</h4>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h4>5. What values or collective actions do you believe can most effectively unite societies across the Asia-Pacific, despite differences in borders, beliefs, and histories?</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -946,81 +1048,40 @@
             </button>
             
             <div class="bio-header">
-                <div class="bio-avatar">VS</div>
+                <div class="bio-avatar">VSR</div>
                 <div>
-                    <h2 class="bio-title">Vaelen Sterling Roosevelt</h2>
-                    <p class="bio-subtitle">Special Envoy for Global Unity, Union Nation<br>Diplomat • Peace Advocate • Humanitarian</p>
+                    <h2 class="bio-title">Dr. Vaelen Sterling Roosevelt</h2>
+                    <p class="bio-subtitle">Global Thought Leader & Visionary<br>Architect of Restorative Sovereignty</p>
                 </div>
             </div>
             
             <div class="bio-content">
-                <p>Vaelen Sterling Roosevelt serves as the Special Envoy for Global Unity at the Union Nation, where she leads initiatives focused on cross-cultural understanding, conflict resolution, and building sustainable peace frameworks.</p>
+                <p>Dr. Vaelen Sterling Roosevelt is an internationally recognized global leader, political philosopher, and economic visionary known as the principal architect of the Restorative Sovereignty paradigm in 21st-century global governance. As Founder, Owner, and CEO of Sterling Global Holdings, Founder, Owner, and President of Union Bank, and Founder, Owner, and Leader of Union Nations, Vaelen has built an institutional ecosystem that integrates economic power with moral imperatives to create a more just and sustainable global system.</p>
                 
-                <p>With over 20 years of diplomatic experience, Roosevelt has facilitated peace talks in conflict zones across three continents, earning recognition for her innovative approach to mediation that focuses on shared human values rather than political positions.</p>
+                <h3>Education and Intellectual Formation</h3>
                 
-                <p>Her "Human-First Diplomacy" framework has been adopted by numerous international organizations and has been credited with resolving longstanding disputes in several regions. The approach emphasizes:</p>
+                <p>Vaelen's intellectual journey began at the International School of Geneva and Phillips Exeter Academy, where his foundation in critical thinking was shaped through the Harkness Table method and profound multicultural exposure. He earned a dual Bachelor of Arts in Philosophy, Politics, and Economics from Harvard University and a Bachelor of Science in International Relations from the London School of Economics, with comparative studies at the National University of Singapore and University of Cape Town enriching his global perspective.</p>
+                
+                <p>Vaelen completed a Master in Public Administration (MPA) at Harvard Kennedy School of Government with a specialization in International Development, complemented by Executive Education from MIT Sloan School of Management in Global Leadership and Innovation. The pinnacle of his academic journey is a Doctor of Philosophy (Ph.D.) in Political Economy and Government from the University of Oxford, where his monumental dissertation, "The Architecture of Restorative Sovereignty: Toward a New Paradigm of Global Governance in the Post-Westphalian Era," has become a fundamental reference in contemporary global governance studies.</p>
+                
+                <h3>Professional Contributions</h3>
+                
+                <p>Dr. Roosevelt's work focuses on creating sustainable frameworks for global cooperation that respect national sovereignty while addressing transnational challenges. His Restorative Sovereignty model emphasizes:</p>
                 
                 <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
-                    <li>Identifying shared human needs across conflict lines</li>
-                    <li>Creating spaces for authentic personal storytelling</li>
-                    <li>Focusing on practical cooperation before political agreement</li>
-                    <li>Building relationships at multiple societal levels simultaneously</li>
+                    <li>Mutual responsibility in global governance</li>
+                    <li>Economic equity as a foundation for political stability</li>
+                    <li>Culturally sensitive approaches to universal challenges</li>
+                    <li>Institutional innovation for the 21st century</li>
                 </ul>
                 
-                <p>Prior to her current role, Roosevelt served as Ambassador to several nations and headed the Union Nation's Department of Humanitarian Affairs. She holds degrees in International Relations from Oxford University and Conflict Resolution from Harvard Kennedy School.</p>
-                
-                <p>Roosevelt is the author of "Beyond Borders: The Art of Human Connection in a Divided World," which has been translated into 34 languages. She has received numerous awards for her work, including the Global Peace Prize and the Humanitarian Excellence Award.</p>
+                <p>His leadership at Union Nations has transformed the organization into a platform for genuine dialogue and cooperation beyond traditional diplomatic channels, focusing on people-centered solutions to global challenges.</p>
                 
                 <div class="bio-social">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fas fa-globe"></i></a>
                     <a href="#"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pancarona Collective Bio -->
-    <div class="bio-modal" id="pancaronaBio">
-        <div class="bio-modal-content">
-            <button class="bio-close" onclick="closeBio('pancarona')">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="bio-header">
-                <div class="bio-avatar">P</div>
-                <div>
-                    <h2 class="bio-title">Pancarona Collective</h2>
-                    <p class="bio-subtitle">Documentary Photography Collective<br>Visual Storytellers • Cultural Archivists</p>
-                </div>
-            </div>
-            
-            <div class="bio-content">
-                <p>The Pancarona Collective is an award-winning international photography collective dedicated to documenting human experiences across cultures and continents. Founded in 2018, the collective brings together photographers from diverse backgrounds united by a common mission: to capture the shared humanity that connects us all.</p>
-                
-                <p>The name "Pancarona" comes from an ancient word meaning "to see completely" - reflecting the collective's commitment to comprehensive, nuanced visual storytelling that goes beyond stereotypes and superficial representation.</p>
-                
-                <p>With members based in 12 countries, the collective has documented stories in over 80 nations, focusing on:</p>
-                
-                <ul style="margin: 20px 0 20px 30px; color: var(--gray-700);">
-                    <li>Everyday life and rituals across cultures</li>
-                    <li>Responses to global challenges and crises</li>
-                    <li>Traditions in transition in a globalizing world</li>
-                    <li>Universal human emotions and experiences</li>
-                </ul>
-                
-                <p>The collective's work has been featured in major publications worldwide and exhibited in prestigious institutions including the International Center of Photography, the Victoria and Albert Museum, and the National Geographic Museum.</p>
-                
-                <p>Their groundbreaking project "One World, Many Stories" documented parallel days in the lives of families across 24 time zones, revealing striking similarities in daily routines, family interactions, and personal moments despite vast cultural differences.</p>
-                
-                <p>Pancarona operates on a cooperative model where all members share equally in creative decisions, assignments, and recognition. The collective also runs mentorship programs for emerging photographers from underrepresented regions.</p>
-                
-                <div class="bio-social">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fas fa-camera"></i></a>
-                    <a href="#"><i class="fas fa-globe"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
