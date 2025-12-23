@@ -43,10 +43,10 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
+        /* Header Styles - FONT SIZE DIKECILKAN */
         header {
             background: var(--gradient-dark);
-            padding: 20px 0;
+            padding: 15px 0; /* Padding dikurangi */
             position: fixed;
             width: 100%;
             top: 0;
@@ -69,12 +69,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px; /* Gap dikurangi */
         }
 
         .logo-img-placeholder {
-            width: 60px;
-            height: 60px;
+            width: 50px; /* Diperkecil */
+            height: 50px; /* Diperkecil */
             background: var(--gradient-light);
             border-radius: 50%;
             display: flex;
@@ -91,9 +91,9 @@
         }
 
         .logo-text h1 {
-            font-size: 28px;
+            font-size: 22px; /* Diperkecil dari 28px */
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px; /* Diperkecil */
             background: linear-gradient(to right, var(--pure-white), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -101,31 +101,31 @@
         }
 
         .logo-text p {
-            font-size: 12px;
+            font-size: 10px; /* Diperkecil dari 12px */
             color: var(--accent-color);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px; /* Diperkecil */
         }
 
-        /* Navigation Styles */
+        /* Navigation Styles - FONT SIZE DIKECILKAN */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 25px; /* Gap dikurangi dari 40px */
         }
 
         nav a {
             color: var(--off-white);
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            padding: 8px 0;
+            font-size: 14px; /* Diperkecil dari 16px */
+            letter-spacing: 0.3px;
+            padding: 6px 0;
             position: relative;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 5px; /* Gap dikurangi */
         }
 
         nav a:hover {
@@ -133,14 +133,14 @@
         }
 
         .nav-icon {
-            width: 40px;
-            height: 40px;
+            width: 35px; /* Diperkecil */
+            height: 35px; /* Diperkecil */
             background: var(--gradient-light);
-            border-radius: 10px;
+            border-radius: 8px; /* Diperkecil */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px; /* Diperkecil */
             border: 1px solid var(--light-gray);
             transition: all 0.3s ease;
         }
@@ -158,12 +158,13 @@
             color: var(--pure-white);
             font-size: 24px;
             cursor: pointer;
+            z-index: 1001; /* Pastikan di atas menu */
         }
 
-        /* Hero Section - TANPA BACKGROUND IMAGE */
+        /* HERO SECTION - Diperbaiki untuk mobile */
         .hero {
-            padding: 160px 0 100px;
-            background: var(--gradient-horizontal); /* Hanya gradient, tanpa gambar */
+            padding: 140px 0 80px; /* Disesuaikan dengan header baru */
+            background: var(--gradient-horizontal);
             position: relative;
             overflow: hidden;
         }
@@ -232,8 +233,8 @@
             box-shadow: var(--shadow-light);
         }
 
-        /* Brand Products Section */
-        .brand-products {
+        /* PROJECTS Section (dulu Brand Products) */
+        .projects {
             padding: 100px 0;
             background: var(--primary-black);
         }
@@ -257,14 +258,14 @@
             background: var(--pure-white);
         }
 
-        .brands-grid {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             margin-top: 40px;
         }
 
-        .brand-card {
+        .project-card {
             background: var(--gradient-light);
             border-radius: 15px;
             padding: 40px 30px;
@@ -276,16 +277,16 @@
             cursor: pointer;
         }
 
-        .brand-card:nth-child(1) { animation-delay: 0.1s; }
-        .brand-card:nth-child(2) { animation-delay: 0.2s; }
-        .brand-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
 
-        .brand-card:hover {
+        .project-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow);
         }
 
-        .brand-logo-placeholder {
+        .project-logo-placeholder {
             width: 120px;
             height: 120px;
             background: var(--medium-gray);
@@ -300,22 +301,42 @@
             overflow: hidden;
         }
 
-        .brand-logo-placeholder img {
+        .project-logo-placeholder img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Diubah dari cover ke contain */
+            object-fit: contain;
         }
 
-        .brand-card h3 {
+        .project-card h3 {
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
-        .brand-card p {
+        .project-card p {
             color: var(--accent-color);
             margin-bottom: 20px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--pure-white);
+            border: 2px solid var(--pure-white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--pure-white);
+            color: var(--primary-black);
         }
 
         /* KAZINE Magazine Section */
@@ -394,91 +415,73 @@
             box-shadow: var(--shadow-light);
         }
 
-        /* KABOOM News Section */
-        .kaboom-news {
+        /* PRODUCTION TEAM Section (ganti KABOOM News) */
+        .production-team {
             padding: 100px 0;
             background: var(--primary-black);
         }
 
-        .news-grid {
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
             margin-top: 40px;
         }
 
-        .news-card {
+        .team-card {
             background: var(--gradient-light);
             border-radius: 15px;
-            overflow: hidden;
+            padding: 40px 30px;
+            text-align: center;
             transition: all 0.4s ease;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .news-card:nth-child(1) { animation-delay: 0.1s; }
-        .news-card:nth-child(2) { animation-delay: 0.2s; }
-        .news-card:nth-child(3) { animation-delay: 0.3s; }
+        .team-card:nth-child(1) { animation-delay: 0.1s; }
+        .team-card:nth-child(2) { animation-delay: 0.2s; }
+        .team-card:nth-child(3) { animation-delay: 0.3s; }
 
-        .news-card:hover {
+        .team-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow);
         }
 
-        .news-image-placeholder {
-            height: 200px;
-            background: var(--medium-gray);
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-horizontal);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 36px;
             color: var(--pure-white);
-            border-bottom: 1px solid var(--light-gray);
-            position: relative;
+            margin: 0 auto 25px;
+            border: 2px solid var(--pure-white);
         }
 
-        .news-image-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .news-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--pure-white);
-            color: var(--primary-black);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .news-content {
-            padding: 25px;
-        }
-
-        .news-content h3 {
-            font-size: 20px;
+        .team-card h3 {
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 15px;
-            line-height: 1.4;
+            letter-spacing: 1px;
         }
 
-        .news-content p {
+        .team-card p {
             color: var(--accent-color);
-            font-size: 15px;
             margin-bottom: 20px;
         }
 
-        .news-date {
+        .coming-soon {
+            display: inline-block;
+            background: var(--medium-gray);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 20px;
             font-size: 14px;
-            color: var(--light-gray);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -530,7 +533,7 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: var(--accent-black);
+            background: var(--primary-black);
             color: var(--pure-white);
             border-radius: 50%;
             text-decoration: none;
@@ -551,10 +554,10 @@
             font-size: 14px;
         }
 
-        /* Responsive Styles */
+        /* RESPONSIVE STYLES - Diperbaiki khusus untuk mobile menu */
         @media (max-width: 992px) {
-            .brands-grid,
-            .news-grid {
+            .projects-grid,
+            .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -573,35 +576,66 @@
         }
 
         @media (max-width: 768px) {
+            /* MOBILE MENU FIX - HEADER LEBIH RENDAH */
+            header {
+                padding: 12px 0; /* Padding lebih kecil */
+                min-height: 70px; /* Tinggi minimum */
+            }
+            
             .mobile-menu-btn {
                 display: block;
+                position: relative;
+                z-index: 1002; /* Pastikan di atas semua */
             }
             
             nav ul {
                 position: fixed;
-                top: 100px;
+                top: 70px; /* Sesuaikan dengan tinggi header */
                 left: 0;
                 width: 100%;
                 background: var(--gradient-dark);
                 flex-direction: column;
                 align-items: center;
                 padding: 30px 0;
-                gap: 20px;
+                gap: 25px;
                 transform: translateY(-100%);
                 opacity: 0;
-                transition: all 0.5s ease;
+                transition: all 0.4s ease;
                 box-shadow: var(--shadow);
-                z-index: 999;
+                z-index: 1000;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+                visibility: hidden;
             }
             
             nav ul.active {
                 transform: translateY(0);
                 opacity: 1;
+                visibility: visible;
             }
             
-            .brands-grid,
-            .news-grid {
+            nav a {
+                font-size: 16px; /* Ukuran font mobile */
+                flex-direction: row;
+                gap: 15px;
+                width: 100%;
+                justify-content: center;
+                padding: 12px 0;
+            }
+            
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .projects-grid,
+            .team-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 120px 0 60px; /* Disesuaikan */
             }
             
             .hero h2 {
@@ -618,16 +652,52 @@
         }
 
         @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 18px; /* Lebih kecil di mobile */
+            }
+            
+            .logo-text p {
+                font-size: 8px;
+            }
+            
             .hero {
-                padding: 140px 0 80px;
+                padding: 110px 0 50px;
             }
             
             .hero h2 {
-                font-size: 32px;
+                font-size: 28px;
             }
             
             .magazine-content h2 {
-                font-size: 32px;
+                font-size: 28px;
+            }
+            
+            .project-card h3,
+            .team-card h3 {
+                font-size: 24px;
+            }
+        }
+
+        /* For Laptop/Desktop - Pastikan tidak berubah */
+        @media (min-width: 769px) {
+            header {
+                padding: 20px 0; /* Padding normal untuk desktop */
+            }
+            
+            .logo-text h1 {
+                font-size: 28px; /* Kembalikan ke ukuran asli */
+            }
+            
+            .logo-text p {
+                font-size: 12px; /* Kembalikan ke ukuran asli */
+            }
+            
+            nav a {
+                font-size: 16px; /* Kembalikan ke ukuran asli */
+            }
+            
+            nav ul {
+                gap: 40px; /* Gap normal untuk desktop */
             }
         }
     </style>
@@ -651,147 +721,123 @@
             </button>
             
             <nav>
-            <nav>
-    <ul id="mainMenu">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="kafkapages.html">KAFKAPAGES</a></li> <!-- TAMBAH INI -->
-        <li><a href="kazine.html">KAZINE!</a></li>
-        <li><a href="kaboom.html">KABOOM!</a></li>
-        <li><a href="kafka.html">COMPANY</a></li>
-    </ul>
-</nav>
+                <ul id="mainMenu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="kafkapages.html">KAFKAPAGES</a></li>
+                    <li><a href="kazine.html">KAZINE!</a></li>
+                    <li><a href="kaboom.html">KABOOM!</a></li>
+                    <li><a href="kafka.html">COMPANY</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section - TANPA BACKGROUND IMAGE MENGANGGU -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
                 <h2>DIGITAL INNOVATION MEETS CREATIVE EXCELLENCE</h2>
                 <p>THE KACHOO delivers cutting-edge digital solutions through KAFKAPAGES, KAZINE, and KABOOM. We transform creative workflows with precision tools designed for modern professionals.</p>
-                <a href="#brands" class="btn">EXPLORE OUR BRANDS</a>
+                <a href="#projects" class="btn">EXPLORE OUR PROJECTS</a>
             </div>
         </div>
     </section>
 
-    <!-- Brand Products Section -->
-    <section class="brand-products" id="brands">
+    <!-- Projects Section (dulu Brands) -->
+    <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title">OUR BRANDS</h2>
-            <div class="brands-grid">
-                <!-- KAFKAPAGES Brand Card -->
-                <div class="brand-card" onclick="window.location.href='kafkapages.html'">
-    <div class="brand-logo-placeholder">
-        <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo">
-    </div>
-    <h3>KAFKAPAGES</h3>
-    <p>Advanced document platform with AI-powered editing...</p>
-    <div class="btn-outline" >CHECK THIS OUT</div> <!-- UBAH LINK -->
+            <h2 class="section-title">OUR PROJECTS</h2>
+            <div class="projects-grid">
+                <!-- KAFKAPAGES Project Card -->
+                <div class="project-card" onclick="window.location.href='kafkapages.html'">
+                    <div class="project-logo-placeholder">
+                        <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo">
+                    </div>
+                    <h3>KAFKAPAGES</h3>
+                    <p>Advanced document platform with AI-powered editing and collaboration tools for modern teams.</p>
+                    <div class="btn-outline">CHECK THIS OUT</div>
                 </div>
                 
-                <!-- KAZINE Brand Card -->
-<div class="brand-card" onclick="window.location.href='kazine.html'">
-    <div class="brand-logo-placeholder">
-        <!-- LOGO KAZINE -->
-        <img src="kazine-logo.png" alt="KAZINE Logo">
-    </div>
-    <h3>KAZINE</h3>
-    <p>Fashion & Lifestyle Magazine</p>
-    <div class="btn-outline" onclick="window.location.href='kazine.html'">EXPLORE FASHION</div>
-</div>
+                <!-- KAZINE Project Card -->
+                <div class="project-card" onclick="window.location.href='kazine.html'">
+                    <div class="project-logo-placeholder">
+                        <img src="kazine-logo.png" alt="KAZINE Logo">
+                    </div>
+                    <h3>KAZINE</h3>
+                    <p>Digital fashion & lifestyle magazine pushing boundaries in creative publishing.</p>
+                    <div class="btn-outline">EXPLORE FASHION</div>
+                </div>
                 
-                <!-- KABOOM Brand Card -->
-                <div class="brand-card" onclick="window.location.href='kaboom.html'">
-                    <div class="brand-logo-placeholder">
+                <!-- KABOOM Project Card -->
+                <div class="project-card" onclick="window.location.href='kaboom.html'">
+                    <div class="project-logo-placeholder">
                         <img src="kaboom-logo.png" alt="KABOOM Logo">
                     </div>
                     <h3>KABOOM</h3>
-                    <p>Hotline and Up to Date News Only for You.</p>
+                    <p>Real-time news platform delivering curated content and breaking stories.</p>
                     <div class="btn-outline">READ MORE</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KAZINE Magazine Section - UPDATED -->
-<section class="kazine-magazine" id="kazine-mag">
-    <div class="container">
-        <div class="magazine-container">
-            <!-- Gambar yang bisa diklik -->
-            <div class="magazine-image">
-                <a href="kazinevol1.html" aria-label="View KAZINE Volume 1">
-                    <!-- GAMBAR MAJALAH KAZINE VOL 1 -->
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="KAZINE Volume 1 Cover">
-                    <!-- Fallback icon jika gambar tidak ada -->
-                    <!-- <i class="fas fa-newspaper"></i> -->
-                    <div class="magazine-badge">VOL. 1</div>
-                </a>
-            </div>
-            <div class="magazine-content">
-                <h2>KAZINE VOLUME 1 IS HERE</h2>
-                <p>Discover the inaugural issue of KAZINE, featuring cutting-edge design trends, exclusive interviews with creative pioneers, and in-depth analysis of the digital publishing landscape.</p>
-                <p>This premier edition includes over 50 pages of curated content, interactive elements, and stunning visual storytelling that redefines what a digital magazine can be.</p>
-                <!-- Tombol juga ke kazinevol1.html -->
-                <a href="kazinevol1.html" class="btn-secondary">CHECK KAZINE VOL 1 IN HERE</a>
+    <!-- KAZINE Magazine Section -->
+    <section class="kazine-magazine" id="kazine-mag">
+        <div class="container">
+            <div class="magazine-container">
+                <div class="magazine-image">
+                    <a href="kazinevol1.html" aria-label="View KAZINE Volume 1">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="KAZINE Volume 1 Cover">
+                        <div class="magazine-badge">VOL. 1</div>
+                    </a>
+                </div>
+                <div class="magazine-content">
+                    <h2>KAZINE VOLUME 1 IS HERE</h2>
+                    <p>Discover the inaugural issue of KAZINE, featuring cutting-edge design trends, exclusive interviews with creative pioneers, and in-depth analysis of the digital publishing landscape.</p>
+                    <p>This premier edition includes over 50 pages of curated content, interactive elements, and stunning visual storytelling that redefines what a digital magazine can be.</p>
+                    <a href="kazinevol1.html" class="btn-secondary">CHECK KAZINE VOL 1 IN HERE</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- KABOOM News Section -->
-    <section class="kaboom-news" id="kaboom-news">
+    <!-- Production Team Section (mengganti KABOOM Articles) -->
+    <section class="production-team" id="production-team">
         <div class="container">
-            <h2 class="section-title">KABOOM ARTICLES</h2>
-            <div class="news-grid">
-                <!-- News 1 -->
-                <div class="news-card">
-                    <div class="news-image-placeholder">
-                        <!-- FOTO BERITA KABOOM 1 - Silakan ganti dengan gambar Anda -->
-                        <!-- <img src="kaboom-news1.jpg" alt="KABOOM News 1"> -->
-                        <i class="fas fa-lightbulb"></i>
-                        <div class="news-badge">NEW</div>
+            <h2 class="section-title">PRODUCTION TEAM & STUDIO</h2>
+            <p style="text-align: center; color: var(--accent-color); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Behind every great project is an exceptional team. Meet the creative minds and specialized studios that bring THE KACHOO's vision to life.
+            </p>
+            <div class="team-grid">
+                <!-- THE KADIO Studio -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-video"></i>
                     </div>
-                    <div class="news-content">
-                        <h3>How KABOOM is Revolutionizing Creative Brainstorming</h3>
-                        <p>Discover how our AI-powered platform is helping teams generate breakthrough ideas 3x faster than traditional methods. Case studies from leading creative agencies.</p>
-                        <div class="news-date">
-                            <i class="far fa-calendar"></i> October 15, 2023
-                        </div>
-                    </div>
+                    <h3>THE KADIO</h3>
+                    <p>Specialized studio for all KACHOO's audiovisual production needs. From photo shoots to video content creation.</p>
+                    <span class="coming-soon">Coming Soon</span>
                 </div>
                 
-                <!-- News 2 -->
-                <div class="news-card">
-                    <div class="news-image-placeholder">
-                        <!-- FOTO BERITA KABOOM 2 - Silakan ganti dengan gambar Anda -->
-                        <!-- <img src="kaboom-news2.jpg" alt="KABOOM News 2"> -->
-                        <i class="fas fa-users"></i>
-                        <div class="news-badge">FEATURED</div>
+                <!-- THE KADUCATION -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="news-content">
-                        <h3>Collaborative Features Added to KABOOM Platform</h3>
-                        <p>New update enables real-time collaboration for remote teams. Multiple users can now brainstorm together seamlessly across different time zones and locations.</p>
-                        <div class="news-date">
-                            <i class="far fa-calendar"></i> October 8, 2023
-                        </div>
-                    </div>
+                    <h3>THE KADUCATION</h3>
+                    <p>Kafka Education initiative providing scholarships, workshops, and classes for creative professionals.</p>
+                    <span class="coming-soon">Coming Soon</span>
                 </div>
                 
-                <!-- News 3 -->
-                <div class="news-card">
-                    <div class="news-image-placeholder">
-                        <!-- FOTO BERITA KABOOM 3 - Silakan ganti dengan gambar Anda -->
-                        <!-- <img src="kaboom-news3.jpg" alt="KABOOM News 3"> -->
-                        <i class="fas fa-chart-line"></i>
+                <!-- THE KAFKA UNIVERSITY -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-university"></i>
                     </div>
-                    <div class="news-content">
-                        <h3>KABOOM User Growth Exceeds 200% in Q3 2023</h3>
-                        <p>Our platform adoption has skyrocketed with creative professionals worldwide embracing AI-assisted ideation. See what users are saying about their experience.</p>
-                        <div class="news-date">
-                            <i class="far fa-calendar"></i> October 1, 2023
-                        </div>
-                    </div>
+                    <h3>THE KAFKA UNIVERSITY</h3>
+                    <p>Future institution dedicated to innovation, creativity, and digital transformation education.</p>
+                    <span class="coming-soon">In Planning</span>
                 </div>
             </div>
         </div>
@@ -804,16 +850,16 @@
                 <div class="footer-section">
                     <h3>THE KACHOO</h3>
                     <p>Digital innovation and creative tools for the modern professional. Part of Kafka Company.</p>
-                    <p>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia
-                    <p> Email: ohkachoo@gmail.com </p>
+                    <p>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</p>
+                    <p>Email: ohkachoo@gmail.com</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Our Brands</h3>
+                    <h3>Our Projects</h3>
                     <ul style="list-style: none;">
-                        <li style="margin-bottom: 10px;"><a href="#kafkapages" style="color: var(--accent-color); text-decoration: none;">KAFKAPAGES</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#kazine" style="color: var(--accent-color); text-decoration: none;">KAZINE</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#kaboom" style="color: var(--accent-color); text-decoration: none;">KABOOM</a></li>
+                        <li style="margin-bottom: 10px;"><a href="kafkapages.html" style="color: var(--accent-color); text-decoration: none;">KAFKAPAGES</a></li>
+                        <li style="margin-bottom: 10px;"><a href="kazine.html" style="color: var(--accent-color); text-decoration: none;">KAZINE</a></li>
+                        <li style="margin-bottom: 10px;"><a href="kaboom.html" style="color: var(--accent-color); text-decoration: none;">KABOOM</a></li>
                     </ul>
                 </div>
                 
@@ -821,7 +867,10 @@
                     <h3>Connect With Us</h3>
                     <p>Follow our official account for updates, news, and exclusive offers.</p>
                     <div class="social-links">
-                        <a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://twitter.com/OhKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -833,23 +882,43 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Mobile menu toggle - FIXED VERSION
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainMenu = document.getElementById('mainMenu');
         
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah event bubbling
             mainMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            
+            // Ubah icon menu
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 mainMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mainMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
         
         // Smooth scrolling for anchor links
@@ -863,7 +932,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80, // Disesuaikan dengan header baru
                         behavior: 'smooth'
                     });
                 }
@@ -886,22 +955,20 @@
         }, observerOptions);
         
         // Observe animated elements
-        document.querySelectorAll('.brand-card, .news-card').forEach(el => {
+        document.querySelectorAll('.project-card, .team-card').forEach(el => {
             observer.observe(el);
         });
         
-        // Add hover effect to brand cards
-        document.querySelectorAll('.brand-card').forEach(card => {
+        // Add hover effect to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px)';
             });
             
             card.addEventListener('mouseleave', function() {
-                if(!this.classList.contains('active')) {
-                    this.style.transform = 'translateY(0)';
-                }
+                this.style.transform = 'translateY(0)';
             });
         });
     </script>
 </body>
-    </html>
+</html>
