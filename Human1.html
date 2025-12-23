@@ -314,37 +314,6 @@
             color: var(--white);
         }
 
-        /* ===== PHOTOGRAPHER SECTION ===== */
-        .photographer-section {
-            margin: 60px auto 40px;
-            max-width: 800px;
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid var(--gray-200);
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .photographer-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .photographer-tag {
-            font-size: 14px;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .photographer-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--black);
-        }
-
         /* ===== ARTICLE CONTENT ===== */
         .article-content-section {
             padding: 80px 0;
@@ -476,37 +445,62 @@
             font-family: Georgia, serif;
         }
 
-        .questions-section {
+        .question-section {
             background: var(--gray-50);
+            padding: 50px;
             border-radius: 20px;
-            padding: 40px;
             margin: 60px 0;
             border-left: 5px solid var(--black);
         }
 
-        .questions-title {
-            font-size: 28px;
+        .question-title {
+            font-size: 32px;
             font-weight: 800;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             color: var(--black);
+            text-align: center;
         }
 
         .question-item {
-            margin-bottom: 25px;
-            padding-left: 20px;
-            border-left: 3px solid var(--gray-300);
-            transition: var(--transition);
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .question-item:hover {
-            border-left-color: var(--black);
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
-        .question-item h4 {
-            font-size: 20px;
+        .question-heading {
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: var(--gray-800);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .question-number {
+            background: var(--black);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .question-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-700);
         }
 
         /* ===== BIOGRAPHY MODAL ===== */
@@ -712,6 +706,25 @@
             font-size: 18px;
         }
 
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
         .footer-about h3 {
             font-size: 28px;
             font-weight: 900;
@@ -772,6 +785,10 @@
             .article-body h2 {
                 font-size: 32px;
             }
+            
+            .question-section {
+                padding: 40px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -815,8 +832,18 @@
                 font-size: 28px;
             }
             
-            .questions-section {
+            .question-section {
                 padding: 30px;
+            }
+            
+            .question-title {
+                font-size: 28px;
+            }
+            
+            .question-heading {
+                font-size: 20px;
+                flex-direction: column;
+                gap: 10px;
             }
         }
 
@@ -860,12 +887,16 @@
                 padding: 30px;
             }
             
-            .questions-section {
+            .question-section {
                 padding: 20px;
             }
             
-            .questions-title {
+            .question-title {
                 font-size: 24px;
+            }
+            
+            .question-content {
+                font-size: 16px;
             }
         }
 
@@ -939,20 +970,11 @@
     <section class="article-content-section">
         <div class="container">
             <div class="article-content-wrapper">
-                <!-- Photographer Section -->
-                <div class="photographer-section scroll-animate">
-                    <div class="photographer-tag">Visual Documentation</div>
-                    <div class="photographer-info">
-                        <div class="photographer-name">THE KADIO</div>
-                        <div style="font-size: 14px; color: var(--gray-500);">(The Kachoo Studio)</div>
-                    </div>
-                </div>
-                
                 <!-- Hero Image -->
                 <div class="article-image scroll-animate">
                     <div class="image-placeholder">HUMAN CONNECTION</div>
                     <div class="image-credit">
-                        Photo by <span>The Kadio</span>
+                        Visuals by <span>The Kadio Studio</span>
                     </div>
                 </div>
                 
@@ -970,32 +992,89 @@
                     
                     <p>Modern neuroscience reveals that our brains respond similarly to emotional stimuli regardless of cultural background. The same neural pathways light up when we experience joy or sorrow, suggesting that our emotional hardware is remarkably consistent across humanity.</p>
                     
-                    <h2>Shared Rituals and Celebrations</h2>
+                    <h2>Institutional Challenges in Defining Humanity</h2>
                     
-                    <p>From birth celebrations to funeral rites, every culture has developed rituals to mark life's significant moments. While the specific practices vary, the underlying purpose remains constant: to create meaning, foster community, and navigate life's transitions together.</p>
+                    <p>As institutions and governments across regions grapple with fostering unity, they face the complex task of defining humanity while navigating diverse cultures, political systems, and levels of development. This challenge requires moving beyond one-size-fits-all approaches to recognize the unique historical, social, and economic contexts of different communities.</p>
                     
-                    <h3>The Common Threads</h3>
-                    
-                    <p>Consider these universal human experiences:</p>
-                    
-                    <p><strong>Breaking bread together</strong> - Whether it's sharing a meal in Italy, participating in a Japanese tea ceremony, or gathering for Thanksgiving in America, the act of eating together creates bonds that transcend cultural boundaries.</p>
-                    
-                    <p><strong>Storytelling traditions</strong> - Every culture has its myths, legends, and folk tales. These narratives, while culturally specific, often explore universal themes of heroism, love, sacrifice, and redemption.</p>
-                    
-                    <p><strong>Music and dance</strong> - The human response to rhythm and melody appears to be hardwired. Music can evoke emotions and create connections that bypass intellectual understanding entirely.</p>
-                    
-                    <h2>Modern Bridges of Connection</h2>
-                    
-                    <p>In our digital age, new forms of connection are emerging. Social media, while often criticized for creating division, also enables unprecedented cross-cultural exchange. Young people in different hemispheres can collaborate on projects, share artistic expressions, and develop friendships that would have been impossible a generation ago.</p>
+                    <p>The gap between policy-driven ideas of unity and the everyday realities faced by communities is often most visible in implementation. Well-intentioned initiatives can falter when they fail to account for local nuances, power dynamics, and the lived experiences of the people they aim to serve. This disconnect highlights the need for more participatory approaches to policy-making that center community voices.</p>
                     
                     <div class="article-image scroll-animate" style="height: 400px; margin: 50px 0;">
-                        <div class="image-placeholder">GLOBAL COMMUNITY</div>
+                        <div class="image-placeholder">COMMUNITY VOICES</div>
                         <div class="image-credit">
-                            Photo by <span>The Kadio</span>
+                            Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
                     
-                    <p>The global response to shared challenges - from climate change to pandemics - demonstrates our capacity for collective action. When disaster strikes anywhere in the world, offers of help and support flow across borders, reminding us of our shared vulnerability and interdependence.</p>
+                    <h2>The Role of Civil Society in Bridging Gaps</h2>
+                    
+                    <p>When formal institutions fall short, regional movements, civil society organizations, and cross-border communities play a crucial role in preserving shared humanity. These grassroots initiatives often have deeper community connections and greater flexibility to respond to local needs. From cultural exchange programs to humanitarian aid networks, these organizations create people-to-people connections that bypass bureaucratic hurdles.</p>
+                    
+                    <p>In the Asia-Pacific region specifically, cooperation between governments needs to move beyond formal diplomacy to become genuinely people-centered. This requires creating platforms for regular citizen engagement, supporting cultural and educational exchanges, and addressing shared challenges like climate change, public health, and economic inequality through collaborative frameworks that benefit ordinary people.</p>
+                    
+                    <div class="highlight-quote">
+                        "True unity isn't found in uniformity, but in our capacity to embrace diversity while working toward common goals."
+                    </div>
+                    
+                    <h2>Values That Unite Across Differences</h2>
+                    
+                    <p>Despite differences in borders, beliefs, and histories, certain values and collective actions can effectively unite societies across the Asia-Pacific. Shared commitments to peace, sustainable development, intergenerational justice, and mutual respect provide common ground for collaboration. Collective actions like joint environmental conservation projects, educational partnerships, and humanitarian responses to natural disasters demonstrate practical solidarity.</p>
+                    
+                    <p>As Dr. Vaelen Sterling Roosevelt emphasizes, "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."</p>
+                    
+                    <!-- Questions as Article Content -->
+                    <div class="question-section scroll-animate">
+                        <h2 class="question-title">Critical Reflections on Regional Unity</h2>
+                        
+                        <div class="question-item">
+                            <div class="question-heading">
+                                <div class="question-number">1</div>
+                                <div>How should institutions and governments in the region define humanity while navigating diverse cultures, political systems, and levels of development?</div>
+                            </div>
+                            <div class="question-content">
+                                <p>This question strikes at the heart of governance in pluralistic societies. Institutions must develop frameworks that recognize universal human dignity while respecting cultural particularities. This requires moving beyond Western-centric models to incorporate diverse philosophical traditions and local knowledge systems. Successful approaches often involve dialogue processes that include marginalized voices and create hybrid models that blend global standards with local realities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-heading">
+                                <div class="question-number">2</div>
+                                <div>Where is the gap most visible between policy-driven ideas of unity and the everyday realities faced by communities?</div>
+                            </div>
+                            <div class="question-content">
+                                <p>The gap manifests most clearly in implementation—when well-crafted policies encounter complex social realities. This can be seen in urban planning that displaces traditional communities, educational reforms that don't account for local languages, or economic policies that exacerbate inequality. The disconnect often stems from insufficient community consultation and a failure to understand how policies affect different social groups differently.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-heading">
+                                <div class="question-number">3</div>
+                                <div>If institutions fall short, what role can regional movements, civil society, and cross-border communities play in preserving shared humanity?</div>
+                            </div>
+                            <div class="question-content">
+                                <p>When formal institutions falter, grassroots movements often step in to fill the void. Civil society organizations can act as bridges between communities and governments, translating local needs into policy language while explaining government initiatives to citizens. Cross-border communities—whether diaspora groups, professional networks, or cultural associations—create transnational solidarity that challenges narrow nationalism and builds understanding across boundaries.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-heading">
+                                <div class="question-number">4</div>
+                                <div>How can cooperation between governments in the Asia-Pacific move beyond formal diplomacy and become genuinely people-centered?</div>
+                            </div>
+                            <div class="question-content">
+                                <p>People-centered cooperation requires structural changes to diplomatic processes. This includes creating permanent channels for civil society input in regional forums, establishing youth and cultural exchange programs as integral parts of diplomatic relations, and developing joint initiatives that address citizens' everyday concerns like environmental protection, public health, and economic opportunity. Technology can facilitate direct citizen participation in regional decision-making processes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <div class="question-heading">
+                                <div class="question-number">5</div>
+                                <div>What values or collective actions do you believe can most effectively unite societies across the Asia-Pacific, despite differences in borders, beliefs, and histories?</div>
+                            </div>
+                            <div class="question-content">
+                                <p>Shared commitments to peace, ecological sustainability, and human dignity provide powerful unifying values. Collective actions that demonstrate these values—such as joint responses to natural disasters, collaborative environmental conservation projects, educational exchanges, and cultural preservation initiatives—build trust and demonstrate practical solidarity. The region's diverse spiritual and philosophical traditions also offer rich resources for developing ethical frameworks that honor both unity and diversity.</p>
+                            </div>
+                        </div>
+                    </div>
                     
                     <h2>The Path Forward</h2>
                     
@@ -1006,34 +1085,7 @@
                     3. <strong>Finding common projects</strong> - Working together toward shared goals that benefit all<br>
                     4. <strong>Celebrating diversity</strong> - Recognizing that our differences enrich rather than divide us</p>
                     
-                    <p>As Dr. Vaelen Sterling Roosevelt emphasizes, "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."</p>
-                    
-                    <p>The connections that bind us are stronger than the forces that divide us. By focusing on our shared humanity - our capacity for love, our need for belonging, our hopes for our children's future - we can build bridges across even the widest chasms.</p>
-                    
-                    <!-- Questions Section -->
-                    <div class="questions-section scroll-animate">
-                        <h3 class="questions-title">Critical Questions for Our Time</h3>
-                        
-                        <div class="question-item">
-                            <h4>1. How should institutions and governments in the region define humanity while navigating diverse cultures, political systems, and levels of development?</h4>
-                        </div>
-                        
-                        <div class="question-item">
-                            <h4>2. Where is the gap most visible between policy-driven ideas of unity and the everyday realities faced by communities?</h4>
-                        </div>
-                        
-                        <div class="question-item">
-                            <h4>3. If institutions fall short, what role can regional movements, civil society, and cross-border communities play in preserving shared humanity?</h4>
-                        </div>
-                        
-                        <div class="question-item">
-                            <h4>4. How can cooperation between governments in the Asia-Pacific move beyond formal diplomacy and become genuinely people-centered?</h4>
-                        </div>
-                        
-                        <div class="question-item">
-                            <h4>5. What values or collective actions do you believe can most effectively unite societies across the Asia-Pacific, despite differences in borders, beliefs, and histories?</h4>
-                        </div>
-                    </div>
+                    <p>The connections that bind us are stronger than the forces that divide us. By focusing on our shared humanity—our capacity for love, our need for belonging, our hopes for our children's future—we can build bridges across even the widest chasms.</p>
                 </div>
             </div>
         </div>
@@ -1107,18 +1159,24 @@
                             <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
                         </div>
                     </div>
+                    
+                    <div class="studio-info">
+                        <h4>Visual Production</h4>
+                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in documentary photography and multimedia journalism that captures the human experience across cultures and borders.</p>
+                    </div>
                 </div>
                 
                 <div class="footer-about scroll-animate">
                     <h3>About This Article</h3>
                     <p>This feature is part of KABOOM!'s "Human Connections" series, exploring what unites us in an increasingly divided world. Through in-depth interviews, personal stories, and cross-cultural research, we examine the fundamental human experiences that transcend borders and differences.</p>
                     <p>Our mission is to move beyond surface-level diversity discussions to explore the deep connections that make us human. We believe that by understanding what we share, we can better navigate our differences.</p>
+                    <p>This article incorporates insights from Dr. Vaelen Sterling Roosevelt's work on Restorative Sovereignty and includes critical reflections on institutional approaches to fostering regional unity in the Asia-Pacific context.</p>
                 </div>
             </div>
             
             <div class="footer-bottom scroll-animate">
                 <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
-                <p class="disclaimer">All content on this site is for educational and inspirational purposes. Quotes and references are based on real principles of human connection and unity.</p>
+                <p class="disclaimer">All content on this site is for educational and inspirational purposes. Quotes and references are based on real principles of human connection and unity. Visual content produced by The Kadio Studio.</p>
             </div>
         </div>
     </footer>
