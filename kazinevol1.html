@@ -1199,7 +1199,7 @@
     function embedPDF() {
         const pdfUrl = 'https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing';
         
-        if (pdfUrl && pdfUrl !== 'YOUR_GOOGLE_DRIVE_PDF_EMBED_LINK_HERE') {
+        if (pdfUrl && pdfUrl !== 'https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=drivesdk') {
             flipbookFrame.innerHTML = `
                 <iframe src="${pdfUrl}" 
                         class="pdf-iframe" 
