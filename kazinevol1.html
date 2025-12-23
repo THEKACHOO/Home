@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         :root {
             /* New Color Combinations from Same Palette */
@@ -337,6 +336,13 @@
             position: relative;
         }
 
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: var(--pure-white);
+        }
+
         .flipbook-placeholder {
             text-align: center;
             padding: 50px;
@@ -365,25 +371,6 @@
             margin-bottom: 10px;
             font-size: 16px;
         }
-
-/* Tambahkan di bagian CSS */
-.pdf-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: var(--pure-white);
-}
-
-/* Jika PDF lambat load, tampilkan loading */
-.flipbook-frame.pdf-loading::after {
-    content: 'Loading magazine...';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--deep-accent);
-    font-weight: 600;
-}
 
         .view-full-btn {
             display: block;
@@ -605,28 +592,26 @@
             position: relative;
         }
 
-        /* Di .sponsors-grid, update jadi: */
-.sponsors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-}
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
 
-/* Tambahkan media query untuk mobile: */
-@media (max-width: 768px) {
-    .sponsors-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
-    }
-}
+        @media (max-width: 768px) {
+            .sponsors-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .sponsors-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-}
+        @media (max-width: 480px) {
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
 
         .sponsor-item {
             background: var(--pure-white);
@@ -829,6 +814,21 @@
                 font-size: 20px;
             }
         }
+
+        /* Loading indicator */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(238, 73, 11, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--vibrant-primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -897,21 +897,15 @@
                 </div>
                 
                 <div class="flipbook-frame" id="flipbookFrame">
-                    <div class="flipbook-placeholder">
-                        <i class="fas fa-book-open-reader"></i>
-                        <h3>Interactive Digital Magazine</h3>
-                        <p>Loading our revolutionary flipbook experience...</p>
-                        <p><small>For best experience, use the direct PDF link below</small></p>
-                    </div>
+                    <!-- PDF akan dimuat di sini -->
                 </div>
             </div>
             
             <a href="https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf" 
-   target="_blank" 
-   class="view-full-btn"
-   download="KAZINE-Volume1.pdf">
-    <i class="fas fa-download"></i> DOWNLOAD FULL PDF EDITION
-</a>
+               target="_blank" 
+               class="view-full-btn">
+                <i class="fas fa-external-link-alt"></i> OPEN FULL PDF IN NEW TAB
+            </a>
         </div>
     </section>
 
@@ -1041,7 +1035,7 @@
                         <li class="contributor-item">
                             <i class="fas fa-leaf"></i>
                             <span><strong>Adiratna Danudihardja:</strong> Speaker on Modern Lifestyle & Cultural Trends</span>
-                        </li>                        </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1057,33 +1051,33 @@
             </div>
             
             <div class="sponsors-grid">
-              <div class="sponsor-item">
-                <div class="sponsor-name">Cadence</div>
-            </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">MODEX</div>
-            </div>   
+                    <div class="sponsor-name">Cadence</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">Studio 35°</div>
-            </div>
+                    <div class="sponsor-name">MODEX</div>
+                </div>   
                 <div class="sponsor-item">
-                <div class="sponsor-name">Pancarona</div>
-            </div>
+                    <div class="sponsor-name">Studio 35°</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">Makarya</div>
-            </div>
+                    <div class="sponsor-name">Pancarona</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">Ayu Merona</div>
-            </div>
+                    <div class="sponsor-name">Makarya</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">Ruang Rasa</div>
-            </div>
+                    <div class="sponsor-name">Ayu Merona</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">A+ Clothes</div>
-            </div>
+                    <div class="sponsor-name">Ruang Rasa</div>
+                </div>
                 <div class="sponsor-item">
-                <div class="sponsor-name">RAIA Group</div>
-            </div>
+                    <div class="sponsor-name">A+ Clothes</div>
+                </div>
+                <div class="sponsor-item">
+                    <div class="sponsor-name">RAIA Group</div>
+                </div>
                 <div class="sponsor-item">
                     <div class="sponsor-name">TaskIt</div>
                 </div>
@@ -1105,7 +1099,7 @@
                     <h3>Quick Access</h3>
                     <p><a href="index.html">← Back to KAZINE Home</a></p>
                     <p><a href="#read-magazine">📖 Read Digital Edition</a></p>
-                    <p><a href="https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing" target="_blank">📥 Download PDF Version</a></p>
+                    <p><a href="https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf" target="_blank">📥 Download PDF Version</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1131,28 +1125,65 @@
     </footer>
 
     <script>
-    // Enhanced Flipbook Navigation
+    // Enhanced Flipbook Navigation - SOLUSI 3
     let currentPage = 1;
     const totalPages = 50;
+    const pdfUrl = 'https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf';
     
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const pageDisplay = document.getElementById('pageDisplay');
+    const flipbookFrame = document.getElementById('flipbookFrame');
     
-    function updatePageDisplay() {
+    // Fungsi untuk menampilkan PDF dengan halaman tertentu
+    function loadPDFPage(pageNumber) {
+        // Tampilkan loading indicator
+        flipbookFrame.innerHTML = `
+            <div style="text-align:center; padding:50px; color:var(--deep-accent);">
+                <div class="loading-spinner"></div>
+                <p style="margin-top:20px; font-weight:600;">Loading page ${pageNumber} of ${totalPages}...</p>
+            </div>
+        `;
+        
+        // Set timeout untuk memastikan loading terlihat
+        setTimeout(() => {
+            // Buat iframe dengan parameter page yang benar
+            const iframeHTML = `
+                <iframe 
+                    src="${pdfUrl}#page=${pageNumber}&toolbar=0&navpanes=0&view=FitH" 
+                    class="pdf-iframe"
+                    title="KAZINE Volume 1 - Page ${pageNumber}"
+                    onload="this.style.opacity='1'"
+                    style="opacity:0; transition:opacity 0.3s ease-in;">
+                </iframe>
+            `;
+            
+            flipbookFrame.innerHTML = iframeHTML;
+        }, 300);
+    }
+    
+    // Update tampilan halaman dan iframe
+    function updatePDFView() {
+        // Update display text
         pageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
-        // Add animation
+        
+        // Load PDF dengan halaman yang sesuai
+        loadPDFPage(currentPage);
+        
+        // Animasi
         pageDisplay.style.transform = 'scale(1.1)';
         setTimeout(() => {
             pageDisplay.style.transform = 'scale(1)';
         }, 200);
     }
     
+    // Navigasi halaman sebelumnya
     function goToPrevPage() {
         if (currentPage > 1) {
             currentPage--;
-            updatePageDisplay();
-            // Add click animation
+            updatePDFView();
+            
+            // Animasi tombol
             prevBtn.style.transform = 'rotate(-15deg)';
             setTimeout(() => {
                 prevBtn.style.transform = 'rotate(0)';
@@ -1160,11 +1191,13 @@
         }
     }
     
+    // Navigasi halaman berikutnya
     function goToNextPage() {
         if (currentPage < totalPages) {
             currentPage++;
-            updatePageDisplay();
-            // Add click animation
+            updatePDFView();
+            
+            // Animasi tombol
             nextBtn.style.transform = 'rotate(15deg)';
             setTimeout(() => {
                 nextBtn.style.transform = 'rotate(0)';
@@ -1172,7 +1205,7 @@
         }
     }
     
-    // Event listeners
+    // Event listeners untuk tombol
     prevBtn.addEventListener('click', goToPrevPage);
     nextBtn.addEventListener('click', goToNextPage);
     
@@ -1189,7 +1222,6 @@
     
     // Swipe gestures for mobile
     let startX = 0;
-    const flipbookFrame = document.getElementById('flipbookFrame');
     
     flipbookFrame.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
@@ -1201,43 +1233,15 @@
         
         if (Math.abs(diffX) > 50) { // Minimum swipe distance
             if (diffX > 0) {
-                goToNextPage(); // Swipe left
+                goToNextPage(); // Swipe left = next page
             } else {
-                goToPrevPage(); // Swipe right
+                goToPrevPage(); // Swipe right = previous page
             }
         }
     }, { passive: true });
     
-    // Initialize
-    updatePageDisplay();
-    
-    // PDF Embed Function
-   function embedPDFWithFallback() {
-    const pdfUrl = 'https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf';
-    const flipbookFrame = document.getElementById('flipbookFrame');
-    
-    // Tampilkan loading dulu
-    flipbookFrame.innerHTML = `
-        <div style="text-align:center; padding:50px;">
-            <i class="fas fa-spinner fa-spin" style="font-size:40px;color:var(--vibrant-primary);margin-bottom:20px;"></i>
-            <p>Loading KAZINE Volume 1...</p>
-        </div>
-    `;
-    
-    // Load PDF setelah 500ms
-    setTimeout(() => {
-        flipbookFrame.innerHTML = `
-            <iframe src="${pdfUrl}#toolbar=0&navpanes=0" 
-                    class="pdf-iframe"
-                    onload="console.log('PDF loaded successfully')"
-                    onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf'">
-            </iframe>
-        `;
-    }, 500);
-}
-
-// Panggil function
-embedPDFWithFallback();
+    // Initialize dengan halaman 1
+    updatePDFView();
     
     // Interactive team cards
     document.querySelectorAll('.team-card').forEach((card, index) => {
@@ -1277,19 +1281,18 @@ embedPDFWithFallback();
     });
     
     // Sponsor items animation
-    // Update sponsor items animation untuk 10 item:
-document.querySelectorAll('.sponsor-item').forEach((item, index) => {
-    setTimeout(() => {
-        item.style.opacity = '0';
-        item.style.transform = 'scale(0.8) rotate(-5deg)';
-        
+    document.querySelectorAll('.sponsor-item').forEach((item, index) => {
         setTimeout(() => {
-            item.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1) rotate(0)';
-        }, (index % 3) * 100); // Staggered animation
-    }, 1000 + (Math.floor(index / 3) * 200));
-});
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8) rotate(-5deg)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1) rotate(0)';
+            }, (index % 3) * 100);
+        }, 1000 + (Math.floor(index / 3) * 200));
+    });
     
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
