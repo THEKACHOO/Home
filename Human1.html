@@ -251,7 +251,7 @@
             height: 500px;
             background: var(--gray-900);
             border-radius: 20px;
-            margin: 40px 0;
+            margin: 60px 0;
             overflow: hidden;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
@@ -311,86 +311,75 @@
         .article-body h2 {
             font-size: 36px;
             font-weight: 800;
-            margin: 60px 0 30px;
+            margin: 80px 0 40px;
             color: var(--black);
             position: relative;
-            padding-left: 20px;
+            padding-left: 0;
+            padding-bottom: 20px;
         }
 
-        .article-body h2:before {
+        .article-body h2:after {
             content: '';
             position: absolute;
+            bottom: 0;
             left: 0;
-            top: 10px;
-            bottom: 10px;
-            width: 4px;
+            width: 80px;
+            height: 4px;
             background: var(--black);
             border-radius: 2px;
         }
 
         .article-body h3 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            margin: 40px 0 20px;
+            margin: 60px 0 25px;
             color: var(--gray-800);
+            line-height: 1.3;
         }
 
         .highlight-quote {
             border-left: 4px solid var(--black);
-            padding-left: 30px;
-            margin: 50px 0;
+            padding: 30px 40px;
+            margin: 60px 0;
             font-style: italic;
             font-size: 24px;
             color: var(--gray-600);
             line-height: 1.5;
             position: relative;
+            background: var(--gray-50);
+            border-radius: 0 20px 20px 0;
         }
 
         .highlight-quote:before {
             content: '"';
             position: absolute;
-            left: 15px;
-            top: -10px;
+            left: 20px;
+            top: 10px;
             font-size: 60px;
             color: var(--gray-300);
             font-family: Georgia, serif;
         }
 
-        /* ===== QUESTION SECTIONS ===== */
-        .question-section {
+        .insight-section {
             margin: 80px 0;
             padding: 60px 0;
             border-top: 1px solid var(--gray-200);
-            border-bottom: 1px solid var(--gray-200);
         }
 
-        .question-number {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--gray-500);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .question-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: var(--black);
-            line-height: 1.2;
-        }
-
-        .question-answer {
-            font-size: 19px;
-            line-height: 1.9;
+        .interview-note {
+            background: var(--gray-50);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--black);
+            font-size: 18px;
+            line-height: 1.7;
             color: var(--gray-700);
-            margin-bottom: 40px;
         }
 
-        .question-answer p {
-            margin-bottom: 20px;
+        .interview-note strong {
+            color: var(--black);
+            font-weight: 700;
         }
 
         /* ===== SPEAKER SECTION ===== */
@@ -776,10 +765,6 @@
                 font-size: 32px;
             }
             
-            .question-title {
-                font-size: 28px;
-            }
-            
             .speaker-section {
                 padding: 60px 0;
             }
@@ -825,6 +810,11 @@
             .speaker-card {
                 padding: 30px;
             }
+            
+            .highlight-quote {
+                padding: 25px;
+                font-size: 22px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -850,25 +840,22 @@
             
             .highlight-quote {
                 font-size: 20px;
-                padding-left: 20px;
-                margin: 30px 0;
+                padding: 20px;
+                margin: 40px 0;
             }
             
             .company-card {
                 padding: 30px;
             }
             
-            .question-section {
-                margin: 60px 0;
-                padding: 40px 0;
+            .article-body h2 {
+                font-size: 28px;
+                margin: 60px 0 30px;
             }
             
-            .question-title {
+            .article-body h3 {
                 font-size: 24px;
-            }
-            
-            .question-answer {
-                font-size: 17px;
+                margin: 40px 0 20px;
             }
             
             .speaker-section-title {
@@ -918,7 +905,7 @@
                         <i class="fas fa-home"></i> Home
                     </a>
                     <button class="nav-btn" onclick="window.location.href='#speaker'">
-                        <i class="fas fa-users"></i> Speaker
+                        <i class="fas fa-users"></i> Interview
                     </button>
                 </div>
             </div>
@@ -945,138 +932,135 @@
                     <p>In a world increasingly defined by division and discord, the quest for genuine human connection has never been more urgent. What are the invisible forces that bind us together across continents, cultures, and creeds? This exploration takes us beyond political rhetoric and social media echo chambers to uncover the fundamental human experiences that unite us all.</p>
                     
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">GLOBAL CONNECTION</div>
+                        <div class="image-placeholder">BEYOND BORDERS</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
                     
-                    <p>As we examine humanity and unity in the context of the Asia-Pacific region, we explore critical questions about governance, policy implementation, and community resilience. These questions form the backbone of our inquiry into what truly connects us beyond borders.</p>
+                    <p>As we examine humanity and unity in the context of the Asia-Pacific region, we sat down with Dr. Vaelen Sterling Roosevelt, architect of the Restorative Sovereignty paradigm, to explore critical dimensions of governance, policy implementation, and community resilience. Our conversation revealed insights about what truly connects us across borders.</p>
+                    
+                    <div class="interview-note scroll-animate">
+                        <strong>Editor's Note:</strong> This article is based on an extensive interview with Dr. Vaelen Sterling Roosevelt, whose work on Restorative Sovereignty offers groundbreaking frameworks for understanding unity in diversity. The following sections integrate his insights with regional analysis.
+                    </div>
                 </div>
 
-                <!-- Question 1 -->
-                <div class="question-section scroll-animate">
-                    <span class="question-number">Question 1</span>
-                    <h2 class="question-title">How should institutions and governments in the region define humanity while navigating diverse cultures, political systems, and levels of development?</h2>
-                    
-                    <div class="question-answer">
-                        <p>This fundamental question challenges policymakers to develop inclusive frameworks that recognize universal human dignity while respecting cultural particularities. The Asia-Pacific region encompasses an extraordinary diversity of cultures, political systems, and development stages—from advanced economies like Japan and Singapore to developing nations across Southeast Asia and the Pacific Islands.</p>
-                        
-                        <p>Institutions must move beyond Western-centric models to incorporate diverse philosophical traditions and local knowledge systems. This requires embracing what Dr. Vaelen Sterling Roosevelt calls "culturally sensitive approaches to universal challenges." For example, the concept of "Bhinneka Tunggal Ika" (Unity in Diversity) in Indonesia, the "Philippine Bayanihan spirit" of communal unity, and Japan's "Wa" (harmony) all offer indigenous frameworks for conceptualizing unity.</p>
-                        
-                        <p>Successful approaches involve dialogue processes that include marginalized voices and create hybrid models that blend global human rights standards with local cultural realities. The challenge lies in developing governance frameworks flexible enough to accommodate Confucian values in East Asia, Buddhist principles in mainland Southeast Asia, Islamic traditions in maritime Southeast Asia, and Melanesian customary systems in the Pacific—all while maintaining core commitments to human dignity.</p>
-                    </div>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px;">
-                        <div class="image-placeholder">CULTURAL DIVERSITY</div>
+                <!-- First Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">DEFINING HUMANITY</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
+                    
+                    <h2>Redefining Humanity in a Pluralistic Region</h2>
+                    
+                    <p>The Asia-Pacific region presents a unique challenge for institutions and governments seeking to define humanity while navigating extraordinary diversity. From advanced economies like Japan and Singapore to developing nations across Southeast Asia and the Pacific Islands, the region encompasses countless cultures, political systems, and development stages.</p>
+                    
+                    <p>Dr. Roosevelt emphasized that institutions must move beyond Western-centric models to incorporate diverse philosophical traditions and local knowledge systems. "We need culturally sensitive approaches to universal challenges," he noted. "The concept of 'Bhinneka Tunggal Ika' in Indonesia, the 'Philippine Bayanihan spirit,' and Japan's 'Wa'—these indigenous frameworks offer profound insights into conceptualizing unity."</p>
+                    
+                    <p>Successful approaches involve dialogue processes that include marginalized voices and create hybrid models that blend global human rights standards with local cultural realities. The challenge lies in developing governance frameworks flexible enough to accommodate Confucian values in East Asia, Buddhist principles in mainland Southeast Asia, Islamic traditions in maritime Southeast Asia, and Melanesian customary systems in the Pacific—all while maintaining core commitments to human dignity.</p>
+                    
+                    <div class="highlight-quote scroll-animate">
+                        "Our diversity is not a problem to be solved, but a treasure to be cherished. The challenge of our time is not to become the same, but to learn how to be different together."
+                    </div>
                 </div>
 
-                <!-- Question 2 -->
-                <div class="question-section scroll-animate">
-                    <span class="question-number">Question 2</span>
-                    <h2 class="question-title">Where is the gap most visible between policy-driven ideas of unity and the everyday realities faced by communities?</h2>
-                    
-                    <div class="question-answer">
-                        <p>The disconnect between policy aspirations and community realities manifests most clearly in implementation—when well-crafted policies encounter complex social dynamics. This gap is particularly visible in several areas across the region.</p>
-                        
-                        <p><strong>Urban Development:</strong> Across Southeast Asian megacities, urban planning initiatives often displace traditional communities in the name of modernization, creating physical unity through infrastructure while disrupting social unity through displacement. The tension between development goals and community preservation highlights how unity policies can inadvertently create division.</p>
-                        
-                        <p><strong>Educational Reforms:</strong> National education policies promoting national unity sometimes fail to account for linguistic diversity. In countries like Myanmar, the Philippines, and Indonesia, standardized curricula in national languages can marginalize minority language speakers, creating educational barriers that undermine social cohesion.</p>
-                        
-                        <p><strong>Economic Policies:</strong> Regional economic integration initiatives like ASEAN Economic Community aim to create unity through shared prosperity. However, the benefits often concentrate in urban centers and among educated elites, while rural communities and informal sector workers experience limited gains—sometimes even facing increased competition that threatens livelihoods.</p>
-                        
-                        <p>The gap stems from insufficient community consultation and a failure to understand how policies affect different social groups differently. As one community organizer in Manila noted, "Unity policies designed in air-conditioned offices often melt in the heat of street-level realities."</p>
-                    </div>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px;">
-                        <div class="image-placeholder">COMMUNITY REALITIES</div>
+                <!-- Second Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">POLICY & REALITY GAP</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
+                    
+                    <h2>Bridging the Gap Between Policy Aspirations and Community Realities</h2>
+                    
+                    <p>The disconnect between policy-driven ideas of unity and the everyday realities faced by communities manifests most clearly in implementation—when well-crafted policies encounter complex social dynamics. This gap is particularly visible across several areas in the region.</p>
+                    
+                    <h3>Urban Development Dilemmas</h3>
+                    
+                    <p>Across Southeast Asian megacities, urban planning initiatives often displace traditional communities in the name of modernization, creating physical unity through infrastructure while disrupting social unity through displacement. The tension between development goals and community preservation highlights how unity policies can inadvertently create division.</p>
+                    
+                    <h3>Educational Equity Challenges</h3>
+                    
+                    <p>National education policies promoting national unity sometimes fail to account for linguistic diversity. In countries like Myanmar, the Philippines, and Indonesia, standardized curricula in national languages can marginalize minority language speakers, creating educational barriers that undermine social cohesion.</p>
+                    
+                    <p>Dr. Roosevelt observed, "The gap often stems from insufficient community consultation. Unity policies designed in air-conditioned offices often melt in the heat of street-level realities. We need mechanisms that bring policymaking closer to the people it affects."</p>
                 </div>
 
-                <!-- Question 3 -->
-                <div class="question-section scroll-animate">
-                    <span class="question-number">Question 3</span>
-                    <h2 class="question-title">If institutions fall short, what role can regional movements, civil society, and cross-border communities play in preserving shared humanity?</h2>
-                    
-                    <div class="question-answer">
-                        <p>When formal institutions falter or move slowly, grassroots movements often emerge to fill the void and preserve shared humanity through alternative channels. The Asia-Pacific region has seen remarkable examples of bottom-up unity building.</p>
-                        
-                        <p><strong>Regional Movements:</strong> The ASEAN Peoples' Forum provides a civil society counterpart to official ASEAN meetings, ensuring community voices reach regional decision-makers. Similarly, the Asia Pacific Refugee Rights Network connects organizations across borders to protect some of the region's most vulnerable people.</p>
-                        
-                        <p><strong>Civil Society Organizations:</strong> Groups like Timor-Leste's "Hasatil" (unity) movement demonstrate how community organizations can build social cohesion in post-conflict settings. In the Pacific, environmental NGOs are creating transnational solidarity around climate justice, connecting island communities facing similar existential threats despite different colonial histories and cultural traditions.</p>
-                        
-                        <p><strong>Cross-Border Communities:</strong> Diaspora networks, professional associations, and cultural exchange programs create transnational solidarity that challenges narrow nationalism. The "Overseas Filipino Worker" communities throughout Asia maintain connections to home while building understanding in host countries. Student exchange programs between Chinese and Southeast Asian universities foster people-to-people connections that complement formal diplomacy.</p>
-                        
-                        <p>These initiatives demonstrate that shared humanity often finds its strongest expression outside formal institutions—in the spaces where people connect across borders based on shared concerns, values, or experiences.</p>
-                    </div>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px;">
-                        <div class="image-placeholder">GRASSROOTS MOVEMENTS</div>
+                <!-- Third Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">GRASSROOTS SOLIDARITY</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
+                    
+                    <h2>The Power of Grassroots Movements and Civil Society</h2>
+                    
+                    <p>When formal institutions falter or move slowly, grassroots movements often emerge to fill the void and preserve shared humanity through alternative channels. The Asia-Pacific region has seen remarkable examples of bottom-up unity building that complement—and sometimes challenge—official approaches.</p>
+                    
+                    <p>The ASEAN Peoples' Forum provides a civil society counterpart to official ASEAN meetings, ensuring community voices reach regional decision-makers. Similarly, the Asia Pacific Refugee Rights Network connects organizations across borders to protect some of the region's most vulnerable people.</p>
+                    
+                    <p>In the Pacific, environmental NGOs are creating transnational solidarity around climate justice, connecting island communities facing similar existential threats despite different colonial histories and cultural traditions. As one activist from Fiji explained, "When our homes are threatened by rising seas, our shared humanity becomes more important than our different passports."</p>
+                    
+                    <p>Diaspora networks, professional associations, and cultural exchange programs create transnational solidarity that challenges narrow nationalism. The "Overseas Filipino Worker" communities throughout Asia maintain connections to home while building understanding in host countries, demonstrating that shared humanity often finds its strongest expression outside formal institutions.</p>
                 </div>
 
-                <!-- Question 4 -->
-                <div class="question-section scroll-animate">
-                    <span class="question-number">Question 4</span>
-                    <h2 class="question-title">How can cooperation between governments in the Asia-Pacific move beyond formal diplomacy and become genuinely people-centered?</h2>
-                    
-                    <div class="question-answer">
-                        <p>Transforming regional cooperation from state-centric diplomacy to people-centered partnership requires structural innovation and new approaches to international relations. Several pathways show promise for making Asia-Pacific cooperation more responsive to citizen needs.</p>
-                        
-                        <p><strong>Institutional Innovation:</strong> Creating permanent channels for civil society input in regional forums like ASEAN, APEC, and the Pacific Islands Forum would democratize regional governance. The European Union's Economic and Social Committee offers one model for institutionalizing non-state actor participation.</p>
-                        
-                        <p><strong>Youth and Cultural Diplomacy:</strong> Making exchange programs integral to diplomatic relations—not just add-ons—could transform regional dynamics. Imagine if every diplomatic visit included not just government meetings but also community dialogues, youth forums, and cultural collaborations. Japan's JET Programme and Australia's New Colombo Plan point in this direction but need scaling and regionalization.</p>
-                        
-                        <p><strong>Joint Citizen-Centered Initiatives:</strong> Regional cooperation should increasingly focus on issues that directly affect people's lives: environmental protection, public health, disaster response, and economic opportunity. The ASEAN Agreement on Disaster Management and Emergency Response (AADMER) demonstrates how functional cooperation can build solidarity through practical action.</p>
-                        
-                        <p><strong>Digital Platforms for Participation:</strong> Technology can facilitate direct citizen engagement in regional decision-making. Online platforms could allow people across the region to contribute ideas, provide feedback on initiatives, and participate in virtual town halls with regional leaders.</p>
-                        
-                        <p>As Dr. Roosevelt notes, "Diplomacy that doesn't touch people's lives isn't diplomacy—it's theater. Genuine cooperation must address the concerns people face in their daily existence."</p>
-                    </div>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px;">
-                        <div class="image-placeholder">PEOPLE-CENTERED COOPERATION</div>
+                <!-- Fourth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">PEOPLE-CENTERED DIPLOMACY</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
+                    
+                    <h2>Transforming Regional Cooperation into People-Centered Partnerships</h2>
+                    
+                    <p>Transforming regional cooperation from state-centric diplomacy to people-centered partnership requires structural innovation and new approaches to international relations. Dr. Roosevelt emphasized that "diplomacy that doesn't touch people's lives isn't diplomacy—it's theater. Genuine cooperation must address the concerns people face in their daily existence."</p>
+                    
+                    <h3>Institutional Innovation</h3>
+                    
+                    <p>Creating permanent channels for civil society input in regional forums like ASEAN, APEC, and the Pacific Islands Forum would democratize regional governance. The European Union's Economic and Social Committee offers one model for institutionalizing non-state actor participation that could be adapted to Asian contexts.</p>
+                    
+                    <h3>Youth and Cultural Diplomacy</h3>
+                    
+                    <p>Making exchange programs integral to diplomatic relations—not just add-ons—could transform regional dynamics. Imagine if every diplomatic visit included not just government meetings but also community dialogues, youth forums, and cultural collaborations. Japan's JET Programme and Australia's New Colombo Plan point in this direction but need scaling and regionalization.</p>
+                    
+                    <p>Technology can facilitate direct citizen engagement in regional decision-making. Online platforms could allow people across the region to contribute ideas, provide feedback on initiatives, and participate in virtual town halls with regional leaders, making diplomacy more accessible and responsive.</p>
                 </div>
 
-                <!-- Question 5 -->
-                <div class="question-section scroll-animate">
-                    <span class="question-number">Question 5</span>
-                    <h2 class="question-title">What values or collective actions do you believe can most effectively unite societies across the Asia-Pacific, despite differences in borders, beliefs, and histories?</h2>
-                    
-                    <div class="question-answer">
-                        <p>Finding common ground across the Asia-Pacific's remarkable diversity requires identifying values and actions that resonate across different cultural contexts while respecting particularities. Several approaches show particular promise for building unity without demanding uniformity.</p>
-                        
-                        <p><strong>Shared Ethical Frameworks:</strong> The region's diverse spiritual and philosophical traditions offer rich resources for developing ethical frameworks that honor both unity and diversity. Concepts like compassion in Buddhism, justice in Islam, harmony in Confucianism, and reciprocity in Pacific Islander cultures all point toward ethical commitments that transcend specific religious or cultural boundaries.</p>
-                        
-                        <p><strong>Collective Actions with Tangible Benefits:</strong> Joint responses to natural disasters demonstrate practical solidarity that builds trust across borders. When Thai divers participated in the rescue of trapped soccer players in Thailand, regional neighbors provided equipment and expertise. When typhoons strike the Philippines or earthquakes hit Indonesia, regional assistance flows quickly. These crisis responses create bonds that formal diplomacy often cannot.</p>
-                        
-                        <p><strong>Environmental Stewardship:</strong> Shared commitments to ecological sustainability unite communities facing common threats. Coral reef conservation partnerships between Australian scientists and Indonesian communities, transboundary river management in the Mekong region, and regional cooperation on plastic pollution in oceans all demonstrate how environmental challenges can foster cooperation.</p>
-                        
-                        <p><strong>Cultural Preservation and Exchange:</strong> Initiatives that celebrate and preserve cultural heritage while facilitating exchange can build appreciation for diversity. The UNESCO Creative Cities Network in Asia, regional film festivals, and culinary exchanges all help people experience each other's cultures directly, creating personal connections that challenge stereotypes.</p>
-                        
-                        <p>As the article concludes, the most effective unifiers are often simple human experiences: working together on shared projects, helping neighbors in need, celebrating each other's cultures, and protecting the natural environments we all depend on. These actions demonstrate that our shared humanity is not an abstract ideal but a practical reality waiting to be activated through collective action.</p>
-                    </div>
-                    
-                    <div class="article-image scroll-animate" style="height: 400px;">
+                <!-- Fifth Insight -->
+                <div class="insight-section scroll-animate">
+                    <div class="article-image scroll-animate">
                         <div class="image-placeholder">SHARED VALUES</div>
                         <div class="image-credit">
                             Visuals by <span>The Kadio Studio</span>
                         </div>
                     </div>
+                    
+                    <h2>Finding Common Ground Across Diversity</h2>
+                    
+                    <p>Despite differences in borders, beliefs, and histories, certain values and collective actions can effectively unite societies across the Asia-Pacific. Finding common ground across the region's remarkable diversity requires identifying approaches that resonate across different cultural contexts while respecting particularities.</p>
+                    
+                    <p>The region's diverse spiritual and philosophical traditions offer rich resources for developing ethical frameworks that honor both unity and diversity. Concepts like compassion in Buddhism, justice in Islam, harmony in Confucianism, and reciprocity in Pacific Islander cultures all point toward ethical commitments that transcend specific religious or cultural boundaries.</p>
+                    
+                    <div class="highlight-quote scroll-animate">
+                        "True unity isn't found in uniformity, but in our capacity to embrace diversity while working toward common goals that benefit all people, regardless of nationality or background."
+                    </div>
+                    
+                    <h3>Collective Actions with Tangible Benefits</h3>
+                    
+                    <p>Joint responses to natural disasters demonstrate practical solidarity that builds trust across borders. When typhoons strike the Philippines or earthquakes hit Indonesia, regional assistance flows quickly. These crisis responses create bonds that formal diplomacy often cannot.</p>
+                    
+                    <p>Environmental stewardship provides another powerful unifying force. Shared commitments to ecological sustainability unite communities facing common threats. Coral reef conservation partnerships between Australian scientists and Indonesian communities, transboundary river management in the Mekong region, and regional cooperation on plastic pollution in oceans all demonstrate how environmental challenges can foster cooperation.</p>
+                    
+                    <p>As our conversation with Dr. Roosevelt concluded, the most effective unifiers are often simple human experiences: working together on shared projects, helping neighbors in need, celebrating each other's cultures, and protecting the natural environments we all depend on. These actions demonstrate that our shared humanity is not an abstract ideal but a practical reality waiting to be activated through collective action.</p>
                 </div>
             </div>
         </div>
@@ -1085,7 +1069,7 @@
     <!-- Speaker Section -->
     <section class="speaker-section" id="speaker">
         <div class="container">
-            <h2 class="speaker-section-title scroll-animate">Featured Thought Leader</h2>
+            <h2 class="speaker-section-title scroll-animate">The Visionary Behind the Insights</h2>
             
             <div class="speaker-container">
                 <div class="speaker-card scroll-animate" onclick="openBio('vaelen')">
@@ -1179,7 +1163,7 @@
                     <h3>About This Article</h3>
                     <p>This feature is part of KABOOM!'s "Human Connections" series, exploring what unites us in an increasingly divided world. Through in-depth interviews, personal stories, and cross-cultural research, we examine the fundamental human experiences that transcend borders and differences.</p>
                     <p>Our mission is to move beyond surface-level diversity discussions to explore the deep connections that make us human. We believe that by understanding what we share, we can better navigate our differences.</p>
-                    <p>This article incorporates insights from Dr. Vaelen Sterling Roosevelt's work on Restorative Sovereignty and includes critical reflections on institutional approaches to fostering regional unity in the Asia-Pacific context.</p>
+                    <p>This article is based on an exclusive interview with Dr. Vaelen Sterling Roosevelt and incorporates insights from his groundbreaking work on Restorative Sovereignty, applied to the unique challenges and opportunities of the Asia-Pacific region.</p>
                 </div>
             </div>
             
