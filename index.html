@@ -43,10 +43,10 @@
             padding: 0 20px;
         }
 
-        /* Header Styles - FONT SIZE DIKECILKAN */
+        /* Header Styles - LEBIH KOMPAK */
         header {
             background: var(--gradient-dark);
-            padding: 15px 0; /* Padding dikurangi */
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -69,12 +69,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px; /* Gap dikurangi */
+            gap: 12px;
         }
 
         .logo-img-placeholder {
-            width: 50px; /* Diperkecil */
-            height: 50px; /* Diperkecil */
+            width: 48px;
+            height: 48px;
             background: var(--gradient-light);
             border-radius: 50%;
             display: flex;
@@ -82,6 +82,7 @@
             justify-content: center;
             border: 2px solid var(--pure-white);
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .logo-img-placeholder img {
@@ -91,33 +92,43 @@
         }
 
         .logo-text h1 {
-            font-size: 22px; /* Diperkecil dari 28px */
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: 0.5px; /* Diperkecil */
+            letter-spacing: 0.5px;
             background: linear-gradient(to right, var(--pure-white), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            white-space: nowrap;
         }
 
         .logo-text p {
-            font-size: 10px; /* Diperkecil dari 12px */
+            font-size: 10px;
             color: var(--accent-color);
-            letter-spacing: 0.5px; /* Diperkecil */
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
-        /* Navigation Styles - FONT SIZE DIKECILKAN */
-        nav ul {
+        /* Navigation Styles - DIKANAN ATAS */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        #mainMenu {
             display: flex;
             list-style: none;
-            gap: 25px; /* Gap dikurangi dari 40px */
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
 
         nav a {
             color: var(--off-white);
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px; /* Diperkecil dari 16px */
+            font-size: 14px;
             letter-spacing: 0.3px;
             padding: 6px 0;
             position: relative;
@@ -125,7 +136,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px; /* Gap dikurangi */
+            gap: 5px;
+            white-space: nowrap;
         }
 
         nav a:hover {
@@ -133,14 +145,14 @@
         }
 
         .nav-icon {
-            width: 35px; /* Diperkecil */
-            height: 35px; /* Diperkecil */
+            width: 35px;
+            height: 35px;
             background: var(--gradient-light);
-            border-radius: 8px; /* Diperkecil */
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px; /* Diperkecil */
+            font-size: 16px;
             border: 1px solid var(--light-gray);
             transition: all 0.3s ease;
         }
@@ -158,12 +170,14 @@
             color: var(--pure-white);
             font-size: 24px;
             cursor: pointer;
-            z-index: 1001; /* Pastikan di atas menu */
+            z-index: 1001;
+            padding: 8px;
+            margin-left: 10px;
         }
 
-        /* HERO SECTION - Diperbaiki untuk mobile */
+        /* HERO SECTION */
         .hero {
-            padding: 140px 0 80px; /* Disesuaikan dengan header baru */
+            padding: 130px 0 80px;
             background: var(--gradient-horizontal);
             position: relative;
             overflow: hidden;
@@ -233,7 +247,7 @@
             box-shadow: var(--shadow-light);
         }
 
-        /* PROJECTS Section (dulu Brand Products) */
+        /* PROJECTS Section */
         .projects {
             padding: 100px 0;
             background: var(--primary-black);
@@ -415,7 +429,7 @@
             box-shadow: var(--shadow-light);
         }
 
-        /* PRODUCTION TEAM Section (ganti KABOOM News) */
+        /* PRODUCTION TEAM Section */
         .production-team {
             padding: 100px 0;
             background: var(--primary-black);
@@ -554,7 +568,7 @@
             font-size: 14px;
         }
 
-        /* RESPONSIVE STYLES - Diperbaiki khusus untuk mobile menu */
+        /* RESPONSIVE STYLES - MOBILE MENU IMPROVED */
         @media (max-width: 992px) {
             .projects-grid,
             .team-grid {
@@ -576,57 +590,88 @@
         }
 
         @media (max-width: 768px) {
-            /* MOBILE MENU FIX - HEADER LEBIH RENDAH */
+            /* MOBILE LAYOUT */
             header {
-                padding: 12px 0; /* Padding lebih kecil */
-                min-height: 70px; /* Tinggi minimum */
+                padding: 12px 0;
+                min-height: 60px;
             }
             
+            .logo-text h1 {
+                font-size: 20px;
+            }
+            
+            /* MOBILE MENU BUTTON */
             .mobile-menu-btn {
                 display: block;
-                position: relative;
-                z-index: 1002; /* Pastikan di atas semua */
             }
             
-            nav ul {
+            /* DESKTOP MENU DISEMBUNYIKAN */
+            #mainMenu {
+                display: none;
+            }
+            
+            /* MOBILE MENU - FULLSCREEN DARI KANAN */
+            #mainMenu.mobile-active {
+                display: flex;
                 position: fixed;
-                top: 70px; /* Sesuaikan dengan tinggi header */
-                left: 0;
-                width: 100%;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
                 background: var(--gradient-dark);
                 flex-direction: column;
-                align-items: center;
-                padding: 30px 0;
-                gap: 25px;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.4s ease;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 80px 30px 30px;
+                gap: 20px;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: var(--shadow);
-                z-index: 1000;
-                max-height: calc(100vh - 70px);
+                z-index: 999;
                 overflow-y: auto;
-                visibility: hidden;
             }
             
-            nav ul.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+            #mainMenu.mobile-active.show {
+                transform: translateX(0);
             }
             
-            nav a {
-                font-size: 16px; /* Ukuran font mobile */
-                flex-direction: row;
-                gap: 15px;
+            #mainMenu.mobile-active li {
                 width: 100%;
-                justify-content: center;
-                padding: 12px 0;
+            }
+            
+            #mainMenu.mobile-active a {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 15px;
+                font-size: 16px;
+                width: 100%;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+            
+            #mainMenu.mobile-active a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                padding-left: 25px;
             }
             
             .nav-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+                display: none;
+            }
+            
+            /* OVERLAY BACKGROUND */
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 998;
+            }
+            
+            .menu-overlay.active {
+                display: block;
             }
             
             .projects-grid,
@@ -635,7 +680,7 @@
             }
             
             .hero {
-                padding: 120px 0 60px; /* Disesuaikan */
+                padding: 100px 0 60px;
             }
             
             .hero h2 {
@@ -649,19 +694,24 @@
             .section-title {
                 font-size: 32px;
             }
+            
+            .project-card h3,
+            .team-card h3 {
+                font-size: 24px;
+            }
         }
 
         @media (max-width: 576px) {
             .logo-text h1 {
-                font-size: 18px; /* Lebih kecil di mobile */
+                font-size: 18px;
             }
             
             .logo-text p {
-                font-size: 8px;
+                font-size: 9px;
             }
             
             .hero {
-                padding: 110px 0 50px;
+                padding: 90px 0 50px;
             }
             
             .hero h2 {
@@ -672,32 +722,37 @@
                 font-size: 28px;
             }
             
-            .project-card h3,
-            .team-card h3 {
-                font-size: 24px;
+            .project-card,
+            .team-card {
+                padding: 30px 20px;
             }
         }
 
-        /* For Laptop/Desktop - Pastikan tidak berubah */
+        /* For Laptop/Desktop - MAIN MENU DI KANAN */
         @media (min-width: 769px) {
             header {
-                padding: 20px 0; /* Padding normal untuk desktop */
+                padding: 15px 0;
             }
             
             .logo-text h1 {
-                font-size: 28px; /* Kembalikan ke ukuran asli */
+                font-size: 28px;
             }
             
             .logo-text p {
-                font-size: 12px; /* Kembalikan ke ukuran asli */
+                font-size: 12px;
+            }
+            
+            #mainMenu {
+                display: flex !important;
+                gap: 30px;
             }
             
             nav a {
-                font-size: 16px; /* Kembalikan ke ukuran asli */
+                font-size: 16px;
             }
             
-            nav ul {
-                gap: 40px; /* Gap normal untuk desktop */
+            .mobile-menu-btn {
+                display: none !important;
             }
         }
     </style>
@@ -716,10 +771,7 @@
                 </div>
             </div>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
+            <!-- Desktop Menu akan di kanan, Mobile button di kanan -->
             <nav>
                 <ul id="mainMenu">
                     <li><a href="index.html">HOME</a></li>
@@ -728,9 +780,16 @@
                     <li><a href="kaboom.html">KABOOM!</a></li>
                     <li><a href="kafka.html">COMPANY</a></li>
                 </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
+
+    <!-- Menu Overlay for Mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -743,7 +802,7 @@
         </div>
     </section>
 
-    <!-- Projects Section (dulu Brands) -->
+    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
             <h2 class="section-title">OUR PROJECTS</h2>
@@ -802,7 +861,7 @@
         </div>
     </section>
 
-    <!-- Production Team Section (mengganti KABOOM Articles) -->
+    <!-- Production Team Section -->
     <section class="production-team" id="production-team">
         <div class="container">
             <h2 class="section-title">PRODUCTION TEAM & STUDIO</h2>
@@ -867,7 +926,7 @@
                     <h3>Connect With Us</h3>
                     <p>Follow our official account for updates, news, and exclusive offers.</p>
                     <div class="social-links">
-                        <a href="https://twitter.com/theKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -879,42 +938,64 @@
     </footer>
 
     <script>
-        // Mobile menu toggle - FIXED VERSION
+        // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainMenu = document.getElementById('mainMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const icon = mobileMenuBtn.querySelector('i');
         
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah event bubbling
-            mainMenu.classList.toggle('active');
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            // Add mobile-active class for styling
+            mainMenu.classList.add('mobile-active');
             
-            // Ubah icon menu
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mainMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            // Toggle show class for animation
+            setTimeout(() => {
+                mainMenu.classList.toggle('show');
+                menuOverlay.classList.toggle('active');
+                
+                // Change icon
+                if (mainMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            }, 10);
+        }
+        
+        // Close mobile menu
+        function closeMobileMenu() {
+            mainMenu.classList.remove('show');
+            menuOverlay.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Remove mobile-active class after animation
+            setTimeout(() => {
+                if (!mainMenu.classList.contains('show')) {
+                    mainMenu.classList.remove('mobile-active');
+                }
+            }, 400);
+        }
+        
+        // Event Listeners
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('#mainMenu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
         
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mainMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mainMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mainMenu.classList.contains('show')) {
+                closeMobileMenu();
             }
         });
         
@@ -929,7 +1010,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Disesuaikan dengan header baru
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
