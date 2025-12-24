@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         :root {
             /* New Color Combinations from Same Palette */
@@ -335,49 +334,64 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        /* PDF Viewer Styling */
-        .pdf-viewer-container {
+        /* Google Drive PDF Viewer */
+        .pdf-iframe {
             width: 100%;
             height: 100%;
-            position: relative;
+            border: none;
+            background: var(--pure-white);
         }
 
-        .pdf-canvas {
-            max-width: 100%;
-            max-height: 100%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        .pdf-view-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: var(--shadow-subtle);
         }
 
-        .flipbook-placeholder {
-            text-align: center;
-            padding: 50px;
-            max-width: 500px;
-        }
-
-        .flipbook-placeholder i {
-            font-size: 80px;
-            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 25px;
-            display: block;
-        }
-
-        .flipbook-placeholder h3 {
-            font-size: 28px;
+        .view-btn {
+            background: var(--fresh-accent);
             color: var(--deep-accent);
-            margin-bottom: 15px;
-            font-weight: 700;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .flipbook-placeholder p {
-            color: var(--rich-brown);
-            margin-bottom: 10px;
-            font-size: 16px;
+        .view-btn.active {
+            background: var(--vibrant-primary);
+            color: var(--pure-white);
+        }
+
+        .view-btn:hover:not(.active) {
+            background: var(--deep-accent);
+            color: var(--pure-white);
+            transform: translateY(-2px);
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--deep-accent);
+        }
+
+        .loading-spinner {
+            font-size: 40px;
+            color: var(--vibrant-primary);
+            margin-bottom: 20px;
+            display: block;
         }
 
         .view-full-btn {
@@ -822,22 +836,6 @@
                 font-size: 20px;
             }
         }
-
-        /* Loading indicator */
-        .loading-spinner {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(238, 73, 11, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--vibrant-primary);
-            animation: spin 1s ease-in-out infinite;
-            margin: 20px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -906,15 +904,33 @@
                 </div>
                 
                 <div class="flipbook-frame" id="flipbookFrame">
-                    <!-- PDF akan dirender di sini menggunakan PDF.js -->
-                    <div class="pdf-viewer-container" id="pdfViewer"></div>
+                    <!-- Loading placeholder -->
+                    <div class="loading-container" id="loadingContainer">
+                        <i class="fas fa-spinner fa-spin loading-spinner"></i>
+                        <h3>Loading KAZINE Volume 1...</h3>
+                        <p>Preparing your flipbook experience</p>
+                    </div>
+                </div>
+                
+                <!-- PDF View Controls -->
+                <div class="pdf-view-controls" id="viewControls" style="display: none;">
+                    <button class="view-btn active" id="bookViewBtn">
+                        <i class="fas fa-book"></i> Book View
+                    </button>
+                    <button class="view-btn" id="singleViewBtn">
+                        <i class="fas fa-file"></i> Single Page
+                    </button>
+                    <button class="view-btn" id="fullscreenBtn">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
                 </div>
             </div>
             
-            <a href="https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing" 
+            <a href="https://raw.githubusercontent.com/THEKACHOO/Home/main/CONTOHPDF.pdf" 
                target="_blank" 
-               class="view-full-btn">
-                <i class="fas fa-external-link-alt"></i> VIEW FULL PDF IN BROWSER
+               class="view-full-btn"
+               download="KAZINE-Volume1.pdf">
+                <i class="fas fa-download"></i> DOWNLOAD FULL PDF EDITION
             </a>
         </div>
     </section>
@@ -1109,7 +1125,7 @@
                     <h3>Quick Access</h3>
                     <p><a href="index.html">← Back to KAZINE Home</a></p>
                     <p><a href="#read-magazine">📖 Read Digital Edition</a></p>
-                    <p><a href="https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing" target="_blank">📥 View PDF in Browser</a></p>
+                    <p><a href="https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/view?usp=sharing" target="_blank">📥 Download PDF Version</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1135,137 +1151,186 @@
     </footer>
 
     <script>
-    // Enhanced Flipbook Navigation menggunakan PDF.js
-    let pdfDoc = null;
-    let currentPage = 1;
-    let totalPages = 50;
-    const scale = 1.2;
+    // ============================================
+    // KONFIGURASI PDF
+    // ============================================
+    // GANTI FILE_ID_DISINI dengan ID dari Google Drive PDF-mu
+    const GOOGLE_DRIVE_FILE_ID = '1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw';
     
+    // Base URL untuk Google Drive Viewer
+    const BASE_URL = `https://drive.google.com/file/d/${GOOGLE_DRIVE_FILE_ID}/preview`;
+    
+    // Mode tampilan
+    let currentViewMode = 'book'; // 'book' atau 'single'
+    
+    // ============================================
+    // ELEMEN DOM
+    // ============================================
+    const flipbookFrame = document.getElementById('flipbookFrame');
+    const loadingContainer = document.getElementById('loadingContainer');
+    const viewControls = document.getElementById('viewControls');
+    const bookViewBtn = document.getElementById('bookViewBtn');
+    const singleViewBtn = document.getElementById('singleViewBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const pageDisplay = document.getElementById('pageDisplay');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const pageDisplay = document.getElementById('pageDisplay');
-    const pdfViewer = document.getElementById('pdfViewer');
     
-    // URL PDF - ganti dengan URL Google Drive atau raw GitHub
-    const pdfUrl = 'https://drive.google.com/file/d/1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw/preview';
-    
-    // Function untuk render halaman PDF
-    async function renderPage(pageNum) {
-        try {
-            // Tampilkan loading
-            pdfViewer.innerHTML = `
-                <div style="text-align:center; padding:50px; color:var(--deep-accent);">
-                    <div class="loading-spinner"></div>
-                    <p style="margin-top:20px; font-weight:600;">Loading page ${pageNum} of ${totalPages}...</p>
-                </div>
-            `;
+    // ============================================
+    // FUNGSI UTAMA: LOAD PDF
+    // ============================================
+    function loadPDF(viewMode = 'book') {
+        // Sembunyikan kontrol view selama loading
+        viewControls.style.display = 'none';
+        
+        // Tampilkan loading
+        loadingContainer.style.display = 'block';
+        flipbookFrame.innerHTML = '';
+        flipbookFrame.appendChild(loadingContainer);
+        
+        // Bangun URL berdasarkan mode
+        let pdfUrl = BASE_URL;
+        
+        if (viewMode === 'book') {
+            pdfUrl += '?view=book'; // Mode buku (dua halaman seperti buku)
+        } else {
+            pdfUrl += '?view=fitH'; // Mode single page (satu halaman full)
+        }
+        
+        // Tambahkan parameter untuk menghilangkan toolbar
+        pdfUrl += '&toolbar=0&navpanes=0&scrollbar=0';
+        
+        // Buat iframe
+        setTimeout(() => {
+            const iframe = document.createElement('iframe');
+            iframe.className = 'pdf-iframe';
+            iframe.src = pdfUrl;
+            iframe.setAttribute('allow', 'autoplay; fullscreen');
+            iframe.setAttribute('allowfullscreen', 'true');
             
-            // Jika menggunakan Google Drive preview
-            if (pdfUrl.includes('drive.google.com')) {
-                const iframe = document.createElement('iframe');
-                iframe.src = pdfUrl;
-                iframe.width = '100%';
-                iframe.height = '100%';
-                iframe.style.border = 'none';
-                iframe.style.background = 'var(--pure-white)';
-                iframe.title = `KAZINE Volume 1 - Page ${pageNum}`;
+            // Saat iframe selesai load
+            iframe.onload = () => {
+                // Sembunyikan loading
+                loadingContainer.style.display = 'none';
                 
-                // Hapus loading dan tambahkan iframe
+                // Tampilkan kontrol view
+                viewControls.style.display = 'flex';
+                
+                // Update tampilan tombol
+                updateViewButtons(viewMode);
+                
+                // Add animation
+                iframe.style.opacity = '0';
+                iframe.style.transform = 'scale(0.95)';
+                
                 setTimeout(() => {
-                    pdfViewer.innerHTML = '';
-                    pdfViewer.appendChild(iframe);
-                }, 500);
-            } else {
-                // Jika menggunakan PDF.js (untuk raw PDF)
-                if (!pdfDoc) {
-                    pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
-                    totalPages = pdfDoc.numPages;
-                }
-                
-                const page = await pdfDoc.getPage(pageNum);
-                const viewport = page.getViewport({ scale: scale });
-                
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                canvas.className = 'pdf-canvas';
-                
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                
-                await page.render(renderContext).promise;
-                
-                // Hapus loading dan tambahkan canvas
-                pdfViewer.innerHTML = '';
-                pdfViewer.appendChild(canvas);
+                    iframe.style.transition = 'all 0.5s ease';
+                    iframe.style.opacity = '1';
+                    iframe.style.transform = 'scale(1)';
+                }, 100);
+            };
+            
+            iframe.onerror = () => {
+                loadingContainer.innerHTML = `
+                    <i class="fas fa-exclamation-triangle loading-spinner"></i>
+                    <h3>Failed to load PDF</h3>
+                    <p>Please check your internet connection or try the download link below.</p>
+                `;
+            };
+            
+            // Kosongkan frame dan tambahkan iframe
+            flipbookFrame.innerHTML = '';
+            flipbookFrame.appendChild(iframe);
+            
+        }, 800); // Delay untuk efek loading
+    }
+    
+    // ============================================
+    // FUNGSI: UPDATE TOMBOL VIEW
+    // ============================================
+    function updateViewButtons(activeMode) {
+        bookViewBtn.classList.toggle('active', activeMode === 'book');
+        singleViewBtn.classList.toggle('active', activeMode === 'single');
+    }
+    
+    // ============================================
+    // FUNGSI: GANTI VIEW MODE
+    // ============================================
+    function changeViewMode(mode) {
+        if (currentViewMode === mode) return;
+        
+        currentViewMode = mode;
+        loadPDF(mode);
+        
+        // Update display teks
+        const modeText = mode === 'book' ? 'Book View (Two Pages)' : 'Single Page View';
+        pageDisplay.innerHTML = `<i class="fas fa-${mode === 'book' ? 'book' : 'file'}"></i> ${modeText}`;
+    }
+    
+    // ============================================
+    // FUNGSI: FULLSCREEN
+    // ============================================
+    function toggleFullscreen() {
+        const iframe = flipbookFrame.querySelector('iframe');
+        
+        if (!iframe) return;
+        
+        if (!document.fullscreenElement) {
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
             }
             
-            // Update display
-            pageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
             
-            // Animasi
-            pageDisplay.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                pageDisplay.style.transform = 'scale(1)';
-            }, 200);
-            
-        } catch (error) {
-            console.error('Error loading PDF:', error);
-            pdfViewer.innerHTML = `
-                <div style="text-align:center; padding:50px; color:var(--vibrant-primary);">
-                    <i class="fas fa-exclamation-triangle" style="font-size:48px; margin-bottom:20px;"></i>
-                    <h3>Unable to Load PDF</h3>
-                    <p>Please use the button below to view the full PDF in your browser.</p>
-                    <a href="${pdfUrl}" target="_blank" class="view-full-btn" style="margin-top:20px; display:inline-block;">
-                        <i class="fas fa-external-link-alt"></i> Open PDF
-                    </a>
-                </div>
-            `;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
         }
     }
     
-    // Navigasi ke halaman sebelumnya
-    function goToPrevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            renderPage(currentPage);
-            
-            // Animasi tombol
-            prevBtn.style.transform = 'rotate(-15deg)';
-            setTimeout(() => {
-                prevBtn.style.transform = 'rotate(0)';
-            }, 300);
-        }
-    }
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+    // Tombol view mode
+    bookViewBtn.addEventListener('click', () => changeViewMode('book'));
+    singleViewBtn.addEventListener('click', () => changeViewMode('single'));
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
     
-    // Navigasi ke halaman berikutnya
-    function goToNextPage() {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderPage(currentPage);
-            
-            // Animasi tombol
-            nextBtn.style.transform = 'rotate(15deg)';
-            setTimeout(() => {
-                nextBtn.style.transform = 'rotate(0)';
-            }, 300);
-        }
-    }
+    // Tombol navigasi halaman (simbolis - untuk UI)
+    prevBtn.addEventListener('click', () => {
+        prevBtn.style.transform = 'rotate(-15deg)';
+        setTimeout(() => {
+            prevBtn.style.transform = 'rotate(0)';
+        }, 300);
+    });
     
-    // Event listeners
-    prevBtn.addEventListener('click', goToPrevPage);
-    nextBtn.addEventListener('click', goToNextPage);
+    nextBtn.addEventListener('click', () => {
+        nextBtn.style.transform = 'rotate(15deg)';
+        setTimeout(() => {
+            nextBtn.style.transform = 'rotate(0)';
+        }, 300);
+    });
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
-            goToPrevPage();
+            prevBtn.click();
             e.preventDefault();
         } else if (e.key === 'ArrowRight') {
-            goToNextPage();
+            nextBtn.click();
+            e.preventDefault();
+        } else if (e.key === 'f' || e.key === 'F') {
+            toggleFullscreen();
             e.preventDefault();
         }
     });
@@ -1273,26 +1338,47 @@
     // Swipe gestures for mobile
     let startX = 0;
     
-    pdfViewer.addEventListener('touchstart', (e) => {
+    flipbookFrame.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
     }, { passive: true });
     
-    pdfViewer.addEventListener('touchend', (e) => {
+    flipbookFrame.addEventListener('touchend', (e) => {
         const endX = e.changedTouches[0].clientX;
         const diffX = startX - endX;
         
         if (Math.abs(diffX) > 50) {
             if (diffX > 0) {
-                goToNextPage();
+                nextBtn.click(); // Swipe left
             } else {
-                goToPrevPage();
+                prevBtn.click(); // Swipe right
             }
         }
     }, { passive: true });
     
-    // Initialize dengan halaman 1
-    renderPage(currentPage);
+    // ============================================
+    // INISIALISASI
+    // ============================================
+    // Load PDF dengan mode BOOK saat halaman dimuat
+    window.addEventListener('load', () => {
+        loadPDF('book');
+        
+        // Animate hero elements
+        const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
+        heroElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                el.style.transition = 'all 0.6s ease-out';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 300 + (index * 100));
+        });
+    });
     
+    // ============================================
+    // ANIMASI KARTU (SAMA SEPERTI SEBELUMNYA)
+    // ============================================
     // Interactive team cards
     document.querySelectorAll('.team-card').forEach((card, index) => {
         card.addEventListener('mouseenter', () => {
@@ -1366,7 +1452,7 @@
         });
     });
     
-    // Add parallax effect to hero section
+    // Parallax effect
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const heroSection = document.querySelector('.hero-section');
@@ -1377,23 +1463,20 @@
         }
     });
     
-    // Initialize animations on load
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-        
-        // Animate hero elements
-        const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
-        heroElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                el.style.transition = 'all 0.6s ease-out';
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 300 + (index * 100));
-        });
-    });
+    // Fullscreen change listener
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+    
+    function handleFullscreenChange() {
+        if (document.fullscreenElement || 
+            document.webkitFullscreenElement || 
+            document.msFullscreenElement) {
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+        } else {
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+        }
+    }
     </script>
 </body>
-    </html>
+</html>
