@@ -598,18 +598,20 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--red-primary), var(--gold));
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 40px;
-            font-weight: 700;
             overflow: hidden;
             border: 4px solid var(--white);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: var(--transition);
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .speaker-card:hover .speaker-avatar {
@@ -728,14 +730,18 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--red-primary), var(--gold));
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 36px;
-            font-weight: 700;
+            overflow: hidden;
+            border: 3px solid var(--red-light);
+        }
+
+        .bio-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .bio-title {
@@ -1156,7 +1162,9 @@
             
             <div class="speaker-container">
                 <div class="speaker-card scroll-animate" onclick="openBio('kafka')">
-                    <div class="speaker-avatar">GK</div>
+                    <div class="speaker-avatar">
+                        <img src="gathurdelanokafka.png" alt="Gathur Delano Kafka">
+                    </div>
                     <h3 class="speaker-name">Gathur Delano Kafka</h3>
                     <p class="speaker-role">Managing Director<br>THE KACHOO Indonesia, South Jakarta</p>
                     <button class="speaker-btn">
@@ -1176,7 +1184,9 @@
             </button>
             
             <div class="bio-header">
-                <div class="bio-avatar">GK</div>
+                <div class="bio-avatar">
+                    <img src="gathurdelanokafka.png" alt="Gathur Delano Kafka">
+                </div>
                 <div>
                     <h2 class="bio-title">Gathur Delano Kafka</h2>
                     <p class="bio-subtitle">Managing Director, THE KACHOO Indonesia<br>Media Entrepreneur • Cultural Enthusiast • Visionary Leader</p>
@@ -1211,10 +1221,7 @@
                 <p>Looking forward, Kafka aims to expand THE KACHOO's reach while maintaining its commitment to quality and social responsibility. His vision extends beyond immediate business success to building lasting institutions that will continue to inform, inspire, and connect people for generations to come.</p>
                 
                 <div class="bio-social">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fas fa-globe"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="https://twitter.com/gaxlak" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
@@ -1243,7 +1250,12 @@
                     
                     <div class="studio-info">
                         <h4>Visual Production</h4>
-                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in brand documentation and corporate storytelling that captures the vision and impact of innovative projects.</p>
+                        <p>All visual content for this article was produced by <strong>Rai</strong>, an accomplished photographer specializing in brand documentation and corporate storytelling that captures the vision and impact of innovative projects.</p>
+                        <div style="margin-top: 10px;">
+                            <a href="https://twitter.com/nayzta" target="_blank" style="color: var(--red-primary); text-decoration: none; font-weight: 600;">
+                                <i class="fab fa-twitter"></i> @nayzta
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -1257,7 +1269,7 @@
             
             <div class="footer-bottom scroll-animate">
                 <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
-                <p class="disclaimer">All content on this site represents the official launch announcement for THE KACHOO's three major projects. Product details, launch dates, and service offerings are subject to change as projects develop and grow. Visual content produced by The Kadio Studio.</p>
+                <p class="disclaimer">All content on this site represents the official launch announcement for THE KACHOO's three major projects. Product details, launch dates, and service offerings are subject to change as projects develop and grow. Visual content produced by Rai.</p>
             </div>
         </div>
     </footer>
@@ -1412,4 +1424,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
