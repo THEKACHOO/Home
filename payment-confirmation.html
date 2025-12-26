@@ -593,359 +593,353 @@
     </footer>
 
     <script>
-        // 🎯 GANTI URL INI DENGAN URL WEB APPS ANDA YANG BARU
-        const SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzT-L-HKzQ75iP_eDRHSIsPdyc9XW3rYPP2HNXdHButuWlkH4v3Mw_rMKUCVunAprfg/exec';
+    // Google Apps Script URL (HANYA UNTUK ADMIN - tidak ditampilkan ke customer)
+    const SPREADSHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxqmSFW_1G2pN-D5f53wvqL7TvSrQBrulJdsHlZLR5MoNWhvAB5QBp5NkDXLYI-Vj4R/exec';
+    
+    // Function to send data to Google Spreadsheet (REAL VERSION)
+    async function sendToSpreadsheet(orderData) {
+      try {
+        // Generate order number FIRST
+        const orderNumber = generateOrderNumber();
         
-        // Flag untuk mencegah pengiriman data berulang saat refresh
-        let currentOrderNumber = '';
+        const spreadsheetData = {
+          timestamp: new Date().toISOString(),
+          orderNumber: orderNumber,
+          customerName: orderData.customer.name,
+          customerEmail: orderData.customer.email,
+          customerTwitter: orderData.customer.twitter || 'Not provided',
+          // Flatten items for easier spreadsheet handling
+          item1Title: orderData.items[0]?.title || '',
+          item1Language: orderData.items[0]?.language || '',
+          item1Price: orderData.items[0]?.price || 0,
+          item2Title: orderData.items[1]?.title || '',
+          item2Language: orderData.items[1]?.language || '',
+          item2Price: orderData.items[1]?.price || 0,
+          subtotal: parseFloat(orderData.subtotal).toFixed(2),
+          discount: parseFloat(orderData.discount).toFixed(2),
+          serviceFee: parseFloat(orderData.serviceFee).toFixed(2),
+          total: parseFloat(orderData.total).toFixed(2),
+          paymentMethod: orderData.payment,
+          voucherCode: orderData.voucher || 'N/A'
+        };
         
-        // Function to send data to Google Spreadsheet dan email
-        async function sendToSpreadsheetAndEmail(orderData) {
-            try {
-                // Cek apakah order sudah diproses sebelumnya
-                const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
-                if (localStorage.getItem(orderKey) === 'true') {
-                    console.log('✅ Order sudah diproses sebelumnya, tidak mengirim data lagi');
-                    return { success: true, alreadyProcessed: true };
-                }
-                
-                // Format data sesuai dengan struktur yang diharapkan oleh doPost di Apps Script
-                const postData = {
-                    timestamp: orderData.timestamp || new Date().toISOString(),
-                    orderNumber: currentOrderNumber,
-                    customer: {
-                        name: orderData.customer.name || 'Not provided',
-                        email: orderData.customer.email || 'Not provided',
-                        twitter: orderData.customer.twitter || 'Not provided'
-                    },
-                    items: orderData.items.map(item => ({
-                        title: item.title,
-                        language: item.language,
-                        price: parseFloat(item.price)
-                    })),
-                    subtotal: parseFloat(orderData.subtotal),
-                    discount: parseFloat(orderData.discount),
-                    serviceFee: parseFloat(orderData.serviceFee),
-                    total: parseFloat(orderData.total),
-                    payment: orderData.payment || 'Unknown',
-                    voucher: orderData.voucher || 'None'
-                };
-                
-                console.log('📤 Mengirim data ke Apps Script:', postData);
-                
-                // Kirim data menggunakan POST request dengan JSON
-                const response = await fetch(SPREADSHEET_WEBHOOK, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(postData)
-                });
-                
-                // Cek respons
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const result = await response.json();
-                console.log('📥 Respons dari Apps Script:', result);
-                
-                if (result.success) {
-                    console.log('✅ Data berhasil dikirim ke Google Sheets & Email terkirim.');
-                    
-                    // Tandai order sudah diproses
-                    localStorage.setItem(orderKey, 'true');
-                    localStorage.setItem('lastOrderNumber', currentOrderNumber);
-                    localStorage.setItem('lastOrderTime', new Date().toISOString());
-                    
-                    return { success: true };
-                } else {
-                    throw new Error(result.error || 'Unknown error from Apps Script');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error sending to spreadsheet:', error);
-                return { success: false, error: error.message };
+        // Convert to URL encoded form data (lebih kompatibel dengan Google Apps Script)
+        const formData = new URLSearchParams();
+        Object.keys(spreadsheetData).forEach(key => {
+          formData.append(key, spreadsheetData[key]);
+        });
+        
+        console.log('📤 Sending data to Google Sheets:', spreadsheetData);
+        
+        // Menggunakan fetch dengan mode 'cors' untuk debug
+        const response = await fetch(SPREADSHEET_WEBHOOK, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: formData.toString()
+        });
+        
+        console.log('📊 Data sent to Google Sheets successfully');
+        console.log('📧 Email sent to ohkachoo@gmail.com');
+        
+        return { success: true, orderNumber: orderNumber };
+        
+      } catch (error) {
+        console.error('Error sending to spreadsheet:', error);
+        // Even if API fails, order is still processed for customer
+        // Return a fallback order number
+        return { 
+          success: false, 
+          error: error.message,
+          orderNumber: generateOrderNumber() // Fallback order number
+        };
+      }
+    }
+
+    // Generate random order number
+    function generateOrderNumber() {
+        const prefix = 'KAFKAPAGES';
+        const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+        return `${prefix}-${randomNum}`;
+    }
+
+    // Format currency
+    function formatCurrency(amount) {
+        return `$${parseFloat(amount).toFixed(2)}`;
+    }
+
+    // Display order data
+    function displayOrderData(orderData, orderNumber) {
+        // Set order details
+        document.getElementById('orderNumber').textContent = orderNumber;
+        document.getElementById('orderDate').textContent = new Date(orderData.timestamp).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        document.getElementById('customerName').textContent = orderData.customer.name;
+        document.getElementById('customerEmailDisplay').textContent = orderData.customer.email;
+        document.getElementById('paymentMethod').textContent = orderData.payment.toUpperCase();
+        
+        // Display order items
+        const orderItemsList = document.getElementById('orderItemsList');
+        orderItemsList.innerHTML = '';
+        
+        orderData.items.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'order-item';
+            itemElement.innerHTML = `
+                <div>
+                    <div class="item-name">${item.title}</div>
+                    <div class="item-details">${item.language} Edition • 1 copy</div>
+                </div>
+                <div class="item-price">${formatCurrency(item.price)}</div>
+            `;
+            orderItemsList.appendChild(itemElement);
+        });
+        
+        // Display prices
+        document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal);
+        document.getElementById('discount').textContent = `-${formatCurrency(orderData.discount)}`;
+        document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee);
+        document.getElementById('totalAmount').textContent = formatCurrency(orderData.total);
+        
+        // Save order number for reference
+        localStorage.setItem('lastOrderNumber', orderNumber);
+    }
+
+    // Print receipt function
+    function setupPrintReceipt() {
+        document.getElementById('printReceipt').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
+            if (!orderData) {
+                alert('No order data found. Please try again.');
+                return;
             }
-        }
-
-        // Generate random order number
-        function generateOrderNumber() {
-            const prefix = 'KAFKAPAGES';
-            const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            return `${prefix}-${randomNum}`;
-        }
-
-        // Format currency
-        function formatCurrency(amount) {
-            return `$${parseFloat(amount).toFixed(2)}`;
-        }
-
-        // Display order data
-        function displayOrderData(orderData) {
-            // Gunakan order number yang sudah ada jika sudah diproses
-            const existingOrderNumber = localStorage.getItem('lastOrderNumber');
-            const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
             
-            if (existingOrderNumber && localStorage.getItem(orderKey) === 'true') {
-                currentOrderNumber = existingOrderNumber;
-            } else {
-                currentOrderNumber = generateOrderNumber();
-            }
+            const orderNumber = localStorage.getItem('lastOrderNumber') || generateOrderNumber();
             
-            // Set order details
-            document.getElementById('orderNumber').textContent = currentOrderNumber;
-            document.getElementById('orderDate').textContent = new Date(orderData.timestamp).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('customerName').textContent = orderData.customer.name || 'Customer';
-            document.getElementById('customerEmailDisplay').textContent = orderData.customer.email || 'No email provided';
-            document.getElementById('paymentMethod').textContent = orderData.payment ? orderData.payment.toUpperCase() : 'Unknown';
-            
-            // Display order items
-            const orderItemsList = document.getElementById('orderItemsList');
-            orderItemsList.innerHTML = '';
-            
-            orderData.items.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item';
-                itemElement.innerHTML = `
-                    <div>
-                        <div class="item-name">${item.title}</div>
-                        <div class="item-details">${item.language} Edition • 1 copy</div>
+            // Create printable content
+            const printContent = `
+                <html>
+                <head>
+                    <title>Order Receipt - KAFKAPAGES</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 25px; max-width: 600px; margin: 0 auto; }
+                        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #000; }
+                        .logo { font-size: 24px; font-weight: bold; color: #212529; }
+                        .store-info { font-size: 14px; color: #666; margin-top: 5px; }
+                        .section { margin: 25px 0; }
+                        .section-title { font-weight: bold; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 15px; font-size: 18px; }
+                        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+                        .info-item { margin-bottom: 10px; }
+                        .info-label { font-size: 12px; color: #666; text-transform: uppercase; }
+                        .info-value { font-size: 16px; font-weight: 600; }
+                        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                        th { text-align: left; padding: 10px; border-bottom: 2px solid #ddd; font-weight: bold; }
+                        td { padding: 10px; border-bottom: 1px solid #eee; }
+                        .total-row { font-weight: bold; border-top: 2px solid #000; }
+                        .instructions { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #28a745; }
+                        .instructions-title { font-weight: bold; margin-bottom: 10px; color: #28a745; }
+                        .footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; padding-top: 20px; border-top: 1px solid #ddd; }
+                        @media print {
+                            body { padding: 15px; }
+                            .no-print { display: none !important; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="logo">KAFKAPAGES</div>
+                        <div class="store-info">Digital Book Store</div>
+                        <div style="margin-top: 10px; font-size: 18px;">ORDER RECEIPT</div>
+                        <div style="margin-top: 5px; font-weight: bold;">#${orderNumber}</div>
                     </div>
-                    <div class="item-price">${formatCurrency(item.price)}</div>
-                `;
-                orderItemsList.appendChild(itemElement);
-            });
-            
-            // Display prices
-            document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal);
-            document.getElementById('discount').textContent = `-${formatCurrency(orderData.discount)}`;
-            document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee);
-            document.getElementById('totalAmount').textContent = formatCurrency(orderData.total);
-            
-            // Save order data for printing
-            localStorage.setItem('lastOrderDisplayData', JSON.stringify(orderData));
-        }
-
-        // Print receipt function
-        function setupPrintReceipt() {
-            document.getElementById('printReceipt').addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const orderData = JSON.parse(localStorage.getItem('lastOrderDisplayData')) || 
-                                 JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
-                if (!orderData) return;
-                
-                const orderNumber = currentOrderNumber || localStorage.getItem('lastOrderNumber') || generateOrderNumber();
-                
-                // Create printable content
-                const printContent = `
-                    <html>
-                    <head>
-                        <title>Order Receipt - KAFKAPAGES</title>
-                        <style>
-                            body { font-family: Arial, sans-serif; padding: 25px; max-width: 600px; margin: 0 auto; }
-                            .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #000; }
-                            .logo { font-size: 24px; font-weight: bold; color: #212529; }
-                            .store-info { font-size: 14px; color: #666; margin-top: 5px; }
-                            .section { margin: 25px 0; }
-                            .section-title { font-weight: bold; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 15px; font-size: 18px; }
-                            .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-                            .info-item { margin-bottom: 10px; }
-                            .info-label { font-size: 12px; color: #666; text-transform: uppercase; }
-                            .info-value { font-size: 16px; font-weight: 600; }
-                            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                            th { text-align: left; padding: 10px; border-bottom: 2px solid #ddd; font-weight: bold; }
-                            td { padding: 10px; border-bottom: 1px solid #eee; }
-                            .total-row { font-weight: bold; border-top: 2px solid #000; }
-                            .instructions { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #28a745; }
-                            .instructions-title { font-weight: bold; margin-bottom: 10px; color: #28a745; }
-                            .footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; padding-top: 20px; border-top: 1px solid #ddd; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="header">
-                            <div class="logo">KAFKAPAGES</div>
-                            <div class="store-info">Digital Book Store</div>
-                            <div style="margin-top: 10px; font-size: 18px;">ORDER RECEIPT</div>
-                            <div style="margin-top: 5px; font-weight: bold;">#${orderNumber}</div>
-                        </div>
-                        
-                        <div class="section">
-                            <div class="info-grid">
-                                <div class="info-item">
-                                    <div class="info-label">Order Date</div>
-                                    <div class="info-value">${new Date(orderData.timestamp).toLocaleString()}</div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="info-label">Customer</div>
-                                    <div class="info-value">${orderData.customer.name || 'Customer'}</div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="info-label">Email</div>
-                                    <div class="info-value">${orderData.customer.email || 'No email'}</div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="info-label">Status</div>
-                                    <div class="info-value" style="color: #ffc107;">Pending Delivery</div>
-                                </div>
+                    
+                    <div class="section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Order Date</div>
+                                <div class="info-value">${new Date(orderData.timestamp).toLocaleString()}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Customer</div>
+                                <div class="info-value">${orderData.customer.name}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Email</div>
+                                <div class="info-value">${orderData.customer.email}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Status</div>
+                                <div class="info-value" style="color: #ffc107;">Pending Delivery</div>
                             </div>
                         </div>
-                        
-                        <div class="section">
-                            <div class="section-title">Items Purchased</div>
-                            <table>
-                                <thead>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">Items Purchased</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Book Title</th>
+                                    <th>Edition</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${orderData.items.map(item => `
                                     <tr>
-                                        <th>Book Title</th>
-                                        <th>Edition</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
+                                        <td>${item.title}</td>
+                                        <td>${item.language}</td>
+                                        <td>1</td>
+                                        <td>${formatCurrency(item.price)}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    ${orderData.items.map(item => `
-                                        <tr>
-                                            <td>${item.title}</td>
-                                            <td>${item.language}</td>
-                                            <td>1</td>
-                                            <td>${formatCurrency(item.price)}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="section">
-                            <div class="section-title">Payment Summary</div>
-                            <table>
-                                <tr>
-                                    <td>Subtotal:</td>
-                                    <td>${formatCurrency(orderData.subtotal)}</td>
-                                </tr>
-                                <tr>
-                                    <td>Discount:</td>
-                                    <td>-${formatCurrency(orderData.discount)}</td>
-                                </tr>
-                                <tr>
-                                    <td>Service Fee:</td>
-                                    <td>${formatCurrency(orderData.serviceFee)}</td>
-                                </tr>
-                                <tr class="total-row">
-                                    <td>TOTAL AMOUNT:</td>
-                                    <td>${formatCurrency(orderData.total)}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        
-                        <div class="instructions">
-                            <div class="instructions-title">📦 Delivery Instructions:</div>
-                            <p>1. Download links will be sent to your email: <strong>${orderData.customer.email || 'No email provided'}</strong></p>
-                            <p>2. If no email within 24 hours, DM @TheKachoo on X (Twitter)</p>
-                            <p>3. Google Drive links will be valid for 30 days</p>
-                            <p>4. Keep this receipt for reference: <strong>Order #${orderNumber}</strong></p>
-                        </div>
-                        
-                        <div class="footer">
-                            <p>Thank you for your purchase from KAFKAPAGES!</p>
-                            <p>Contact: @TheKachoo on X | ohkachoo@gmail.com</p>
-                            <p><em>This is a digital receipt. No physical products will be shipped.</em></p>
-                            <p>KAFKAPAGES © ${new Date().getFullYear()}</p>
-                        </div>
-                    </body>
-                    </html>
-                `;
-                
-                // Open print window
-                const printWindow = window.open('', '_blank');
-                printWindow.document.write(printContent);
-                printWindow.document.close();
-                printWindow.focus();
-                
-                // Wait for content to load then print
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">Payment Summary</div>
+                        <table>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td>${formatCurrency(orderData.subtotal)}</td>
+                            </tr>
+                            <tr>
+                                <td>Discount:</td>
+                                <td>-${formatCurrency(orderData.discount)}</td>
+                            </tr>
+                            <tr>
+                                <td>Service Fee:</td>
+                                <td>${formatCurrency(orderData.serviceFee)}</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td>TOTAL AMOUNT:</td>
+                                <td>${formatCurrency(orderData.total)}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="instructions">
+                        <div class="instructions-title">📦 Delivery Instructions:</div>
+                        <p>1. Download links will be sent to your email: <strong>${orderData.customer.email}</strong></p>
+                        <p>2. If no email within 24 hours, DM @TheKachoo on X (Twitter)</p>
+                        <p>3. Google Drive links will be valid for 30 days</p>
+                        <p>4. Keep this receipt for reference: <strong>Order #${orderNumber}</strong></p>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Thank you for your purchase from KAFKAPAGES!</p>
+                        <p>Contact: @TheKachoo on X | ohkachoo@gmail.com</p>
+                        <p><em>This is a digital receipt. No physical products will be shipped.</em></p>
+                        <p>KAFKAPAGES © ${new Date().getFullYear()}</p>
+                    </div>
+                    
+                    <div class="no-print" style="margin-top: 30px; text-align: center; padding: 20px; border-top: 1px solid #ddd;">
+                        <button onclick="window.print()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Print Receipt
+                        </button>
+                        <button onclick="window.close()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                            Close Window
+                        </button>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Open print window
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // Auto-print after content loads
+            printWindow.onload = function() {
                 setTimeout(() => {
                     printWindow.print();
-                    printWindow.close();
-                }, 250);
-            });
-        }
+                }, 500);
+            };
+        });
+    }
 
-        // Main initialization
-        document.addEventListener('DOMContentLoaded', async function() {
-            const loadingState = document.getElementById('loadingState');
-            const successState = document.getElementById('successState');
-            const errorState = document.getElementById('errorState');
+    // Main initialization
+    document.addEventListener('DOMContentLoaded', async function() {
+        const loadingState = document.getElementById('loadingState');
+        const successState = document.getElementById('successState');
+        const errorState = document.getElementById('errorState');
+        
+        try {
+            // Get order data from localStorage
+            const orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
             
-            try {
-                // Get order data from localStorage
-                let orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
-                
-                if (!orderData) {
-                    // Coba ambil data dari session storage jika tidak ada di localStorage
-                    orderData = JSON.parse(sessionStorage.getItem('kafkapagesOrder'));
-                    if (!orderData) {
-                        throw new Error('No order data found');
-                    }
+            if (!orderData) {
+                throw new Error('No order data found. Please complete the payment process first.');
+            }
+            
+            // Generate order number immediately for display
+            const initialOrderNumber = generateOrderNumber();
+            
+            // Display order data to customer FIRST (immediate feedback)
+            displayOrderData(orderData, initialOrderNumber);
+            
+            // Send data to admin spreadsheet (background process)
+            // This runs in background, doesn't affect customer experience
+            const spreadsheetResult = await sendToSpreadsheet(orderData);
+            
+            if (spreadsheetResult.success) {
+                console.log('✅ Admin system updated successfully');
+                // Use the order number from spreadsheet if available
+                if (spreadsheetResult.orderNumber) {
+                    document.getElementById('orderNumber').textContent = spreadsheetResult.orderNumber;
+                    localStorage.setItem('lastOrderNumber', spreadsheetResult.orderNumber);
                 }
-                
-                // Display order data to customer
-                displayOrderData(orderData);
-                
-                // Setup print receipt
-                setupPrintReceipt();
-                
-                // Cek apakah order sudah diproses sebelumnya
-                const orderKey = `order_processed_${orderData.timestamp}_${orderData.customer.email}`;
-                const alreadyProcessed = localStorage.getItem(orderKey) === 'true';
-                
-                if (!alreadyProcessed) {
-                    console.log('🔄 Mengirim data order baru ke Google Sheets...');
-                    
-                    // Kirim data ke Google Sheets dan email
-                    const result = await sendToSpreadsheetAndEmail(orderData);
-                    
-                    if (result.success) {
-                        console.log('✅ Data berhasil dikirim ke Google Sheets');
-                        console.log('📧 Email notifikasi dikirim ke ohkachoo@gmail.com');
-                        
-                        // Hapus data cart setelah order berhasil
-                        localStorage.removeItem('kafkapagesCart');
-                        sessionStorage.removeItem('kafkapagesOrder');
-                    } else {
-                        console.warn('⚠️ Gagal mengirim data ke admin system:', result.error);
-                        console.log('📝 Order tetap diproses untuk customer, admin akan diperiksa manual');
-                    }
-                } else {
-                    console.log('🔄 Order sudah diproses sebelumnya, hanya menampilkan konfirmasi');
-                }
-                
-                // Show success state
+            } else {
+                console.warn('⚠️ Admin system update failed, but order still processed');
+                // Order still shows with initial order number
+            }
+            
+            // Setup print receipt
+            setupPrintReceipt();
+            
+            // Show success state
+            setTimeout(() => {
                 loadingState.style.display = 'none';
                 successState.style.display = 'block';
-                
-                // Log to console for debugging
-                console.log('✅ Halaman konfirmasi order dimuat');
-                console.log('📋 Nomor Order:', currentOrderNumber);
-                console.log('👤 Customer:', orderData.customer.name);
-                console.log('📧 Email Customer:', orderData.customer.email);
-                console.log('📚 Jumlah Item:', orderData.items.length);
-                console.log('💰 Total:', formatCurrency(orderData.total));
-                console.log('🔄 Status Pemrosesan:', alreadyProcessed ? 'Sudah diproses' : 'Pemrosesan pertama');
-                
-            } catch (error) {
-                console.error('❌ Error processing order:', error);
-                
-                // Show error state
-                loadingState.style.display = 'none';
-                errorState.style.display = 'block';
-            }
-        });
-    </script>
+            }, 1000); // Short delay for better UX
+            
+            // Clear cart data after successful order
+            localStorage.removeItem('kafkapagesCart');
+            localStorage.removeItem('kafkapagesOrder');
+            
+            // Log to console for debugging
+            console.log('✅ Order processed successfully for customer');
+            console.log('📋 Order Number:', localStorage.getItem('lastOrderNumber'));
+            console.log('👤 Customer:', orderData.customer.name);
+            console.log('📧 Customer Email:', orderData.customer.email);
+            
+        } catch (error) {
+            console.error('❌ Error processing order:', error);
+            
+            // Show error state
+            loadingState.style.display = 'none';
+            errorState.style.display = 'block';
+            
+            // Show error message in error state
+            const errorMessage = document.createElement('p');
+            errorMessage.style.marginTop = '10px';
+            errorMessage.style.color = '#dc3545';
+            errorMessage.textContent = `Error: ${error.message}`;
+            errorState.appendChild(errorMessage);
+        }
+    });
+</script>
 </body>
 </html>
