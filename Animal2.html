@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jangan Cuma Nonton Doang! Save These Animals Before Mereka Ilang Forever! | KABOOM!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            
+            /* Earthy bright brown palette */
+            --light-brown: #f7f3e9;
+            --warm-beige: #f0e6d2;
+            --soft-brown: #d7ccc8;
+            --medium-brown: #a1887f;
+            --dark-brown: #795548;
+            --accent-brown: #8d6e63;
+            --highlight-gold: #ffd54f;
+            --highlight-gold-light: #fff8e1;
+            
+            --accent: var(--accent-brown);
+            --primary: var(--dark-brown);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 12px rgba(141, 110, 99, 0.08);
+            --shadow-md: 0 8px 25px rgba(141, 110, 99, 0.12);
+            --shadow-lg: 0 15px 40px rgba(141, 110, 99, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kaboom {
+            animation: kaboomEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes kaboomEffect {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3) rotate(5deg); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--dark-brown), var(--accent-brown));
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--accent-brown);
+            color: var(--accent-brown);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(141, 110, 99, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-brown);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-brown) 0%, var(--warm-beige) 50%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(141, 110, 99, 0.05), rgba(255, 213, 79, 0.05));
+            z-index: 0;
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--accent-brown);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .article-title {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: var(--dark-brown);
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight-gold), var(--accent-brown));
+            border-radius: 2px;
+            animation: widthGrow 1s ease 0.8s both;
+        }
+
+        @keyframes widthGrow {
+            from { width: 0; opacity: 0; }
+            to { width: 120px; opacity: 1; }
+        }
+
+        .article-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--accent-brown);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content-section {
+            padding: 80px 0 40px;
+        }
+
+        .article-content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-body {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .article-body p {
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+
+        .article-section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            margin: 60px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            background: linear-gradient(45deg, var(--medium-brown), var(--dark-brown));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .article-image:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 60px rgba(141, 110, 99, 0.2);
+        }
+
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(141, 110, 99, 0.15) 100%);
+            z-index: 1;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .image-credit {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .image-credit:hover {
+            background: rgba(0,0,0,0.9);
+            transform: translateY(-2px);
+        }
+
+        .article-body h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 80px 0 40px;
+            color: var(--dark-brown);
+            position: relative;
+            padding-left: 0;
+            padding-bottom: 20px;
+        }
+
+        .article-body h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight-gold), var(--accent-brown));
+            border-radius: 2px;
+        }
+
+        .article-body h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 60px 0 25px;
+            color: var(--dark-brown);
+            line-height: 1.3;
+        }
+
+        .highlight-quote {
+            border-left: 4px solid var(--highlight-gold);
+            padding: 30px 40px;
+            margin: 60px 0;
+            font-style: italic;
+            font-size: 22px;
+            color: var(--dark-brown);
+            line-height: 1.5;
+            position: relative;
+            background: linear-gradient(135deg, var(--highlight-gold-light), var(--warm-beige));
+            border-radius: 0 20px 20px 0;
+            animation: slideInLeft 0.8s ease both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .highlight-quote:before {
+            content: '"';
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            font-size: 60px;
+            color: var(--highlight-gold);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .animal-spotlight {
+            background: var(--warm-beige);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 2px solid var(--medium-brown);
+            animation: fadeIn 0.8s ease both;
+        }
+
+        .animal-spotlight h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .animal-spotlight h4 i {
+            color: var(--accent-brown);
+        }
+
+        .animal-spotlight p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-brown), var(--dark-brown));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--light-brown), var(--warm-beige));
+            padding: 40px;
+            border-radius: 20px;
+            margin: 80px 0 40px;
+            border: 3px solid var(--highlight-gold);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease both;
+        }
+
+        .conclusion-box:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 213, 79, 0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .conclusion-box h2 {
+            color: var(--dark-brown);
+            margin-top: 0;
+        }
+
+        .conclusion-box h2:after {
+            width: 60px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--light-brown), var(--warm-beige));
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--accent-brown);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-brown);
+            box-shadow: var(--shadow-md);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--dark-brown);
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight-gold), var(--accent-brown));
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: var(--accent-brown);
+            font-size: 18px;
+        }
+
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--soft-brown);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-brown);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--dark-brown);
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight-gold), var(--accent-brown));
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--accent-brown);
+            color: var(--accent-brown);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--accent-brown);
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .article-date-footer {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-brown);
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 60px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .article-image {
+                height: 400px;
+            }
+            
+            .article-body h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+            }
+            
+            .article-section {
+                margin-bottom: 70px;
+            }
+            
+            .highlight-quote {
+                padding: 25px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .article-image {
+                height: 300px;
+                margin: 40px 0;
+            }
+            
+            .image-placeholder {
+                font-size: 24px;
+            }
+            
+            .article-body {
+                font-size: 16px;
+            }
+            
+            .article-body p {
+                font-size: 16px;
+            }
+            
+            .highlight-quote {
+                font-size: 18px;
+                padding: 20px;
+                margin: 40px 0;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+            
+            .article-body h2 {
+                font-size: 28px;
+                margin: 60px 0 30px;
+            }
+            
+            .article-body h3 {
+                font-size: 24px;
+                margin: 40px 0 20px;
+            }
+            
+            .conclusion-box {
+                padding: 25px;
+            }
+            
+            .animal-spotlight {
+                padding: 20px;
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* ===== GEN-Z STYLES ===== */
+        .genz-highlight {
+            background: linear-gradient(90deg, var(--highlight-gold-light), transparent);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .callout {
+            background: var(--highlight-gold-light);
+            border-left: 4px solid var(--highlight-gold);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='kaboom.html'">
+                    <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
+                    <div class="article-category">SAVE THE ANIMALS</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="kaboom.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <button class="nav-btn" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">
+                        <i class="fas fa-camera"></i> Credits
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">ROLEPLAY PURPOSE ONLY • NOT A REAL DEMONSTRATION</span>
+                <h1 class="article-title scroll-animate">Bro, Mereka Mau Ilang! <br>🆘 Hewan-Hewan yang Beneran Butuh Bantuan Lo!</h1>
+                <p class="article-subtitle scroll-animate">Bukan cuma badak atau panda, banyak banget hewan keren yang <span class="genz-highlight">HAMPIR PUNAH</span> tanpa kita sadari. Yuk kenalan sama mereka sebelum beneran tinggal cerita!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <!-- Section 1: Opening -->
+                <div class="article-section">
+                    <!-- Photo 1 -->
+                    <div class="article-image scroll-animate">
+                        <div class="image-placeholder">WILD & ENDANGERED</div>
+                        <div class="image-credit">
+                            📸 by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content 1 -->
+                    <div class="article-body">
+                        <p class="scroll-animate">Halo Gen Z! Pernah nggak sih lo mikir, "Ada apa sih sama hewan-hewan yang hampir punah? Urusan mereka urusan mereka lah." <span class="genz-highlight">Tapi tunggu dulu!</span> Ini bukan cuma soal mereka, tapi soal kita semua. Bayangin dunia tanpa harimau, gajah, atau bahkan kupu-kupu tertentu. Bakal boring banget, kan?</p>
+                        
+                        <p class="scroll-animate">Faktanya, lebih dari <strong>41,000 spesies</strong> terancam punah menurut IUCN. Itu bukan angka doang—itu artinya ribuan makhluk hidup yang punya peran penting di ekosistem kita. <span class="emoji">😱</span> Dan parahnya, banyak dari mereka itu bahkan belum sempet kita kenal!</p>
+                    </div>
+                </div>
+
+                <!-- Section 2: Why It Matters -->
+                <div class="article-section">
+                    <!-- Photo 2 -->
+                    <div class="article-image scroll-animate delay-1">
+                        <div class="image-placeholder">WHY IT MATTERS?</div>
+                        <div class="image-credit">
+                            📸 by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content 2 -->
+                    <div class="article-body">
+                        <h2 class="scroll-animate">Bukan Cuma Soal Lucu Atau Nggak Lucu</h2>
+                        
+                        <p class="scroll-animate delay-1">"Ah, paling cuma orang hobi binatang yang peduli." <span class="emoji">🙄</span> Eits, salah besar! Setiap spesies punya <span class="genz-highlight">fungsi spesial</span> di alam. Mereka kayak bagian dari mesin raksasa—kalau ada yang ilang, mesinnya nggak jalan sempurna.</p>
+                        
+                        <div class="highlight-quote scroll-animate delay-2">
+                            "Pelestarian hewan itu kayak maintain circle pertemanan lo. Kalau ada yang ilang satu, dynamic-nya berubah total. Alam juga gitu—kehilangan satu spesies bikin seluruh sistem jadi nggak balance."
+                        </div>
+                        
+                        <p class="scroll-animate delay-1">Contoh simpel: Lebah. Mereka tuh <strong>super penting</strong> buat penyerbukan tanaman. Tanpa lebah? Goodbye buah-buahan, sayuran, dan bunga-bunga. Mau makan apa kita nanti?</p>
+                    </div>
+                </div>
+
+                <!-- Section 3: Almost Extinct Animals -->
+                <div class="article-section">
+                    <!-- Photo 3 -->
+                    <div class="article-image scroll-animate delay-2">
+                        <div class="image-placeholder">THE CRITICALLY ENDANGERED</div>
+                        <div class="image-credit">
+                            📸 by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content 3 -->
+                    <div class="article-body">
+                        <h2 class="scroll-animate">Squad yang Beneran Butuh Bantuan</h2>
+                        
+                        <p class="scroll-animate delay-1">Nah, ini nih beberapa hewan yang <span class="genz-highlight">statusnya kritis</span> banget. Bukan cuma yang di luar negeri, tapi ada juga yang di Indonesia sendiri!</p>
+                        
+                        <div class="animal-spotlight scroll-animate delay-2">
+                            <h4><i class="fas fa-crow"></i> Burung Jalak Bali</h4>
+                            <p>Icon Bali yang cantik banget ini cuma tersisa <strong>kurang dari 100 ekor</strong> di alam liar! Penyebabnya? Perburuan liar buat dijual sebagai burung peliharaan. Padahal mereka tuh pemakan serangga alami yang membantu kontrol hama.</p>
+                            <span class="stat-badge">STATUS: KRITIS BANGET</span>
+                        </div>
+                        
+                        <p class="scroll-animate delay-1">Trus ada juga <strong>Badak Jawa</strong>. Tau nggak? Di seluruh dunia cuma ada sekitar <strong>70 ekor</strong> aja! Mereka hidup cuma di Ujung Kulon. Bayangin, populasi mereka lebih sedikit dari followers lo di TikTok!</p>
+                        
+                        <div class="animal-spotlight scroll-animate delay-3">
+                            <h4><i class="fas fa-fish"></i> Hiu Gergaji</h4>
+                            <p>Bukan hiu biasa—moncongnya panjang kayak gergaji! Mereka hampir punah karena <strong>terjaring nelayan</strong> secara tidak sengaja. Padahal mereka predator penting buat jaga keseimbangan ekosistem laut.</p>
+                            <span class="stat-badge">STATUS: TERANCAM PARAH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: More Animals -->
+                <div class="article-section">
+                    <!-- Photo 4 -->
+                    <div class="article-image scroll-animate delay-3">
+                        <div class="image-placeholder">MORE IN DANGER</div>
+                        <div class="image-credit">
+                            📸 by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content 4 -->
+                    <div class="article-body">
+                        <h3 class="scroll-animate">Yang Lain Juga Nggak Kalah Parah</h3>
+                        
+                        <p class="scroll-animate delay-1">Gajah Sumatera? Tinggal <strong>2,400-2,800 ekor</strong>. Orangutan? Populasinya turun <strong>50%</strong> dalam 60 tahun terakhir. Bahkan penyu yang lucu-lucu itu juga terancam karena pantai tempat mereka bertelur jadi objek wisata.</p>
+                        
+                        <div class="callout scroll-animate delay-2">
+                            <span class="emoji">💡</span> FUN FACT: Beberapa hewan yang kita pikir masih banyak, ternyata udah critically endangered. Kayak trenggiling—diburu buat diambil kulitnya buat "obat" yang sebenernya nggak terbukti khasiatnya!
+                        </div>
+                        
+                        <p class="scroll-animate delay-1">Masalahnya nggak cuma perburuan. <span class="genz-highlight">Habitat mereka terus berkurang</span> karena pembukaan lahan buat perkebunan, perumahan, dan infrastruktur. Mereka kehilangan rumah, makanan, dan tempat berkembang biak.</p>
+                        
+                        <div class="animal-spotlight scroll-animate delay-3">
+                            <h4><i class="fas fa-frog"></i> Katak Poison Dart</h4>
+                            <p>Katak kecil warna-warni dari Amazon ini makin langka karena <strong>deforestasi</strong>. Padahal racun mereka dipelajari buat bikin obat-obatan baru, termasuk painkiller yang lebih aman!</p>
+                            <span class="stat-badge">STATUS: VULNERABLE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: What Can We Do -->
+                <div class="article-section">
+                    <!-- Photo 5 -->
+                    <div class="article-image scroll-animate delay-4">
+                        <div class="image-placeholder">TAKE ACTION NOW</div>
+                        <div class="image-credit">
+                            📸 by <span>The Kadio Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content 5 -->
+                    <div class="article-body">
+                        <h2 class="scroll-animate">Okay, Terus Kita Bisa Apa?</h2>
+                        
+                        <p class="scroll-animate delay-1">Jangan panik! Kita sebagai Gen Z punya power lebih dari yang kita kira. <span class="emoji">✊</span> Nggak perlu jadi aktivis full-time buat bantu mereka.</p>
+                        
+                        <h3 class="scroll-animate delay-1">Simple Actions, Big Impact:</h3>
+                        
+                        <p class="scroll-animate delay-2"><strong>1. Edukasi Diri & Spread Awareness</strong> — Share artikel ini, post infografis, atau bikin konten TikTok tentang hewan langka. Knowledge is power!</p>
+                        
+                        <p class="scroll-animate delay-2"><strong>2. Jadi Conscious Consumer</strong> — Cek produk yang lo beli. Hindari yang mengandung minyak sawit nggak sustainable atau produk dari hewan langka.</p>
+                        
+                        <p class="scroll-animate delay-3"><strong>3. Donasi ke Lembaga Terpercaya</strong> — Banyak organisasi konservasi yang beneran kerja. Donasi recehan aja udah membantu!</p>
+                        
+                        <p class="scroll-animate delay-3"><strong>4. Kurangi Plastik & Polusi</strong> — Sampah kita berakhir di laut dan darat, merusak habitat mereka. Bawa tumbler, totebag, dan say no to single-use plastic!</p>
+                    </div>
+                </div>
+
+                <!-- Conclusion -->
+                <div class="conclusion-box scroll-animate">
+                    <h2>Kesimpulan: Jangan Sampe Mereka Cuma Jadi Cerita</h2>
+                    
+                    <p>Intinya, <span class="genz-highlight">kita semua punya tanggung jawab</span>. Bukan cuma buat hewan-hewan itu, tapi buat masa depan planet ini. Mereka nggak bisa speak up buat diri mereka sendiri—jadi kita yang harus jadi suara mereka.</p>
+                    
+                    <p>Setiap hewan yang punya peran unik di ekosistem. Kalau mereka ilang, <strong>kita semua yang kena dampaknya</strong>. Mulai dari ketahanan pangan, kesehatan, sampai stabilitas iklim.</p>
+                    
+                    <p>Jadi, mulai sekarang yuk lebih aware. <span class="emoji">🌍</span> <strong>Follow organisasi konservasi</strong>, <strong>share informasi</strong>, dan <strong>ubah kebiasaan kecil</strong>. Karena perubahan besar selalu dimulai dari hal-hal kecil yang kita lakukan setiap hari.</p>
+                    
+                    <div class="callout" style="margin-top: 30px;">
+                        <span class="emoji">🔥</span> <strong>REMEMBER:</strong> Kita generasi yang connected, creative, dan punya access ke information. Let's use that power for good! Save the animals, save our future.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-info">
+                        <h4>Visual Production</h4>
+                        <p>Semua visual keren di artikel ini dibuat oleh <strong>The Kadio Studio</strong> (Kafka Studio Division). Spesialis visual storytelling yang bikin foto dan grafis tentang konservasi hewan jadi looks aesthetic tapi meaningful banget!</p>
+                    </div>
+                    
+                    <div class="article-date-footer">
+                        ARTICLE PUBLISHED: JANUARY 3, 2026
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate delay-1">
+                    <h3>About This Article</h3>
+                    <p>Ini adalah bagian dari seri "Almost Extinct" di KABOOM!, di mana kita bahas hewan-hewan yang <strong>beneran butuh perhatian kita</strong>. Artikel ini dibuat khusus buat Gen Z dengan bahasa yang relatable dan informasi yang penting tapi nggak boring.</p>
+                    <p>Kami percaya bahwa awareness adalah langkah pertama buat perubahan. Dengan konten yang engaging, kita harap lebih banyak anak muda yang peduli sama nasib hewan-hewan yang hampir punah.</p>
+                    <p><strong>Disclaimer Penting:</strong> Artikel ini dibuat untuk <span class="genz-highlight">roleplay purpose only</span> dan bukan demonstrasi nyata. Data diambil dari berbagai sumber terpercaya termasuk IUCN Red List dan laporan konservasi terbaru.</p>
+                    <p>Yuk sama-sama jaga bumi kita! 🌱 #SaveTheAnimals #AlmostExtinct #GenZForChange</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate delay-2">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">Semua konten di situs ini dibuat untuk educational dan awareness purpose dalam konteks roleplay. Data konservasi berdasarkan penelitian ilmiah terkini dari IUCN, WWF, dan Conservation International. Visual content diproduksi oleh The Kadio Studio (Kafka Studio Division).</p>
+                <p class="disclaimer" style="margin-top: 10px; color: var(--dark-brown);">
+                    <strong>⚠️ PERHATIAN:</strong> Konten ini merupakan simulasi roleplay dan bukan artikel nyata. Dibuat untuk tujuan edukasi dan hiburan semata.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.1)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"], button[onclick*="scrollTo"]').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Add hover effect to animal spotlights
+        document.querySelectorAll('.animal-spotlight').forEach(spotlight => {
+            spotlight.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 35px rgba(141, 110, 99, 0.2)';
+            });
+            
+            spotlight.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Add click effect to images
+        document.querySelectorAll('.article-image').forEach(image => {
+            image.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1000);
+            }
+            
+            // Add random emoji to some paragraphs (fun effect)
+            const paragraphs = document.querySelectorAll('.article-body p');
+            const emojis = ['🐯', '🐘', '🦋', '🐢', '🦈', '🐒', '🦉', '🦎'];
+            
+            paragraphs.forEach((p, index) => {
+                if (index % 4 === 0 && index > 0) {
+                    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                    p.innerHTML = randomEmoji + ' ' + p.innerHTML;
+                }
+            });
+        });
+        
+        // Add floating effect to stat badges
+        const statBadges = document.querySelectorAll('.stat-badge');
+        statBadges.forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.animation = 'pulse 0.5s infinite';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.animation = 'pulse 2s infinite';
+            });
+        });
+    </script>
+</body>
+</html>
