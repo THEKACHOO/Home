@@ -5,708 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAZINE | Payment</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
-        :root {
-            --primary-white: #ffffff;
-            --off-white: #f8f9fa;
-            --light-gray: #e9ecef;
-            --medium-gray: #adb5bd;
-            --dark-gray: #495057;
-            --primary-black: #212529;
-            --accent-black: #000000;
-            --kazine-primary: #495057;
-            --kazine-secondary: #1e40af;
-            --success-green: #10b981;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --border-radius: 12px;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-white);
-            color: var(--primary-black);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: #f5f5f5;
+            padding: 20px;
         }
-
+        
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        /* Header */
+        
         header {
-            background: var(--primary-white);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-text p {
-            font-size: 11px;
-            color: var(--dark-gray);
-            letter-spacing: 1.5px;
-        }
-
-        .back-to-store {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--kazine-primary);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .back-to-store:hover {
-            background-color: var(--off-white);
-        }
-
-        /* Main Content */
-        main {
-            flex: 1;
-            padding: 30px 0;
-        }
-
-        .payment-header {
+            background: black;
+            color: white;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 30px;
         }
-
-        .payment-header h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-black);
-            margin-bottom: 10px;
+        
+        .form-section {
+            padding: 30px;
         }
-
-        .payment-header p {
-            color: var(--medium-gray);
-            font-size: 15px;
-        }
-
-        .payment-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .payment-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Customer Information */
-        .customer-info {
-            background: var(--off-white);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .customer-info h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary-black);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .customer-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--kazine-primary);
-        }
-
+        
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
-
-        .form-group label {
+        
+        label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
-            color: var(--dark-gray);
-            font-size: 15px;
         }
-
-        .required-field::after {
-            content: ' *';
-            color: #dc3545;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        
+        input, textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background-color: var(--primary-white);
         }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--kazine-primary);
-            box-shadow: 0 0 0 3px rgba(73, 80, 87, 0.1);
-        }
-
-        .twitter-input-group {
-            position: relative;
-        }
-
-        .twitter-prefix {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--medium-gray);
-            font-weight: 500;
-            pointer-events: none;
-        }
-
-        .twitter-input-group input {
-            padding-left: 40px;
-        }
-
-        .form-note {
-            font-size: 13px;
-            color: var(--medium-gray);
-            margin-top: 5px;
-            display: block;
-        }
-
-        /* Order Summary */
+        
         .order-summary {
-            background: var(--off-white);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .order-summary h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary-black);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .order-summary h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--kazine-primary);
-        }
-
-        .order-items {
-            margin-bottom: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .order-item:last-child {
-            border-bottom: none;
-        }
-
-        .item-name {
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .item-details {
-            font-size: 13px;
-            color: var(--medium-gray);
-            margin-top: 5px;
-        }
-
-        .item-price {
-            font-weight: 700;
-            text-align: right;
-            font-size: 15px;
-        }
-
-        .voucher-section {
-            background: var(--primary-white);
-            padding: 18px;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            border: 1px solid var(--light-gray);
-        }
-
-        .voucher-section h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .voucher-input {
-            display: flex;
-            gap: 10px;
-        }
-
-        .voucher-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
+            background: #f9f9f9;
+            padding: 20px;
             border-radius: 5px;
-            font-size: 15px;
-        }
-
-        .apply-voucher {
-            background: var(--kazine-primary);
-            color: var(--primary-white);
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 15px;
-        }
-
-        .apply-voucher:hover {
-            background: var(--kazine-secondary);
-        }
-
-        .price-breakdown {
-            background: var(--primary-white);
-            padding: 18px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--light-gray);
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
-
-        .price-row.total {
-            font-size: 18px;
-            font-weight: 700;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid var(--light-gray);
-            color: var(--success-green);
-        }
-
-        /* Payment Method */
-        .payment-method {
-            margin-top: 30px;
-            background: var(--off-white);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .payment-method h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary-black);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .payment-method h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--kazine-primary);
-        }
-
-        .payment-note {
-            color: var(--medium-gray);
-            margin-bottom: 20px;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 10px 15px;
-            border-radius: 5px;
-            border-left: 3px solid var(--kazine-primary);
-        }
-
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .payment-option {
-            border: 2px solid var(--light-gray);
-            border-radius: 5px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: var(--primary-white);
-        }
-
-        .payment-option:hover {
-            border-color: var(--kazine-primary);
-            transform: translateY(-2px);
-        }
-
-        .payment-option.selected {
-            border-color: var(--kazine-primary);
-            background-color: rgba(73, 80, 87, 0.05);
-        }
-
-        .payment-option i {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--kazine-primary);
-        }
-
-        .payment-option span {
-            display: block;
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid var(--light-gray);
-        }
-
-        .btn {
-            flex: 1;
-            padding: 16px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-        }
-
-        .btn-cancel {
-            background: var(--light-gray);
-            color: var(--dark-gray);
-        }
-
-        .btn-cancel:hover {
-            background: var(--medium-gray);
-            color: var(--primary-white);
-        }
-
-        .btn-checkout {
-            background: var(--kazine-primary);
-            color: var(--primary-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-checkout:hover {
-            background: var(--kazine-secondary);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-black);
-            padding: 25px 0;
-            color: var(--primary-white);
-            margin-top: 50px;
-        }
-
-        .footer-content {
-            text-align: center;
-        }
-
-        .footer-content p {
-            font-size: 14px;
-        }
-
-        .disclaimer {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: var(--border-radius);
             margin-top: 20px;
-            font-size: 13px;
-            text-align: left;
         }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 50px 20px;
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
         }
-
-        .empty-state i {
-            font-size: 64px;
-            color: var(--medium-gray);
-            margin-bottom: 20px;
+        
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
         }
-
-        .empty-state h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
+        
+        .btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo-container">
-                <div class="logo-image">
-                    <img src="KAZINE.png" alt="KAZINE Logo" id="kazineLogo" style="height: 45px;">
+    <div class="container">
+        <header>
+            <h1>KAZINE Payment</h1>
+        </header>
+        
+        <div class="form-section">
+            <h2>Customer Information</h2>
+            
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="customer-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="customer-email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Twitter Username *</label>
+                <input type="text" id="customer-twitter" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Address</label>
+                <textarea id="customer-address" rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Special Request</label>
+                <textarea id="other-request" rows="3"></textarea>
+            </div>
+            
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div id="order-items">
+                    <!-- Items akan muncul di sini -->
                 </div>
-                <div class="logo-text">
-                    <p>SECURE PAYMENT</p>
+                
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Discount:</span>
+                    <span id="discount">-$0.00</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping">$5.99</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Tax (8%):</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$5.99</span>
                 </div>
             </div>
-            <a href="kazine.html" class="back-to-store">
-                <i class="fas fa-arrow-left"></i>
-                Back to Store
-            </a>
+            
+            <button class="btn" id="checkoutBtn">
+                <i class="fas fa-lock"></i> Complete Payment
+            </button>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-            <div class="payment-header">
-                <h2>Complete Your Purchase</h2>
-                <p>Please review your order and fill in your information</p>
-            </div>
-
-            <div id="emptyState" class="empty-state" style="display: none;">
-                <i class="fas fa-shopping-cart"></i>
-                <h4>Your cart is empty</h4>
-                <p>Add items from the store to proceed with payment</p>
-                <a href="kazine.html" class="btn btn-checkout" style="width: auto; margin-top: 20px;">
-                    Go to Store
-                </a>
-            </div>
-
-            <div id="paymentContent">
-                <div class="payment-container">
-                    <!-- Left Column: Customer Information -->
-                    <div class="customer-info">
-                        <h3>Customer Information</h3>
-                        
-                        <div class="form-group">
-                            <label for="customer-name" class="required-field">Full Name</label>
-                            <input type="text" id="customer-name" placeholder="John Doe" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="customer-email" class="required-field">Email Address</label>
-                            <input type="email" id="customer-email" placeholder="your.email@example.com" required>
-                            <small class="form-note">Order confirmation will be sent to this email</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="customer-twitter" class="required-field">Twitter (X) Username</label>
-                            <div class="twitter-input-group">
-                                <span class="twitter-prefix">@</span>
-                                <input type="text" id="customer-twitter" placeholder="username" required>
-                            </div>
-                            <small class="form-note">For order verification and updates</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="customer-address">Shipping Address (Optional)</label>
-                            <textarea id="customer-address" rows="2" placeholder="Enter shipping address for physical items"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="other-request">Order Notes (Optional)</label>
-                            <textarea id="other-request" rows="3" placeholder="Special instructions, color preferences, or other requests..."></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Order Summary -->
-                    <div class="order-summary">
-                        <h3>Order Summary</h3>
-                        
-                        <div class="order-items" id="orderItems">
-                            <!-- Dynamic items will be inserted here -->
-                        </div>
-
-                        <div class="price-breakdown">
-                            <div class="price-row">
-                                <span>Subtotal</span>
-                                <span id="subtotal">$0.00</span>
-                            </div>
-                            <div class="price-row">
-                                <span>Shipping Fee</span>
-                                <span id="shipping">$5.99</span>
-                            </div>
-                            <div class="price-row">
-                                <span>Tax (8%)</span>
-                                <span id="tax">$0.00</span>
-                            </div>
-                            <div class="price-row total">
-                                <span>Total Amount</span>
-                                <span id="totalAmount">$5.99</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Payment Method -->
-                <div class="payment-method">
-                    <h3>Payment Method</h3>
-                    <div class="payment-note">
-                        Note: This is a demonstration. No real payments will be processed.
-                    </div>
-                    
-                    <div class="payment-options">
-                        <div class="payment-option" data-method="credit-card">
-                            <i class="far fa-credit-card"></i>
-                            <span>Credit Card</span>
-                        </div>
-                        <div class="payment-option" data-method="paypal">
-                            <i class="fab fa-paypal"></i>
-                            <span>PayPal</span>
-                        </div>
-                        <div class="payment-option" data-method="bank-transfer">
-                            <i class="fas fa-university"></i>
-                            <span>Bank Transfer</span>
-                        </div>
-                        <div class="payment-option" data-method="qris">
-                            <i class="fas fa-qrcode"></i>
-                            <span>QRIS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <a href="kazine.html" class="btn btn-cancel">Cancel Order</a>
-                    <button class="btn btn-checkout" id="checkoutBtn">
-                        <i class="fas fa-lock"></i>
-                        Complete Payment
-                    </button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 KAZINE | A Magazine of THE KACHOO. All rights reserved.</p>
-            <div class="disclaimer">
-                <p><strong>IMPORTANT:</strong> This is a demonstration website. No real payments will be processed and no physical products will be shipped.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Constants
-        const SHIPPING_FEE = 5.99;
-        const TAX_RATE = 0.08; // 8%
-        
-        // Get elements
-        const orderItems = document.getElementById('orderItems');
-        const emptyState = document.getElementById('emptyState');
-        const paymentContent = document.getElementById('paymentContent');
-        const subtotalElement = document.getElementById('subtotal');
-        const shippingElement = document.getElementById('shipping');
-        const taxElement = document.getElementById('tax');
-        const totalAmountElement = document.getElementById('totalAmount');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        
-        // Function to get cart data from localStorage
+        // AMBIL DATA CART DENGAN CARA YANG PASTI BISA
         function getCartData() {
-            console.log('🛒 Checking localStorage for cart data...');
-            
-            // Debug: Show all localStorage
-            console.log('📊 All localStorage items:');
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                console.log(`${key}:`, localStorage.getItem(key));
-            }
-            
-            // Priority 1: Check kazineCart
-            const cartData = localStorage.getItem('kazineCart');
-            if (cartData) {
-                try {
-                    const parsed = JSON.parse(cartData);
-                    console.log('✅ Found kazineCart:', parsed);
-                    
-                    // Ensure it has items array
-                    if (parsed && parsed.items && Array.isArray(parsed.items)) {
-                        return parsed;
-                    } else if (Array.isArray(parsed)) {
-                        // If it's directly an array
-                        return { items: parsed };
-                    }
-                } catch (e) {
-                    console.error('❌ Error parsing kazineCart:', e);
-                }
-            }
-            
-            // Priority 2: Check for cart data from other possible keys
+            // Coba semua kemungkinan key
             const possibleKeys = [
-                'cartItems',
-                'shoppingCart', 
+                'kazineCart',
+                'cartItems', 
+                'shoppingCart',
                 'cart',
-                'kazineItems',
-                'selectedItems',
-                'kazine_order_items'
+                'kazineItems'
             ];
             
             for (const key of possibleKeys) {
@@ -714,213 +177,132 @@
                 if (data) {
                     try {
                         const parsed = JSON.parse(data);
-                        console.log(`✅ Found data in ${key}:`, parsed);
+                        console.log(`✅ Found cart data in ${key}:`, parsed);
                         
+                        // Handle berbagai format
                         if (Array.isArray(parsed)) {
-                            return { items: parsed };
-                        } else if (parsed && parsed.items && Array.isArray(parsed.items)) {
+                            return { items: parsed, discount: 0 };
+                        } else if (parsed.items) {
                             return parsed;
+                        } else if (typeof parsed === 'object') {
+                            return { items: [parsed], discount: 0 };
                         }
                     } catch (e) {
-                        console.error(`❌ Error parsing ${key}:`, e);
+                        console.log(`Not valid JSON in ${key}`);
                     }
                 }
             }
             
-            console.log('❌ No valid cart data found');
-            return { items: [] };
+            console.log('❌ No cart data found');
+            return { items: [], discount: 0 };
         }
         
-        // Load cart data
-        let cartData = getCartData();
-        
-        // Display cart items
-        function displayCartItems() {
-            if (!cartData.items || cartData.items.length === 0) {
-                emptyState.style.display = 'block';
-                paymentContent.style.display = 'none';
-                console.log('🛒 Cart is empty');
-                return;
-            }
-            
-            emptyState.style.display = 'none';
-            paymentContent.style.display = 'block';
-            console.log(`🛒 Displaying ${cartData.items.length} cart items:`, cartData.items);
+        // TAMPILKAN ITEMS DAN HITUNG TOTAL
+        function displayOrder() {
+            const cart = getCartData();
+            const itemsContainer = document.getElementById('order-items');
+            itemsContainer.innerHTML = '';
             
             let subtotal = 0;
-            orderItems.innerHTML = '';
             
-            // Display each item
-            cartData.items.forEach((item, index) => {
-                // Handle different item structures
-                const itemName = item.title || item.name || item.product || `Item ${index + 1}`;
-                const itemPrice = parseFloat(item.price || item.harga || item.totalPrice || 0);
-                const itemQuantity = parseInt(item.quantity || item.qty || 1);
-                const itemSize = item.size || item.ukuran || '-';
-                const itemColor = item.color || item.warna || '-';
-                const itemTotal = itemPrice * itemQuantity;
-                
-                subtotal += itemTotal;
-                
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item';
-                itemElement.innerHTML = `
-                    <div>
-                        <div class="item-name">${itemName}</div>
-                        <div class="item-details">
-                            Quantity: ${itemQuantity}
-                            ${itemSize !== '-' ? ` | Size: ${itemSize}` : ''}
-                            ${itemColor !== '-' ? ` | Color: ${itemColor}` : ''}
-                        </div>
-                    </div>
-                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                `;
-                orderItems.appendChild(itemElement);
-            });
+            if (cart.items && cart.items.length > 0) {
+                cart.items.forEach(item => {
+                    const price = parseFloat(item.price || item.harga || 0);
+                    const quantity = parseInt(item.quantity || item.qty || 1);
+                    const total = price * quantity;
+                    subtotal += total;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'summary-row';
+                    itemDiv.innerHTML = `
+                        <span>${item.title || item.name} x${quantity}</span>
+                        <span>$${total.toFixed(2)}</span>
+                    `;
+                    itemsContainer.appendChild(itemDiv);
+                });
+            } else {
+                itemsContainer.innerHTML = '<p>No items in cart</p>';
+            }
             
-            // Calculate totals
-            const shipping = SHIPPING_FEE;
-            const tax = subtotal * TAX_RATE;
-            const total = subtotal + shipping + tax;
+            const discount = cart.discount || 0;
+            const shipping = 5.99;
+            const tax = (subtotal - discount) * 0.08;
+            const total = (subtotal - discount) + shipping + tax;
             
-            // Update UI
-            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            shippingElement.textContent = `$${shipping.toFixed(2)}`;
-            taxElement.textContent = `$${tax.toFixed(2)}`;
-            totalAmountElement.textContent = `$${total.toFixed(2)}`;
+            // Update display
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('discount').textContent = `-$${discount.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
             
-            // Update cart data with calculated totals
-            cartData.subtotal = subtotal;
-            cartData.shipping = shipping;
-            cartData.tax = tax;
-            cartData.total = total;
-            
-            // Save back to localStorage
-            localStorage.setItem('kazineCart', JSON.stringify(cartData));
-            console.log('💾 Updated cart data saved:', cartData);
+            // Simpan data untuk nanti
+            window.orderData = {
+                subtotal: subtotal,
+                discount: discount,
+                shipping: shipping,
+                tax: tax,
+                total: total,
+                items: cart.items || []
+            };
         }
         
-        // Initial display
-        displayCartItems();
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.payment-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                this.classList.add('selected');
-            });
-        });
-        
-        // Auto-select first payment method
-        document.querySelector('.payment-option').classList.add('selected');
-        
-        // Checkout button handler
-        checkoutBtn.addEventListener('click', function() {
-            // Validate form
-            const customerName = document.getElementById('customer-name').value.trim();
-            const customerEmail = document.getElementById('customer-email').value.trim();
-            const customerTwitter = document.getElementById('customer-twitter').value.trim();
+        // PROSES CHECKOUT
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            const name = document.getElementById('customer-name').value.trim();
+            const email = document.getElementById('customer-email').value.trim();
+            const twitter = document.getElementById('customer-twitter').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+            const request = document.getElementById('other-request').value.trim();
             
-            if (!customerName || !customerEmail || !customerTwitter) {
-                alert('Please fill in all required fields: Name, Email, and Twitter Username');
+            // Validasi
+            if (!name || !email || !twitter) {
+                alert('Please fill in all required fields');
                 return;
             }
             
-            // Validate email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(customerEmail)) {
-                alert('Please enter a valid email address');
+            if (!window.orderData || window.orderData.items.length === 0) {
+                alert('Your cart is empty');
                 return;
             }
             
-            if (!document.querySelector('.payment-option.selected')) {
-                alert('Please select a payment method');
-                return;
-            }
-            
-            const paymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
-            
-            // Generate order number
-            const orderNumber = 'KAZ-' + Date.now().toString().slice(-6);
-            
-            // Prepare complete payment data for confirmation page
+            // Siapkan data untuk confirmation page
             const paymentData = {
-                // Customer info - MUST MATCH CONFIRMATION PAGE EXPECTATIONS
-                'customer-name': customerName,
-                'customer-email': customerEmail,
-                'customer-twitter': customerTwitter.startsWith('@') ? customerTwitter : '@' + customerTwitter,
-                'customer-address': document.getElementById('customer-address').value.trim() || 'Not provided',
-                'other-request': document.getElementById('other-request').value.trim() || '-',
+                // Customer info
+                'customer-name': name,
+                'customer-email': email,
+                'customer-twitter': twitter.startsWith('@') ? twitter : '@' + twitter,
+                'customer-address': address || 'Not provided',
+                'other-request': request || '-',
                 
-                // Order items - CRITICAL: Use cartData.items
-                'items': cartData.items,
+                // Items
+                'items': window.orderData.items,
                 
-                // Financial data - ALL REQUIRED FOR SPREADSHEET
-                'subtotal': cartData.subtotal || 0,
-                'shipping': cartData.shipping || SHIPPING_FEE,
-                'tax': cartData.tax || 0,
-                'total': cartData.total || 0,
+                // Financials - SEMUA ADA
+                'subtotal': window.orderData.subtotal,
+                'discount': window.orderData.discount,
+                'shipping': window.orderData.shipping,
+                'tax': window.orderData.tax,
+                'total': window.orderData.total,
                 
-                // Payment info
-                'payment-method': paymentMethod,
-                
-                // Order metadata
-                'order-number': orderNumber,
-                'order-date': new Date().toISOString(),
+                // Metadata
+                'order-number': 'KAZ-' + Date.now().toString().slice(-6),
+                'payment-method': 'Credit Card',
                 'timestamp': new Date().toISOString()
             };
             
-            console.log('💾 Preparing payment data for confirmation:', paymentData);
+            console.log('💾 Saving payment data:', paymentData);
             
-            // ✅ SAVE WITH CORRECT KEY FOR CONFIRMATION PAGE
+            // SIMPAN DENGAN KEY YANG PASTI DIBACA CONFIMRATION PAGE
             localStorage.setItem('kazinePaymentData', JSON.stringify(paymentData));
+            localStorage.setItem('kazineOrderData', JSON.stringify(paymentData)); // Backup
             
-            // Also save as backup
-            localStorage.setItem('kazineOrderData', JSON.stringify(paymentData));
-            
-            // Show processing
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            this.disabled = true;
-            
-            // Redirect to confirmation page
-            setTimeout(() => {
-                window.location.href = 'confirmation-kazine.html';
-                
-                // Clear cart after successful payment
-                localStorage.removeItem('kazineCart');
-            }, 1000);
+            // Redirect ke confirmation
+            window.location.href = 'confirmation-kazine.html';
         });
         
-        // Auto-save customer info when typing
-        document.getElementById('customer-name').addEventListener('input', saveCustomerInfo);
-        document.getElementById('customer-email').addEventListener('input', saveCustomerInfo);
-        document.getElementById('customer-twitter').addEventListener('input', saveCustomerInfo);
-        
-        function saveCustomerInfo() {
-            const customerInfo = {
-                name: document.getElementById('customer-name').value,
-                email: document.getElementById('customer-email').value,
-                twitter: document.getElementById('customer-twitter').value
-            };
-            localStorage.setItem('kazineCustomerInfo', JSON.stringify(customerInfo));
-        }
-        
-        // Load saved customer info if exists
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedCustomer = localStorage.getItem('kazineCustomerInfo');
-            if (savedCustomer) {
-                try {
-                    const customer = JSON.parse(savedCustomer);
-                    if (customer.name) document.getElementById('customer-name').value = customer.name;
-                    if (customer.email) document.getElementById('customer-email').value = customer.email;
-                    if (customer.twitter) document.getElementById('customer-twitter').value = customer.twitter;
-                } catch (e) {
-                    console.log('No saved customer data');
-                }
-            }
-        });
+        // Jalankan saat page load
+        document.addEventListener('DOMContentLoaded', displayOrder);
     </script>
 </body>
 </html>
