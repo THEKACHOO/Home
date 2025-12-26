@@ -487,13 +487,13 @@
 
     <main class="container">
         <div class="confirmation-container">
-            <div class="loading" id="loadingState">
+            <div class="loading" id="loadingState" style="display: none;">
                 <div class="spinner"></div>
                 <h3>Processing your order...</h3>
                 <p>Your order is being recorded in our system and spreadsheet...</p>
             </div>
 
-            <div id="successState" style="display: none;">
+            <div id="successState">
                 <div class="success-icon">
                     <i class="fas fa-check"></i>
                 </div>
@@ -502,7 +502,7 @@
                 <p class="confirmation-subtitle">Your payment has been successfully processed.</p>
                 <p class="confirmation-subtitle">Please wait for your order to be delivered.</p>
                 
-                <div id="discountApplied" style="display: none;" class="discount-applied">
+                <div id="discountApplied" class="discount-applied" style="display: none;">
                     <i class="fas fa-tag"></i>
                     <span id="discountText">Discount Applied!</span>
                 </div>
@@ -640,47 +640,61 @@
     </footer>
 
     <script>
-        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbylpHFSoVae91YvLm4ACbdIlpQFW2LerPqGIx2mQubrMn-l6qVFeMRjfjx-L0N9zm_V6A/exec";
-
-        function generateOrderNumber() {
-            const prefix = 'KAZINE';
-            const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            return `${prefix}-${randomNum}`;
-        }
+        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbwu8Lk0Fo66kLt9YI9lvg2mSV8H8dW3Tva4sNsv-dVBJGw3XFlMEGpHfWjSQrKwK944WQ/exec";
 
         function formatCurrency(amount) {
             return `$${parseFloat(amount).toFixed(2)}`;
         }
 
-        function formatCardName(cardType) {
-            switch(cardType) {
-                case 'black': return 'Black Card';
-                case 'jp-morgan': return 'JP Morgan Reserve';
-                case 'dubai-first': return 'Dubai First Royale';
-                case 'coutts': return 'Coutts World Silk';
-                default: return cardType;
+        function formatPaymentMethod(method, bank, card) {
+            let display = '';
+            switch(method) {
+                case 'paypal': display = 'PayPal'; break;
+                case 'qris': display = 'QRIS'; break;
+                case 'debit-credit': 
+                    display = 'Debit & Credit Card';
+                    if (bank) {
+                        const banks = {
+                            'bca': 'BCA', 'bni': 'BNI', 'bri': 'BRI',
+                            'mandiri': 'Mandiri', 'cimb': 'CIMB Niaga',
+                            'permata': 'Permata', 'danamon': 'Danamon'
+                        };
+                        display += ` (${banks[bank] || bank})`;
+                    }
+                    break;
+                case 'international': 
+                    display = 'International Card';
+                    if (card) {
+                        const cards = {
+                            'black': 'Black Card',
+                            'jp-morgan': 'JP Morgan Reserve',
+                            'dubai-first': 'Dubai First Royale',
+                            'coutts': 'Coutts World Silk'
+                        };
+                        display += ` (${cards[card] || card})`;
+                    }
+                    break;
+                default: display = method || 'Unknown';
             }
-        }
-
-        function formatBankName(bankCode) {
-            const banks = {
-                'bca': 'BCA', 'bni': 'BNI', 'bri': 'BRI',
-                'mandiri': 'Mandiri', 'cimb': 'CIMB Niaga',
-                'permata': 'Permata', 'danamon': 'Danamon'
-            };
-            return banks[bankCode] || bankCode.toUpperCase();
+            return display;
         }
 
         function displayOrderData(orderData) {
-            const orderNumber = generateOrderNumber();
+            // Generate order number
+            const orderNumber = `KAZINE-${Date.now().toString().slice(-6)}`;
             document.getElementById('orderNumber').textContent = orderNumber;
             
+            // Format order date
             const orderDate = orderData.paymentDate ? new Date(orderData.paymentDate) : new Date();
             document.getElementById('orderDate').textContent = orderDate.toLocaleDateString('en-US', {
-                year: 'numeric', month: 'long', day: 'numeric',
-                hour: '2-digit', minute: '2-digit'
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
             
+            // Display customer info
             if (orderData.customer) {
                 document.getElementById('customerName').textContent = orderData.customer.fullName || 'Customer';
                 document.getElementById('customerEmailDisplay').textContent = orderData.customer.email || 'No email provided';
@@ -688,44 +702,33 @@
                 document.getElementById('customerCountry').textContent = orderData.customer.country || 'Not provided';
             }
             
-            let paymentMethodDisplay = 'Unknown';
-            if (orderData.paymentMethod) {
-                switch(orderData.paymentMethod) {
-                    case 'paypal': paymentMethodDisplay = 'PayPal'; break;
-                    case 'qris': paymentMethodDisplay = 'QRIS'; break;
-                    case 'debit-credit': 
-                        paymentMethodDisplay = 'Debit & Credit Card';
-                        if (orderData.selectedBank) {
-                            paymentMethodDisplay += ` (${formatBankName(orderData.selectedBank)})`;
-                        }
-                        break;
-                    case 'international': 
-                        paymentMethodDisplay = 'International Card';
-                        if (orderData.selectedCard) {
-                            paymentMethodDisplay += ` (${formatCardName(orderData.selectedCard)})`;
-                        }
-                        break;
-                }
-            }
-            document.getElementById('paymentMethod').textContent = paymentMethodDisplay;
+            // Display payment method
+            const paymentDisplay = formatPaymentMethod(
+                orderData.paymentMethod,
+                orderData.selectedBank,
+                orderData.selectedCard
+            );
+            document.getElementById('paymentMethod').textContent = paymentDisplay;
             
-            const voucherDisplay = document.getElementById('discountApplied');
+            // Display discount if applied
+            const discountDisplay = document.getElementById('discountApplied');
             const discountRow = document.getElementById('discountRow');
             
             if (orderData.voucherCode && orderData.discount > 0) {
                 const discountPercentage = Math.round((orderData.discount / orderData.subtotal) * 100);
                 document.getElementById('discountText').textContent = 
                     `Voucher "${orderData.voucherCode}" - ${discountPercentage}% OFF`;
-                voucherDisplay.style.display = 'inline-flex';
+                discountDisplay.style.display = 'inline-flex';
                 
                 document.getElementById('discountCode').textContent = `(${orderData.voucherCode})`;
                 document.getElementById('discountAmount').textContent = `-${formatCurrency(orderData.discount)}`;
                 discountRow.style.display = 'flex';
             } else {
-                voucherDisplay.style.display = 'none';
+                discountDisplay.style.display = 'none';
                 discountRow.style.display = 'none';
             }
             
+            // Display order items
             const orderItemsList = document.getElementById('orderItemsList');
             orderItemsList.innerHTML = '';
             
@@ -734,86 +737,30 @@
                     const itemElement = document.createElement('div');
                     itemElement.className = 'order-item';
                     const quantity = item.quantity || 1;
-                    const price = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
+                    const price = parseFloat(item.price) || 0;
+                    const total = price * quantity;
                     
                     itemElement.innerHTML = `
                         <div>
                             <div class="item-name">${item.title || 'Magazine Item'}</div>
                             <div class="item-details">Quantity: ${quantity}</div>
                         </div>
-                        <div class="item-price">${formatCurrency(price)}</div>
+                        <div class="item-price">${formatCurrency(total)}</div>
                     `;
                     orderItemsList.appendChild(itemElement);
                 });
             }
             
+            // Display totals
             document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal || 0);
             document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee || 2.50);
             document.getElementById('totalAmount').textContent = formatCurrency(orderData.total || 0);
             
+            // Save to localStorage for printing
             localStorage.setItem('kazineLastOrderNumber', orderNumber);
             localStorage.setItem('kazineLastOrderData', JSON.stringify(orderData));
             
             return orderNumber;
-        }
-
-        async function sendToSpreadsheet(orderData, orderNumber) {
-            const statusElement = document.getElementById('spreadsheetStatus');
-            
-            try {
-                statusElement.style.display = 'flex';
-                statusElement.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i><span>Sending data to spreadsheet...</span>';
-                
-                const sheetData = {
-                    timestamp: new Date().toISOString(),
-                    orderNumber: orderNumber,
-                    customerName: orderData.customer?.fullName || 'Unknown',
-                    customerEmail: orderData.customer?.email || 'Unknown',
-                    customerAddress: orderData.customer?.address || 'Not provided',
-                    customerTwitter: orderData.customer?.twitter || 'Not provided',
-                    otherRequest: orderData.customer?.request || 'No special request',
-                    items: JSON.stringify(orderData.items || []),
-                    itemCount: orderData.items?.reduce((sum, item) => sum + (item.quantity || 1), 0) || 0,
-                    subtotal: parseFloat(orderData.subtotal) || 0,
-                    shipping: 0,
-                    tax: 0,
-                    totalAmount: parseFloat(orderData.total) || 0,
-                    paymentMethod: orderData.paymentMethod || 'Unknown',
-                    paymentStatus: 'PAID',
-                    orderDate: orderData.paymentDate || new Date().toLocaleString()
-                };
-                
-                console.log('📤 Sending to spreadsheet:', sheetData);
-                
-                const response = await fetch(SPREADSHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(sheetData)
-                });
-                
-                const result = await response.json();
-                console.log('📊 Spreadsheet response:', result);
-                
-                if (result.success) {
-                    statusElement.innerHTML = '<i class="fas fa-check-circle"></i><span>Data saved to spreadsheet successfully!</span>';
-                    statusElement.className = 'spreadsheet-status success';
-                    return { success: true };
-                } else {
-                    throw new Error(result.error || 'Unknown error from spreadsheet');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error sending to spreadsheet:', error);
-                statusElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i><span>Error: ${error.message}</span>`;
-                statusElement.className = 'spreadsheet-status error';
-                return { success: false, error: error.message };
-            } finally {
-                setTimeout(() => {
-                    statusElement.style.display = 'none';
-                }, 5000);
-            }
         }
 
         function setupPrintReceipt() {
@@ -822,9 +769,13 @@
                 
                 const orderData = JSON.parse(localStorage.getItem('kazineOrder')) || 
                                  JSON.parse(localStorage.getItem('kazineLastOrderData'));
-                if (!orderData) return;
+                if (!orderData) {
+                    alert('No order data found to print.');
+                    return;
+                }
                 
-                const orderNumber = localStorage.getItem('kazineLastOrderNumber') || generateOrderNumber();
+                const orderNumber = localStorage.getItem('kazineLastOrderNumber') || 
+                                   `KAZINE-${Date.now().toString().slice(-6)}`;
                 
                 const printContent = `
                     <html>
@@ -863,7 +814,7 @@
                             <div class="info-grid">
                                 <div class="info-item">
                                     <div class="info-label">Order Date</div>
-                                    <div class="info-value">${orderData.paymentDate || new Date().toLocaleString()}</div>
+                                    <div class="info-value">${orderData.paymentDate ? new Date(orderData.paymentDate).toLocaleString() : new Date().toLocaleString()}</div>
                                 </div>
                                 <div class="info-item">
                                     <div class="info-label">Customer</div>
@@ -895,13 +846,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${orderData.items ? orderData.items.map(item => `
+                                    ${orderData.items ? orderData.items.map(item => {
+                                        const quantity = item.quantity || 1;
+                                        const price = parseFloat(item.price) || 0;
+                                        const total = price * quantity;
+                                        return `
                                         <tr>
                                             <td>${item.title || 'Magazine Item'}</td>
-                                            <td>${item.quantity || 1}</td>
-                                            <td>${formatCurrency(parseFloat(item.totalPrice) || parseFloat(item.price) || 0)}</td>
-                                        </tr>
-                                    `).join('') : '<tr><td colspan="3">No items</td></tr>'}
+                                            <td>${quantity}</td>
+                                            <td>${formatCurrency(total)}</td>
+                                        </tr>`;
+                                    }).join('') : '<tr><td colspan="3">No items</td></tr>'}
                                 </tbody>
                             </table>
                         </div>
@@ -960,49 +915,38 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const loadingState = document.getElementById('loadingState');
             const successState = document.getElementById('successState');
             const errorState = document.getElementById('errorState');
             
             try {
+                // Hide loading, show success immediately since data is already saved
+                loadingState.style.display = 'none';
+                successState.style.display = 'block';
+                
+                // Load and display order data
                 const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
                 
                 if (!orderData) {
                     throw new Error('No order data found. Please complete your payment first.');
                 }
                 
-                if (orderData.status !== 'completed') {
-                    throw new Error('Payment not completed. Please finish your payment.');
-                }
-                
-                const orderNumber = displayOrderData(orderData);
-                
+                displayOrderData(orderData);
                 setupPrintReceipt();
                 
-                const spreadsheetResult = await sendToSpreadsheet(orderData, orderNumber);
-                
-                if (!spreadsheetResult.success) {
-                    console.warn('⚠️ Spreadsheet save failed, but order still processed');
-                }
-                
-                loadingState.style.display = 'none';
-                successState.style.display = 'block';
-                
+                // Clear cart after successful order
                 localStorage.removeItem('kazineCart');
-                orderData.confirmationShown = true;
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                localStorage.removeItem('kazineVoucher');
                 
-                console.log('✅ KAZINE Order processed successfully');
-                console.log('📋 Order Number:', orderNumber);
-                console.log('👤 Customer:', orderData.customer?.fullName || 'Unknown');
-                console.log('📧 Customer Email:', orderData.customer?.email || 'Unknown');
-                console.log('💰 Total Amount:', formatCurrency(orderData.total || 0));
+                console.log('✅ KAZINE Order confirmation displayed');
+                console.log('📋 Order Data:', orderData);
                 
             } catch (error) {
-                console.error('❌ Error processing KAZINE order:', error);
+                console.error('❌ Error displaying order confirmation:', error);
                 
                 loadingState.style.display = 'none';
+                successState.style.display = 'none';
                 errorState.style.display = 'block';
                 
                 const errorMessage = document.querySelector('#errorState p');
