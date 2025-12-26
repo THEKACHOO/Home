@@ -593,289 +593,437 @@
     </footer>
 
     <script>
-    // URL Google Apps Script
-    const SPREADSHEET_URL = 'https://script.google.com/macros/library/d/1tIh_r6504U9ErYOuCRsgv-3lWObnvHPF7KzNANfzADzA8QAiarbHpC7v/5';
+// ========== MAIN FUNCTION ==========
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Payment confirmation page loaded');
     
-    // Function untuk mengirim data dengan format YANG BENAR
-    async function sendOrderData(orderData) {
-        console.log('📤 Sending order data...');
+    // ===== 1. AMBIL DATA DARI LOCALSTORAGE =====
+    let orderData;
+    try {
+        orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
+        console.log('📋 Order data from storage:', orderData);
         
-        // Generate order number
-        const orderNumber = 'KAFKA-' + Date.now().toString().slice(-8);
-        
-        // Format data dengan STRUKTUR YANG JELAS
-        const formData = new URLSearchParams();
-        
-        // ===== DATA CUSTOMER =====
-        formData.append('orderNumber', orderNumber);
-        formData.append('timestamp', orderData.timestamp || new Date().toISOString());
-        formData.append('customerName', orderData.customer?.name || '');
-        formData.append('customerEmail', orderData.customer?.email || '');
-        formData.append('customerTwitter', orderData.customer?.twitter || '');
-        
-        // ===== DATA ITEMS (BUKU) =====
-        // Format: item1_title, item1_language, item1_price
-        if (orderData.items && Array.isArray(orderData.items)) {
-            orderData.items.forEach((item, index) => {
-                formData.append(`item${index + 1}_title`, item.title || '');
-                formData.append(`item${index + 1}_language`, item.language || '');
-                formData.append(`item${index + 1}_price`, item.price || '0');
-            });
+        // Validasi data
+        if (!orderData || !orderData.customer) {
+            throw new Error('Invalid order data');
         }
         
-        // ===== DATA HARGA =====
-        formData.append('subtotal', orderData.subtotal || '0');
-        formData.append('discount', orderData.discount || '0');
-        formData.append('serviceFee', orderData.serviceFee || '0');
-        formData.append('total', orderData.total || '0');
+    } catch (error) {
+        console.error('❌ Error reading order data:', error);
         
-        // ===== DATA PEMBAYARAN =====
-        formData.append('paymentMethod', orderData.payment || '');
-        formData.append('voucherCode', orderData.voucher || '');
-        
-        console.log('📝 Form data prepared:', formData.toString());
-        
-        try {
-            // Kirim ke Google Apps Script
-            const response = await fetch(SPREADSHEET_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+        // ===== DATA DUMMY UNTUK TESTING =====
+        orderData = {
+            timestamp: new Date().toISOString(),
+            customer: {
+                name: "John Doe",
+                email: "john@example.com",
+                twitter: "@johndoe",
+                address: "123 Test Street",
+                notes: "Test order"
+            },
+            items: [
+                {
+                    title: "The Trial by Franz Kafka",
+                    language: "English",
+                    price: "24.99"
                 },
-                body: formData.toString()
-            });
-            
-            const result = await response.json();
-            console.log('✅ Server response:', result);
-            
-            return {
-                success: result.success || false,
-                orderNumber: orderNumber,
-                serverData: result,
-                itemsCount: orderData.items?.length || 0
-            };
-            
-        } catch (error) {
-            console.error('❌ Error sending data:', error);
-            return {
-                success: false,
-                orderNumber: orderNumber,
-                error: error.message
-            };
-        }
+                {
+                    title: "Metamorphosis",
+                    language: "English",
+                    price: "19.99"
+                }
+            ],
+            subtotal: "44.98",
+            discount: "5.00",
+            serviceFee: "2.50",
+            total: "42.48",
+            payment: "paypal",
+            voucher: "WELCOME10"
+        };
+        
+        console.log('⚠️ Using demo data:', orderData);
+        // Simpan data dummy ke localStorage untuk konsistensi
+        localStorage.setItem('kafkapagesPaymentOrder', JSON.stringify(orderData));
     }
     
-    // Function untuk display order di HTML
-    function displayOrderDetails(orderData, orderNumber) {
-        console.log('🎨 Displaying order details...');
-        
-        // Update informasi dasar
-        document.getElementById('orderNumber').textContent = orderNumber;
-        document.getElementById('orderDate').textContent = new Date(orderData.timestamp || Date.now()).toLocaleString();
-        document.getElementById('customerName').textContent = orderData.customer?.name || '';
-        document.getElementById('customerEmailDisplay').textContent = orderData.customer?.email || '';
-        document.getElementById('paymentMethod').textContent = (orderData.payment || '').toUpperCase();
-        
-        // Display items (buku)
-        const itemsList = document.getElementById('orderItemsList');
-        itemsList.innerHTML = '';
-        
-        if (orderData.items && orderData.items.length > 0) {
-            orderData.items.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'order-item';
-                itemDiv.innerHTML = `
-                    <div>
-                        <div class="item-name">${item.title || `Book ${index + 1}`}</div>
-                        <div class="item-details">${item.language || 'Unknown'} Edition • 1 copy</div>
-                    </div>
-                    <div class="item-price">$${parseFloat(item.price || 0).toFixed(2)}</div>
-                `;
-                itemsList.appendChild(itemDiv);
-            });
-        } else {
-            itemsList.innerHTML = '<div class="order-item"><div>No items found</div></div>';
-        }
-        
-        // Display harga
-        document.getElementById('subtotal').textContent = `$${parseFloat(orderData.subtotal || 0).toFixed(2)}`;
-        document.getElementById('discount').textContent = `-$${parseFloat(orderData.discount || 0).toFixed(2)}`;
-        document.getElementById('serviceFee').textContent = `$${parseFloat(orderData.serviceFee || 0).toFixed(2)}`;
-        document.getElementById('totalAmount').textContent = `$${parseFloat(orderData.total || 0).toFixed(2)}`;
-        
-        // Simpan order number untuk reference
-        localStorage.setItem('lastOrderNumber', orderNumber);
+    // ===== 2. TAMPILKAN DATA DI HTML =====
+    displayOrderDetails(orderData);
+    
+    // ===== 3. KIRIM KE GOOGLE SHEETS =====
+    sendToGoogleSheets(orderData);
+    
+    // ===== 4. SETUP PRINT BUTTON =====
+    document.getElementById('printReceipt').addEventListener('click', function(e) {
+        e.preventDefault();
+        printReceipt(orderData);
+    });
+});
+
+// ========== FUNCTION DISPLAY ORDER DETAILS ==========
+function displayOrderDetails(orderData) {
+    console.log('🎨 Displaying order details...');
+    
+    // Generate order number
+    const orderNumber = 'KAFKA-' + Date.now().toString().slice(-8);
+    
+    // Update informasi dasar
+    document.getElementById('orderNumber').textContent = orderNumber;
+    document.getElementById('orderDate').textContent = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    document.getElementById('customerName').textContent = orderData.customer?.name || '';
+    document.getElementById('customerEmailDisplay').textContent = orderData.customer?.email || '';
+    document.getElementById('paymentMethod').textContent = formatPaymentMethod(orderData.payment || '');
+    
+    // Display items (buku)
+    const itemsList = document.getElementById('orderItemsList');
+    itemsList.innerHTML = '';
+    
+    if (orderData.items && orderData.items.length > 0) {
+        orderData.items.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'order-item';
+            itemDiv.innerHTML = `
+                <div>
+                    <div class="item-name">${item.title || `Book ${index + 1}`}</div>
+                    <div class="item-details">${item.language || 'Unknown'} Edition • 1 copy</div>
+                </div>
+                <div class="item-price">$${parseFloat(item.price || 0).toFixed(2)}</div>
+            `;
+            itemsList.appendChild(itemDiv);
+        });
+    } else {
+        itemsList.innerHTML = '<div class="order-item"><div>No items found</div></div>';
     }
     
-    // Main function
-    document.addEventListener('DOMContentLoaded', async function() {
-        console.log('🚀 Payment confirmation page loaded');
+    // Display harga
+    document.getElementById('subtotal').textContent = `$${parseFloat(orderData.subtotal || 0).toFixed(2)}`;
+    document.getElementById('discount').textContent = `-$${parseFloat(orderData.discount || 0).toFixed(2)}`;
+    document.getElementById('serviceFee').textContent = `$${parseFloat(orderData.serviceFee || 0).toFixed(2)}`;
+    document.getElementById('totalAmount').textContent = `$${parseFloat(orderData.total || 0).toFixed(2)}`;
+    
+    // Simpan order number
+    localStorage.setItem('lastKafkaOrderNumber', orderNumber);
+    
+    // Tampilkan success state setelah 1.5 detik
+    setTimeout(() => {
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+    }, 1500);
+}
+
+// ========== FUNCTION SEND TO GOOGLE SHEETS ==========
+async function sendToGoogleSheets(orderData) {
+    console.log('📤 Sending to Google Sheets...');
+    
+    // ⚠️ GANTI INI DENGAN URL WEB APPS SCRIPT KAMU
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyHncqtDdhHF8_1d8oite26a9lZLycMH9WGP00S3zDlV1l_WPVyN_KxQs5pPG_n1KHs/exec';
+    
+    // Format data untuk dikirim
+    const payload = {
+        customer: orderData.customer || {},
+        items: orderData.items || [],
+        payment: orderData.payment || '',
+        voucher: orderData.voucher || '',
+        subtotal: orderData.subtotal || 0,
+        discount: orderData.discount || 0,
+        serviceFee: orderData.serviceFee || 2.50,
+        total: orderData.total || 0,
+        timestamp: orderData.timestamp || new Date().toISOString()
+    };
+    
+    try {
+        const response = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        });
         
-        // ===== 1. AMBIL DATA DARI LOCALSTORAGE =====
-        let orderData;
-        try {
-            orderData = JSON.parse(localStorage.getItem('kafkapagesPaymentOrder'));
-            console.log('📋 Order data from storage:', orderData);
-            
-            // Validasi data
-            if (!orderData || !orderData.customer) {
-                throw new Error('Invalid order data');
-            }
-            
-        } catch (error) {
-            console.error('❌ Error reading order data:', error);
-            
-            // ===== DATA DUMMY UNTUK TESTING =====
-            orderData = {
-                timestamp: new Date().toISOString(),
-                customer: {
-                    name: "John Doe",
-                    email: "john@example.com",
-                    twitter: "@johndoe"
-                },
-                items: [
-                    {
-                        title: "The Trial by Franz Kafka",
-                        language: "English",
-                        price: "24.99"
-                    },
-                    {
-                        title: "Metamorphosis",
-                        language: "English",
-                        price: "19.99"
-                    }
-                ],
-                subtotal: "44.98",
-                discount: "5.00",
-                serviceFee: "2.50",
-                total: "42.48",
-                payment: "paypal",
-                voucher: "WELCOME10"
-            };
-            
-            console.log('⚠️ Using demo data:', orderData);
-        }
+        const result = await response.json();
+        console.log('✅ Google Sheets response:', result);
         
-        // ===== 2. TAMPILKAN DATA DI HTML =====
-        displayOrderDetails(orderData, 'LOADING...');
+        // Update admin notification
+        updateAdminNotification(result, orderData);
         
-        // ===== 3. KIRIM KE GOOGLE SHEETS =====
-        console.log('📤 Sending to Google Sheets...');
-        const result = await sendOrderData(orderData);
-        console.log('📊 Send result:', result);
+    } catch (error) {
+        console.error('❌ Error sending to Google Sheets:', error);
         
-        // Update order number dengan yang asli dari server
-        if (result.orderNumber) {
-            document.getElementById('orderNumber').textContent = result.orderNumber;
-            localStorage.setItem('lastOrderNumber', result.orderNumber);
-        }
-        
-        // ===== 4. UPDATE NOTIFIKASI ADMIN =====
+        // Tampilkan fallback notification
         const adminNote = document.querySelector('.admin-notification');
         if (adminNote) {
-            if (result.success) {
-                adminNote.innerHTML += `
-                    <div style="margin-top: 15px; padding: 12px; background: #d4edda; border-radius: 8px; border-left: 4px solid #28a745;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle" style="color: #28a745; font-size: 20px;"></i>
-                            <div>
-                                <strong style="color: #155724;">✅ Order Recorded Successfully!</strong>
-                                <div style="font-size: 14px; color: #0c5460; margin-top: 5px;">
-                                    Order #${result.orderNumber}<br>
-                                    ${result.itemsCount || 0} items • Total: $${parseFloat(orderData.total || 0).toFixed(2)}<br>
-                                    Saved to spreadsheet row ${result.serverData?.spreadsheetRow || 'N/A'}
-                                </div>
+            adminNote.innerHTML += `
+                <div style="margin-top: 15px; padding: 12px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 20px;"></i>
+                        <div>
+                            <strong style="color: #856404;">⚠️ Saved Locally Only</strong>
+                            <div style="font-size: 14px; color: #856404; margin-top: 5px;">
+                                Could not connect to server<br>
+                                Admin will contact you for delivery
                             </div>
                         </div>
                     </div>
-                `;
-            } else {
-                adminNote.innerHTML += `
-                    <div style="margin-top: 15px; padding: 12px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 20px;"></i>
-                            <div>
-                                <strong style="color: #856404;">⚠️ Saved Locally</strong>
-                                <div style="font-size: 14px; color: #856404; margin-top: 5px;">
-                                    Order #${result.orderNumber}<br>
-                                    ${result.itemsCount || 0} items • Total: $${parseFloat(orderData.total || 0).toFixed(2)}<br>
-                                    Admin will contact you for delivery
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-        
-        // ===== 5. TAMPILKAN HALAMAN SUKSES =====
-        setTimeout(() => {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('successState').style.display = 'block';
-        }, 1500);
-        
-        // ===== 6. SETUP PRINT BUTTON =====
-        document.getElementById('printReceipt').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const printContent = `
-                <html>
-                <head>
-                    <title>Receipt - ${document.getElementById('orderNumber').textContent}</title>
-                    <style>
-                        body { font-family: Arial; padding: 20px; }
-                        .header { text-align: center; margin-bottom: 30px; }
-                        .logo { font-size: 24px; font-weight: bold; }
-                        .order-info { margin: 20px 0; }
-                        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                        th, td { padding: 10px; border-bottom: 1px solid #ddd; }
-                        .total { font-weight: bold; font-size: 18px; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <div class="logo">KAFKAPAGES</div>
-                        <div>Order Receipt</div>
-                        <div style="font-weight: bold;">${document.getElementById('orderNumber').textContent}</div>
-                    </div>
-                    
-                    <div class="order-info">
-                        <p><strong>Date:</strong> ${document.getElementById('orderDate').textContent}</p>
-                        <p><strong>Customer:</strong> ${document.getElementById('customerName').textContent}</p>
-                        <p><strong>Email:</strong> ${document.getElementById('customerEmailDisplay').textContent}</p>
-                    </div>
-                    
-                    <table>
-                        <tr><th>Item</th><th>Price</th></tr>
-                        ${Array.from(document.querySelectorAll('.order-item')).map(item => {
-                            const name = item.querySelector('.item-name').textContent;
-                            const price = item.querySelector('.item-price').textContent;
-                            return `<tr><td>${name}</td><td>${price}</td></tr>`;
-                        }).join('')}
-                    </table>
-                    
-                    <div style="text-align: right;">
-                        <p>Subtotal: ${document.getElementById('subtotal').textContent}</p>
-                        <p>Discount: ${document.getElementById('discount').textContent}</p>
-                        <p>Service Fee: ${document.getElementById('serviceFee').textContent}</p>
-                        <p class="total">Total: ${document.getElementById('totalAmount').textContent}</p>
-                    </div>
-                    
-                    <script>
-                        window.onload = function() {
-                            window.print();
-                            setTimeout(() => window.close(), 1000);
-                        };
-                    <\/script>
-                </body>
-                </html>
+                </div>
             `;
+        }
+    }
+}
+
+// ========== FUNCTION UPDATE ADMIN NOTIFICATION ==========
+function updateAdminNotification(serverResponse, orderData) {
+    const adminNote = document.querySelector('.admin-notification');
+    if (!adminNote) return;
+    
+    if (serverResponse.status === 'success') {
+        adminNote.innerHTML += `
+            <div style="margin-top: 15px; padding: 12px; background: #d4edda; border-radius: 8px; border-left: 4px solid #28a745;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 20px;"></i>
+                    <div>
+                        <strong style="color: #155724;">✅ Order Recorded in Database</strong>
+                        <div style="font-size: 14px; color: #0c5460; margin-top: 5px;">
+                            Order saved to spreadsheet<br>
+                            Row: ${serverResponse.savedRow || 'N/A'}<br>
+                            Items: ${orderData.items?.length || 0}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        adminNote.innerHTML += `
+            <div style="margin-top: 15px; padding: 12px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 20px;"></i>
+                    <div>
+                        <strong style="color: #856404;">⚠️ Saved Locally</strong>
+                        <div style="font-size: 14px; color: #856404; margin-top: 5px;">
+                            ${serverResponse.message || 'Could not save to database'}<br>
+                            Admin will contact you for delivery
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// ========== FUNCTION FORMAT PAYMENT METHOD ==========
+function formatPaymentMethod(method) {
+    const methods = {
+        'paypal': 'PayPal',
+        'bca': 'BCA Transfer',
+        'bni': 'BNI Transfer',
+        'international': 'International Bank',
+        'creditcard': 'Credit Card'
+    };
+    return methods[method] || method.toUpperCase();
+}
+
+// ========== FUNCTION PRINT RECEIPT ==========
+function printReceipt(orderData) {
+    const orderNumber = document.getElementById('orderNumber').textContent;
+    const customerName = document.getElementById('customerName').textContent;
+    const customerEmail = document.getElementById('customerEmailDisplay').textContent;
+    const orderDate = document.getElementById('orderDate').textContent;
+    
+    const printContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Receipt - ${orderNumber}</title>
+            <style>
+                body { 
+                    font-family: 'Inter', Arial, sans-serif;
+                    padding: 30px;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    color: #212529;
+                }
+                .header { 
+                    text-align: center; 
+                    margin-bottom: 40px;
+                    border-bottom: 3px solid #000;
+                    padding-bottom: 20px;
+                }
+                .logo { 
+                    font-size: 28px; 
+                    font-weight: 800;
+                    margin-bottom: 10px;
+                    letter-spacing: 1px;
+                }
+                .subtitle {
+                    font-size: 14px;
+                    color: #495057;
+                    margin-bottom: 20px;
+                }
+                .order-number {
+                    font-size: 18px;
+                    font-weight: 700;
+                    background: #f8f9fa;
+                    padding: 10px;
+                    border-radius: 8px;
+                    margin: 15px 0;
+                }
+                .order-info {
+                    margin: 30px 0;
+                    padding: 20px;
+                    background: #f8f9fa;
+                    border-radius: 12px;
+                }
+                .info-row {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+                    padding: 8px 0;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .info-row:last-child {
+                    border-bottom: none;
+                }
+                .info-label {
+                    font-weight: 600;
+                    color: #495057;
+                }
+                .info-value {
+                    font-weight: 500;
+                    color: #212529;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 30px 0;
+                }
+                th {
+                    text-align: left;
+                    padding: 15px;
+                    border-bottom: 2px solid #000;
+                    font-weight: 700;
+                }
+                td {
+                    padding: 15px;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .price-row {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 0;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .price-row.total {
+                    font-weight: 700;
+                    font-size: 18px;
+                    border-top: 2px solid #000;
+                    margin-top: 20px;
+                    padding-top: 20px;
+                }
+                .footer {
+                    text-align: center;
+                    margin-top: 40px;
+                    padding-top: 20px;
+                    border-top: 2px solid #e9ecef;
+                    font-size: 12px;
+                    color: #6c757d;
+                }
+                @media print {
+                    body { padding: 20px; }
+                    .no-print { display: none; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <div class="logo">THE KACHOO</div>
+                <div class="subtitle">KAFKAPAGES - BOOK STORE</div>
+                <div class="order-number">${orderNumber}</div>
+                <div>ORDER RECEIPT</div>
+            </div>
             
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(printContent);
-            printWindow.document.close();
-        });
-    });
+            <div class="order-info">
+                <div class="info-row">
+                    <span class="info-label">Date:</span>
+                    <span class="info-value">${orderDate}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Customer:</span>
+                    <span class="info-value">${customerName}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">${customerEmail}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Payment Method:</span>
+                    <span class="info-value">${formatPaymentMethod(orderData.payment)}</span>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Edition</th>
+                        <th style="text-align: right;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${orderData.items.map(item => `
+                        <tr>
+                            <td>${item.title}</td>
+                            <td>${item.language || 'Standard'}</td>
+                            <td style="text-align: right;">$${parseFloat(item.price || 0).toFixed(2)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 30px;">
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <span>$${parseFloat(orderData.subtotal || 0).toFixed(2)}</span>
+                </div>
+                <div class="price-row">
+                    <span>Discount</span>
+                    <span>-$${parseFloat(orderData.discount || 0).toFixed(2)}</span>
+                </div>
+                <div class="price-row">
+                    <span>Service Fee</span>
+                    <span>$${parseFloat(orderData.serviceFee || 0).toFixed(2)}</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total Amount</span>
+                    <span>$${parseFloat(orderData.total || 0).toFixed(2)}</span>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Thank you for your purchase!</p>
+                <p>Digital products will be delivered via email within 24-48 hours.</p>
+                <p>For assistance, contact: @TheKachoo on X (Twitter)</p>
+                <p style="margin-top: 20px; font-style: italic;">This is a fictional receipt for demonstration purposes only.</p>
+            </div>
+            
+            <div class="no-print" style="text-align: center; margin-top: 30px;">
+                <button onclick="window.print()" style="padding: 12px 24px; background: #000; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                    Print Receipt
+                </button>
+                <button onclick="window.close()" style="padding: 12px 24px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; margin-left: 10px;">
+                    Close Window
+                </button>
+            </div>
+            
+            <script>
+                window.onload = function() {
+                    // Auto-print setelah 500ms
+                    setTimeout(() => {
+                        window.print();
+                    }, 500);
+});
 </script>
     </body>
 </html>
