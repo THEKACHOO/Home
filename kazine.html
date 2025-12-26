@@ -1148,8 +1148,7 @@
             </div>
         </div>
     </footer>
-
-    <script>
+<script>
     // SIMPLE CART SYSTEM YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
@@ -1170,9 +1169,10 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // Mobile menu toggle
+    // Mobile menu toggle - FIXED
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
             mainNav.classList.toggle('active');
             this.innerHTML = mainNav.classList.contains('active') 
@@ -1182,9 +1182,11 @@
 
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            if (mainNav.classList.contains('active')) {
+                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             }
         });
 
@@ -1252,7 +1254,9 @@
         
         // Add event listeners to remove buttons
         document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 const index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
@@ -1262,63 +1266,73 @@
         });
     }
 
-    // Add to cart functionality - FIXED untuk PC dan Mobile
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        // Remove any existing listeners first
-        const newButton = button.cloneNode(true);
-        button.parentNode.replaceChild(newButton, button);
+    // Function untuk menangani add to cart - FIXED untuk PC dan Mobile
+    function handleAddToCart(event) {
+        event.preventDefault();
+        event.stopPropagation();
         
-        // Add fresh listener
-        newButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            if (isProcessing) return;
-            isProcessing = true;
-            
-            const productCard = this.closest('.product-card');
-            const productTitle = productCard.getAttribute('data-product');
-            const productPrice = productCard.getAttribute('data-price');
-            const productId = productCard.getAttribute('data-id');
-            
-            // Check if item already in cart
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity = (existingItem.quantity || 1) + 1;
-                showNotification(`${productTitle} quantity updated`);
-            } else {
-                cart.push({
-                    id: productId,
-                    title: productTitle,
-                    price: productPrice,
-                    quantity: 1
-                });
-                showNotification(`${productTitle} added to cart`);
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('kazineCart', JSON.stringify(cart));
-            
-            // Update display
-            updateCartDisplay();
-            
-            // Visual feedback
-            const originalText = this.innerHTML;
-            const originalBg = this.style.backgroundColor;
-            this.innerHTML = '<i class="fas fa-check"></i> Added';
-            this.style.backgroundColor = '#27ae60';
-            this.disabled = true;
-            
-            // Reset button after delay
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.backgroundColor = originalBg;
-                this.disabled = false;
-                isProcessing = false;
-            }, 1000);
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        const button = event.currentTarget;
+        const productCard = button.closest('.product-card');
+        const productTitle = productCard.getAttribute('data-product');
+        const productPrice = productCard.getAttribute('data-price');
+        const productId = productCard.getAttribute('data-id');
+        
+        // Check if item already in cart
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated`);
+        } else {
+            cart.push({
+                id: productId,
+                title: productTitle,
+                price: productPrice,
+                quantity: 1
+            });
+            showNotification(`${productTitle} added to cart`);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('kazineCart', JSON.stringify(cart));
+        
+        // Update display
+        updateCartDisplay();
+        
+        // Visual feedback
+        const originalText = button.innerHTML;
+        const originalBg = button.style.backgroundColor;
+        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.style.backgroundColor = '#27ae60';
+        button.disabled = true;
+        
+        // Reset button after delay
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.backgroundColor = originalBg;
+            button.disabled = false;
+            isProcessing = false;
+        }, 1000);
+    }
+
+    // Initialize semua tombol Add to Cart - FIXED
+    function initializeAddToCartButtons() {
+        // Hapus event listener yang lama dulu
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
         });
-    });
+        
+        // Tambahkan event listener yang baru
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Untuk PC (click) dan Mobile (touchstart)
+            button.addEventListener('click', handleAddToCart);
+            button.addEventListener('touchstart', handleAddToCart, { passive: false });
+        });
+    }
 
     // Simple notification
     function showNotification(message) {
@@ -1362,37 +1376,54 @@
         
         // Remove after animation
         setTimeout(() => {
-            notification.remove();
-            style.remove();
+            if (notification.parentNode) {
+                notification.remove();
+            }
+            if (style.parentNode) {
+                style.remove();
+            }
         }, 2000);
     }
 
-    // Event listeners untuk cart - FIXED
-    openCartBtn.addEventListener('click', openCart);
-    closeCartBtn.addEventListener('click', closeCart);
-    cartOverlay.addEventListener('click', closeCart);
-
-    // Check for mobile and add touch events
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
+    // Event listeners untuk cart - FIXED untuk semua device
+    function setupCartEventListeners() {
+        // Untuk PC (click)
+        openCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openCart();
+        });
+        
+        closeCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeCart();
+        });
+        
+        cartOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeCart();
+        });
+        
+        // Untuk Mobile (touchstart)
         openCartBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
             openCart();
-        }, { passive: false });
-        
-        cartOverlay.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            closeCart();
         }, { passive: false });
         
         closeCartBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
             closeCart();
         }, { passive: false });
+        
+        cartOverlay.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            closeCart();
+        }, { passive: false });
     }
 
     // Checkout button
-    checkoutBtn.addEventListener('click', function() {
+    checkoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
         if (cart.length === 0) {
             showNotification('Your cart is empty');
             return;
@@ -1450,13 +1481,19 @@
         });
     });
 
+    // Check if mobile device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     // Prevent zoom on double tap di mobile
     if (isMobile) {
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) {
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
                 e.preventDefault();
             }
-        }, { passive: false });
+            lastTouchEnd = now;
+        }, false);
         
         // Improve touch experience
         document.querySelectorAll('button, .btn-outline, a').forEach(element => {
@@ -1478,55 +1515,32 @@
         }, 100);
     });
 
-    // Initialize add to cart buttons on load
+    // Initialize semua fungsi ketika DOM siap
     document.addEventListener('DOMContentLoaded', function() {
-        // Re-initialize buttons to ensure they work
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (isProcessing) return;
-                isProcessing = true;
-                
-                const productCard = this.closest('.product-card');
-                const productTitle = productCard.getAttribute('data-product');
-                const productPrice = productCard.getAttribute('data-price');
-                const productId = productCard.getAttribute('data-id');
-                
-                const existingItem = cart.find(item => item.id === productId);
-                
-                if (existingItem) {
-                    existingItem.quantity = (existingItem.quantity || 1) + 1;
-                    showNotification(`${productTitle} quantity updated`);
-                } else {
-                    cart.push({
-                        id: productId,
-                        title: productTitle,
-                        price: productPrice,
-                        quantity: 1
-                    });
-                    showNotification(`${productTitle} added to cart`);
-                }
-                
-                localStorage.setItem('kazineCart', JSON.stringify(cart));
-                updateCartDisplay();
-                
-                const originalText = this.innerHTML;
-                const originalBg = this.style.backgroundColor;
-                this.innerHTML = '<i class="fas fa-check"></i> Added';
-                this.style.backgroundColor = '#27ae60';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.backgroundColor = originalBg;
-                    this.disabled = false;
-                    isProcessing = false;
-                }, 1000);
-            });
-        });
+        // Initialize add to cart buttons
+        initializeAddToCartButtons();
+        
+        // Setup cart event listeners
+        setupCartEventListeners();
+        
+        // Update cart display
+        updateCartDisplay();
+        
+        // Reset processing flag
+        isProcessing = false;
+        
+        // Log untuk debugging
+        console.log('Cart system initialized successfully');
+        console.log('Is mobile device:', isMobile);
+        console.log('Add to cart buttons found:', document.querySelectorAll('.add-to-cart-btn').length);
     });
-    </script>
+
+    // Juga inisialisasi saat window load (backup)
+    window.addEventListener('load', function() {
+        initializeAddToCartButtons();
+        setupCartEventListeners();
+        updateCartDisplay();
+    });
+</script>
 </body>
 </html>
