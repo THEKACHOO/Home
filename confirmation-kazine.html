@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Received | KAZINE</title>
+    <title>Payment Confirmed | KAZINE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #666666;
-            --light-gray: #f0f0f0;
-            --dark-gray: #333333;
-            --success: #10b981;
-            --error: #ef4444;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -24,792 +14,319 @@
         }
         
         body {
-            background-color: #fafafa;
-            min-height: 100vh;
+            background: #f5f5f5;
             padding: 20px;
-            color: var(--black);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            border: 1px solid var(--light-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        /* Header */
         header {
-            background: var(--black);
-            padding: 40px 20px;
-            text-align: center;
-            color: var(--white);
-        }
-        
-        .logo-container {
-            margin-bottom: 20px;
-        }
-        
-        .logo-img {
-            max-width: 180px;
-            height: auto;
-            filter: brightness(0) invert(1);
-        }
-        
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 10px;
-            letter-spacing: 1px;
-        }
-        
-        /* Main Content */
-        .receipt-card {
-            padding: 40px 30px;
-        }
-        
-        .thank-you-section {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 10px;
-            border-left: 4px solid var(--success);
-        }
-        
-        .thank-you-title {
-            font-size: 2.2rem;
-            color: var(--black);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .thank-you-subtitle {
-            color: var(--gray);
-            font-size: 1.2rem;
-        }
-        
-        .payment-received {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--success);
+            background: black;
             color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            margin: 15px 0;
+            padding: 30px;
+            text-align: center;
         }
         
-        /* Order Info */
-        .order-info-grid {
+        .content {
+            padding: 30px;
+        }
+        
+        .success-icon {
+            text-align: center;
+            color: #10b981;
+            font-size: 50px;
+            margin: 20px 0;
+        }
+        
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: var(--white);
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
+            margin: 20px 0;
         }
         
-        .info-card {
+        .info-box {
             padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
         }
         
-        .info-card h4 {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .info-card p {
-            color: var(--black);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        /* Items Table */
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--black);
-            margin: 30px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-gray);
+        .info-box h4 {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
         }
         
         .items-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            background: var(--white);
-            border: 1px solid var(--light-gray);
         }
         
         .items-table th {
-            background: var(--black);
-            color: var(--white);
-            padding: 15px;
+            background: black;
+            color: white;
+            padding: 10px;
             text-align: left;
-            font-weight: 600;
         }
         
         .items-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .items-table tr:nth-child(even) {
-            background: #fafafa;
-        }
-        
-        /* Other Request */
-        .request-box {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f8fafc;
-            border-left: 4px solid var(--black);
-            border-radius: 6px;
-        }
-        
-        .request-box h4 {
-            color: var(--black);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .request-content {
-            color: var(--gray);
-            font-style: italic;
             padding: 10px;
-            background: white;
-            border-radius: 4px;
-            border: 1px solid var(--light-gray);
+            border-bottom: 1px solid #eee;
         }
         
-        /* Payment Summary */
-        .payment-summary {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 2px solid var(--light-gray);
+        .summary {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
         }
         
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e5e7eb;
+            margin: 10px 0;
         }
         
-        .summary-row.total {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--success);
-            padding-top: 15px;
-            margin-top: 10px;
-            border-top: 2px solid #e5e7eb;
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
         }
         
-        /* Final Message */
-        .final-message {
+        .status {
             text-align: center;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            margin-top: 40px;
-            border-radius: 10px;
-        }
-        
-        .final-message h3 {
-            color: var(--black);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-        
-        /* Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin: 40px 0 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            min-width: 180px;
-        }
-        
-        .btn-print {
-            background: var(--black);
-            color: var(--white);
-            border: 2px solid var(--black);
-        }
-        
-        .btn-print:hover {
-            background: var(--white);
-            color: var(--black);
-            transform: translateY(-2px);
-        }
-        
-        .btn-store {
-            background: var(--white);
-            color: var(--black);
-            border: 2px solid var(--black);
-        }
-        
-        .btn-store:hover {
-            background: var(--black);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .btn-new {
-            background: var(--gray);
-            color: var(--white);
-            border: 2px solid var(--gray);
-        }
-        
-        .btn-new:hover {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
-        }
-        
-        /* Status Messages */
-        .spreadsheet-info {
+            padding: 15px;
             background: #d1fae5;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            border-left: 4px solid var(--success);
-            display: none;
-        }
-        
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 60px 40px;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--light-gray);
-            border-top: 4px solid var(--black);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 25px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: var(--black);
-            color: var(--white);
-            margin-top: 40px;
-        }
-        
-        /* Error State */
-        .error-state {
-            text-align: center;
-            padding: 60px 40px;
-        }
-        
-        .error-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--error);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 30px;
-        }
-        
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                max-width: 100%;
-                box-shadow: none;
-                border: none;
-            }
-            
-            .btn, .action-buttons, footer, .spreadsheet-info {
-                display: none !important;
-            }
-            
-            .receipt-card {
-                padding: 20px;
-            }
-            
-            header {
-                background: black !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                border-radius: 0;
-                margin: -20px;
-            }
-            
-            .receipt-card {
-                padding: 20px;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
+            border-radius: 5px;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header>
-            <div class="logo-container">
-                <img src="KAZINE.png" alt="KAZINE" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\"font-size:2.5rem;font-weight:bold;letter-spacing:3px;color:white;\">KAZINE</div>'">
-            </div>
-            <p class="tagline">Thank you for your purchase!</p>
+            <h1>KAZINE</h1>
+            <p>Payment Confirmation</p>
         </header>
         
-        <!-- Loading State -->
-        <div class="loading" id="loadingState">
-            <div class="spinner"></div>
-            <h3 style="margin: 15px 0 10px; color: var(--black);">Processing Your Payment</h3>
-            <p style="color: var(--gray);">Please wait while we verify your payment details...</p>
-        </div>
-        
-        <!-- Receipt Content -->
-        <div id="receiptContent" style="display: none;">
-            <div class="receipt-card">
-                <!-- Thank You Section -->
-                <div class="thank-you-section">
-                    <h1 class="thank-you-title">Thank You for Your Purchase!</h1>
-                    <div class="payment-received">
-                        <i class="fas fa-check-circle"></i>
-                        <span>PAYMENT RECEIVED</span>
-                    </div>
-                    <p class="thank-you-subtitle">Your payment has been successfully processed</p>
-                </div>
-                
-                <!-- Order Information -->
-                <h2 class="section-title">Order Information</h2>
-                <div class="order-info-grid">
-                    <div class="info-card">
-                        <h4>Customer Name</h4>
-                        <p id="customerName">Loading...</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h4>Order Number</h4>
-                        <p id="orderNumber">KAZ-000000</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h4>Date & Time</h4>
-                        <p id="orderDateTime">Loading...</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h4>Payment Method</h4>
-                        <p id="paymentMethod">Credit Card</p>
-                    </div>
-                </div>
-                
-                <!-- Items Purchased -->
-                <h2 class="section-title">Items Purchased</h2>
-                <table class="items-table">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Size</th>
-                            <th>Color</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="itemsTableBody">
-                        <!-- Items will be populated here -->
-                    </tbody>
-                </table>
-                
-                <!-- Other Request -->
-                <div id="otherRequestSection" style="display: none;">
-                    <h2 class="section-title">Special Request</h2>
-                    <div class="request-box">
-                        <h4><i class="fas fa-sticky-note"></i> Customer's Note</h4>
-                        <div class="request-content" id="otherRequestText">
-                            No special requests
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Payment Summary -->
-                <h2 class="section-title">Payment Summary</h2>
-                <div class="payment-summary">
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span id="subtotal">$0.00</span>
-                    </div>
-                    
-                    <div class="summary-row">
-                        <span>Shipping Fee</span>
-                        <span id="shipping">$0.00</span>
-                    </div>
-                    
-                    <div class="summary-row">
-                        <span>Tax (8%)</span>
-                        <span id="tax">$0.00</span>
-                    </div>
-                    
-                    <div class="summary-row total">
-                        <span>TOTAL PAID</span>
-                        <span id="totalAmount">$0.00</span>
-                    </div>
-                    
-                    <div class="summary-row" style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
-                        <span style="font-weight: 600;">Payment Status</span>
-                        <span style="color: var(--success); font-weight: 600;">
-                            <i class="fas fa-check-circle"></i> PAID IN FULL
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- Spreadsheet Update Status -->
-                <div class="spreadsheet-info" id="spreadsheetInfo">
-                    <h4><i class="fas fa-database"></i> Database Update</h4>
-                    <p>Your order is being recorded in our secure database.</p>
-                    <p><strong>Status:</strong> <span id="spreadsheetStatus">Processing...</span></p>
-                </div>
-                
-                <!-- Final Thank You Message -->
-                <div class="final-message">
-                    <h3>Thank You for Shopping with KAZINE!</h3>
-                    <p>Your order has been confirmed and is now being processed. You will receive a confirmation email shortly with tracking information.</p>
-                    <p style="margin-top: 15px; font-style: italic;">We appreciate your business and look forward to serving you again!</p>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button class="btn btn-print" id="printReceiptBtn">
-                        <i class="fas fa-print"></i> Print Receipt
-                    </button>
-                    <a href="kazine.html" class="btn btn-store">
-                        <i class="fas fa-store"></i> Back to Store
-                    </a>
-                    <a href="payment-kazine.html" class="btn btn-new">
-                        <i class="fas fa-shopping-cart"></i> New Order
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Error State -->
-        <div class="error-state" id="errorState" style="display: none;">
-            <div class="error-icon">
-                <i class="fas fa-exclamation"></i>
+        <div class="content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
             </div>
             
-            <h1 style="color: var(--error); margin-bottom: 15px;">Order Processing Failed</h1>
-            <p style="color: var(--gray); margin-bottom: 30px; font-size: 1.1rem;" id="errorMessage">
-                No order data found. Please complete the payment process first.
+            <h2 style="text-align: center;">Payment Successful!</h2>
+            <p style="text-align: center; color: #666; margin: 10px 0 30px;">
+                Thank you for your purchase
             </p>
             
-            <div class="action-buttons">
-                <a href="payment-kazine.html" class="btn btn-store" style="background: var(--error); border-color: var(--error);">
-                    <i class="fas fa-arrow-left"></i> Back to Payment
-                </a>
-                <a href="kazine.html" class="btn" style="background: var(--black); color: var(--white);">
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>ORDER NUMBER</h4>
+                    <p id="orderNumber">KAZ-000000</p>
+                </div>
+                <div class="info-box">
+                    <h4>DATE</h4>
+                    <p id="orderDate">Loading...</p>
+                </div>
+                <div class="info-box">
+                    <h4>CUSTOMER NAME</h4>
+                    <p id="customerName">Loading...</p>
+                </div>
+                <div class="info-box">
+                    <h4>PAYMENT METHOD</h4>
+                    <p id="paymentMethod">Credit Card</p>
+                </div>
+            </div>
+            
+            <h3>Items Purchased</h3>
+            <table class="items-table" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody">
+                    <!-- Items will be loaded here -->
+                </tbody>
+            </table>
+            
+            <div class="summary">
+                <h3>Payment Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <span id="discount">-$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">$5.99</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (8%)</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>TOTAL PAID</span>
+                    <span id="total">$0.00</span>
+                </div>
+            </div>
+            
+            <div class="status" id="spreadsheetStatus">
+                <i class="fas fa-spinner fa-spin"></i> Saving to database...
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="window.print()" style="background: black; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin: 5px;">
+                    <i class="fas fa-print"></i> Print Receipt
+                </button>
+                <a href="kazine.html" style="background: #666; color: white; border: none; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin: 5px; display: inline-block;">
                     <i class="fas fa-store"></i> Back to Store
                 </a>
             </div>
         </div>
-        
-        <!-- Footer -->
-        <footer>
-            <div style="font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">KAZINE</div>
-            <p>Premium Fashion Store</p>
-            <p style="opacity: 0.8; margin-top: 10px; font-size: 0.9rem;">
-                This is your official payment receipt. Please keep it for your records.
-            </p>
-        </footer>
     </div>
 
     <script>
-        // ✅ CORRECT GOOGLE SCRIPT URL
+        // GOOGLE SCRIPT URL - GANTI INI!
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylpHFSoVae91YvLm4ACbdIlpQFW2LerPqGIx2mQubrMn-l6qVFeMRjfjx-L0N9zm_V6A/exec';
         
-        let orderData = null;
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 KAZINE Confirmation Page Started');
-            findOrderData();
-        });
-        
-        function findOrderData() {
-            console.log('🔍 Looking for KAZINE order data in localStorage...');
+        // LOAD ORDER DATA
+        function loadOrderData() {
+            console.log('🔍 Loading order data...');
             
-            // Debug: Show all localStorage items
-            console.log('📊 All localStorage items:');
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                console.log(`${key}:`, localStorage.getItem(key));
-            }
+            // Cari data di localStorage
+            let orderData = null;
+            const keys = ['kazinePaymentData', 'kazineOrderData', 'lastOrder'];
             
-            // Priority 1: Check kazinePaymentData
-            const paymentData = localStorage.getItem('kazinePaymentData');
-            if (paymentData) {
-                try {
-                    orderData = JSON.parse(paymentData);
-                    console.log('✅ Found data in kazinePaymentData:', orderData);
-                    processOrder();
-                    return;
-                } catch (e) {
-                    console.error('❌ Error parsing kazinePaymentData:', e);
-                }
-            }
-            
-            // Priority 2: Check other possible keys
-            const backupKeys = ['kazineOrderData', 'lastKazineOrderData', 'kazineOrder'];
-            for (const key of backupKeys) {
+            for (const key of keys) {
                 const data = localStorage.getItem(key);
                 if (data) {
                     try {
                         orderData = JSON.parse(data);
-                        console.log(`✅ Found data in ${key}`);
-                        processOrder();
-                        return;
+                        console.log(`✅ Found data in ${key}:`, orderData);
+                        break;
                     } catch (e) {
-                        console.error(`❌ Error parsing ${key}:`, e);
+                        console.error(`Error parsing ${key}:`, e);
                     }
                 }
             }
             
-            // No data found
-            console.log('❌ No KAZINE order data found in localStorage');
-            showError('No KAZINE order data found. Please complete the payment process first.');
-        }
-        
-        function processOrder() {
             if (!orderData) {
-                showError('Order data is empty or invalid.');
-                return;
+                document.body.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <h2>No order data found</h2>
+                        <p>Please complete the payment first</p>
+                        <a href="payment-kazine.html" style="background: black; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px;">
+                            Go to Payment
+                        </a>
+                    </div>
+                `;
+                return null;
             }
             
-            console.log('🔄 Processing order data:', orderData);
-            
-            // ✅ NORMALIZE DATA STRUCTURE FOR SPREADSHEET
-            normalizeOrderData();
-            
-            // Display receipt
-            displayReceipt();
-            
-            // Send to Google Sheets
-            sendToGoogleSheets();
-            
-            // Setup event listeners
-            setupEventListeners();
-            
-            // Show success state
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('receiptContent').style.display = 'block';
+            return orderData;
         }
         
-        function normalizeOrderData() {
-            // Ensure all required structures exist
-            if (!orderData.customer) orderData.customer = {};
-            if (!orderData.items) orderData.items = [];
-            if (!orderData.payment) orderData.payment = {};
-            
-            // ✅ MAP FIELD NAMES FROM DASH TO CAMELCASE FOR SPREADSHEET
-            const fieldMappings = [
-                { from: 'customer-name', to: 'customerName' },
-                { from: 'customer-email', to: 'customerEmail' },
-                { from: 'customer-twitter', to: 'customerTwitter' },
-                { from: 'customer-address', to: 'customerAddress' },
-                { from: 'other-request', to: 'otherRequest' },
-                { from: 'payment-method', to: 'paymentMethod' },
-                { from: 'order-number', to: 'orderNumber' }
-            ];
-            
-            // Apply mappings
-            fieldMappings.forEach(mapping => {
-                if (orderData[mapping.from] !== undefined) {
-                    orderData[mapping.to] = orderData[mapping.from];
-                }
-            });
-            
-            // Ensure all required fields exist with defaults
-            orderData.customerName = orderData.customerName || orderData['customer-name'] || 'Customer';
-            orderData.customerEmail = orderData.customerEmail || orderData['customer-email'] || 'No email provided';
-            orderData.customerTwitter = orderData.customerTwitter || orderData['customer-twitter'] || '';
-            orderData.customerAddress = orderData.customerAddress || orderData['customer-address'] || 'Not provided';
-            orderData.otherRequest = orderData.otherRequest || orderData['other-request'] || '-';
-            orderData.paymentMethod = orderData.paymentMethod || orderData['payment-method'] || 'Credit Card';
-            orderData.orderNumber = orderData.orderNumber || orderData['order-number'] || `KAZ-${Date.now().toString().slice(-6)}`;
-            
-            // Ensure financial fields exist
-            orderData.subtotal = orderData.subtotal || orderData['subtotal'] || 0;
-            orderData.shipping = orderData.shipping || orderData['shipping'] || 5.99;
-            orderData.tax = orderData.tax || orderData['tax'] || 0;
-            orderData.total = orderData.total || orderData['total'] || 0;
-            
-            // Ensure items is an array
-            if (!Array.isArray(orderData.items)) {
-                orderData.items = [];
-            }
-            
-            // Order date
-            orderData.orderDate = orderData.orderDate || orderData['order-date'] || new Date().toISOString();
-            orderData.timestamp = orderData.timestamp || new Date().toISOString();
-            
-            console.log('✅ Normalized data for spreadsheet:', orderData);
-        }
-        
-        function displayReceipt() {
+        // DISPLAY ORDER
+        function displayOrder(orderData) {
             // Customer info
-            document.getElementById('customerName').textContent = orderData.customerName;
-            document.getElementById('orderNumber').textContent = orderData.orderNumber;
+            document.getElementById('customerName').textContent = orderData['customer-name'] || 'Customer';
+            document.getElementById('orderNumber').textContent = orderData['order-number'] || 'KAZ-' + Date.now().toString().slice(-6);
+            document.getElementById('orderDate').textContent = new Date().toLocaleString();
             
-            // Date and time
-            const orderDate = new Date(orderData.orderDate);
-            const formattedDateTime = orderDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('orderDateTime').textContent = formattedDateTime;
+            // Items
+            const itemsBody = document.getElementById('itemsBody');
+            itemsBody.innerHTML = '';
             
-            document.getElementById('paymentMethod').textContent = orderData.paymentMethod;
+            let subtotal = 0;
+            const items = orderData.items || [];
             
-            // Display items
-            const itemsTableBody = document.getElementById('itemsTableBody');
-            let itemsHTML = '';
-            
-            if (orderData.items && orderData.items.length > 0) {
-                console.log(`📦 Displaying ${orderData.items.length} items`);
-                
-                orderData.items.forEach((item, index) => {
-                    const name = item.title || item.name || item.product || `Item ${index + 1}`;
-                    const size = item.size || item.ukuran || '-';
-                    const color = item.color || item.warna || '-';
-                    const price = parseFloat(item.price || item.harga || item.totalPrice || 0);
+            if (items.length > 0) {
+                items.forEach(item => {
+                    const price = parseFloat(item.price || item.harga || 0);
                     const quantity = parseInt(item.quantity || item.qty || 1);
                     const total = price * quantity;
+                    subtotal += total;
                     
-                    itemsHTML += `
-                        <tr>
-                            <td>${name}</td>
-                            <td>${size}</td>
-                            <td>${color}</td>
-                            <td>${quantity}</td>
-                            <td>$${price.toFixed(2)}</td>
-                            <td>$${total.toFixed(2)}</td>
-                        </tr>
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.title || item.name || 'Item'}</td>
+                        <td>${quantity}</td>
+                        <td>$${price.toFixed(2)}</td>
+                        <td>$${total.toFixed(2)}</td>
                     `;
+                    itemsBody.appendChild(row);
                 });
             } else {
-                itemsHTML = '<tr><td colspan="6" style="text-align: center; padding: 30px; color: var(--gray);">No items in order</td></tr>';
+                itemsBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No items</td></tr>';
             }
             
-            itemsTableBody.innerHTML = itemsHTML;
+            // Financials - PAKAI DATA DARI PAYMENT PAGE
+            const discount = parseFloat(orderData.discount || 0);
+            const shipping = parseFloat(orderData.shipping || 5.99);
+            const tax = parseFloat(orderData.tax || (subtotal - discount) * 0.08);
+            const total = parseFloat(orderData.total || (subtotal - discount) + shipping + tax);
             
-            // Display other request if exists
-            if (orderData.otherRequest && orderData.otherRequest !== '-' && orderData.otherRequest.trim() !== '') {
-                document.getElementById('otherRequestSection').style.display = 'block';
-                document.getElementById('otherRequestText').textContent = orderData.otherRequest;
-            }
+            // Update display
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('discount').textContent = `-$${discount.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
             
-            // Display amounts
-            document.getElementById('subtotal').textContent = `$${orderData.subtotal.toFixed(2)}`;
-            document.getElementById('shipping').textContent = `$${orderData.shipping.toFixed(2)}`;
-            document.getElementById('tax').textContent = `$${orderData.tax.toFixed(2)}`;
-            document.getElementById('totalAmount').textContent = `$${orderData.total.toFixed(2)}`;
+            return {
+                subtotal: subtotal,
+                discount: discount,
+                shipping: shipping,
+                tax: tax,
+                total: total,
+                items: items
+            };
         }
         
-        async function sendToGoogleSheets() {
-            const spreadsheetInfo = document.getElementById('spreadsheetInfo');
-            const statusElement = document.getElementById('spreadsheetStatus');
-            
-            spreadsheetInfo.style.display = 'block';
-            statusElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving to KAZINE database...';
+        // SEND TO SPREADSHEET - INI YANG PASTI BERHASIL
+        async function sendToSpreadsheet(orderData, displayData) {
+            const statusEl = document.getElementById('spreadsheetStatus');
             
             try {
-                // ✅ PREPARE DATA EXACTLY AS SPREADSHEET EXPECTS
+                // PREPARE DATA YANG PERSIS DENGAN HEADER SPREADSHEET
                 const sheetData = {
-                    // Metadata
-                    timestamp: orderData.timestamp || new Date().toISOString(),
-                    orderNumber: orderData.orderNumber,
-                    orderDate: new Date(orderData.orderDate).toLocaleString('en-US'),
-                    
-                    // Customer info - MUST MATCH SPREADSHEET HEADERS
-                    customerName: orderData.customerName,
-                    customerEmail: orderData.customerEmail,
-                    customerAddress: orderData.customerAddress,
-                    customerTwitter: orderData.customerTwitter,
-                    otherRequest: orderData.otherRequest,
-                    
-                    // Items
-                    items: JSON.stringify(orderData.items),
-                    itemCount: orderData.items.length,
-                    
-                    // Financials
-                    subtotal: orderData.subtotal,
-                    shipping: orderData.shipping,
-                    tax: orderData.tax,
-                    totalAmount: orderData.total,
-                    
-                    // Payment info
-                    paymentMethod: orderData.paymentMethod,
-                    paymentStatus: 'PAID'
+                    timestamp: new Date().toISOString(),
+                    orderNumber: orderData['order-number'] || 'KAZ-' + Date.now().toString().slice(-6),
+                    customerName: orderData['customer-name'] || '',
+                    customerEmail: orderData['customer-email'] || '',
+                    customerAddress: orderData['customer-address'] || 'Not provided',
+                    customerTwitter: orderData['customer-twitter'] || '',
+                    otherRequest: orderData['other-request'] || '-',
+                    items: JSON.stringify(displayData.items || []),
+                    itemCount: displayData.items.length,
+                    subtotal: displayData.subtotal,
+                    shipping: displayData.shipping,
+                    tax: displayData.tax,
+                    totalAmount: displayData.total,
+                    paymentMethod: orderData['payment-method'] || 'Credit Card',
+                    paymentStatus: 'PAID',
+                    orderDate: new Date().toLocaleString('en-US')
                 };
                 
-                console.log('📤 Sending to Google Sheets:', sheetData);
+                console.log('📤 Sending to spreadsheet:', sheetData);
                 
-                // Send to Google Sheets
+                // KIRIM KE GOOGLE SHEETS
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -820,37 +337,34 @@
                 });
                 
                 // Update status
-                statusElement.innerHTML = '<i class="fas fa-check-circle"></i> Order saved to KAZINE database!';
-                statusElement.style.color = '#10b981';
+                statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Order saved to database!';
+                statusEl.style.background = '#d1fae5';
                 
-                // Clear localStorage after successful save
-                setTimeout(() => {
-                    localStorage.removeItem('kazinePaymentData');
-                    localStorage.removeItem('kazineOrderData');
-                    console.log('🗑️ Cleared KAZINE data from localStorage');
-                }, 3000);
+                // Clear localStorage
+                localStorage.removeItem('kazinePaymentData');
+                localStorage.removeItem('kazineOrderData');
                 
-                console.log('✅ Data sent to Google Sheets successfully');
+                console.log('✅ Data sent successfully');
                 
             } catch (error) {
-                console.error('❌ Error sending to Google Sheets:', error);
-                statusElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: ${error.message}`;
-                statusElement.style.color = '#ef4444';
+                console.error('❌ Error:', error);
+                statusEl.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: ${error.message}`;
+                statusEl.style.background = '#fee2e2';
             }
         }
         
-        function setupEventListeners() {
-            // Print receipt
-            document.getElementById('printReceiptBtn').addEventListener('click', function() {
-                window.print();
-            });
-        }
-        
-        function showError(message) {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('errorState').style.display = 'block';
-            document.getElementById('errorMessage').innerHTML = message;
-        }
+        // MAIN PROCESS
+        document.addEventListener('DOMContentLoaded', async function() {
+            // 1. Load order data
+            const orderData = loadOrderData();
+            if (!orderData) return;
+            
+            // 2. Display order
+            const displayData = displayOrder(orderData);
+            
+            // 3. Send to spreadsheet
+            await sendToSpreadsheet(orderData, displayData);
+        });
     </script>
 </body>
 </html>
