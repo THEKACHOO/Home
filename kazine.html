@@ -129,10 +129,11 @@
             width: 100%;
         }
 
-        /* Cart Icon - PERBAIKAN */
+        /* Cart Icon */
         .cart-icon-container {
             position: relative;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .cart-icon {
@@ -166,6 +167,7 @@
             font-size: 10px;
             font-weight: 600;
             pointer-events: none;
+            z-index: 1002;
         }
 
         .mobile-menu-btn {
@@ -180,6 +182,7 @@
             height: 44px;
             align-items: center;
             justify-content: center;
+            z-index: 1001;
         }
 
         /* Hero Section */
@@ -405,7 +408,7 @@
             margin-bottom: 20px;
         }
 
-        /* TOMBOL ADD TO CART - PERBAIKAN */
+        /* TOMBOL ADD TO CART */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -547,7 +550,7 @@
             line-height: 1.6;
         }
 
-        /* Cart Modal - PERBAIKAN */
+        /* Cart Modal */
         .cart-modal {
             position: fixed;
             top: 0;
@@ -738,11 +741,13 @@
             
             .cart-icon-container {
                 order: 0;
+                z-index: 1001;
             }
             
             .mobile-menu-btn {
                 display: flex;
                 order: 2;
+                z-index: 1001;
             }
             
             nav {
@@ -997,15 +1002,15 @@
                 
                 <div class="single-photo-container">
                     <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                         alt="KAFKAPAGES Collaboration - Literature Meets Fashion" 
+                         alt="KAZINE Collaboration - Literature Meets Fashion" 
                          class="commercial-photo">
-                    <div class="photo-caption">KAFKAPAGES: Where Literature Meets Fashion</div>
+                    <div class="photo-caption">KAZINE: Where Fashion Meets Culture</div>
                 </div>
                 
-                <p>Discover the literary world through our exclusive collaboration with KAFKAPAGES. Experience where fashion meets literature in our curated collection of stories and style.</p>
+                <p>Discover the world through our exclusive KAZINE collections. Experience where fashion meets culture in our curated collection of style and stories.</p>
                 
-                <a href="kafkapages.html" class="btn-outline">
-                    <span>EXPLORE KAFKAPAGES</span>
+                <a href="#magazine" class="btn-outline">
+                    <span>EXPLORE KAZINE</span>
                 </a>
             </div>
         </div>
@@ -1016,7 +1021,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>CURATED COLLECTION</h2>
-                <p>FEATURING COLLABORATION BRANDS</p>
+                <p>FEATURING KAZINE EXCLUSIVES</p>
             </div>
             
             <div class="products-grid">
@@ -1119,9 +1124,9 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <p><a href="index.html" style="color: var(--medium-gray); text-decoration: none;">THE KACHOO</a></p>
-                    <p><a href="kafkapages.html" style="color: var(--medium-gray); text-decoration: none;">KAFKAPAGES</a></p>
                     <p><a href="#shop" style="color: var(--medium-gray); text-decoration: none;">SHOP</a></p>
                     <p><a href="#magazine" style="color: var(--medium-gray); text-decoration: none;">MAGAZINE</a></p>
+                    <p><a href="#commercial" style="color: var(--medium-gray); text-decoration: none;">COLLABORATIONS</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1148,7 +1153,8 @@
             </div>
         </div>
     </footer>
-<script>
+
+    <script>
     // SIMPLE CART SYSTEM YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
@@ -1169,7 +1175,7 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // Mobile menu toggle - FIXED
+    // Mobile menu toggle
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1204,7 +1210,7 @@
         cartModal.classList.add('active');
         cartOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
-        updateCartDisplay(); // Refresh cart display when opening
+        updateCartDisplay();
     }
 
     function closeCart() {
@@ -1266,7 +1272,7 @@
         });
     }
 
-    // Function untuk menangani add to cart - FIXED untuk PC dan Mobile
+    // Function untuk menangani add to cart
     function handleAddToCart(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -1318,7 +1324,7 @@
         }, 1000);
     }
 
-    // Initialize semua tombol Add to Cart - FIXED
+    // Initialize semua tombol Add to Cart
     function initializeAddToCartButtons() {
         // Hapus event listener yang lama dulu
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
@@ -1330,7 +1336,10 @@
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             // Untuk PC (click) dan Mobile (touchstart)
             button.addEventListener('click', handleAddToCart);
-            button.addEventListener('touchstart', handleAddToCart, { passive: false });
+            button.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                handleAddToCart(e);
+            }, { passive: false });
         });
     }
 
@@ -1385,37 +1394,43 @@
         }, 2000);
     }
 
-    // Event listeners untuk cart - FIXED untuk semua device
+    // Event listeners untuk cart
     function setupCartEventListeners() {
         // Untuk PC (click)
         openCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             openCart();
         });
         
         closeCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             closeCart();
         });
         
         cartOverlay.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             closeCart();
         });
         
         // Untuk Mobile (touchstart)
         openCartBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             openCart();
         }, { passive: false });
         
         closeCartBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             closeCart();
         }, { passive: false });
         
         cartOverlay.addEventListener('touchstart', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             closeCart();
         }, { passive: false });
     }
@@ -1481,40 +1496,6 @@
         });
     });
 
-    // Check if mobile device
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    // Prevent zoom on double tap di mobile
-    if (isMobile) {
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-        
-        // Improve touch experience
-        document.querySelectorAll('button, .btn-outline, a').forEach(element => {
-            element.style.cursor = 'pointer';
-        });
-    }
-
-    // Handle orientation change
-    window.addEventListener('orientationchange', function() {
-        // Small delay to allow orientation to complete
-        setTimeout(() => {
-            if (cartModal.classList.contains('active')) {
-                // Force reflow
-                cartModal.style.transition = 'none';
-                setTimeout(() => {
-                    cartModal.style.transition = '';
-                }, 10);
-            }
-        }, 100);
-    });
-
     // Initialize semua fungsi ketika DOM siap
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize add to cart buttons
@@ -1528,11 +1509,6 @@
         
         // Reset processing flag
         isProcessing = false;
-        
-        // Log untuk debugging
-        console.log('Cart system initialized successfully');
-        console.log('Is mobile device:', isMobile);
-        console.log('Add to cart buttons found:', document.querySelectorAll('.add-to-cart-btn').length);
     });
 
     // Juga inisialisasi saat window load (backup)
@@ -1541,6 +1517,6 @@
         setupCartEventListeners();
         updateCartDisplay();
     });
-</script>
+    </script>
 </body>
-</html>
+    </html>
