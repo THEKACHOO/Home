@@ -649,7 +649,7 @@
         <div class="container footer-content">
             <p>&copy; 2026 KAZINE | A Magazine of THE KACHOO. All rights reserved.</p>
             <div class="disclaimer">
-                <p><strong>IMPORTANT:</strong> This is a roleplay website. No real payments will be processed and no physical products will be shipped.</p>
+                <p><strong>IMPORTANT:</strong> This is a demonstration website. No real payments will be processed and no physical products will be shipped.</p>
             </div>
         </div>
     </footer>
@@ -659,8 +659,7 @@
         const SHIPPING_FEE = 5.99;
         const TAX_RATE = 0.08; // 8%
         
-        // Get cart data
-        const cartData = JSON.parse(localStorage.getItem('kazineCart')) || { items: [] };
+        // Get elements
         const orderItems = document.getElementById('orderItems');
         const emptyState = document.getElementById('emptyState');
         const paymentContent = document.getElementById('paymentContent');
@@ -670,34 +669,108 @@
         const totalAmountElement = document.getElementById('totalAmount');
         const checkoutBtn = document.getElementById('checkoutBtn');
         
-        // Check if cart is empty
-        if (!cartData.items || cartData.items.length === 0) {
-            emptyState.style.display = 'block';
-            paymentContent.style.display = 'none';
-        } else {
+        // Function to get cart data from localStorage
+        function getCartData() {
+            console.log('🛒 Checking localStorage for cart data...');
+            
+            // Debug: Show all localStorage
+            console.log('📊 All localStorage items:');
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                console.log(`${key}:`, localStorage.getItem(key));
+            }
+            
+            // Priority 1: Check kazineCart
+            const cartData = localStorage.getItem('kazineCart');
+            if (cartData) {
+                try {
+                    const parsed = JSON.parse(cartData);
+                    console.log('✅ Found kazineCart:', parsed);
+                    
+                    // Ensure it has items array
+                    if (parsed && parsed.items && Array.isArray(parsed.items)) {
+                        return parsed;
+                    } else if (Array.isArray(parsed)) {
+                        // If it's directly an array
+                        return { items: parsed };
+                    }
+                } catch (e) {
+                    console.error('❌ Error parsing kazineCart:', e);
+                }
+            }
+            
+            // Priority 2: Check for cart data from other possible keys
+            const possibleKeys = [
+                'cartItems',
+                'shoppingCart', 
+                'cart',
+                'kazineItems',
+                'selectedItems',
+                'kazine_order_items'
+            ];
+            
+            for (const key of possibleKeys) {
+                const data = localStorage.getItem(key);
+                if (data) {
+                    try {
+                        const parsed = JSON.parse(data);
+                        console.log(`✅ Found data in ${key}:`, parsed);
+                        
+                        if (Array.isArray(parsed)) {
+                            return { items: parsed };
+                        } else if (parsed && parsed.items && Array.isArray(parsed.items)) {
+                            return parsed;
+                        }
+                    } catch (e) {
+                        console.error(`❌ Error parsing ${key}:`, e);
+                    }
+                }
+            }
+            
+            console.log('❌ No valid cart data found');
+            return { items: [] };
+        }
+        
+        // Load cart data
+        let cartData = getCartData();
+        
+        // Display cart items
+        function displayCartItems() {
+            if (!cartData.items || cartData.items.length === 0) {
+                emptyState.style.display = 'block';
+                paymentContent.style.display = 'none';
+                console.log('🛒 Cart is empty');
+                return;
+            }
+            
             emptyState.style.display = 'none';
             paymentContent.style.display = 'block';
+            console.log(`🛒 Displaying ${cartData.items.length} cart items:`, cartData.items);
             
             let subtotal = 0;
-            
-            // Clear and populate order items
             orderItems.innerHTML = '';
             
+            // Display each item
             cartData.items.forEach((item, index) => {
-                const price = parseFloat(item.price) || 0;
-                const quantity = parseInt(item.quantity) || 1;
-                const itemTotal = price * quantity;
+                // Handle different item structures
+                const itemName = item.title || item.name || item.product || `Item ${index + 1}`;
+                const itemPrice = parseFloat(item.price || item.harga || item.totalPrice || 0);
+                const itemQuantity = parseInt(item.quantity || item.qty || 1);
+                const itemSize = item.size || item.ukuran || '-';
+                const itemColor = item.color || item.warna || '-';
+                const itemTotal = itemPrice * itemQuantity;
+                
                 subtotal += itemTotal;
                 
                 const itemElement = document.createElement('div');
                 itemElement.className = 'order-item';
                 itemElement.innerHTML = `
                     <div>
-                        <div class="item-name">${item.title || item.name || 'KAZINE Item'}</div>
+                        <div class="item-name">${itemName}</div>
                         <div class="item-details">
-                            Quantity: ${quantity}
-                            ${item.size ? ` | Size: ${item.size}` : ''}
-                            ${item.color ? ` | Color: ${item.color}` : ''}
+                            Quantity: ${itemQuantity}
+                            ${itemSize !== '-' ? ` | Size: ${itemSize}` : ''}
+                            ${itemColor !== '-' ? ` | Color: ${itemColor}` : ''}
                         </div>
                     </div>
                     <div class="item-price">$${itemTotal.toFixed(2)}</div>
@@ -716,13 +789,19 @@
             taxElement.textContent = `$${tax.toFixed(2)}`;
             totalAmountElement.textContent = `$${total.toFixed(2)}`;
             
-            // Save calculated totals
+            // Update cart data with calculated totals
             cartData.subtotal = subtotal;
             cartData.shipping = shipping;
             cartData.tax = tax;
             cartData.total = total;
+            
+            // Save back to localStorage
             localStorage.setItem('kazineCart', JSON.stringify(cartData));
+            console.log('💾 Updated cart data saved:', cartData);
         }
+        
+        // Initial display
+        displayCartItems();
         
         // Payment method selection
         document.querySelectorAll('.payment-option').forEach(option => {
@@ -768,32 +847,32 @@
             
             // Prepare complete payment data for confirmation page
             const paymentData = {
-                // ✅ Customer info - MUST MATCH CONFIRMATION PAGE EXPECTATIONS
+                // Customer info - MUST MATCH CONFIRMATION PAGE EXPECTATIONS
                 'customer-name': customerName,
                 'customer-email': customerEmail,
                 'customer-twitter': customerTwitter.startsWith('@') ? customerTwitter : '@' + customerTwitter,
                 'customer-address': document.getElementById('customer-address').value.trim() || 'Not provided',
                 'other-request': document.getElementById('other-request').value.trim() || '-',
                 
-                // ✅ Order items
+                // Order items - CRITICAL: Use cartData.items
                 'items': cartData.items,
                 
-                // ✅ Financial data - ALL REQUIRED FOR SPREADSHEET
+                // Financial data - ALL REQUIRED FOR SPREADSHEET
                 'subtotal': cartData.subtotal || 0,
                 'shipping': cartData.shipping || SHIPPING_FEE,
                 'tax': cartData.tax || 0,
                 'total': cartData.total || 0,
                 
-                // ✅ Payment info
+                // Payment info
                 'payment-method': paymentMethod,
                 
-                // ✅ Order metadata
+                // Order metadata
                 'order-number': orderNumber,
                 'order-date': new Date().toISOString(),
                 'timestamp': new Date().toISOString()
             };
             
-            console.log('💾 Saving payment data to localStorage:', paymentData);
+            console.log('💾 Preparing payment data for confirmation:', paymentData);
             
             // ✅ SAVE WITH CORRECT KEY FOR CONFIRMATION PAGE
             localStorage.setItem('kazinePaymentData', JSON.stringify(paymentData));
