@@ -231,8 +231,8 @@
             font-weight: 600;
         }
 
-        /* Flipbook Section - Clean & Modern */
-        .flipbook-section {
+        /* Heyzine Flipbook Section - Clean & Modern */
+        .heyzine-section {
             padding: 80px 0;
             background: var(--pure-white);
             position: relative;
@@ -273,7 +273,7 @@
             font-weight: 500;
         }
 
-        .flipbook-container {
+        .heyzine-container {
             max-width: 1000px;
             margin: 0 auto;
             background: var(--off-white);
@@ -282,51 +282,35 @@
             box-shadow: var(--shadow-hover);
             border: 3px solid var(--fresh-accent);
             position: relative;
+            min-height: 700px;
         }
 
-        .flipbook-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            padding: 25px;
+        .heyzine-header {
             background: linear-gradient(135deg, var(--deep-accent) 0%, #1a1f4d 100%);
+            padding: 20px 25px;
             border-bottom: 3px solid var(--vibrant-primary);
-        }
-
-        .flip-btn {
-            background: var(--pure-white);
-            color: var(--deep-accent);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-size: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            align-items: center;
         }
 
-        .flip-btn:hover {
-            background: var(--vibrant-primary);
+        .heyzine-title {
             color: var(--pure-white);
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 6px 20px rgba(238, 73, 11, 0.3);
-        }
-
-        .page-display {
-            color: var(--pure-white);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            min-width: 120px;
             text-align: center;
             font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .flipbook-frame {
+        .heyzine-title i {
+            color: var(--fresh-accent);
+            font-size: 20px;
+        }
+
+        .heyzine-frame {
             width: 100%;
             height: 650px;
             background: var(--pure-white);
@@ -336,55 +320,25 @@
             position: relative;
         }
 
-        /* Google Drive PDF Viewer */
-        .pdf-iframe {
+        /* Heyzine Embed Iframe */
+        .heyzine-iframe {
             width: 100%;
             height: 100%;
             border: none;
             background: var(--pure-white);
         }
 
-        .pdf-view-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .view-btn {
-            background: var(--fresh-accent);
-            color: var(--deep-accent);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .view-btn.active {
-            background: var(--vibrant-primary);
-            color: var(--pure-white);
-        }
-
-        .view-btn:hover:not(.active) {
-            background: var(--deep-accent);
-            color: var(--pure-white);
-            transform: translateY(-2px);
-        }
-
         .loading-container {
             text-align: center;
             padding: 60px 20px;
             color: var(--deep-accent);
+            background: var(--pure-white);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .loading-spinner {
@@ -392,6 +346,35 @@
             color: var(--vibrant-primary);
             margin-bottom: 20px;
             display: block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .embed-instructions {
+            background: var(--fresh-accent);
+            padding: 15px;
+            text-align: center;
+            border-top: 2px solid var(--vibrant-primary);
+        }
+
+        .embed-instructions p {
+            color: var(--deep-accent);
+            font-size: 14px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .embed-instructions code {
+            background: var(--deep-accent);
+            color: var(--fresh-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 5px;
         }
 
         .view-full-btn {
@@ -778,8 +761,8 @@
                 font-size: 42px;
             }
             
-            .flipbook-frame {
-                height: 500px;
+            .heyzine-frame {
+                height: 550px;
             }
             
             .contributors-grid {
@@ -792,8 +775,8 @@
                 font-size: 36px;
             }
             
-            .flipbook-frame {
-                height: 400px;
+            .heyzine-frame {
+                height: 450px;
             }
             
             .section-title h2 {
@@ -824,8 +807,8 @@
                 padding: 8px 20px;
             }
             
-            .flipbook-frame {
-                height: 300px;
+            .heyzine-frame {
+                height: 350px;
             }
             
             .section-title h2 {
@@ -834,6 +817,14 @@
             
             .logo-text {
                 font-size: 20px;
+            }
+            
+            .heyzine-header {
+                padding: 15px;
+            }
+            
+            .heyzine-title {
+                font-size: 16px;
             }
         }
     </style>
@@ -882,47 +873,33 @@
         </div>
     </section>
 
-    <!-- Flipbook Section -->
-    <section class="flipbook-section" id="read-magazine">
+    <!-- Heyzine Section -->
+    <section class="heyzine-section" id="read-magazine">
         <div class="container">
             <div class="section-title">
                 <h2>Explore the Digital Edition</h2>
-                <p>Immerse yourself in our interactive magazine experience. Navigate through pages with intuitive controls</p>
+                <p>Immerse yourself in our interactive Heyzine flipbook experience. Navigate using the controls in the viewer</p>
             </div>
             
-            <div class="flipbook-container">
-                <div class="flipbook-controls">
-                    <button class="flip-btn" id="prevBtn" aria-label="Previous page">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="page-display" id="pageDisplay">
-                        Page 1 of 50
+            <div class="heyzine-container">
+                <div class="heyzine-header">
+                    <div class="heyzine-title">
+                        <i class="fas fa-book-open"></i> KAZINE Volume 1 - Interactive Flipbook
                     </div>
-                    <button class="flip-btn" id="nextBtn" aria-label="Next page">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
                 
-                <div class="flipbook-frame" id="flipbookFrame">
+                <div class="heyzine-frame" id="heyzineFrame">
                     <!-- Loading placeholder -->
                     <div class="loading-container" id="loadingContainer">
                         <i class="fas fa-spinner fa-spin loading-spinner"></i>
-                        <h3>Loading KAZINE Volume 1...</h3>
-                        <p>Preparing your flipbook experience</p>
+                        <h3>Ready to embed Heyzine Flipbook</h3>
+                        <p>Add your Heyzine embed code below to display the flipbook</p>
                     </div>
                 </div>
                 
-                <!-- PDF View Controls -->
-                <div class="pdf-view-controls" id="viewControls" style="display: none;">
-                    <button class="view-btn active" id="bookViewBtn">
-                        <i class="fas fa-book"></i> Book View
-                    </button>
-                    <button class="view-btn" id="singleViewBtn">
-                        <i class="fas fa-file"></i> Single Page
-                    </button>
-                    <button class="view-btn" id="fullscreenBtn">
-                        <i class="fas fa-expand"></i> Fullscreen
-                    </button>
+                <!-- Instructions for embedding -->
+                <div class="embed-instructions">
+                    <p>📌 <strong>To embed Heyzine:</strong> Replace the code in <code>loadHeyzine()</code> function with your Heyzine embed iframe code</p>
                 </div>
             </div>
             
@@ -1152,215 +1129,81 @@
 
     <script>
     // ============================================
-    // KONFIGURASI PDF
+    // HEYZINE FLIPBOOK EMBED
     // ============================================
-    // GANTI FILE_ID_DISINI dengan ID dari Google Drive PDF-mu
-    const GOOGLE_DRIVE_FILE_ID = '1ugNZzlLSMhfmEyo-GOwYUGOD7arqxtgw';
-    
-    // Base URL untuk Google Drive Viewer
-    const BASE_URL = `https://drive.google.com/file/d/${GOOGLE_DRIVE_FILE_ID}/preview`;
-    
-    // Mode tampilan
-    let currentViewMode = 'book'; // 'book' atau 'single'
-    
-    // ============================================
-    // ELEMEN DOM
-    // ============================================
-    const flipbookFrame = document.getElementById('flipbookFrame');
+    const heyzineFrame = document.getElementById('heyzineFrame');
     const loadingContainer = document.getElementById('loadingContainer');
-    const viewControls = document.getElementById('viewControls');
-    const bookViewBtn = document.getElementById('bookViewBtn');
-    const singleViewBtn = document.getElementById('singleViewBtn');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const pageDisplay = document.getElementById('pageDisplay');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
     
-    // ============================================
-    // FUNGSI UTAMA: LOAD PDF
-    // ============================================
-    function loadPDF(viewMode = 'book') {
-        // Sembunyikan kontrol view selama loading
-        viewControls.style.display = 'none';
-        
+    function loadHeyzine() {
         // Tampilkan loading
-        loadingContainer.style.display = 'block';
-        flipbookFrame.innerHTML = '';
-        flipbookFrame.appendChild(loadingContainer);
+        loadingContainer.style.display = 'flex';
+        heyzineFrame.innerHTML = '';
+        heyzineFrame.appendChild(loadingContainer);
         
-        // Bangun URL berdasarkan mode
-        let pdfUrl = BASE_URL;
+        // ============================================
+        // LANGKAH 1: Dapatkan embed code dari Heyzine
+        // ============================================
+        // 1. Buka publikasi Heyzine Anda di heyzine.com
+        // 2. Klik tombol "Share" atau "Embed"
+        // 3. Pilih opsi "Embed" atau "Get embed code"
+        // 4. Copy kode iframe yang diberikan
         
-        if (viewMode === 'book') {
-            pdfUrl += '?view=book'; // Mode buku (dua halaman seperti buku)
-        } else {
-            pdfUrl += '?view=fitH'; // Mode single page (satu halaman full)
-        }
+        // ============================================
+        // LANGKAH 2: Ganti kode di bawah ini dengan embed code dari Heyzine
+        // ============================================
+        // Contoh: Kode di bawah ini adalah placeholder
+        // GANTI kode di dalam setTimeout() dengan embed code asli dari Heyzine
         
-        // Tambahkan parameter untuk menghilangkan toolbar
-        pdfUrl += '&toolbar=0&navpanes=0&scrollbar=0';
-        
-        // Buat iframe
         setTimeout(() => {
-            const iframe = document.createElement('iframe');
-            iframe.className = 'pdf-iframe';
-            iframe.src = pdfUrl;
-            iframe.setAttribute('allow', 'autoplay; fullscreen');
-            iframe.setAttribute('allowfullscreen', 'true');
+            // Sembunyikan loading
+            loadingContainer.style.display = 'none';
             
-            // Saat iframe selesai load
-            iframe.onload = () => {
-                // Sembunyikan loading
-                loadingContainer.style.display = 'none';
-                
-                // Tampilkan kontrol view
-                viewControls.style.display = 'flex';
-                
-                // Update tampilan tombol
-                updateViewButtons(viewMode);
-                
-                // Add animation
-                iframe.style.opacity = '0';
-                iframe.style.transform = 'scale(0.95)';
-                
-                setTimeout(() => {
-                    iframe.style.transition = 'all 0.5s ease';
-                    iframe.style.opacity = '1';
-                    iframe.style.transform = 'scale(1)';
-                }, 100);
-            };
+            // ============================================
+            // TEMPATKAN EMBED CODE HEYZINE DISINI
+            // ============================================
+            // Contoh embed code Heyzine (ganti dengan yang asli):
+            /*
+            <iframe 
+                src="https://heyzine.com/flip-book/xxxxxxx" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                scrolling="no" 
+                allowfullscreen>
+            </iframe>
+            */
             
-            iframe.onerror = () => {
-                loadingContainer.innerHTML = `
-                    <i class="fas fa-exclamation-triangle loading-spinner"></i>
-                    <h3>Failed to load PDF</h3>
-                    <p>Please check your internet connection or try the download link below.</p>
-                `;
-            };
+            // Untuk sekarang, tampilkan pesan placeholder
+            const placeholderHTML = `
+                <div style="text-align: center; padding: 40px; background: var(--light-gray); border-radius: 10px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <i class="fas fa-book" style="font-size: 60px; color: var(--vibrant-primary); margin-bottom: 20px;"></i>
+                    <h3 style="color: var(--deep-accent); margin-bottom: 15px;">Heyzine Flipbook Ready to Embed</h3>
+                    <p style="color: var(--rich-brown); max-width: 600px; margin-bottom: 25px; font-size: 16px;">
+                        To display your Heyzine flipbook here, replace the code in the <strong>loadHeyzine()</strong> function with your actual Heyzine embed iframe code.
+                    </p>
+                    <div style="background: var(--fresh-accent); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: left; width: 90%; max-width: 500px;">
+                        <h4 style="color: var(--deep-accent); margin-bottom: 10px;"><i class="fas fa-code"></i> How to get your Heyzine embed code:</h4>
+                        <ol style="color: var(--rich-brown); padding-left: 20px; margin: 0;">
+                            <li>Go to your Heyzine publication</li>
+                            <li>Click the "Share" button</li>
+                            <li>Select "Embed" option</li>
+                            <li>Copy the iframe code</li>
+                            <li>Paste it in the <code>loadHeyzine()</code> function</li>
+                        </ol>
+                    </div>
+                </div>
+            `;
             
-            // Kosongkan frame dan tambahkan iframe
-            flipbookFrame.innerHTML = '';
-            flipbookFrame.appendChild(iframe);
+            heyzineFrame.innerHTML = placeholderHTML;
             
-        }, 800); // Delay untuk efek loading
+        }, 1000); // Delay untuk simulasi loading
     }
     
     // ============================================
-    // FUNGSI: UPDATE TOMBOL VIEW
+    // FUNGSI: LOAD HEYZINE SAAT HALAMAN DIMUAT
     // ============================================
-    function updateViewButtons(activeMode) {
-        bookViewBtn.classList.toggle('active', activeMode === 'book');
-        singleViewBtn.classList.toggle('active', activeMode === 'single');
-    }
-    
-    // ============================================
-    // FUNGSI: GANTI VIEW MODE
-    // ============================================
-    function changeViewMode(mode) {
-        if (currentViewMode === mode) return;
-        
-        currentViewMode = mode;
-        loadPDF(mode);
-        
-        // Update display teks
-        const modeText = mode === 'book' ? 'Book View (Two Pages)' : 'Single Page View';
-        pageDisplay.innerHTML = `<i class="fas fa-${mode === 'book' ? 'book' : 'file'}"></i> ${modeText}`;
-    }
-    
-    // ============================================
-    // FUNGSI: FULLSCREEN
-    // ============================================
-    function toggleFullscreen() {
-        const iframe = flipbookFrame.querySelector('iframe');
-        
-        if (!iframe) return;
-        
-        if (!document.fullscreenElement) {
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-            
-            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-            
-            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-        }
-    }
-    
-    // ============================================
-    // EVENT LISTENERS
-    // ============================================
-    // Tombol view mode
-    bookViewBtn.addEventListener('click', () => changeViewMode('book'));
-    singleViewBtn.addEventListener('click', () => changeViewMode('single'));
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
-    
-    // Tombol navigasi halaman (simbolis - untuk UI)
-    prevBtn.addEventListener('click', () => {
-        prevBtn.style.transform = 'rotate(-15deg)';
-        setTimeout(() => {
-            prevBtn.style.transform = 'rotate(0)';
-        }, 300);
-    });
-    
-    nextBtn.addEventListener('click', () => {
-        nextBtn.style.transform = 'rotate(15deg)';
-        setTimeout(() => {
-            nextBtn.style.transform = 'rotate(0)';
-        }, 300);
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevBtn.click();
-            e.preventDefault();
-        } else if (e.key === 'ArrowRight') {
-            nextBtn.click();
-            e.preventDefault();
-        } else if (e.key === 'f' || e.key === 'F') {
-            toggleFullscreen();
-            e.preventDefault();
-        }
-    });
-    
-    // Swipe gestures for mobile
-    let startX = 0;
-    
-    flipbookFrame.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    }, { passive: true });
-    
-    flipbookFrame.addEventListener('touchend', (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diffX = startX - endX;
-        
-        if (Math.abs(diffX) > 50) {
-            if (diffX > 0) {
-                nextBtn.click(); // Swipe left
-            } else {
-                prevBtn.click(); // Swipe right
-            }
-        }
-    }, { passive: true });
-    
-    // ============================================
-    // INISIALISASI
-    // ============================================
-    // Load PDF dengan mode BOOK saat halaman dimuat
     window.addEventListener('load', () => {
-        loadPDF('book');
+        loadHeyzine();
         
         // Animate hero elements
         const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
@@ -1377,7 +1220,7 @@
     });
     
     // ============================================
-    // ANIMASI KARTU (SAMA SEPERTI SEBELUMNYA)
+    // ANIMASI KARTU
     // ============================================
     // Interactive team cards
     document.querySelectorAll('.team-card').forEach((card, index) => {
@@ -1462,21 +1305,6 @@
             heroSection.style.backgroundPosition = `center ${rate}px`;
         }
     });
-    
-    // Fullscreen change listener
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('msfullscreenchange', handleFullscreenChange);
-    
-    function handleFullscreenChange() {
-        if (document.fullscreenElement || 
-            document.webkitFullscreenElement || 
-            document.msFullscreenElement) {
-            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-        } else {
-            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-        }
-    }
     </script>
 </body>
 </html>
