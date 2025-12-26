@@ -532,6 +532,8 @@
             height: 300px;
             background: var(--gray-900);
             position: relative;
+            background-size: cover;
+            background-position: center;
         }
         
         .featured-content {
@@ -993,7 +995,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content scroll-animate">
-                <h1 class="hero-title">KABOOM!<br>THIS IS WHAT’S TRENDING NOW!</h1>
+                <h1 class="hero-title">KABOOM!<br>THIS IS WHAT'S TRENDING NOW!</h1>
                 <p class="hero-subtitle">Where nature's wonders, animal mysteries, human stories, and the juiciest gossip collide.</p>
             </div>
         </div>
@@ -1012,8 +1014,7 @@
         
         <!-- Featured Article -->
         <article class="featured-article scroll-animate" data-category="kabutz">
-            <div class="featured-img">
-                <div class="img-placeholder">THE KACHOO</div>
+            <div class="featured-img" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('kantorkachoo.png') center/cover;">
                 <div class="card-tag">EXCLUSIVE</div>
             </div>
             <div class="featured-content">
@@ -1027,39 +1028,39 @@
         <!-- News Grid -->
         <section class="news-section">
             <div class="news-grid">
-                <!-- Card 1 -->
+                <!-- Card 1 - Nature -->
                 <article class="news-card scroll-animate" data-category="nature">
-                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nature1.jpg') center/cover;">
                         <div class="card-tag">Nature</div>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Protect the Earth, It's Our Home</h3>
                         <p class="card-excerpt">The Earth has given us everything, air to breathe, ground to stand on, and oceans that cradle life, yet we treat it as if it were replaceable.</p>
                         <div class="card-meta">
-                            <span class="card-date">March 15, 2026</span>
+                            <span class="card-date">January 3, 2026</span>
                             <button class="card-btn" onclick="window.location.href='Nature1.html'">Read More</button>
                         </div>
                     </div>
                 </article>
                 
-                <!-- Card 2 -->
+                <!-- Card 2 - Animals -->
                 <article class="news-card scroll-animate" data-category="animals">
-                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('animal1.jpg') center/cover;">
                         <div class="card-tag">Animals</div>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Save Them Before It's Too Late</h3>
                         <p class="card-excerpt">One by one, rare species are pushed closer to extinction by habitat loss, illegal hunting, and human neglect. Saving them is no longer about conservation alone; it is about preserving balance, responsibility, and the future of life on this planet.</p>
                         <div class="card-meta">
-                            <span class="card-date">March 14, 2026</span>
+                            <span class="card-date">January 3, 2026</span>
                             <button class="card-btn" onclick="window.location.href='Animal1.html'">Read More</button>
                         </div>
                     </div>
                 </article>
                 
-                <!-- Card 3 -->
+                <!-- Card 3 - Humans -->
                 <article class="news-card scroll-animate" data-category="humans">
-                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/username/kaboom-images/main/human-card.png') center/cover;">
+                    <div class="card-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('human1.png') center/cover;">
                         <div class="card-tag">Humans</div>
                     </div>
                     <div class="card-content">
@@ -1072,7 +1073,7 @@
                     </div>
                 </article>
                 
-                <!-- Card 4 -->
+                <!-- Card 4 - Kabutz -->
                 <article class="news-card scroll-animate" data-category="kabutz">
                     <div class="card-img">
                         <div class="img-placeholder">TaskIT</div>
@@ -1082,13 +1083,13 @@
                         <h3 class="card-title">TASK IT NEW LAUNCH APP!</h3>
                         <p class="card-excerpt">TASK IT arrives not just as another app, but as a smarter approach to organizing life!</p>
                         <div class="card-meta">
-                            <span class="card-date">March 12, 2026</span>
+                            <span class="card-date">January 3, 2026</span>
                             <button class="card-btn" onclick="window.location.href='Kabutz2.html'">Read More</button>
                         </div>
                     </div>
                 </article>
                 
-                <!-- Card 5 -->
+                <!-- Card 5 - Animals -->
                 <article class="news-card scroll-animate" data-category="animals">
                     <div class="card-img">
                         <div class="img-placeholder">URBAN WILDLIFE</div>
@@ -1098,13 +1099,13 @@
                         <h3 class="card-title">City Foxes Developing Distinct "Accents"</h3>
                         <p class="card-excerpt">Research shows urban foxes communicate differently than their rural counterparts.</p>
                         <div class="card-meta">
-                            <span class="card-date">March 11, 2026</span>
+                            <span class="card-date">January 3, 2026</span>
                             <button class="card-btn" onclick="window.location.href='Animal2.html'">Read More</button>
                         </div>
                     </div>
                 </article>
                 
-                <!-- Card 6 -->
+                <!-- Card 6 - Nature -->
                 <article class="news-card scroll-animate" data-category="nature">
                     <div class="card-img">
                         <div class="img-placeholder">BOTANICAL WONDER</div>
@@ -1114,7 +1115,7 @@
                         <h3 class="card-title">Rare Flower Blooms for First Time in 40 Years</h3>
                         <p class="card-excerpt">The elusive "Midnight Orchid" has flowered at the Royal Botanical Gardens.</p>
                         <div class="card-meta">
-                            <span class="card-date">March 10, 2026</span>
+                            <span class="card-date">January 3, 2026</span>
                             <button class="card-btn" onclick="window.location.href='Nature2.html'">Read More</button>
                         </div>
                     </div>
@@ -1128,7 +1129,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="company-card scroll-animate">
-                    <h3>THE Kachoo</h3>
+                    <h3>The Kachoo</h3>
                     <div class="company-info">
                         <div>
                             <i class="fas fa-envelope"></i>
@@ -1298,4 +1299,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
