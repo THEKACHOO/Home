@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protecting Endangered Species: Our Shared Responsibility | KABOOM!</title>
+    <title>Save Them Before It's Too Late: The Race Against Extinction | KABOOM!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -22,20 +22,20 @@
             --gray-800: #262626;
             --gray-900: #171717;
             
-            /* Nature-inspired color palette */
-            --sun-yellow: #fbbf24;
-            --sun-yellow-light: #fde68a;
-            --sun-yellow-dark: #f59e0b;
-            --forest-green: #16a34a;
-            --forest-green-light: #bbf7d0;
-            --forest-green-dark: #15803d;
-            --earth-brown: #a16207;
-            --earth-brown-light: #fef3c7;
-            --earth-brown-dark: #854d0e;
-            --sky-blue: #0ea5e9;
-            --sky-blue-light: #e0f2fe;
+            /* Forest-inspired color palette (darker greens with teak brown) */
+            --forest-green: #0f6d3e;
+            --forest-green-light: #2d8a5e;
+            --forest-green-dark: #0a4929;
+            --teak-brown: #8b5a2b;
+            --teak-brown-light: #a67c52;
+            --teak-brown-dark: #6b4518;
+            --moss-green: #556b2f;
+            --earth-brown: #5d4037;
+            --sand-beige: #e6d5b8;
+            --sun-yellow: #f0ad4e;
+            --sun-yellow-light: #f8e1b5;
             
-            --accent: var(--earth-brown);
+            --accent: var(--teak-brown);
             --primary: var(--forest-green);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -127,7 +127,7 @@
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, var(--forest-green), var(--earth-brown));
+            background: linear-gradient(135deg, var(--forest-green), var(--teak-brown));
             color: var(--white);
             padding: 6px 15px;
             border-radius: 20px;
@@ -141,8 +141,8 @@
 
         .nav-btn {
             background: transparent;
-            border: 2px solid var(--earth-brown);
-            color: var(--earth-brown);
+            border: 2px solid var(--teak-brown);
+            color: var(--teak-brown);
             padding: 10px 22px;
             border-radius: 30px;
             font-weight: 600;
@@ -164,7 +164,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(161, 98, 7, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(139, 90, 43, 0.1), transparent);
             transition: left 0.7s;
         }
 
@@ -173,17 +173,17 @@
         }
 
         .nav-btn:hover {
-            background: var(--earth-brown);
+            background: var(--teak-brown);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(161, 98, 7, 0.2);
+            box-shadow: 0 6px 25px rgba(139, 90, 43, 0.2);
         }
 
         /* ===== ARTICLE HERO ===== */
         .article-hero-section {
             margin-top: 120px;
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--sun-yellow-light) 0%, var(--forest-green-light) 50%, var(--white) 100%);
+            background: linear-gradient(135deg, var(--sand-beige) 0%, var(--forest-green-light) 50%, var(--white) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -195,7 +195,7 @@
             right: 0;
             width: 30%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(22, 163, 74, 0.05), rgba(251, 191, 36, 0.05));
+            background: linear-gradient(45deg, transparent, rgba(15, 109, 62, 0.05), rgba(139, 90, 43, 0.05));
             z-index: 0;
         }
 
@@ -210,7 +210,7 @@
 
         .article-date {
             font-size: 14px;
-            color: var(--earth-brown);
+            color: var(--teak-brown);
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -226,7 +226,7 @@
             letter-spacing: -1.5px;
             position: relative;
             display: inline-block;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .article-title:after {
@@ -237,13 +237,13 @@
             transform: translateX(-50%);
             width: 120px;
             height: 4px;
-            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            background: linear-gradient(90deg, var(--teak-brown), var(--forest-green));
             border-radius: 2px;
         }
 
         .article-subtitle {
             font-size: clamp(18px, 2vw, 22px);
-            color: var(--earth-brown);
+            color: var(--teak-brown-dark);
             max-width: 700px;
             margin: 0 auto 40px;
             font-weight: 400;
@@ -263,7 +263,7 @@
         .article-image {
             width: 100%;
             height: 500px;
-            background: linear-gradient(45deg, #1a202c, #2d3748);
+            background: linear-gradient(45deg, var(--forest-green-dark), var(--teak-brown-dark));
             border-radius: 20px;
             margin: 60px 0;
             overflow: hidden;
@@ -278,7 +278,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(161, 98, 7, 0.2) 100%);
+            background: linear-gradient(to bottom, transparent 0%, rgba(15, 109, 62, 0.2) 100%);
             z-index: 1;
         }
 
@@ -326,7 +326,7 @@
             font-size: 36px;
             font-weight: 800;
             margin: 80px 0 40px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
             position: relative;
             padding-left: 0;
             padding-bottom: 20px;
@@ -339,7 +339,7 @@
             left: 0;
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            background: linear-gradient(90deg, var(--teak-brown), var(--forest-green));
             border-radius: 2px;
         }
 
@@ -347,20 +347,20 @@
             font-size: 28px;
             font-weight: 700;
             margin: 60px 0 25px;
-            color: var(--forest-green-dark);
+            color: var(--forest-green);
             line-height: 1.3;
         }
 
         .highlight-quote {
-            border-left: 4px solid var(--sun-yellow);
+            border-left: 4px solid var(--teak-brown);
             padding: 30px 40px;
             margin: 60px 0;
             font-style: italic;
             font-size: 24px;
-            color: var(--earth-brown);
+            color: var(--forest-green-dark);
             line-height: 1.5;
             position: relative;
-            background: linear-gradient(135deg, var(--sun-yellow-light), var(--earth-brown-light));
+            background: linear-gradient(135deg, var(--sand-beige), var(--forest-green-light));
             border-radius: 0 20px 20px 0;
         }
 
@@ -370,38 +370,38 @@
             left: 20px;
             top: 10px;
             font-size: 60px;
-            color: var(--sun-yellow);
+            color: var(--teak-brown);
             font-family: Georgia, serif;
         }
 
         .insight-section {
             margin: 80px 0;
             padding: 60px 0;
-            border-top: 1px solid var(--sun-yellow-light);
+            border-top: 1px solid var(--sand-beige);
         }
 
         .interview-note {
-            background: linear-gradient(135deg, var(--sun-yellow-light), var(--forest-green-light));
+            background: linear-gradient(135deg, var(--sand-beige), var(--forest-green-light));
             padding: 30px;
             border-radius: 15px;
             margin: 50px 0;
             border-left: 4px solid var(--forest-green);
             font-size: 18px;
             line-height: 1.7;
-            color: var(--earth-brown);
+            color: var(--forest-green-dark);
         }
 
         .interview-note strong {
-            color: var(--forest-green-dark);
+            color: var(--forest-green);
             font-weight: 700;
         }
 
         .species-spotlight {
-            background: var(--forest-green-light);
+            background: var(--sand-beige);
             padding: 30px;
             border-radius: 15px;
             margin: 40px 0;
-            border: 2px solid var(--forest-green);
+            border: 2px solid var(--teak-brown);
         }
 
         .species-spotlight h4 {
@@ -415,16 +415,16 @@
         }
 
         .species-spotlight h4 i {
-            color: var(--sun-yellow-dark);
+            color: var(--teak-brown);
         }
 
         /* ===== SPEAKER SECTION ===== */
         .speaker-section {
-            background: linear-gradient(135deg, var(--earth-brown-light), var(--sun-yellow-light));
+            background: linear-gradient(135deg, var(--sand-beige), var(--forest-green-light));
             padding: 80px 0;
             margin: 60px 0 0;
-            border-top: 1px solid var(--earth-brown);
-            border-bottom: 1px solid var(--earth-brown);
+            border-top: 1px solid var(--teak-brown);
+            border-bottom: 1px solid var(--teak-brown);
         }
 
         .speaker-section-title {
@@ -432,7 +432,7 @@
             font-weight: 800;
             text-align: center;
             margin-bottom: 50px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .speaker-container {
@@ -452,19 +452,19 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--earth-brown);
+            border: 1px solid var(--teak-brown);
         }
 
         .speaker-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(161, 98, 7, 0.2);
+            box-shadow: 0 20px 40px rgba(15, 109, 62, 0.2);
         }
 
         .speaker-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--earth-brown), var(--forest-green));
+            background: linear-gradient(135deg, var(--teak-brown), var(--forest-green));
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
@@ -487,20 +487,20 @@
             font-size: 24px;
             font-weight: 800;
             margin-bottom: 10px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .speaker-role {
             font-size: 16px;
-            color: var(--earth-brown);
+            color: var(--teak-brown);
             margin-bottom: 20px;
             line-height: 1.4;
         }
 
         .speaker-btn {
             background: transparent;
-            border: 2px solid var(--earth-brown);
-            color: var(--earth-brown);
+            border: 2px solid var(--teak-brown);
+            color: var(--teak-brown);
             padding: 12px 30px;
             border-radius: 30px;
             font-size: 14px;
@@ -594,7 +594,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--earth-brown), var(--forest-green));
+            background: linear-gradient(135deg, var(--teak-brown), var(--forest-green));
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -656,9 +656,9 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background: linear-gradient(135deg, var(--sun-yellow-light), var(--forest-green-light));
+            background: linear-gradient(135deg, var(--sand-beige), var(--forest-green-light));
             padding: 80px 0 40px;
-            border-top: 1px solid var(--earth-brown);
+            border-top: 1px solid var(--teak-brown);
             position: relative;
         }
 
@@ -673,7 +673,7 @@
             background: var(--white);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid var(--earth-brown);
+            border: 1px solid var(--teak-brown);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             animation: float 6s ease-in-out infinite;
         }
@@ -689,7 +689,7 @@
             margin-bottom: 30px;
             position: relative;
             padding-bottom: 15px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .company-card h3:after {
@@ -699,7 +699,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            background: linear-gradient(90deg, var(--teak-brown), var(--forest-green));
             border-radius: 2px;
         }
 
@@ -718,21 +718,21 @@
 
         .company-info i {
             width: 20px;
-            color: var(--earth-brown);
+            color: var(--teak-brown);
             font-size: 18px;
         }
 
         .studio-info {
             margin-top: 30px;
             padding-top: 30px;
-            border-top: 1px solid var(--earth-brown-light);
+            border-top: 1px solid var(--sand-beige);
         }
 
         .studio-info h4 {
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 15px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .studio-info p {
@@ -747,7 +747,7 @@
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
-            color: var(--earth-brown-dark);
+            color: var(--forest-green-dark);
         }
 
         .footer-about h3:after {
@@ -757,7 +757,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--sun-yellow), var(--forest-green));
+            background: linear-gradient(90deg, var(--teak-brown), var(--forest-green));
             border-radius: 2px;
         }
 
@@ -771,8 +771,8 @@
         .footer-bottom {
             text-align: center;
             padding-top: 40px;
-            border-top: 1px solid var(--earth-brown);
-            color: var(--earth-brown);
+            border-top: 1px solid var(--teak-brown);
+            color: var(--teak-brown);
             font-size: 14px;
         }
 
@@ -780,7 +780,7 @@
             max-width: 800px;
             margin: 20px auto 0;
             font-style: italic;
-            color: var(--earth-brown);
+            color: var(--forest-green-dark);
             line-height: 1.6;
         }
 
@@ -939,7 +939,7 @@
             <div class="header-content">
                 <div class="logo-container" onclick="window.location.href='kaboom.html'">
                     <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
-                    <div class="article-category">ANIMALS</div>
+                    <div class="article-category">URGENT CONSERVATION</div>
                 </div>
                 
                 <div class="navigation">
@@ -958,9 +958,9 @@
     <section class="article-hero-section">
         <div class="container">
             <div class="article-hero">
-                <span class="article-date">MAY 15, 2026</span>
-                <h1 class="article-title scroll-animate">Vanishing Voices:<br>Protecting Earth's Endangered Species</h1>
-                <p class="article-subtitle scroll-animate">Exploring the urgent crisis facing our planet's most vulnerable creatures and discovering how collective action can prevent the silent disappearance of irreplaceable biodiversity.</p>
+                <span class="article-date">JUNE 10, 2026</span>
+                <h1 class="article-title scroll-animate">Save Them Before It's Too Late:<br>The Race Against Extinction</h1>
+                <p class="article-subtitle scroll-animate">Time is running out for Earth's most vulnerable creatures. This urgent investigation reveals the critical window we have to prevent irreversible losses and what immediate actions can still make a difference.</p>
             </div>
         </div>
     </section>
@@ -971,147 +971,147 @@
             <div class="article-content-wrapper">
                 <!-- Introduction -->
                 <div class="article-body scroll-animate">
-                    <p>In the grand tapestry of life on Earth, every species represents a unique thread, a story millions of years in the making. Yet today, countless threads are unraveling at an unprecedented rate, as endangered species face threats from habitat loss, climate change, poaching, and human encroachment. The loss of any species represents not just the disappearance of a creature, but the silencing of a unique evolutionary narrative and the erosion of ecosystems that support all life.</p>
+                    <p>Every tick of the clock brings another species closer to the edge of oblivion. We are living through a biological emergency—a rapid unraveling of life's diversity that threatens to permanently alter our planet. The alarming truth is that we have a narrow window to act, perhaps just a decade, to prevent catastrophic losses that will echo through ecosystems for millennia.</p>
                     
                     <div class="interview-note scroll-animate">
-                        <strong>Editor's Note:</strong> This article features insights from Bumi Senandika, a renowned wildlife conservationist whose work bridges traditional ecological knowledge with modern conservation science in protecting Indonesia's most vulnerable species.
+                        <strong>Critical Update:</strong> This urgent report incorporates frontline insights from Bumi Senandika, whose work in Indonesia represents a last-stand effort to save species teetering on the brink of extinction. The situation is more dire than most realize.
                     </div>
                 </div>
 
                 <!-- First Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">ENDANGERED SPECIES</div>
+                        <div class="image-placeholder">THE CLOCK IS TICKING</div>
                         <div class="image-credit">
-                            Visuals by <span>The Kadio Studio</span>
+                            Photographs by <span>Rai (@nayzta)</span>
                         </div>
                     </div>
                     
-                    <h2>The Silent Crisis: Understanding the Sixth Mass Extinction</h2>
+                    <h2>The Point of No Return: Species on the Brink</h2>
                     
-                    <p>Scientists warn that Earth is experiencing its sixth mass extinction event—the first caused by human activity. Current extinction rates are estimated to be 100 to 1,000 times higher than natural background rates, with approximately one million species threatened with extinction in the coming decades.</p>
+                    <p>Scientists have identified over 42,100 species threatened with extinction—an increase of 10% in just five years. Among these, 28% face an immediate threat of disappearing forever. This isn't a distant future scenario; extinction is happening right now, in real time, with irreversible consequences.</p>
                     
                     <div class="highlight-quote scroll-animate">
-                        "Every species lost is like removing a rivet from an airplane. You might lose a few and still fly, but eventually, the whole system collapses. Each creature, no matter how small or seemingly insignificant, plays a role in the delicate balance of life."
+                        "We are not talking about gradual declines anymore. For some species, we are counting down to the last individual. Each month of inaction means another creature gone forever. The question isn't whether we can save them all—it's how many we're willing to lose."
                     </div>
                     
-                    <p>Bumi Senandika emphasizes the interconnectedness of this crisis: "When we lose a species, we're not just losing an animal or plant. We're losing complex relationships that have evolved over millennia. Pollinators support food systems, predators regulate populations, and even the smallest microorganisms contribute to soil health and nutrient cycles."</p>
+                    <p>Bumi Senandika describes the heartbreaking reality: "In my lifetime, I've witnessed species go from common to critically endangered. We're not just losing biodiversity; we're losing evolutionary masterpieces millions of years in the making. Once they're gone, there's no bringing them back."</p>
                     
                     <div class="species-spotlight">
-                        <h4><i class="fas fa-paw"></i> Spotlight: Sumatran Tiger</h4>
-                        <p>Fewer than 400 Sumatran tigers remain in the wild, confined to fragmented forests on the Indonesian island of Sumatra. These magnificent predators face habitat loss from palm oil plantations, poaching for their beautiful pelts and body parts, and human-wildlife conflict as their forest homes shrink.</p>
+                        <h4><i class="fas fa-exclamation-triangle"></i> Critical Alert: Sumatran Rhino</h4>
+                        <p>Fewer than 80 individuals remain, making it one of the rarest mammals on Earth. Isolated in fragmented forests, their population is too small to recover without immediate, intensive intervention. Without dramatic action within the next two years, extinction is virtually guaranteed.</p>
                     </div>
                 </div>
 
                 <!-- Second Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">HABITAT LOSS</div>
+                        <div class="image-placeholder">LAST CHANCE ECOSYSTEMS</div>
                         <div class="image-credit">
-                            Visuals by <span>The Kadio Studio</span>
+                            Photographs by <span>Rai (@nayzta)</span>
                         </div>
                     </div>
                     
-                    <h2>The Disappearing Homes: Habitat Loss and Fragmentation</h2>
+                    <h2>Vanishing Habitats: The Landscapes We're Losing Now</h2>
                     
-                    <p>Habitat destruction represents the single greatest threat to biodiversity worldwide. Forests are cleared for agriculture, wetlands drained for development, oceans polluted and overfished, and grasslands converted to monoculture crops. This loss of habitat is compounded by fragmentation—when once-continuous ecosystems are divided into isolated patches, creating "islands" of habitat surrounded by human-dominated landscapes.</p>
+                    <p>Since 2000, Earth has lost approximately 10% of its wilderness areas—critical habitats that cannot be recovered. Tropical forests, which harbor more than half of Earth's terrestrial species, are disappearing at a rate of 10 million hectares annually. These aren't just trees being cut down; they're entire worlds being erased.</p>
                     
-                    <h3>The Domino Effect of Fragmentation</h3>
+                    <h3>The Fragmentation Tipping Point</h3>
                     
-                    <p>Fragmented habitats create multiple challenges for wildlife. Genetic diversity decreases as populations become isolated, increasing vulnerability to disease and reducing adaptability to environmental changes. Migration routes are disrupted, separating animals from seasonal food sources and breeding grounds. Edge effects—changes in environmental conditions at habitat boundaries—further degrade the quality of remaining habitat.</p>
+                    <p>When habitats become too fragmented, they cross an ecological threshold where they can no longer support viable populations. Species become trapped in green prisons—islands of habitat surrounded by human development. Genetic diversity plummets, disease vulnerability skyrockets, and recovery becomes impossible.</p>
                     
-                    <p>Senandika describes the situation in Indonesia: "Our rainforests, among the most biodiverse on Earth, are being fragmented at alarming rates. Orangutans, elephants, and rhinoceroses that once roamed freely now find themselves trapped in shrinking pockets of forest, increasingly coming into conflict with humans as they search for food and space."</p>
+                    <p>Senandika's urgent warning: "We're watching ecosystems disintegrate before our eyes. In Borneo, forest fragments have become so small that orangutans are literally running out of trees. When the habitat shrinks below a certain size, no conservation measures can save the species within it."</p>
                     
                     <div class="species-spotlight">
-                        <h4><i class="fas fa-tree"></i> Spotlight: Bornean Orangutan</h4>
-                        <p>Over the past 60 years, Bornean orangutan populations have declined by more than 50%, primarily due to habitat loss from logging, palm oil plantations, and mining. These highly intelligent great apes, known as "persons of the forest" in Malay, require large territories of intact forest to survive.</p>
+                        <h4><i class="fas fa-fire"></i> Emergency: Bornean Pygmy Elephant</h4>
+                        <p>With only 1,500 individuals left, these smallest of Asian elephants are losing their forest corridors to palm oil plantations. Their migration routes—essential for survival—are being severed, leading to increased human-elephant conflicts and population collapse.</p>
                     </div>
                 </div>
 
                 <!-- Third Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">WILDLIFE TRADE</div>
+                        <div class="image-placeholder">THE TRAFFICKING CRISIS</div>
                         <div class="image-credit">
-                            Visuals by <span>The Kadio Studio</span>
+                            Photographs by <span>Rai (@nayzta)</span>
                         </div>
                     </div>
                     
-                    <h2>The Illegal Wildlife Trade: A Multi-Billion Dollar Crisis</h2>
+                    <h2>Illegal Trade: The Multi-Billion Dollar Execution</h2>
                     
-                    <p>The illegal wildlife trade ranks among the world's most lucrative criminal enterprises, valued at an estimated $7-23 billion annually. This trade threatens thousands of species, from iconic elephants and rhinos to lesser-known reptiles, birds, and plants. Driven by demand for exotic pets, traditional medicine, luxury goods, and trophies, this trade operates through sophisticated international networks.</p>
+                    <p>The illegal wildlife trade has evolved into a sophisticated, militarized operation that outguns and outspends conservation efforts in many regions. With profits rivaling drug and arms trafficking, criminal networks are systematically executing species for short-term gain.</p>
                     
-                    <h3>Beyond Iconic Species: The Hidden Victims</h3>
+                    <h3>From Poaching to Extinction: The Direct Line</h3>
                     
-                    <p>While attention often focuses on charismatic megafauna like elephants and tigers, countless less-celebrated species face equal peril. Pangolins—the world's most trafficked mammal—are hunted to near extinction for their scales and meat. Tropical birds are captured for the pet trade, with mortality rates during capture and transport reaching 80%. Freshwater turtles are harvested by the ton for food and traditional medicine markets.</p>
+                    <p>For species with small populations, even low levels of poaching can trigger extinction. A single poacher can eliminate an entire population of slow-reproducing animals in months. The mathematics are brutal: when deaths exceed births, extinction is inevitable.</p>
                     
-                    <p>Senandika notes, "The wildlife trade isn't just about poaching in remote forests. It's connected to global economic systems, corruption, and consumer demand thousands of miles away. Addressing it requires tackling the entire supply chain, from local hunters to international smugglers to end consumers."</p>
+                    <p>Senandika reveals the grim arithmetic: "For Javan rhinos, we're protecting 70 individuals. If we lose just 5 to poaching in a year, that's 7% of the population gone. They reproduce too slowly to recover from such losses. We're literally guarding each individual around the clock."</p>
                     
                     <div class="species-spotlight">
-                        <h4><i class="fas fa-shield-alt"></i> Spotlight: Javan Rhino</h4>
-                        <p>With only around 70 individuals remaining in Ujung Kulon National Park, the Javan rhinoceros is one of the rarest large mammals on Earth. Once widespread across Southeast Asia, this species was hunted to near extinction for its horn, which is valued in traditional medicine despite having no proven medicinal properties.</p>
+                        <h4><i class="fas fa-skull-crossbones"></i> Immediate Threat: Pangolins</h4>
+                        <p>The world's most trafficked mammal, with over one million taken from the wild in the past decade. All eight pangolin species are now threatened with extinction. Despite international protection, trafficking continues at industrial scale, pushing them toward oblivion.</p>
                     </div>
                 </div>
 
                 <!-- Fourth Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">CONSERVATION SUCCESS</div>
+                        <div class="image-placeholder">LAST STAND INTERVENTIONS</div>
                         <div class="image-credit">
-                            Visuals by <span>The Kadio Studio</span>
+                            Photographs by <span>Rai (@nayzta)</span>
                         </div>
                     </div>
                     
-                    <h2>Stories of Hope: Successful Conservation Models</h2>
+                    <h2>Emergency Measures: What's Working Against Time</h2>
                     
-                    <p>Amid the challenges, inspiring conservation success stories demonstrate that species recovery is possible with dedicated effort, adequate funding, and community involvement. These stories provide valuable models for protecting other endangered species and restoring damaged ecosystems.</p>
+                    <p>While the situation is critical, targeted interventions have proven that even species on the brink can be pulled back. These emergency conservation measures require unprecedented resources, political will, and scientific innovation—but they demonstrate that extinction is not inevitable.</p>
                     
-                    <h3>Community-Based Conservation: Local Stewards, Global Impact</h3>
+                    <h3>Intensive Protection Zones: The Species ICU</h3>
                     
-                    <p>Increasingly, conservationists recognize that lasting protection requires involving local communities as partners rather than treating them as obstacles. Community-based conservation programs provide alternative livelihoods, education, and shared benefits from protected areas, creating incentives for long-term stewardship.</p>
+                    <p>For critically endangered species, creating intensively protected zones with 24/7 monitoring has become essential. These are essentially intensive care units for ecosystems, where every individual is known, protected, and managed. Rangers become doctors, and the forest becomes a hospital.</p>
                     
-                    <p>Senandika emphasizes this approach: "True conservation cannot happen without the people who live alongside wildlife. When communities benefit from protecting species—through ecotourism, sustainable harvesting, or compensation for coexistence—they become the most effective guardians of biodiversity."</p>
+                    <p>Senandika explains the approach: "We've established 'Species ICUs' where protection is absolute. No human access except conservation staff. Camera traps monitor every movement. Rangers patrol in overlapping shifts. It's expensive and labor-intensive, but it's working where we've implemented it."</p>
                     
-                    <h3>Technological Innovations in Conservation</h3>
+                    <h3>Emergency Breeding and Translocation</h3>
                     
-                    <p>Modern technology offers powerful new tools for protecting endangered species. Camera traps monitor elusive animals without disturbance. Drones survey large areas and track poaching activity. Genetic analysis helps manage captive breeding programs and combat wildlife trafficking. Satellite imagery tracks habitat changes in real-time.</p>
+                    <p>When wild populations become too small, captive breeding and translocation become last-resort options. These programs are complex and risky but have prevented several extinctions. The key is acting before populations fall below the point of no return.</p>
                     
                     <div class="species-spotlight">
-                        <h4><i class="fas fa-feather-alt"></i> Spotlight: Bali Starling</h4>
-                        <p>Once reduced to just 15 individuals in the wild due to trapping for the pet trade, the Bali starling has rebounded through intensive conservation efforts. A combination of captive breeding, habitat protection, and strict anti-poaching measures has increased wild populations to over 100 birds, demonstrating that even critically endangered species can recover with sustained effort.</p>
+                        <h4><i class="fas fa-heartbeat"></i> Success Under Duress: Bali Starling</h4>
+                        <p>From just 15 wild individuals to over 100 through emergency captive breeding and release. This required decades of continuous effort, millions in funding, and overcoming multiple setbacks. It proves recovery is possible—but only with sustained, intensive intervention.</p>
                     </div>
                 </div>
 
                 <!-- Fifth Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <div class="image-placeholder">INDIVIDUAL ACTION</div>
+                        <div class="image-placeholder">TIME FOR ACTION</div>
                         <div class="image-credit">
-                            Visuals by <span>The Kadio Studio</span>
+                            Photographs by <span>Rai (@nayzta)</span>
                         </div>
                     </div>
                     
-                    <h2>What You Can Do: Individual Actions with Collective Impact</h2>
+                    <h2>Your Role in the Race: Immediate Actions That Matter</h2>
                     
-                    <p>While global challenges require systemic solutions, individual choices create powerful ripples of change. Every person can contribute to protecting endangered species through informed decisions and advocacy.</p>
+                    <p>The scale of the crisis can feel overwhelming, but individual actions create collective power. The next five years will determine which species survive into the next century. Every choice matters; every voice adds pressure for change.</p>
                     
                     <div class="highlight-quote scroll-animate">
-                        "Conservation isn't just the work of scientists in remote field stations. It happens in our daily choices—what we buy, what we eat, how we travel, and what voices we amplify. Each of us holds a piece of the solution."
+                        "We are the generation that will be remembered either for watching extinction happen or for stopping it. History will judge us not by our intentions but by our actions in these critical years. The time for gradual change has passed—we need transformative action now."
                     </div>
                     
-                    <h3>Conscious Consumer Choices</h3>
+                    <h3>Emergency-Level Consumer Choices</h3>
                     
-                    <p>Support sustainable products certified by organizations like the Forest Stewardship Council (FSC) and Marine Stewardship Council (MSC). Avoid products containing palm oil from unsustainable sources, which drives deforestation in critical wildlife habitats. Choose cruelty-free cosmetics and avoid products containing wildlife-derived ingredients.</p>
+                    <p>Eliminate products driving habitat destruction: palm oil from non-sustainable sources, unsustainably harvested timber, and agricultural products from deforested areas. Support companies with transparent, verified supply chains. Your purchasing decisions directly fund either destruction or protection.</p>
                     
-                    <h3>Responsible Tourism</h3>
+                    <h3>Political Pressure for Protection</h3>
                     
-                    <p>When visiting natural areas, follow guidelines to minimize impact on wildlife. Choose ecotourism operators that prioritize animal welfare and contribute to conservation. Never purchase souvenirs made from endangered species products like ivory, tortoiseshell, or coral.</p>
+                    <p>Advocate for stronger wildlife laws and enforcement. Demand that your government increases funding for conservation and honors international agreements. Support politicians who prioritize biodiversity protection. Legal frameworks determine whether species live or die.</p>
                     
-                    <h3>Advocacy and Education</h3>
+                    <h3>Direct Support for Frontline Conservation</h3>
                     
-                    <p>Support conservation organizations through donations, volunteering, or spreading awareness. Advocate for stronger wildlife protection laws and enforcement. Educate others about the importance of biodiversity and the threats facing endangered species.</p>
+                    <p>Donate to organizations with proven track records in species recovery. Consider "adopting" an endangered animal through reputable conservation groups. Volunteer your skills—from technology to education to fundraising. Frontline conservationists are under-resourced and need support now.</p>
                     
-                    <p>As Senandika concludes, "Protecting endangered species is about more than saving individual animals. It's about preserving the intricate web of life that sustains us all. Each species lost diminishes our world in ways we may not immediately see but will certainly feel. The time for action is now—before more voices fall silent forever."</p>
+                    <p>Senandika's final plea: "I've looked into the eyes of creatures that may not exist in five years. I've held animals that represent the last of their kind. This isn't abstract—it's happening right now, and we all have a role in the outcome. We can be the generation that saved life on Earth, but only if we act with the urgency this crisis demands. The clock is ticking, and for some species, midnight is approaching."</p>
                 </div>
             </div>
         </div>
@@ -1126,7 +1126,7 @@
                 <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
                     <div class="speaker-avatar">BS</div>
                     <h3 class="speaker-name">Bumi Senandika</h3>
-                    <p class="speaker-role">Wildlife Conservationist<br>Indigenous Ecology Advocate</p>
+                    <p class="speaker-role">Emergency Conservation Specialist<br>Last-Chance Species Protector</p>
                     <button class="speaker-btn">
                         <i class="fas fa-user-circle"></i> View Full Profile
                     </button>
@@ -1147,36 +1147,38 @@
                 <div class="bio-avatar">BS</div>
                 <div>
                     <h2 class="bio-title">Bumi Senandika</h2>
-                    <p class="bio-subtitle">Wildlife Conservationist • Indigenous Ecology Advocate<br>Protector of Indonesia's Endangered Species</p>
+                    <p class="bio-subtitle">Emergency Conservation Specialist • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
                 </div>
             </div>
             
             <div class="bio-content">
-                <p>Bumi Senandika is a renowned wildlife conservationist dedicated to protecting Indonesia's most vulnerable species through an approach that bridges traditional ecological knowledge with modern conservation science. With over two decades of experience, Senandika has become a leading voice for inclusive conservation that respects both biodiversity and human communities.</p>
+                <p>Bumi Senandika is a frontline conservationist specializing in emergency interventions for species at immediate risk of extinction. With over twenty-five years of experience, Senandika operates at the intersection of crisis ecology, indigenous wisdom, and urgent action, coordinating what many call "last-chance" conservation efforts for Indonesia's most critically endangered creatures.</p>
                 
-                <h3>Philosophy and Approach</h3>
+                <h3>Crisis Conservation Philosophy</h3>
                 
-                <p>Senandika believes that effective conservation must recognize the deep interconnection between cultural heritage and biological diversity. "In many indigenous traditions, animals are not simply resources to be managed but relatives to be respected," Senandika explains. This philosophy informs a conservation approach that integrates scientific research with traditional ecological knowledge passed down through generations.</p>
+                <p>"When a species drops below 100 individuals, conservation changes from management to emergency medicine," Senandika explains. This philosophy has shaped an approach that treats ecological collapse as a medical emergency, requiring triage, intensive care, and constant monitoring. Every decision is measured against one question: Will this action increase survival odds in the next breeding season?</p>
                 
-                <p>Senandika's work emphasizes that protecting endangered species requires addressing the needs and rights of local communities who share their landscapes with wildlife. By developing conservation programs that provide tangible benefits to these communities—through ecotourism, sustainable livelihoods, and shared governance—Senandika has helped reduce human-wildlife conflict and build local support for conservation initiatives.</p>
+                <p>Senandika's work recognizes that traditional conservation timelines are luxuries endangered species can no longer afford. "We operate on extinction timelines—knowing exactly how many breeding seasons remain if current trends continue. This changes everything from funding requests to protection strategies."</p>
                 
-                <h3>Key Conservation Projects</h3>
+                <h3>Emergency Conservation Projects</h3>
                 
-                <p>Among Senandika's most significant contributions is the development of community-led monitoring programs for critically endangered species. These programs train local community members as wildlife monitors, providing them with employment while creating a robust network of eyes and ears across vast protected areas. This approach has proven particularly effective in monitoring populations of Sumatran tigers, Javan rhinos, and orangutans.</p>
+                <p>Senandika currently coordinates emergency protection for seven critically endangered species with fewer than 100 wild individuals remaining. These include the Sumatran rhino (fewer than 80), Javan rhino (approximately 70), and several endemic bird species with populations under 50.</p>
                 
-                <p>Senandika has also pioneered innovative human-wildlife coexistence strategies, developing early warning systems to prevent conflicts between elephants and farmers, creating wildlife corridors to reconnect fragmented habitats, and establishing compensation schemes for farmers who lose crops to wildlife.</p>
+                <p>The approach involves creating "Intensive Protection Zones"—heavily guarded areas where human access is completely restricted except for conservation staff. These zones function as ecological intensive care units, with round-the-clock monitoring, individualized animal tracking, and immediate response capabilities for threats.</p>
                 
-                <h3>Education and Background</h3>
+                <h3>Emergency Response Background</h3>
                 
-                <p>Senandika's conservation journey began with a childhood spent in the forests of West Kalimantan, where traditional practices emphasized living in harmony with nature. This early education was later complemented by formal training in conservation biology and ecological management. This unique combination of traditional wisdom and scientific knowledge has become the hallmark of Senandika's approach.</p>
+                <p>Senandika's conservation career began in wildfire response during the catastrophic 1997 Indonesian forest fires that destroyed millions of hectares of habitat. This baptism by fire shaped an understanding of conservation as emergency response rather than long-term planning. Subsequent training in crisis management and emergency medicine provided tools for treating ecological emergencies with medical precision.</p>
                 
-                <p>Senandika frequently collaborates with international conservation organizations while maintaining a strong commitment to ensuring that conservation efforts are led by and benefit local communities. This balanced approach has earned recognition from both scientific institutions and indigenous communities.</p>
+                <p>This background proved invaluable when coordinating the emergency evacuation of orangutans during palm oil plantation clearings and establishing rapid-response teams for human-wildlife conflicts that threaten both animals and people.</p>
                 
-                <h3>Vision for the Future</h3>
+                <h3>The Race Against Time</h3>
                 
-                <p>Looking forward, Senandika envisions a conservation model where protected areas are not isolated islands but connected landscapes where wildlife can move freely, and where local communities are empowered as stewards of biodiversity. "The future of conservation lies in recognizing that humans are part of nature, not separate from it," Senandika asserts. "When we protect wildlife, we're also protecting the ecological systems that sustain us all."</p>
+                <p>Looking at the immediate future, Senandika focuses on what can be achieved in the next five years—the critical window for many species. "For some animals, 2030 will be either a milestone of recovery or an epitaph. We're not planning decades ahead; we're fighting for the next breeding season, the next monsoon, the next year of survival."</p>
                 
-                <p>Through writing, speaking, and on-the-ground conservation work, Senandika continues to advocate for a more inclusive and effective approach to protecting endangered species—one that honors both scientific understanding and traditional wisdom in the shared mission of preserving Earth's biological heritage.</p>
+                <p>Through emergency fundraising, international coalition building, and unprecedented cooperation between government, military, and indigenous communities, Senandika continues what many consider the most urgent conservation work on the planet: preventing extinction in real time, one species at a time.</p>
+                
+                <p>As Senandika states plainly: "I don't have the luxury of optimism or pessimism. I have a list of species and a countdown clock. My job is to add time to that clock, day by day, until we can stabilize populations. It's emergency medicine for Earth's dying creatures, and we're the last responders."</p>
                 
                 <div class="bio-social">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1193,7 +1195,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="company-card scroll-animate">
-                    <h3>THE Kachoo</h3>
+                    <h3>The Kachoo</h3>
                     <div class="company-info">
                         <div>
                             <i class="fas fa-envelope"></i>
@@ -1210,22 +1212,23 @@
                     </div>
                     
                     <div class="studio-info">
-                        <h4>Visual Production</h4>
-                        <p>All visual content for this article was produced by <strong>The Kadio Studio</strong>, the visual storytelling division of The Kachoo. Specializing in wildlife photography and conservation journalism that captures the beauty and urgency of protecting endangered species.</p>
+                        <h4>Visual Documentation</h4>
+                        <p>All photographs in this urgent report were captured by <strong>Rai (@nayzta)</strong>, an award-winning conservation photographer specializing in documenting species at immediate risk of extinction. Rai's work provides visual evidence of both the crisis and the conservation efforts fighting against time.</p>
+                        <p><strong>Instagram:</strong> @nayzta | <strong>Website:</strong> raiconservationphoto.org</p>
                     </div>
                 </div>
                 
                 <div class="footer-about scroll-animate">
-                    <h3>About This Article</h3>
-                    <p>This feature is part of KABOOM!'s "Endangered Species" series, exploring the urgent crisis facing Earth's most vulnerable creatures and the innovative solutions being developed to protect them. Through scientific research, on-the-ground reporting, and powerful visual storytelling, we examine what it will take to preserve biodiversity for future generations.</p>
-                    <p>Our mission is to move beyond simple awareness to showcase practical conservation strategies, inspiring success stories, and meaningful actions everyone can take. We believe that every species has intrinsic value and that protecting biodiversity is essential for a healthy planet.</p>
-                    <p>This article incorporates insights from Bumi Senandika and examines both the challenges facing endangered species and the hopeful pathways toward their protection and recovery.</p>
+                    <h3>About This Emergency Report</h3>
+                    <p>This is not a real conservation article, it's an emergency dispatch from the frontlines of extinction. Part of KABOOM!'s "Animals" series, this report documents species with fewer than five years to recover before crossing the point of no return. We combine urgent scientific data, frontline reporting, and crisis photography to convey the immediacy of the situation.</p>
+                    <p>Our mission is to move beyond awareness to mobilization. We document not just what we're losing, but exactly what needs to happen—and how quickly—to prevent irreversible losses. This report incorporates emergency assessments from Bumi Senandika and visual documentation from Rai, providing a real-time picture of the extinction crisis.</p>
+                    <p><strong>Publication Note:</strong> This content was accelerated for urgent publication due to the time-sensitive nature of the crisis documented.</p>
                 </div>
             </div>
             
             <div class="footer-bottom scroll-animate">
                 <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
-                <p class="disclaimer">All content on this site is for educational and awareness purposes. Conservation data and species information are based on current scientific research from organizations including IUCN, WWF, and Conservation International. Visual content produced by The Kadio Studio.</p>
+                <p class="disclaimer">This is an emergency conservation report. All data reflects the most current extinction risk assessments from IUCN, Conservation International, and frontline conservation organizations. Time-sensitive information verified as of June 2026. Photographic documentation by Rai (@nayzta).</p>
             </div>
         </div>
     </footer>
@@ -1337,4 +1340,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
