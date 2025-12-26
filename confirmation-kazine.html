@@ -588,9 +588,16 @@
         });
         
         function findOrderData() {
-            console.log('🔍 Looking for KAZINE order data...');
+            console.log('🔍 Looking for KAZINE order data in localStorage...');
             
-            // Priority 1: Check localStorage for kazinePaymentData
+            // Debug: Show all localStorage items
+            console.log('📊 All localStorage items:');
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                console.log(`${key}:`, localStorage.getItem(key));
+            }
+            
+            // Priority 1: Check kazinePaymentData
             const paymentData = localStorage.getItem('kazinePaymentData');
             if (paymentData) {
                 try {
@@ -630,6 +637,8 @@
                 return;
             }
             
+            console.log('🔄 Processing order data:', orderData);
+            
             // ✅ NORMALIZE DATA STRUCTURE FOR SPREADSHEET
             normalizeOrderData();
             
@@ -648,26 +657,18 @@
         }
         
         function normalizeOrderData() {
-            console.log('🔄 Normalizing order data...', orderData);
-            
             // Ensure all required structures exist
             if (!orderData.customer) orderData.customer = {};
             if (!orderData.items) orderData.items = [];
             if (!orderData.payment) orderData.payment = {};
             
-            // ✅ MAP FIELD NAMES FROM DASH TO CAMELCASE
-            // This is CRITICAL for spreadsheet compatibility
-            
-            // Map from payment page field names (with dash) to standardized names
+            // ✅ MAP FIELD NAMES FROM DASH TO CAMELCASE FOR SPREADSHEET
             const fieldMappings = [
-                // Customer info mapping
                 { from: 'customer-name', to: 'customerName' },
                 { from: 'customer-email', to: 'customerEmail' },
                 { from: 'customer-twitter', to: 'customerTwitter' },
                 { from: 'customer-address', to: 'customerAddress' },
                 { from: 'other-request', to: 'otherRequest' },
-                
-                // Payment info mapping
                 { from: 'payment-method', to: 'paymentMethod' },
                 { from: 'order-number', to: 'orderNumber' }
             ];
@@ -676,11 +677,10 @@
             fieldMappings.forEach(mapping => {
                 if (orderData[mapping.from] !== undefined) {
                     orderData[mapping.to] = orderData[mapping.from];
-                    orderData.customer[mapping.to.replace('customer', '').toLowerCase()] = orderData[mapping.from];
                 }
             });
             
-            // Ensure all spreadsheet fields exist with defaults
+            // Ensure all required fields exist with defaults
             orderData.customerName = orderData.customerName || orderData['customer-name'] || 'Customer';
             orderData.customerEmail = orderData.customerEmail || orderData['customer-email'] || 'No email provided';
             orderData.customerTwitter = orderData.customerTwitter || orderData['customer-twitter'] || '';
@@ -695,7 +695,7 @@
             orderData.tax = orderData.tax || orderData['tax'] || 0;
             orderData.total = orderData.total || orderData['total'] || 0;
             
-            // Ensure items array is properly structured
+            // Ensure items is an array
             if (!Array.isArray(orderData.items)) {
                 orderData.items = [];
             }
@@ -730,12 +730,14 @@
             let itemsHTML = '';
             
             if (orderData.items && orderData.items.length > 0) {
+                console.log(`📦 Displaying ${orderData.items.length} items`);
+                
                 orderData.items.forEach((item, index) => {
-                    const name = item.title || item.name || `Item ${index + 1}`;
-                    const size = item.size || '-';
-                    const color = item.color || '-';
-                    const price = parseFloat(item.price) || 0;
-                    const quantity = parseInt(item.quantity) || 1;
+                    const name = item.title || item.name || item.product || `Item ${index + 1}`;
+                    const size = item.size || item.ukuran || '-';
+                    const color = item.color || item.warna || '-';
+                    const price = parseFloat(item.price || item.harga || item.totalPrice || 0);
+                    const quantity = parseInt(item.quantity || item.qty || 1);
                     const total = price * quantity;
                     
                     itemsHTML += `
