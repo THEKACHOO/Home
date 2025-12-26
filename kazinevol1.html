@@ -354,29 +354,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        .embed-instructions {
-            background: var(--fresh-accent);
-            padding: 15px;
-            text-align: center;
-            border-top: 2px solid var(--vibrant-primary);
-        }
-
-        .embed-instructions p {
-            color: var(--deep-accent);
-            font-size: 14px;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .embed-instructions code {
-            background: var(--deep-accent);
-            color: var(--fresh-accent);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            margin: 0 5px;
-        }
-
         .view-full-btn {
             display: block;
             width: 250px;
@@ -892,14 +869,9 @@
                     <!-- Loading placeholder -->
                     <div class="loading-container" id="loadingContainer">
                         <i class="fas fa-spinner fa-spin loading-spinner"></i>
-                        <h3>Ready to embed Heyzine Flipbook</h3>
-                        <p>Add your Heyzine embed code below to display the flipbook</p>
+                        <h3>Loading Heyzine Flipbook...</h3>
+                        <p>Please wait while we load the interactive magazine</p>
                     </div>
-                </div>
-                
-                <!-- Instructions for embedding -->
-                <div class="embed-instructions">
-                    <p>📌 <strong>To embed Heyzine:</strong> Replace the code in <code>loadHeyzine()</code> function with your Heyzine embed iframe code</p>
                 </div>
             </div>
             
@@ -1134,69 +1106,63 @@
     const heyzineFrame = document.getElementById('heyzineFrame');
     const loadingContainer = document.getElementById('loadingContainer');
     
+    // Link Heyzine yang Anda berikan
+    const HEYZINE_URL = 'https://heyzine.com/flip-book/5f38f48e6d.html';
+    
     function loadHeyzine() {
         // Tampilkan loading
         loadingContainer.style.display = 'flex';
         heyzineFrame.innerHTML = '';
         heyzineFrame.appendChild(loadingContainer);
         
-        // ============================================
-        // LANGKAH 1: Dapatkan embed code dari Heyzine
-        // ============================================
-        // 1. Buka publikasi Heyzine Anda di heyzine.com
-        // 2. Klik tombol "Share" atau "Embed"
-        // 3. Pilih opsi "Embed" atau "Get embed code"
-        // 4. Copy kode iframe yang diberikan
-        
-        // ============================================
-        // LANGKAH 2: Ganti kode di bawah ini dengan embed code dari Heyzine
-        // ============================================
-        // Contoh: Kode di bawah ini adalah placeholder
-        // GANTI kode di dalam setTimeout() dengan embed code asli dari Heyzine
-        
+        // Buat iframe untuk embed Heyzine
         setTimeout(() => {
             // Sembunyikan loading
             loadingContainer.style.display = 'none';
             
-            // ============================================
-            // TEMPATKAN EMBED CODE HEYZINE DISINI
-            // ============================================
-            // Contoh embed code Heyzine (ganti dengan yang asli):
-            /*
-            <iframe 
-                src="https://heyzine.com/flip-book/xxxxxxx" 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                scrolling="no" 
-                allowfullscreen>
-            </iframe>
-            */
+            // Buat iframe untuk Heyzine
+            const iframe = document.createElement('iframe');
+            iframe.className = 'heyzine-iframe';
+            iframe.src = HEYZINE_URL;
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('scrolling', 'no');
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('allow', 'autoplay; fullscreen');
             
-            // Untuk sekarang, tampilkan pesan placeholder
-            const placeholderHTML = `
-                <div style="text-align: center; padding: 40px; background: var(--light-gray); border-radius: 10px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <i class="fas fa-book" style="font-size: 60px; color: var(--vibrant-primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--deep-accent); margin-bottom: 15px;">Heyzine Flipbook Ready to Embed</h3>
-                    <p style="color: var(--rich-brown); max-width: 600px; margin-bottom: 25px; font-size: 16px;">
-                        To display your Heyzine flipbook here, replace the code in the <strong>loadHeyzine()</strong> function with your actual Heyzine embed iframe code.
-                    </p>
-                    <div style="background: var(--fresh-accent); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: left; width: 90%; max-width: 500px;">
-                        <h4 style="color: var(--deep-accent); margin-bottom: 10px;"><i class="fas fa-code"></i> How to get your Heyzine embed code:</h4>
-                        <ol style="color: var(--rich-brown); padding-left: 20px; margin: 0;">
-                            <li>Go to your Heyzine publication</li>
-                            <li>Click the "Share" button</li>
-                            <li>Select "Embed" option</li>
-                            <li>Copy the iframe code</li>
-                            <li>Paste it in the <code>loadHeyzine()</code> function</li>
-                        </ol>
+            // Handle loading state
+            iframe.onload = () => {
+                // Tambahkan animasi setelah load
+                iframe.style.opacity = '0';
+                iframe.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    iframe.style.transition = 'all 0.5s ease';
+                    iframe.style.opacity = '1';
+                    iframe.style.transform = 'scale(1)';
+                }, 100);
+            };
+            
+            iframe.onerror = () => {
+                // Jika error, tampilkan pesan
+                heyzineFrame.innerHTML = `
+                    <div class="loading-container">
+                        <i class="fas fa-exclamation-triangle loading-spinner"></i>
+                        <h3>Failed to load Heyzine Flipbook</h3>
+                        <p>Please check your internet connection or try refreshing the page.</p>
+                        <p style="margin-top: 20px;">
+                            <a href="${HEYZINE_URL}" target="_blank" style="color: var(--vibrant-primary); text-decoration: underline;">
+                                Open Heyzine in new tab
+                            </a>
+                        </p>
                     </div>
-                </div>
-            `;
+                `;
+            };
             
-            heyzineFrame.innerHTML = placeholderHTML;
+            // Kosongkan frame dan tambahkan iframe
+            heyzineFrame.innerHTML = '';
+            heyzineFrame.appendChild(iframe);
             
-        }, 1000); // Delay untuk simulasi loading
+        }, 1500); // Delay untuk simulasi loading
     }
     
     // ============================================
@@ -1305,6 +1271,16 @@
             heroSection.style.backgroundPosition = `center ${rate}px`;
         }
     });
+    
+    // Fullscreen functionality untuk Heyzine iframe
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+    
+    function handleFullscreenChange() {
+        // Fungsi ini bisa digunakan jika ingin menambahkan kontrol fullscreen
+        // Saat ini Heyzine sudah punya kontrol fullscreen sendiri
+    }
     </script>
 </body>
 </html>
