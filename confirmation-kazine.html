@@ -40,13 +40,12 @@
             border: 1px solid var(--light-gray);
         }
         
-        /* Header - Hitam Putih */
+        /* Header */
         header {
             background: var(--black);
             padding: 40px 20px;
             text-align: center;
             color: var(--white);
-            position: relative;
         }
         
         .logo-container {
@@ -56,7 +55,7 @@
         .logo-img {
             max-width: 180px;
             height: auto;
-            filter: brightness(0) invert(1); /* Putih */
+            filter: brightness(0) invert(1);
         }
         
         .tagline {
@@ -66,7 +65,7 @@
             letter-spacing: 1px;
         }
         
-        /* Receipt Section */
+        /* Main Content */
         .receipt-card {
             padding: 40px 30px;
         }
@@ -92,7 +91,6 @@
             font-size: 1.2rem;
         }
         
-        /* Payment Received Badge */
         .payment-received {
             display: inline-flex;
             align-items: center;
@@ -105,7 +103,7 @@
             margin: 15px 0;
         }
         
-        /* Order Info Grid */
+        /* Order Info */
         .order-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -169,7 +167,7 @@
             background: #fafafa;
         }
         
-        /* Other Request Box */
+        /* Other Request */
         .request-box {
             margin: 30px 0;
             padding: 20px;
@@ -212,10 +210,6 @@
             border-bottom: 1px solid #e5e7eb;
         }
         
-        .summary-row:last-child {
-            border-bottom: none;
-        }
-        
         .summary-row.total {
             font-size: 1.4rem;
             font-weight: 700;
@@ -239,12 +233,6 @@
             margin-bottom: 15px;
             font-size: 1.8rem;
             font-weight: 600;
-        }
-        
-        .final-message p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.6;
         }
         
         /* Buttons */
@@ -317,14 +305,6 @@
             display: none;
         }
         
-        .spreadsheet-info h4 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #065f46;
-            margin-bottom: 10px;
-        }
-        
         /* Loading */
         .loading {
             text-align: center;
@@ -353,13 +333,6 @@
             background: var(--black);
             color: var(--white);
             margin-top: 40px;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
         }
         
         /* Error State */
@@ -407,15 +380,8 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            
-            .thank-you-section {
-                background: none !important;
-                border: none !important;
-                padding: 10px 0 !important;
-            }
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 border-radius: 0;
@@ -438,13 +404,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header dengan tema Hitam Putih -->
+        <!-- Header -->
         <header>
             <div class="logo-container">
-                <!-- Logo KAZINE - Ganti src dengan path logo Anda -->
-                <img src="KAZINE.png" alt="KAZINE" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'font-size:2.5rem;font-weight:bold;letter-spacing:3px;\'>KAZINE</div>'">
+                <img src="KAZINE.png" alt="KAZINE" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\"font-size:2.5rem;font-weight:bold;letter-spacing:3px;color:white;\">KAZINE</div>'">
             </div>
-            <p class="tagline">Premium Fashion Store</p>
+            <p class="tagline">Thank you for your purchase!</p>
         </header>
         
         <!-- Loading State -->
@@ -607,7 +572,7 @@
                     <strong>LocalStorage Keys Found:</strong> <span id="debugKeys">None</span>
                 </p>
                 <p style="color: var(--gray); font-size: 0.9rem;">
-                    <strong>Current URL Parameters:</strong> <span id="debugParams">None</span>
+                    <strong>Current URL:</strong> <span id="debugURL">Loading...</span>
                 </p>
                 <button onclick="checkLocalStorage()" style="margin-top: 10px; padding: 8px 16px; background: var(--gray); color: white; border: none; border-radius: 4px; cursor: pointer;">
                     Check Data Manually
@@ -617,8 +582,8 @@
         
         <!-- Footer -->
         <footer>
-            <div class="footer-logo">KAZINE</div>
-            <p>Premium Fashion & Lifestyle Store</p>
+            <div style="font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">KAZINE</div>
+            <p>Premium Fashion Store</p>
             <p style="opacity: 0.8; margin-top: 10px; font-size: 0.9rem;">
                 This is your official payment receipt. Please keep it for your records.
             </p>
@@ -627,7 +592,7 @@
 
     <script>
         // =================================================================
-        // 🔴 PENTING: GANTI URL INI DENGAN GOOGLE SCRIPT URL ANDA
+        // ✅ PASTI BENAR: URL GOOGLE SCRIPT KAZINE
         // =================================================================
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylpHFSoVae91YvLm4ACbdIlpQFW2LerPqGIx2mQubrMn-l6qVFeMRjfjx-L0N9zm_V6A/exec';
         // =================================================================
@@ -635,152 +600,169 @@
         let orderData = null;
         
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Confirmation page loaded');
-            searchOrderData();
+            console.log('🚀 KAZINE Confirmation Page Loaded');
+            loadOrderData();
         });
         
-        function searchOrderData() {
-            console.log('🔍 Searching for order data...');
+        function loadOrderData() {
+            console.log('🔍 Searching for KAZINE order data...');
             
-            // Debug: Tampilkan semua localStorage
-            const debugKeys = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                debugKeys.push(localStorage.key(i));
-            }
-            document.getElementById('debugKeys').textContent = debugKeys.join(', ') || 'No keys found';
+            // Tampilkan URL saat ini untuk debug
+            document.getElementById('debugURL').textContent = window.location.href;
             
-            // Debug: Tampilkan URL parameters
+            // Priority 1: Check for data in URL parameters (if redirected from payment)
             const urlParams = new URLSearchParams(window.location.search);
-            const params = [];
-            for (const [key, value] of urlParams.entries()) {
-                params.push(`${key}=${value}`);
-            }
-            document.getElementById('debugParams').textContent = params.join(', ') || 'No parameters';
+            const orderParam = urlParams.get('order');
+            const dataParam = urlParams.get('data');
             
-            // Priority 1: URL Parameters (jika ada)
-            const orderDataParam = urlParams.get('orderData');
-            if (orderDataParam) {
+            if (orderParam) {
                 try {
-                    orderData = JSON.parse(decodeURIComponent(orderDataParam));
-                    console.log('✅ Found data in URL parameters');
+                    orderData = JSON.parse(decodeURIComponent(orderParam));
+                    console.log('✅ Found order data in URL parameter');
                     processAndDisplay();
                     return;
                 } catch (e) {
-                    console.warn('⚠️ Failed to parse URL parameters:', e);
+                    console.error('❌ Error parsing URL parameter:', e);
                 }
             }
             
-            // Priority 2: Cari data dari localStorage
-            const possibleKeys = [
-                'kazinePaymentData',
-                'kazineOrderData',
-                'paymentData',
-                'orderData',
-                'checkoutData',
-                'lastPayment',
-                'kazine_last_order'
-            ];
-            
-            for (const key of possibleKeys) {
-                const storedData = localStorage.getItem(key);
-                if (storedData) {
-                    try {
-                        orderData = JSON.parse(storedData);
-                        console.log(`✅ Found data in localStorage key: ${key}`, orderData);
-                        processAndDisplay();
-                        return;
-                    } catch (e) {
-                        console.warn(`⚠️ Failed to parse ${key}:`, e);
-                    }
-                }
-            }
-            
-            // Priority 3: Coba dari sessionStorage
-            for (const key of possibleKeys) {
-                const storedData = sessionStorage.getItem(key);
-                if (storedData) {
-                    try {
-                        orderData = JSON.parse(storedData);
-                        console.log(`✅ Found data in sessionStorage key: ${key}`);
-                        processAndDisplay();
-                        return;
-                    } catch (e) {
-                        console.warn(`⚠️ Failed to parse sessionStorage ${key}:`, e);
-                    }
-                }
-            }
-            
-            // Priority 4: Coba ambil dari halaman sebelumnya (jika ada)
-            try {
-                if (window.history.state && window.history.state.orderData) {
-                    orderData = window.history.state.orderData;
-                    console.log('✅ Found data in history state');
+            if (dataParam) {
+                try {
+                    orderData = JSON.parse(decodeURIComponent(dataParam));
+                    console.log('✅ Found data in URL parameter');
                     processAndDisplay();
                     return;
+                } catch (e) {
+                    console.error('❌ Error parsing data parameter:', e);
                 }
-            } catch (e) {
-                console.warn('⚠️ No data in history state');
             }
             
-            // Jika tidak ada data sama sekali
-            console.error('❌ No order data found anywhere');
-            showError();
+            // Priority 2: Check localStorage for KAZINE data
+            const kazineKeys = [
+                'kazinePaymentData',      // Key yang seharusnya dari payment page
+                'kazineOrderData',        // Alternatif 1
+                'kazineCheckoutData',     // Alternatif 2
+                'kazine_last_order',      // Alternatif 3
+                'lastKazineOrderData',    // Dari screenshot sebelumnya
+                'kazineOrder',            // Dari screenshot sebelumnya
+                'kazineProcessedOrderData' // Dari screenshot sebelumnya
+            ];
+            
+            console.log('📋 Checking localStorage for KAZINE keys...');
+            
+            let foundKey = null;
+            for (const key of kazineKeys) {
+                const data = localStorage.getItem(key);
+                if (data) {
+                    console.log(`📦 Found data in key: ${key}`);
+                    foundKey = key;
+                    try {
+                        orderData = JSON.parse(data);
+                        console.log(`✅ Successfully parsed data from ${key}`);
+                        break;
+                    } catch (e) {
+                        console.error(`❌ Error parsing data from ${key}:`, e);
+                    }
+                }
+            }
+            
+            if (foundKey) {
+                document.getElementById('debugKeys').textContent = foundKey;
+                processAndDisplay();
+                return;
+            }
+            
+            // Priority 3: Check all localStorage for any order-like data
+            console.log('🔍 Scanning all localStorage for order data...');
+            const allKeys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                allKeys.push(key);
+                
+                // Check if key looks like order data
+                if (key.includes('order') || key.includes('payment') || key.includes('checkout')) {
+                    const data = localStorage.getItem(key);
+                    try {
+                        const parsed = JSON.parse(data);
+                        // Check if it has order-like structure
+                        if (parsed && (parsed.items || parsed.customer || parsed.total || parsed.payment)) {
+                            console.log(`🎯 Found order-like data in: ${key}`);
+                            orderData = parsed;
+                            document.getElementById('debugKeys').textContent = `Found in: ${key}`;
+                            processAndDisplay();
+                            return;
+                        }
+                    } catch (e) {
+                        // Not JSON, skip
+                    }
+                }
+            }
+            
+            // No data found
+            console.log('❌ No KAZINE order data found');
+            console.log('📋 All localStorage keys:', allKeys);
+            document.getElementById('debugKeys').textContent = allKeys.join(', ') || 'No keys found';
+            
+            showError('No KAZINE order data found. Please complete the payment process on payment-kazine.html first.');
         }
         
         function processAndDisplay() {
             if (!orderData) {
-                showError();
+                showError('Order data is empty or invalid.');
                 return;
             }
             
-            // Normalize data structure
+            console.log('📊 Processing order data:', orderData);
+            
+            // Normalize the data
             normalizeOrderData();
             
-            // Tampilkan data
+            // Display the receipt
             displayReceipt();
             
-            // Kirim ke spreadsheet
-            sendToSpreadsheet();
+            // Send to Google Sheets
+            sendToGoogleSheets();
             
             // Setup event listeners
             setupEventListeners();
+            
+            // Show success state
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('receiptContent').style.display = 'block';
         }
         
         function normalizeOrderData() {
-            // Pastikan semua field yang diperlukan ada
-            orderData = orderData || {};
-            
-            // Customer info
+            // Ensure all required fields exist
             if (!orderData.customer) orderData.customer = {};
+            if (!orderData.items) orderData.items = [];
+            if (!orderData.payment) orderData.payment = {};
             
-            // Mapping field dari berbagai kemungkinan nama
-            const fieldMap = {
-                'name': ['customer-name', 'name', 'fullName', 'customerName', 'nama', 'customer_name'],
-                'email': ['customer-email', 'email', 'customerEmail', 'email_address'],
-                'phone': ['customer-phone', 'phone', 'tel', 'telephone', 'customerPhone'],
-                'address': ['customer-address', 'address', 'shippingAddress', 'alamat'],
-                'notes': ['other-request', 'notes', 'specialRequest', 'request', 'catatan', 'message'],
-                'paymentMethod': ['payment-method', 'paymentMethod', 'method', 'jenis_pembayaran'],
-                'items': ['items', 'cart', 'products', 'orderItems']
+            // Extract customer info from various field names
+            const fieldMapping = {
+                name: ['customer-name', 'name', 'customerName', 'fullName', 'nama', 'customer_name'],
+                email: ['customer-email', 'email', 'customerEmail', 'email_address'],
+                address: ['customer-address', 'address', 'shippingAddress', 'alamat', 'shipping_address'],
+                twitter: ['customer-twitter', 'twitter', 'customerTwitter', 'twitter_handle'],
+                notes: ['other-request', 'notes', 'specialRequest', 'request', 'catatan', 'message']
             };
             
-            // Auto-map fields
-            Object.keys(fieldMap).forEach(target => {
-                if (!orderData.customer[target] && target !== 'items' && target !== 'paymentMethod') {
-                    for (const source of fieldMap[target]) {
-                        if (orderData[source]) {
-                            orderData.customer[target] = orderData[source];
+            // Map fields
+            Object.keys(fieldMapping).forEach(field => {
+                if (!orderData.customer[field]) {
+                    for (const possibleKey of fieldMapping[field]) {
+                        if (orderData[possibleKey]) {
+                            orderData.customer[field] = orderData[possibleKey];
                             break;
                         }
                     }
                 }
             });
             
-            // Pastikan items adalah array
+            // Ensure items is an array and has proper structure
             if (!Array.isArray(orderData.items)) {
-                orderData.items = [];
-                // Coba cari items di berbagai lokasi
-                for (const key of fieldMap.items) {
+                // Try to find items in other places
+                const itemKeys = ['items', 'cart', 'products', 'orderItems', 'selectedItems'];
+                for (const key of itemKeys) {
                     if (orderData[key] && Array.isArray(orderData[key])) {
                         orderData.items = orderData[key];
                         break;
@@ -788,25 +770,39 @@
                 }
             }
             
-            // Set default values
-            orderData.customer.name = orderData.customer.name || 'Customer';
-            orderData.customer.email = orderData.customer.email || 'No email provided';
-            orderData.notes = orderData.notes || orderData.customer.notes || '-';
-            orderData.paymentMethod = orderData.paymentMethod || orderData.payment?.method || 'Credit Card';
+            // Standardize item structure
+            orderData.items = orderData.items.map(item => ({
+                name: item.name || item.title || item.product || 'KAZINE Item',
+                size: item.size || item.ukuran || item.sizes || '-',
+                color: item.color || item.warna || item.colors || '-',
+                price: parseFloat(item.price || item.harga || item.price_value || 0),
+                quantity: parseInt(item.quantity || item.qty || item.amount || 1)
+            }));
             
-            // Generate order number jika belum ada
+            // Set default values
+            orderData.customer.name = orderData.customer.name || 'KAZINE Customer';
+            orderData.customer.email = orderData.customer.email || 'No email provided';
+            orderData.customer.address = orderData.customer.address || 'No address provided';
+            orderData.customer.twitter = orderData.customer.twitter || '';
+            orderData.notes = orderData.notes || orderData.customer.notes || '-';
+            
+            // Payment method
+            orderData.payment.method = orderData.payment.method || 
+                                     orderData.paymentMethod || 
+                                     orderData['payment-method'] || 
+                                     'Credit Card';
+            
+            // Generate order number if missing
             if (!orderData.orderNumber) {
                 const timestamp = Date.now().toString().slice(-6);
                 const randomNum = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
                 orderData.orderNumber = `KAZ-${timestamp}${randomNum}`;
             }
             
-            // Calculate totals
+            // Calculate totals if not provided
             if (!orderData.subtotal || orderData.subtotal === 0) {
                 orderData.subtotal = orderData.items.reduce((sum, item) => {
-                    const price = parseFloat(item.price) || parseFloat(item.harga) || 0;
-                    const quantity = parseInt(item.quantity) || parseInt(item.qty) || 1;
-                    return sum + (price * quantity);
+                    return sum + (item.price * item.quantity);
                 }, 0);
             }
             
@@ -819,22 +815,18 @@
                 orderData.tax = tax;
             }
             
-            // Set order date
+            // Order date
             orderData.orderDate = orderData.orderDate || new Date();
             
             console.log('✅ Normalized order data:', orderData);
         }
         
         function displayReceipt() {
-            // Hide loading, show receipt
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('receiptContent').style.display = 'block';
-            
-            // Set customer info
+            // Customer info
             document.getElementById('customerName').textContent = orderData.customer.name;
             document.getElementById('orderNumber').textContent = orderData.orderNumber;
             
-            // Format date and time
+            // Date and time
             const orderDate = orderData.orderDate instanceof Date 
                 ? orderData.orderDate 
                 : new Date(orderData.orderDate);
@@ -848,7 +840,7 @@
             });
             document.getElementById('orderDateTime').textContent = formattedDateTime;
             
-            document.getElementById('paymentMethod').textContent = orderData.paymentMethod;
+            document.getElementById('paymentMethod').textContent = orderData.payment.method;
             
             // Display items
             const itemsTableBody = document.getElementById('itemsTableBody');
@@ -856,20 +848,14 @@
             
             if (orderData.items && orderData.items.length > 0) {
                 orderData.items.forEach((item, index) => {
-                    const name = item.title || item.name || item.product || `Item ${index + 1}`;
-                    const size = item.size || '-';
-                    const color = item.color || '-';
-                    const quantity = parseInt(item.quantity) || parseInt(item.qty) || 1;
-                    const price = parseFloat(item.price) || parseFloat(item.harga) || 0;
-                    const total = price * quantity;
-                    
+                    const total = item.price * item.quantity;
                     itemsHTML += `
                         <tr>
-                            <td>${name}</td>
-                            <td>${size}</td>
-                            <td>${color}</td>
-                            <td>${quantity}</td>
-                            <td>$${price.toFixed(2)}</td>
+                            <td>${item.name}</td>
+                            <td>${item.size}</td>
+                            <td>${item.color}</td>
+                            <td>${item.quantity}</td>
+                            <td>$${item.price.toFixed(2)}</td>
                             <td>$${total.toFixed(2)}</td>
                         </tr>
                     `;
@@ -886,46 +872,44 @@
                 document.getElementById('otherRequestText').textContent = orderData.notes;
             }
             
-            // Set amounts
+            // Display amounts
             document.getElementById('subtotal').textContent = `$${orderData.subtotal.toFixed(2)}`;
             document.getElementById('shipping').textContent = `$${orderData.shipping.toFixed(2)}`;
             document.getElementById('tax').textContent = `$${orderData.tax.toFixed(2)}`;
             document.getElementById('totalAmount').textContent = `$${orderData.total.toFixed(2)}`;
         }
         
-        async function sendToSpreadsheet() {
+        async function sendToGoogleSheets() {
             const spreadsheetInfo = document.getElementById('spreadsheetInfo');
             const statusElement = document.getElementById('spreadsheetStatus');
             
             spreadsheetInfo.style.display = 'block';
-            statusElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving to database...';
+            statusElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving to KAZINE database...';
             
             try {
-                // Prepare data
-                // Di dalam function sendToSpreadsheet():
-const sheetData = {
-    timestamp: new Date().toISOString(),
-    orderNumber: orderData.orderNumber,
-    customerName: orderData.customer.name,
-    customerEmail: orderData.customer.email || '',
-    // TIDAK ADA customerPhone
-    customerAddress: orderData.customer.address || '',
-    customerTwitter: orderData.customer.twitter || '',
-    otherRequest: orderData.notes || '-',
-    items: JSON.stringify(orderData.items),
-    itemCount: orderData.items.length,
-    subtotal: orderData.subtotal,
-    shipping: orderData.shipping,
-    tax: orderData.tax,
-    totalAmount: orderData.total,
-    paymentMethod: orderData.paymentMethod,
-    paymentStatus: 'PAID',
-    orderDate: new Date().toLocaleString('en-US')
-};
+                // Prepare data for Google Sheets
+                const sheetData = {
+                    timestamp: new Date().toISOString(),
+                    orderNumber: orderData.orderNumber,
+                    customerName: orderData.customer.name,
+                    customerEmail: orderData.customer.email,
+                    customerAddress: orderData.customer.address,
+                    customerTwitter: orderData.customer.twitter,
+                    otherRequest: orderData.notes,
+                    items: JSON.stringify(orderData.items),
+                    itemCount: orderData.items.length,
+                    subtotal: orderData.subtotal,
+                    shipping: orderData.shipping,
+                    tax: orderData.tax,
+                    totalAmount: orderData.total,
+                    paymentMethod: orderData.payment.method,
+                    paymentStatus: 'PAID',
+                    orderDate: new Date().toLocaleString('en-US')
+                };
                 
-                console.log('📤 Sending to spreadsheet:', sheetData);
+                console.log('📤 Sending to KAZINE Google Sheets:', sheetData);
                 
-                // Kirim data ke Google Sheets
+                // Send to Google Sheets
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -935,19 +919,34 @@ const sheetData = {
                     body: JSON.stringify(sheetData)
                 });
                 
-                // Update status (kita tidak bisa membaca response karena no-cors)
-                statusElement.innerHTML = '<i class="fas fa-check-circle"></i> Order saved successfully!';
+                // Update status
+                statusElement.innerHTML = '<i class="fas fa-check-circle"></i> Order saved to KAZINE database!';
                 statusElement.style.color = '#10b981';
                 
-                // Clear localStorage setelah berhasil
+                // Clear localStorage after successful save
                 setTimeout(() => {
-                    localStorage.removeItem('kazinePaymentData');
-                    localStorage.removeItem('kazineOrderData');
+                    // Clear all KAZINE related data
+                    const keysToClear = [
+                        'kazinePaymentData',
+                        'kazineOrderData',
+                        'kazineCheckoutData',
+                        'lastKazineOrderData',
+                        'kazineOrder',
+                        'kazineProcessedOrderData'
+                    ];
+                    
+                    keysToClear.forEach(key => {
+                        localStorage.removeItem(key);
+                    });
+                    
+                    console.log('🗑️ Cleared KAZINE data from localStorage');
                 }, 3000);
                 
+                console.log('✅ Data sent to Google Sheets successfully');
+                
             } catch (error) {
-                console.error('❌ Error sending to spreadsheet:', error);
-                statusElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Save failed: ${error.message}`;
+                console.error('❌ Error sending to Google Sheets:', error);
+                statusElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: ${error.message}`;
                 statusElement.style.color = '#ef4444';
             }
         }
@@ -960,28 +959,40 @@ const sheetData = {
             
             // Clear data when leaving page
             window.addEventListener('beforeunload', function() {
-                localStorage.removeItem('kazinePaymentData');
+                // Keep data for a while, but you can clear if needed
+                // localStorage.removeItem('kazinePaymentData');
             });
         }
         
-        function showError() {
+        function showError(message) {
             document.getElementById('loadingState').style.display = 'none';
             document.getElementById('errorState').style.display = 'block';
-            
-            // Tambahkan pesan error yang informatif
-            const errorMsg = document.getElementById('errorMessage');
-            errorMsg.innerHTML = `
-                No order data found. Please complete the payment process first.<br><br>
-                <small style="font-size: 0.9em;">
-                    Make sure you're coming from the payment page and have completed all payment steps.
-                </small>
-            `;
+            document.getElementById('errorMessage').innerHTML = message;
         }
         
-        // Fungsi debug untuk cek localStorage manual
+        // Debug function
         function checkLocalStorage() {
-            alert(`LocalStorage contents:\n\n${Array.from({length: localStorage.length}, 
-                (_, i) => `${localStorage.key(i)}: ${localStorage.getItem(localStorage.key(i))}`).join('\n\n')}`);
+            const allData = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                try {
+                    allData[key] = JSON.parse(localStorage.getItem(key));
+                } catch {
+                    allData[key] = localStorage.getItem(key);
+                }
+            }
+            
+            const debugWindow = window.open('', '_blank');
+            debugWindow.document.write(`
+                <html>
+                <head><title>LocalStorage Debug</title></head>
+                <body style="font-family: monospace; padding: 20px;">
+                    <h1>KAZINE LocalStorage Debug</h1>
+                    <pre>${JSON.stringify(allData, null, 2)}</pre>
+                    <button onclick="window.location.reload()">Reload Confirmation Page</button>
+                </body>
+                </html>
+            `);
         }
         
         // Prevent form resubmission
