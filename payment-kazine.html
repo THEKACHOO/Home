@@ -15,12 +15,10 @@
             --dark-gray: #495057;
             --primary-black: #212529;
             --accent-black: #000000;
-            --kazine-primary: #495057; /* KAZINE brand color */
+            --kazine-primary: #495057;
             --kazine-secondary: #1e40af;
-            --gradient-light: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            --gradient-dark: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            --success-green: #10b981;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
             --border-radius: 12px;
         }
 
@@ -35,7 +33,6 @@
             background-color: var(--primary-white);
             color: var(--primary-black);
             line-height: 1.6;
-            overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -48,7 +45,7 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
+        /* Header */
         header {
             background: var(--primary-white);
             padding: 15px 0;
@@ -66,13 +63,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--kazine-primary);
         }
 
         .logo-text p {
@@ -119,7 +109,6 @@
         .payment-header p {
             color: var(--medium-gray);
             font-size: 15px;
-            padding: 0 10px;
         }
 
         .payment-container {
@@ -131,28 +120,6 @@
         @media (max-width: 768px) {
             .payment-container {
                 grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .payment-header h2 {
-                font-size: 24px;
-            }
-            
-            .payment-header p {
-                font-size: 14px;
-            }
-            
-            header {
-                padding: 12px 0;
-            }
-            
-            .logo-text h1 {
-                font-size: 20px;
-            }
-            
-            .back-to-store {
-                padding: 6px 10px;
-                font-size: 13px;
             }
         }
 
@@ -201,7 +168,6 @@
         }
 
         .form-group input,
-        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 12px 15px;
@@ -214,17 +180,10 @@
         }
 
         .form-group input:focus,
-        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--kazine-primary);
             box-shadow: 0 0 0 3px rgba(73, 80, 87, 0.1);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
         }
 
         .twitter-input-group {
@@ -250,26 +209,6 @@
             color: var(--medium-gray);
             margin-top: 5px;
             display: block;
-        }
-
-        @media (max-width: 576px) {
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-            
-            .customer-info,
-            .order-summary,
-            .payment-method {
-                padding: 20px;
-            }
-            
-            .customer-info h3,
-            .order-summary h3,
-            .payment-method h3 {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
         }
 
         /* Order Summary */
@@ -370,17 +309,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 15px;
-            white-space: nowrap;
         }
 
         .apply-voucher:hover {
             background: var(--kazine-secondary);
-        }
-
-        .voucher-note {
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--medium-gray);
         }
 
         .price-breakdown {
@@ -403,20 +335,7 @@
             margin-top: 15px;
             padding-top: 15px;
             border-top: 2px solid var(--light-gray);
-        }
-
-        @media (max-width: 576px) {
-            .voucher-input {
-                flex-direction: column;
-            }
-            
-            .voucher-input input {
-                width: 100%;
-            }
-            
-            .apply-voucher {
-                width: 100%;
-            }
+            color: var(--success-green);
         }
 
         /* Payment Method */
@@ -481,7 +400,6 @@
         .payment-option.selected {
             border-color: var(--kazine-primary);
             background-color: rgba(73, 80, 87, 0.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .payment-option i {
@@ -494,103 +412,6 @@
             display: block;
             font-weight: 600;
             font-size: 15px;
-        }
-
-        /* Bank options styling */
-        .bank-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .bank-option {
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: var(--primary-white);
-            font-size: 14px;
-        }
-
-        .bank-option:hover {
-            border-color: var(--kazine-primary);
-        }
-
-        .bank-option.selected {
-            border-color: var(--kazine-primary);
-            background-color: rgba(73, 80, 87, 0.05);
-        }
-
-        .card-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .card-option {
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: var(--primary-white);
-            font-size: 13px;
-        }
-
-        .card-option:hover {
-            border-color: var(--kazine-primary);
-        }
-
-        .card-option.selected {
-            border-color: var(--kazine-primary);
-            background-color: rgba(73, 80, 87, 0.05);
-        }
-
-        .option-group {
-            margin-top: 15px;
-            padding: 15px;
-            background: var(--primary-white);
-            border-radius: 5px;
-            border: 1px solid var(--light-gray);
-        }
-
-        .option-group h4 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: var(--dark-gray);
-        }
-
-        @media (max-width: 768px) {
-            .payment-options {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .bank-options {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .card-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .payment-option {
-                padding: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .payment-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .bank-options {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         /* Action Buttons */
@@ -612,7 +433,6 @@
             transition: all 0.3s ease;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             border: none;
         }
 
@@ -638,19 +458,6 @@
         .btn-checkout:hover {
             background: var(--kazine-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 576px) {
-            .action-buttons {
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .btn {
-                width: 100%;
-                padding: 14px;
-            }
         }
 
         /* Footer */
@@ -676,18 +483,6 @@
             margin-top: 20px;
             font-size: 13px;
             text-align: left;
-        }
-
-        @media (max-width: 576px) {
-            footer {
-                padding: 20px 0;
-                margin-top: 40px;
-            }
-            
-            .disclaimer {
-                padding: 12px;
-                font-size: 12px;
-            }
         }
 
         /* Empty State */
@@ -751,32 +546,33 @@
                         <h3>Customer Information</h3>
                         
                         <div class="form-group">
-                            <label for="email" class="required-field">Email Address</label>
-                            <input type="email" id="email" placeholder="your.email@example.com" required>
-                            <small class="form-note">
-                                Digital products will be delivered via email
-                            </small>
+                            <label for="customer-name" class="required-field">Full Name</label>
+                            <input type="text" id="customer-name" placeholder="John Doe" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="fullName" class="required-field">Full Name</label>
-                            <input type="text" id="fullName" placeholder="John Doe" required>
+                            <label for="customer-email" class="required-field">Email Address</label>
+                            <input type="email" id="customer-email" placeholder="your.email@example.com" required>
+                            <small class="form-note">Order confirmation will be sent to this email</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="twitter" class="required-field">Twitter (X) Username</label>
+                            <label for="customer-twitter" class="required-field">Twitter (X) Username</label>
                             <div class="twitter-input-group">
                                 <span class="twitter-prefix">@</span>
-                                <input type="text" id="twitter" placeholder="username" required>
+                                <input type="text" id="customer-twitter" placeholder="username" required>
                             </div>
-                            <small class="form-note">
-                                Required for order verification and updates
-                            </small>
+                            <small class="form-note">For order verification and updates</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="notes">Order Notes (Optional)</label>
-                            <textarea id="notes" rows="3" placeholder="Special intructions or requests, like the colors or the package..."></textarea>
+                            <label for="customer-address">Shipping Address (Optional)</label>
+                            <textarea id="customer-address" rows="2" placeholder="Enter shipping address for physical items"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="other-request">Order Notes (Optional)</label>
+                            <textarea id="other-request" rows="3" placeholder="Special instructions, color preferences, or other requests..."></textarea>
                         </div>
                     </div>
 
@@ -788,30 +584,22 @@
                             <!-- Dynamic items will be inserted here -->
                         </div>
 
-                        <div class="voucher-section">
-                            <h4>Apply Voucher</h4>
-                            <div class="voucher-input">
-                                <input type="text" id="voucherCode" placeholder="Enter voucher code">
-                                <button class="apply-voucher" id="applyVoucher">Apply</button>
-                            </div>
-                        </div>
-
                         <div class="price-breakdown">
                             <div class="price-row">
                                 <span>Subtotal</span>
                                 <span id="subtotal">$0.00</span>
                             </div>
                             <div class="price-row">
-                                <span>Discount</span>
-                                <span id="discount">-$0.00</span>
+                                <span>Shipping Fee</span>
+                                <span id="shipping">$5.99</span>
                             </div>
                             <div class="price-row">
-                                <span>Service Fee</span>
-                                <span>$2.50</span>
+                                <span>Tax (8%)</span>
+                                <span id="tax">$0.00</span>
                             </div>
                             <div class="price-row total">
                                 <span>Total Amount</span>
-                                <span id="totalAmount">$2.50</span>
+                                <span id="totalAmount">$5.99</span>
                             </div>
                         </div>
                     </div>
@@ -821,47 +609,25 @@
                 <div class="payment-method">
                     <h3>Payment Method</h3>
                     <div class="payment-note">
-                        Note: All payments are fictional and for demonstration purposes only.
+                        Note: This is a demonstration. No real payments will be processed.
                     </div>
                     
                     <div class="payment-options">
+                        <div class="payment-option" data-method="credit-card">
+                            <i class="far fa-credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
                         <div class="payment-option" data-method="paypal">
                             <i class="fab fa-paypal"></i>
                             <span>PayPal</span>
                         </div>
+                        <div class="payment-option" data-method="bank-transfer">
+                            <i class="fas fa-university"></i>
+                            <span>Bank Transfer</span>
+                        </div>
                         <div class="payment-option" data-method="qris">
                             <i class="fas fa-qrcode"></i>
                             <span>QRIS</span>
-                        </div>
-                        <div class="payment-option" data-method="debit-credit">
-                            <i class="far fa-credit-card"></i>
-                            <span>Debit & Credit Card</span>
-                        </div>
-                        <div class="payment-option" data-method="international">
-                            <i class="fas fa-globe"></i>
-                            <span>International Card</span>
-                        </div>
-                    </div>
-
-                    <!-- Bank options for Debit & Credit Card -->
-                    <div id="bankOptions" class="option-group" style="display: none;">
-                        <h4>Select Bank</h4>
-                        <div class="bank-options">
-                            <div class="bank-option" data-bank="bca">BCA</div>
-                            <div class="bank-option" data-bank="bni">BNI</div>
-                            <div class="bank-option" data-bank="bri">BRI</div>
-                            <div class="bank-option" data-bank="mandiri">Mandiri</div>
-                        </div>
-                    </div>
-
-                    <!-- Card options for International Card -->
-                    <div id="cardOptions" class="option-group" style="display: none;">
-                        <h4>Select Card Type</h4>
-                        <div class="card-options">
-                            <div class="card-option" data-card="black">Black Card</div>
-                            <div class="card-option" data-card="jp-morgan">JP Morgan Reserve Card</div>
-                            <div class="card-option" data-card="dubai-first">Dubai First Royale Mastercard</div>
-                            <div class="card-option" data-card="coutts">Coutts World Silk Card</div>
                         </div>
                     </div>
                 </div>
@@ -871,7 +637,7 @@
                     <a href="kazine.html" class="btn btn-cancel">Cancel Order</a>
                     <button class="btn btn-checkout" id="checkoutBtn">
                         <i class="fas fa-lock"></i>
-                        Proceed to Checkout
+                        Complete Payment
                     </button>
                 </div>
             </div>
@@ -883,221 +649,109 @@
         <div class="container footer-content">
             <p>&copy; 2026 KAZINE | A Magazine of THE KACHOO. All rights reserved.</p>
             <div class="disclaimer">
-                <p><strong>IMPORTANT NOTE:</strong> All payments and transactions on this website are fictional and for demonstration purposes only. No real money will be charged, and no physical products will be shipped.</p>
+                <p><strong>IMPORTANT:</strong> This is a roleplay website. No real payments will be processed and no physical products will be shipped.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Get order data from localStorage
-        const orderData = JSON.parse(localStorage.getItem('kazineOrder'));
+        // Constants
+        const SHIPPING_FEE = 5.99;
+        const TAX_RATE = 0.08; // 8%
+        
+        // Get cart data
+        const cartData = JSON.parse(localStorage.getItem('kazineCart')) || { items: [] };
         const orderItems = document.getElementById('orderItems');
         const emptyState = document.getElementById('emptyState');
         const paymentContent = document.getElementById('paymentContent');
         const subtotalElement = document.getElementById('subtotal');
-        const discountElement = document.getElementById('discount');
+        const shippingElement = document.getElementById('shipping');
+        const taxElement = document.getElementById('tax');
         const totalAmountElement = document.getElementById('totalAmount');
         const checkoutBtn = document.getElementById('checkoutBtn');
-        const bankOptions = document.getElementById('bankOptions');
-        const cardOptions = document.getElementById('cardOptions');
         
-        // Service fee constant
-        const SERVICE_FEE = 2.50;
-        
-        // Check if there's order data
-        if (!orderData || !orderData.items || orderData.items.length === 0) {
-            // Show empty state if no items
+        // Check if cart is empty
+        if (!cartData.items || cartData.items.length === 0) {
             emptyState.style.display = 'block';
             paymentContent.style.display = 'none';
         } else {
-            // Show payment content
             emptyState.style.display = 'none';
             paymentContent.style.display = 'block';
             
             let subtotal = 0;
-            let discount = 0;
             
-            // Clear existing items
+            // Clear and populate order items
             orderItems.innerHTML = '';
             
-            // Generate order items HTML
-            orderData.items.forEach((item, index) => {
-                const itemPrice = parseFloat(item.totalPrice) || parseFloat(item.price) || 0;
-                const itemQuantity = item.quantity || 1;
-                subtotal += itemPrice;
+            cartData.items.forEach((item, index) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity) || 1;
+                const itemTotal = price * quantity;
+                subtotal += itemTotal;
                 
                 const itemElement = document.createElement('div');
                 itemElement.className = 'order-item';
                 itemElement.innerHTML = `
                     <div>
-                        <div class="item-name">${item.title || 'Magazine Item'}</div>
-                        <div class="item-details">Quantity: ${itemQuantity}</div>
+                        <div class="item-name">${item.title || item.name || 'KAZINE Item'}</div>
+                        <div class="item-details">
+                            Quantity: ${quantity}
+                            ${item.size ? ` | Size: ${item.size}` : ''}
+                            ${item.color ? ` | Color: ${item.color}` : ''}
+                        </div>
                     </div>
-                    <div class="item-price">$${itemPrice.toFixed(2)}</div>
+                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
                 `;
                 orderItems.appendChild(itemElement);
             });
             
             // Calculate totals
-            discount = orderData.discount || 0;
-            const total = subtotal - discount + SERVICE_FEE;
+            const shipping = SHIPPING_FEE;
+            const tax = subtotal * TAX_RATE;
+            const total = subtotal + shipping + tax;
             
             // Update UI
             subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            discountElement.textContent = `-$${discount.toFixed(2)}`;
+            shippingElement.textContent = `$${shipping.toFixed(2)}`;
+            taxElement.textContent = `$${tax.toFixed(2)}`;
             totalAmountElement.textContent = `$${total.toFixed(2)}`;
             
-            // Store calculated total in orderData
-            orderData.subtotal = subtotal;
-            orderData.discount = discount;
-            orderData.total = total;
-            orderData.serviceFee = SERVICE_FEE;
-            
-            // Save updated order data
-            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+            // Save calculated totals
+            cartData.subtotal = subtotal;
+            cartData.shipping = shipping;
+            cartData.tax = tax;
+            cartData.total = total;
+            localStorage.setItem('kazineCart', JSON.stringify(cartData));
         }
         
         // Payment method selection
         document.querySelectorAll('.payment-option').forEach(option => {
             option.addEventListener('click', function() {
-                // Remove selected class from all options
                 document.querySelectorAll('.payment-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
-                
-                // Add selected class to clicked option
                 this.classList.add('selected');
-                
-                // Show/hide additional options
-                const method = this.getAttribute('data-method');
-                if (method === 'debit-credit') {
-                    bankOptions.style.display = 'block';
-                    cardOptions.style.display = 'none';
-                    resetBankOptions();
-                } else if (method === 'international') {
-                    bankOptions.style.display = 'none';
-                    cardOptions.style.display = 'block';
-                    resetCardOptions();
-                } else {
-                    bankOptions.style.display = 'none';
-                    cardOptions.style.display = 'none';
-                }
-                
-                // Store selected payment method
-                if (orderData) {
-                    orderData.paymentMethod = method;
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                }
             });
         });
         
-        // Bank options selection
-        function resetBankOptions() {
-            document.querySelectorAll('.bank-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-        }
+        // Auto-select first payment method
+        document.querySelector('.payment-option').classList.add('selected');
         
-        document.querySelectorAll('.bank-option').forEach(option => {
-            option.addEventListener('click', function() {
-                resetBankOptions();
-                this.classList.add('selected');
-                
-                if (orderData) {
-                    orderData.selectedBank = this.getAttribute('data-bank');
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                }
-            });
-        });
-        
-        // Card options selection
-        function resetCardOptions() {
-            document.querySelectorAll('.card-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-        }
-        
-        document.querySelectorAll('.card-option').forEach(option => {
-            option.addEventListener('click', function() {
-                resetCardOptions();
-                this.classList.add('selected');
-                
-                if (orderData) {
-                    orderData.selectedCard = this.getAttribute('data-card');
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                }
-            });
-        });
-        
-        // Voucher application
-        document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
-        
-        function applyVoucher() {
-            const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
-            
-            if (!voucherCode) {
-                alert('Please enter a voucher code');
-                return;
-            }
-            
-            // Simulate voucher validation
-            let discountAmount = 0;
-            let discountRate = 0;
-            
-            // Voucher codes
-            if (voucherCode === 'WELCOMEKAZINE') {
-                discountRate = 0.30; // 30% discount
-            } else if (voucherCode === 'KACHOOBESTIE') {
-                discountRate = 0.50; // 50% discount
-            } else {
-                alert('Invalid voucher code');
-                return;
-            }
-            
-            // Calculate discount
-            discountAmount = orderData.subtotal * discountRate;
-            
-            // Update discount and total
-            const newDiscount = discountAmount;
-            const newTotal = orderData.subtotal - newDiscount + SERVICE_FEE;
-            
-            discountElement.textContent = `-$${newDiscount.toFixed(2)}`;
-            totalAmountElement.textContent = `$${newTotal.toFixed(2)}`;
-            
-            // Update orderData
-            if (orderData) {
-                orderData.discount = newDiscount;
-                orderData.total = newTotal;
-                orderData.voucherCode = voucherCode;
-                orderData.discountRate = discountRate * 100;
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            }
-            
-            alert(`Voucher applied successfully! You saved $${newDiscount.toFixed(2)}`);
-        }
-        
-        // Enter key for voucher
-        document.getElementById('voucherCode').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                applyVoucher();
-            }
-        });
-        
-        // Checkout button
+        // Checkout button handler
         checkoutBtn.addEventListener('click', function() {
             // Validate form
-            const email = document.getElementById('email').value.trim();
-            const fullName = document.getElementById('fullName').value.trim();
-            const twitter = document.getElementById('twitter').value.trim();
+            const customerName = document.getElementById('customer-name').value.trim();
+            const customerEmail = document.getElementById('customer-email').value.trim();
+            const customerTwitter = document.getElementById('customer-twitter').value.trim();
             
-            if (!email || !fullName || !twitter) {
-                alert('Please fill in all required fields: Email, Full Name, and Twitter Username');
+            if (!customerName || !customerEmail || !customerTwitter) {
+                alert('Please fill in all required fields: Name, Email, and Twitter Username');
                 return;
             }
             
-            // Validate email format
+            // Validate email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
+            if (!emailRegex.test(customerEmail)) {
                 alert('Please enter a valid email address');
                 return;
             }
@@ -1107,56 +761,86 @@
                 return;
             }
             
-            const selectedMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
+            const paymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-method');
             
-            // Additional validation for specific payment methods
-            if (selectedMethod === 'debit-credit' && !document.querySelector('.bank-option.selected')) {
-                alert('Please select a bank for Debit & Credit Card payment');
-                return;
-            }
+            // Generate order number
+            const orderNumber = 'KAZ-' + Date.now().toString().slice(-6);
             
-            if (selectedMethod === 'international' && !document.querySelector('.card-option.selected')) {
-                alert('Please select a card type for International Card payment');
-                return;
-            }
+            // Prepare complete payment data for confirmation page
+            const paymentData = {
+                // ✅ Customer info - MUST MATCH CONFIRMATION PAGE EXPECTATIONS
+                'customer-name': customerName,
+                'customer-email': customerEmail,
+                'customer-twitter': customerTwitter.startsWith('@') ? customerTwitter : '@' + customerTwitter,
+                'customer-address': document.getElementById('customer-address').value.trim() || 'Not provided',
+                'other-request': document.getElementById('other-request').value.trim() || '-',
+                
+                // ✅ Order items
+                'items': cartData.items,
+                
+                // ✅ Financial data - ALL REQUIRED FOR SPREADSHEET
+                'subtotal': cartData.subtotal || 0,
+                'shipping': cartData.shipping || SHIPPING_FEE,
+                'tax': cartData.tax || 0,
+                'total': cartData.total || 0,
+                
+                // ✅ Payment info
+                'payment-method': paymentMethod,
+                
+                // ✅ Order metadata
+                'order-number': orderNumber,
+                'order-date': new Date().toISOString(),
+                'timestamp': new Date().toISOString()
+            };
             
-            // Add customer info to orderData
-            if (orderData) {
-                orderData.customer = {
-                    email: email,
-                    fullName: fullName,
-                    twitter: twitter.startsWith('@') ? twitter : '@' + twitter,
-                    notes: document.getElementById('notes').value
-                };
-                
-                orderData.paymentDate = new Date().toLocaleString();
-                orderData.status = 'completed'; // Langsung completed karena ini demo
-                orderData.paymentMethod = selectedMethod;
-                
-                // Add specific payment details
-                if (selectedMethod === 'debit-credit') {
-                    orderData.selectedBank = document.querySelector('.bank-option.selected').getAttribute('data-bank');
-                } else if (selectedMethod === 'international') {
-                    orderData.selectedCard = document.querySelector('.card-option.selected').getAttribute('data-card');
-                }
-                
-                orderData.orderNumber = 'KAZ#' + Math.floor(100000 + Math.random() * 900000);
-                
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            }
+            console.log('💾 Saving payment data to localStorage:', paymentData);
+            
+            // ✅ SAVE WITH CORRECT KEY FOR CONFIRMATION PAGE
+            localStorage.setItem('kazinePaymentData', JSON.stringify(paymentData));
+            
+            // Also save as backup
+            localStorage.setItem('kazineOrderData', JSON.stringify(paymentData));
             
             // Show processing
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             this.disabled = true;
             
-            // Simulate processing delay
+            // Redirect to confirmation page
             setTimeout(() => {
-                // Redirect to confirmation page
                 window.location.href = 'confirmation-kazine.html';
                 
                 // Clear cart after successful payment
                 localStorage.removeItem('kazineCart');
-            }, 1500);
+            }, 1000);
+        });
+        
+        // Auto-save customer info when typing
+        document.getElementById('customer-name').addEventListener('input', saveCustomerInfo);
+        document.getElementById('customer-email').addEventListener('input', saveCustomerInfo);
+        document.getElementById('customer-twitter').addEventListener('input', saveCustomerInfo);
+        
+        function saveCustomerInfo() {
+            const customerInfo = {
+                name: document.getElementById('customer-name').value,
+                email: document.getElementById('customer-email').value,
+                twitter: document.getElementById('customer-twitter').value
+            };
+            localStorage.setItem('kazineCustomerInfo', JSON.stringify(customerInfo));
+        }
+        
+        // Load saved customer info if exists
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedCustomer = localStorage.getItem('kazineCustomerInfo');
+            if (savedCustomer) {
+                try {
+                    const customer = JSON.parse(savedCustomer);
+                    if (customer.name) document.getElementById('customer-name').value = customer.name;
+                    if (customer.email) document.getElementById('customer-email').value = customer.email;
+                    if (customer.twitter) document.getElementById('customer-twitter').value = customer.twitter;
+                } catch (e) {
+                    console.log('No saved customer data');
+                }
+            }
         });
     </script>
 </body>
