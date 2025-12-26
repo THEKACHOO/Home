@@ -662,7 +662,7 @@
 
                     <button type="button" class="submit-button" id="processPayment">
                         <i class="fas fa-lock"></i>
-                        Process Payment
+                        Complete Payment
                     </button>
                     
                     <p style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--medium-gray);">
@@ -681,11 +681,14 @@
     </footer>
 
     <script>
+        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbwu8Lk0Fo66kLt9YI9lvg2mSV8H8dW3Tva4sNsv-dVBJGw3XFlMEGpHfWjSQrKwK944WQ/exec";
+        
         let cartItems = [];
         let subtotal = 0;
         let discount = 0;
         let voucherCode = '';
         let discountPercentage = 0;
+        const serviceFee = 2.50;
 
         function calculateDiscount(code, amount) {
             const voucher = code.trim().toUpperCase();
@@ -844,7 +847,6 @@
         }
 
         function updateTotals() {
-            const serviceFee = 2.50;
             const total = subtotal - discount + serviceFee;
             
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
@@ -889,7 +891,7 @@
             });
         }
 
-        function processPayment() {
+        async function processPayment() {
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const country = document.getElementById('country').value.trim();
@@ -900,6 +902,7 @@
             const selectedBank = document.getElementById('selectedBank').value;
             const selectedCard = document.getElementById('selectedCard').value;
             
+            // Validation
             if (!fullName) {
                 alert('Please enter your full name');
                 return;
@@ -935,9 +938,10 @@
                 return;
             }
             
-            const serviceFee = 2.50;
             const total = subtotal - discount + serviceFee;
+            const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
             
+            // Prepare order data
             const orderData = {
                 customer: {
                     fullName: fullName,
@@ -952,22 +956,74 @@
                 discount: discount,
                 serviceFee: serviceFee,
                 total: total,
+                itemCount: itemCount,
                 paymentMethod: paymentMethod.value,
                 selectedBank: paymentMethod.value === 'debit-credit' ? selectedBank : null,
                 selectedCard: paymentMethod.value === 'international' ? selectedCard : null,
                 voucherCode: voucherCode,
                 paymentDate: new Date().toISOString(),
-                status: 'completed'
+                status: 'pending'
             };
             
-            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            
+            // Show loading
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.style.display = 'flex';
             
-            setTimeout(() => {
-                window.location.href = 'confirmation-kazine.html';
-            }, 2000);
+            try {
+                // Save to localStorage first
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                
+                // Send to Google Sheets
+                const sheetData = {
+                    "Timestamp": new Date().toISOString(),
+                    "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
+                    "Customer Name": fullName,
+                    "Customer Email": email,
+                    "Customer Address": address || 'Not provided',
+                    "Customer Twitter/X": twitterUsername || 'Not provided',
+                    "Other Request": otherRequest || 'No special request',
+                    "Items": JSON.stringify(cartItems.map(item => `${item.title} x${item.quantity || 1}`)),
+                    "Item Count": itemCount,
+                    "Subtotal": subtotal.toFixed(2),
+                    "Discount Voucher": voucherCode || 'None',
+                    "Shipping Fee": "0.00",
+                    "Tax": "0.00",
+                    "Total Amount": total.toFixed(2),
+                    "Payment Method": paymentMethod.value.toUpperCase(),
+                    "Payment Status": "PAID",
+                    "Order Date": new Date().toLocaleString()
+                };
+                
+                console.log('📤 Sending to spreadsheet:', sheetData);
+                
+                const response = await fetch(SPREADSHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetData)
+                });
+                
+                // Update order status
+                orderData.status = 'completed';
+                orderData.orderNumber = sheetData["Order Number"];
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                
+                // Redirect to confirmation page
+                setTimeout(() => {
+                    window.location.href = 'confirmation-kazine.html';
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                alert('Payment processed but there was an issue saving to spreadsheet. Your order is still recorded.');
+                
+                // Still redirect to confirmation
+                setTimeout(() => {
+                    window.location.href = 'confirmation-kazine.html';
+                }, 1500);
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -985,12 +1041,16 @@
             
             document.getElementById('processPayment').addEventListener('click', processPayment);
             
+            // Optional: Pre-fill form for testing
             if (cartItems.length > 0 && !document.getElementById('fullName').value) {
+                // Uncomment below to pre-fill form for testing
+                /*
                 document.getElementById('fullName').value = 'John Doe';
                 document.getElementById('email').value = 'john@example.com';
                 document.getElementById('country').value = 'United States';
                 document.getElementById('address').value = '123 Main Street';
                 document.getElementById('twitterUsername').value = '@johndoe';
+                */
             }
         });
     </script>
