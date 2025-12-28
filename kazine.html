@@ -228,7 +228,7 @@
             text-transform: uppercase;
         }
 
-        /* Fashion Grid */
+        /* Fashion Grid - PERBAIKAN LAYOUT */
         .fashion-grid-section {
             padding: 80px 0;
             background: var(--pure-white);
@@ -236,82 +236,149 @@
 
         .fashion-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 300px);
             gap: 15px;
         }
 
         .grid-item {
-            height: 300px;
-            background: var(--light-gray);
             overflow: hidden;
             position: relative;
         }
 
-        .grid-item.large {
+        .grid-item:nth-child(1) {
             grid-column: span 2;
-            height: 300px;
+            grid-row: span 2;
+        }
+
+        .grid-item:nth-child(2) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(3) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(4) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(5) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(6) {
+            grid-column: span 2;
+            grid-row: span 1;
         }
 
         .grid-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        /* Commercial Section */
-        .commercial-section {
+        .grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* PERUBAHAN: Commercial Section diganti KAFKAPAGES Preview */
+        .kafkapages-preview {
             padding: 80px 0;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            text-align: center;
-            position: relative;
+            background: var(--pure-white);
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
         }
 
-        .commercial-content {
-            max-width: 800px;
+        .kafkapages-content {
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .commercial-content h2 {
+        .kafkapages-content h2 {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
         }
 
-        .commercial-content p {
+        .kafkapages-content p {
             font-size: 16px;
             color: var(--medium-gray);
             margin-bottom: 40px;
             line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .single-photo-container {
-            max-width: 800px;
-            margin: 40px auto 30px;
+        .kafkapages-photo-link {
+            display: block;
+            max-width: 900px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .commercial-photo {
+        .kafkapages-photo {
             width: 100%;
             height: 400px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .kafkapages-photo-link:hover .kafkapages-photo {
+            transform: scale(1.03);
         }
 
         .photo-caption {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
-            color: var(--accent-gold);
+            color: var(--medium-gray);
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .btn-outline {
+        .kafkapages-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--pure-white);
+            text-align: left;
+        }
+
+        .kafkapages-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .kafkapages-overlay p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        .kafkapages-btn {
             display: inline-block;
             padding: 15px 40px;
-            border: 1px solid var(--pure-white);
-            color: var(--pure-white);
+            border: 1px solid var(--pure-black);
+            color: var(--pure-black);
             text-decoration: none;
             font-size: 12px;
             letter-spacing: 2px;
@@ -319,11 +386,12 @@
             transition: var(--transition-smooth);
             background: transparent;
             cursor: pointer;
+            margin-top: 20px;
         }
 
-        .btn-outline:hover {
-            background: var(--pure-white);
-            color: var(--pure-black);
+        .kafkapages-btn:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
         }
 
         /* Shop Section */
@@ -408,7 +476,7 @@
             margin-bottom: 20px;
         }
 
-        /* TOMBOL ADD TO CART */
+        /* TOMBOL ADD TO CART - PERBAIKAN UTAMA */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -422,6 +490,8 @@
             transition: var(--transition-smooth);
             font-family: 'Inter', sans-serif;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
 
         .add-to-cart-btn:hover {
@@ -714,13 +784,30 @@
 
         /* RESPONSIVE */
         @media (max-width: 1200px) {
-            .products-grid,
-            .fashion-grid {
+            .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            .grid-item.large {
-                grid-column: span 1;
+            .fashion-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(3, 250px);
+            }
+            
+            .grid-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(2),
+            .grid-item:nth-child(3) {
+                grid-column: span 2;
+            }
+            
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                grid-column: span 2;
+                grid-row: span 1;
             }
         }
 
@@ -789,10 +876,24 @@
         }
 
         @media (max-width: 768px) {
-            .products-grid,
-            .fashion-grid {
+            .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
+            }
+            
+            .fashion-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 200px);
+            }
+            
+            .grid-item:nth-child(1),
+            .grid-item:nth-child(2),
+            .grid-item:nth-child(3),
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                grid-column: span 1;
+                grid-row: span 1;
             }
             
             .magazine-container {
@@ -808,11 +909,11 @@
                 font-size: 32px;
             }
             
-            .commercial-content h2 {
+            .kafkapages-content h2 {
                 font-size: 28px;
             }
             
-            .commercial-photo {
+            .kafkapages-photo {
                 height: 300px;
             }
             
@@ -831,7 +932,7 @@
             .shop-section,
             .fashion-grid-section,
             .magazine-section,
-            .commercial-section {
+            .kafkapages-preview {
                 padding: 60px 0;
             }
             
@@ -842,8 +943,7 @@
         }
 
         @media (max-width: 576px) {
-            .products-grid,
-            .fashion-grid {
+            .products-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -863,6 +963,14 @@
             .product-image {
                 height: 250px;
             }
+            
+            .kafkapages-overlay {
+                padding: 20px;
+            }
+            
+            .kafkapages-overlay h3 {
+                font-size: 22px;
+            }
         }
 
         /* Mobile-specific fixes */
@@ -873,7 +981,7 @@
             }
             
             button, 
-            .btn-outline,
+            .kafkapages-btn,
             .checkout-btn,
             .remove-item,
             .close-cart,
@@ -888,10 +996,34 @@
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
             }
             
-            /* Disable hover effects on mobile */
+            /* Fix untuk tombol di mobile */
             .add-to-cart-btn:hover {
                 background: var(--pure-black);
             }
+        }
+
+        /* Notification style */
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 2px;
+            z-index: 9999;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
     </style>
 </head>
@@ -950,7 +1082,7 @@
                     <li><a href="index.html">THE KACHOO</a></li>
                     <li><a href="#shop">SHOP</a></li>
                     <li><a href="#magazine">MAGAZINE</a></li>
-                    <li><a href="#commercial">COLLABORATIONS</a></li>
+                    <li><a href="#kafkapages">KAFKAPAGES</a></li>
                 </ul>
             </nav>
         </div>
@@ -970,7 +1102,7 @@
         </div>
     </section>
 
-    <!-- Fashion Grid -->
+    <!-- Fashion Grid - Layout sudah diperbaiki -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
@@ -978,7 +1110,7 @@
                     <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Fashion Editorial 1">
                 </div>
-                <div class="grid-item large">
+                <div class="grid-item">
                     <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                          alt="Fashion Editorial 2">
                 </div>
@@ -990,32 +1122,19 @@
                     <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Fashion Editorial 4">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Commercial Section -->
-    <section class="commercial-section" id="commercial">
-        <div class="container">
-            <div class="commercial-content">
-                <h2>MAGAZINE COLLABORATIONS</h2>
-                
-                <div class="single-photo-container">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                         alt="KAZINE Collaboration - Literature Meets Fashion" 
-                         class="commercial-photo">
-                    <div class="photo-caption">KAZINE: Where Fashion Meets Culture</div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                         alt="Fashion Editorial 5">
                 </div>
-                
-                <p>Discover the world through our exclusive KAZINE collections. Experience where fashion meets culture in our curated collection of style and stories.</p>
-                
-                <a href="#magazine" class="btn-outline">
-                    <span>EXPLORE KAZINE</span>
-                </a>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                         alt="Fashion Editorial 6">
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Shop Section -->
     <!-- Shop Section -->
     <section class="shop-section" id="shop">
         <div class="container">
@@ -1035,7 +1154,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Silk Evening Dress</h3>
                         <div class="product-price">$499.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -1049,7 +1168,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Wool Tailored Blazer</h3>
                         <div class="product-price">$389.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -1063,7 +1182,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Leather Crossbody Bag</h3>
                         <div class="product-price">$299.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -1077,13 +1196,13 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Cashmere Sweater Set</h3>
                         <div class="product-price">$459.99</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
                     </div>
                 </div>
             </div>
             
             <div class="checkout-container">
-                <a href="payment-kazine.html" class="btn-outline">
+                <a href="payment-kazine.html" class="kafkapages-btn">
                     <span>PROCEED TO CHECKOUT</span>
                 </a>
             </div>
@@ -1111,6 +1230,32 @@
             </div>
         </div>
     </section>
+
+    <!-- KAFKAPAGES Preview Section (mengganti Commercial Section) -->
+    <section class="kafkapages-preview" id="kafkapages">
+        <div class="container">
+            <div class="kafkapages-content">
+                <h2>EXPLORE KAFKAPAGES</h2>
+                <p>A literary journey through curated writings and visual storytelling. Immerse yourself in thought-provoking content that bridges fashion, literature, and contemporary culture.</p>
+                
+                <a href="kafkapages.html" class="kafkapages-photo-link">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="KAFKAPAGES - Literary Collection" 
+                         class="kafkapages-photo">
+                    <div class="kafkapages-overlay">
+                        <h3>KAFKAPAGES</h3>
+                        <p>Where literature meets visual art</p>
+                    </div>
+                </a>
+                
+                <div class="photo-caption">ADVERTISEMENT</div>
+                
+                <a href="kafkapages.html" class="kafkapages-btn">
+                    <span>CHECK NOW</span>
+                </a>
+            </div>
+        </div>
+    </section>
     
     <!-- Footer -->
     <footer>
@@ -1126,7 +1271,7 @@
                     <p><a href="index.html" style="color: var(--medium-gray); text-decoration: none;">THE KACHOO</a></p>
                     <p><a href="#shop" style="color: var(--medium-gray); text-decoration: none;">SHOP</a></p>
                     <p><a href="#magazine" style="color: var(--medium-gray); text-decoration: none;">MAGAZINE</a></p>
-                    <p><a href="#commercial" style="color: var(--medium-gray); text-decoration: none;">COLLABORATIONS</a></p>
+                    <p><a href="#kafkapages" style="color: var(--medium-gray); text-decoration: none;">KAFKAPAGES</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1154,8 +1299,8 @@
         </div>
     </footer>
 
-    <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI
+      <script>
+    // SIMPLE CART SYSTEM YANG BERFUNGSI - VERSI DIPERBAIKI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -1175,53 +1320,70 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // Mobile menu toggle
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active')) {
-                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-
-        // Close menu when clicking links
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    // Main add to cart function - dipanggil dari onclick di button
+    function addToCart(button) {
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        const productCard = button.closest('.product-card');
+        const productTitle = productCard.getAttribute('data-product');
+        const productPrice = productCard.getAttribute('data-price');
+        const productId = productCard.getAttribute('data-id');
+        
+        console.log('Adding to cart:', { productTitle, productPrice, productId }); // Debug
+        
+        // Check if item already in cart
+        const existingItemIndex = cart.findIndex(item => item.id === productId);
+        
+        if (existingItemIndex !== -1) {
+            // Update quantity if item exists
+            cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated (now ${cart[existingItemIndex].quantity})`);
+        } else {
+            // Add new item
+            cart.push({
+                id: productId,
+                title: productTitle,
+                price: productPrice,
+                quantity: 1
             });
-        });
-    }
-
-    // Cart functions
-    function openCart() {
-        cartModal.classList.add('active');
-        cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+            showNotification(`${productTitle} added to cart`);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('kazineCart', JSON.stringify(cart));
+        console.log('Cart saved:', cart); // Debug
+        
+        // Update display
         updateCartDisplay();
+        
+        // Visual feedback
+        const originalText = button.innerHTML;
+        const originalBg = button.style.backgroundColor;
+        const originalColor = button.style.color;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.style.backgroundColor = '#27ae60';
+        button.style.color = '#ffffff';
+        button.disabled = true;
+        
+        // Reset button after delay
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.backgroundColor = originalBg;
+            button.style.color = originalColor;
+            button.disabled = false;
+            isProcessing = false;
+        }, 1000);
     }
 
-    function closeCart() {
-        cartModal.classList.remove('active');
-        cartOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
+    // Update cart display
     function updateCartDisplay() {
         const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
         cartCount.textContent = totalItems;
+        
+        console.log('Cart items:', cart); // Debug
+        console.log('Total items:', totalItems); // Debug
         
         if (cart.length === 0) {
             emptyCart.style.display = 'flex';
@@ -1245,10 +1407,10 @@
                 <div class="cart-item">
                     <div class="item-info">
                         <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1}</p>
+                        <p>Quantity: ${item.quantity || 1} | Price: $${item.price}</p>
                     </div>
                     <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                    <button class="remove-item" data-index="${index}" aria-label="Remove item">
+                    <button class="remove-item" onclick="removeFromCart(${index})" aria-label="Remove item">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -1257,90 +1419,17 @@
         
         cartItems.innerHTML = itemsHTML;
         cartTotal.textContent = `$${total.toFixed(2)}`;
-        
-        // Add event listeners to remove buttons
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const index = parseInt(this.getAttribute('data-index'));
-                cart.splice(index, 1);
-                localStorage.setItem('kazineCart', JSON.stringify(cart));
-                updateCartDisplay();
-                showNotification('Item removed from cart');
-            });
-        });
     }
 
-    // Function untuk menangani add to cart
-    function handleAddToCart(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        if (isProcessing) return;
-        isProcessing = true;
-        
-        const button = event.currentTarget;
-        const productCard = button.closest('.product-card');
-        const productTitle = productCard.getAttribute('data-product');
-        const productPrice = productCard.getAttribute('data-price');
-        const productId = productCard.getAttribute('data-id');
-        
-        // Check if item already in cart
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity = (existingItem.quantity || 1) + 1;
-            showNotification(`${productTitle} quantity updated`);
-        } else {
-            cart.push({
-                id: productId,
-                title: productTitle,
-                price: productPrice,
-                quantity: 1
-            });
-            showNotification(`${productTitle} added to cart`);
+    // Remove item from cart
+    function removeFromCart(index) {
+        if (index >= 0 && index < cart.length) {
+            const removedItem = cart[index];
+            cart.splice(index, 1);
+            localStorage.setItem('kazineCart', JSON.stringify(cart));
+            updateCartDisplay();
+            showNotification(`${removedItem.title} removed from cart`);
         }
-        
-        // Save to localStorage
-        localStorage.setItem('kazineCart', JSON.stringify(cart));
-        
-        // Update display
-        updateCartDisplay();
-        
-        // Visual feedback
-        const originalText = button.innerHTML;
-        const originalBg = button.style.backgroundColor;
-        button.innerHTML = '<i class="fas fa-check"></i> Added';
-        button.style.backgroundColor = '#27ae60';
-        button.disabled = true;
-        
-        // Reset button after delay
-        setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.backgroundColor = originalBg;
-            button.disabled = false;
-            isProcessing = false;
-        }, 1000);
-    }
-
-    // Initialize semua tombol Add to Cart
-    function initializeAddToCartButtons() {
-        // Hapus event listener yang lama dulu
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            const newButton = button.cloneNode(true);
-            button.parentNode.replaceChild(newButton, button);
-        });
-        
-        // Tambahkan event listener yang baru
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            // Untuk PC (click) dan Mobile (touchstart)
-            button.addEventListener('click', handleAddToCart);
-            button.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                handleAddToCart(e);
-            }, { passive: false });
-        });
     }
 
     // Simple notification
@@ -1394,79 +1483,116 @@
         }, 2000);
     }
 
+    // Cart functions
+    function openCart() {
+        cartModal.classList.add('active');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        updateCartDisplay();
+    }
+
+    function closeCart() {
+        cartModal.classList.remove('active');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Mobile menu toggle
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active')) {
+                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+
+        // Close menu when clicking links
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    }
+
     // Event listeners untuk cart
-    function setupCartEventListeners() {
-        // Untuk PC (click)
+    if (openCartBtn) {
         openCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             openCart();
         });
         
-        closeCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-        
-        cartOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-        
-        // Untuk Mobile (touchstart)
+        // Touch event for mobile
         openCartBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
             e.stopPropagation();
             openCart();
         }, { passive: false });
-        
-        closeCartBtn.addEventListener('touchstart', function(e) {
+    }
+
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             closeCart();
-        }, { passive: false });
-        
-        cartOverlay.addEventListener('touchstart', function(e) {
+        });
+    }
+
+    if (cartOverlay) {
+        cartOverlay.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             closeCart();
-        }, { passive: false });
+        });
     }
 
     // Checkout button
-    checkoutBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        if (cart.length === 0) {
-            showNotification('Your cart is empty');
-            return;
-        }
-        
-        // Calculate total
-        let subtotal = 0;
-        cart.forEach(item => {
-            subtotal += parseFloat(item.price) * (item.quantity || 1);
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                showNotification('Your cart is empty');
+                return;
+            }
+            
+            // Calculate total
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += parseFloat(item.price) * (item.quantity || 1);
+            });
+            
+            // Save order data
+            const orderData = {
+                items: cart,
+                subtotal: subtotal,
+                total: subtotal + 2.50,
+                store: 'KAZINE',
+                orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+            };
+            
+            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+            closeCart();
+            
+            // Redirect to payment page
+            setTimeout(() => {
+                window.location.href = 'payment-kazine.html';
+            }, 300);
         });
-        
-        // Save order data
-        const orderData = {
-            items: cart,
-            subtotal: subtotal,
-            total: subtotal + 2.50,
-            store: 'KAZINE',
-            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-        };
-        
-        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-        closeCart();
-        
-        // Redirect to payment page
-        setTimeout(() => {
-            window.location.href = 'payment-kazine.html';
-        }, 300);
-    });
+    }
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1496,27 +1622,28 @@
         });
     });
 
-    // Initialize semua fungsi ketika DOM siap
+    // Initialize on load
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize add to cart buttons
-        initializeAddToCartButtons();
-        
-        // Setup cart event listeners
-        setupCartEventListeners();
-        
         // Update cart display
         updateCartDisplay();
         
-        // Reset processing flag
-        isProcessing = false;
+        // Add touch events for mobile buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('touchstart', function(e) {
+                // Prevent default touch behavior
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                // Trigger click event
+                this.click();
+            }, { passive: false });
+        });
+        
+        console.log('Cart system initialized');
     });
 
-    // Juga inisialisasi saat window load (backup)
-    window.addEventListener('load', function() {
-        initializeAddToCartButtons();
-        setupCartEventListeners();
-        updateCartDisplay();
-    });
+    // Debug: Log cart state
+    console.log('Initial cart:', cart);
     </script>
 </body>
-    </html>
+</html>
