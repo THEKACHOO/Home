@@ -1300,7 +1300,7 @@
     </footer>
 
       <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI - VERSI DIPERBAIKI
+    // SIMPLE CART SYSTEM - VERSI SEDERHANA YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -1320,31 +1320,38 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // Main add to cart function - dipanggil dari onclick di button
-    function addToCart(button) {
+    // SIMPLE ADD TO CART FUNCTION
+    function addToCart(event) {
+        // Prevent default behavior
+        event.preventDefault();
+        event.stopPropagation();
+        
         if (isProcessing) return;
         isProcessing = true;
         
-        const productCard = button.closest('.product-card');
-        const productTitle = productCard.getAttribute('data-product');
-        const productPrice = productCard.getAttribute('data-price');
-        const productId = productCard.getAttribute('data-id');
+        // Get button that was clicked
+        const button = event.currentTarget;
         
-        console.log('Adding to cart:', { productTitle, productPrice, productId }); // Debug
+        // Get product data from button attributes
+        const productId = button.getAttribute('data-id');
+        const productTitle = button.getAttribute('data-product');
+        const productPrice = button.getAttribute('data-price');
         
-        // Check if item already in cart
-        const existingItemIndex = cart.findIndex(item => item.id === productId);
+        console.log('Adding to cart:', productTitle, productPrice, productId);
         
-        if (existingItemIndex !== -1) {
-            // Update quantity if item exists
-            cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
-            showNotification(`${productTitle} quantity updated (now ${cart[existingItemIndex].quantity})`);
+        // Check if item already exists in cart
+        const existingIndex = cart.findIndex(item => item.id === productId);
+        
+        if (existingIndex !== -1) {
+            // Update quantity
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated to ${cart[existingIndex].quantity}`);
         } else {
             // Add new item
             cart.push({
                 id: productId,
                 title: productTitle,
-                price: productPrice,
+                price: parseFloat(productPrice),
                 quantity: 1
             });
             showNotification(`${productTitle} added to cart`);
@@ -1352,39 +1359,32 @@
         
         // Save to localStorage
         localStorage.setItem('kazineCart', JSON.stringify(cart));
-        console.log('Cart saved:', cart); // Debug
         
-        // Update display
+        // Update cart display
         updateCartDisplay();
         
-        // Visual feedback
+        // Button feedback animation
         const originalText = button.innerHTML;
-        const originalBg = button.style.backgroundColor;
-        const originalColor = button.style.color;
-        
         button.innerHTML = '<i class="fas fa-check"></i> Added';
-        button.style.backgroundColor = '#27ae60';
-        button.style.color = '#ffffff';
+        button.classList.add('added');
         button.disabled = true;
         
-        // Reset button after delay
+        // Reset button after 1 second
         setTimeout(() => {
             button.innerHTML = originalText;
-            button.style.backgroundColor = originalBg;
-            button.style.color = originalColor;
+            button.classList.remove('added');
             button.disabled = false;
             isProcessing = false;
         }, 1000);
     }
 
-    // Update cart display
+    // UPDATE CART DISPLAY
     function updateCartDisplay() {
+        // Calculate total items
         const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
         cartCount.textContent = totalItems;
         
-        console.log('Cart items:', cart); // Debug
-        console.log('Total items:', totalItems); // Debug
-        
+        // If cart is empty
         if (cart.length === 0) {
             emptyCart.style.display = 'flex';
             checkoutBtn.style.display = 'none';
@@ -1393,21 +1393,23 @@
             return;
         }
         
+        // Cart has items
         emptyCart.style.display = 'none';
         checkoutBtn.style.display = 'block';
         
         let total = 0;
         let itemsHTML = '';
         
+        // Build cart items HTML
         cart.forEach((item, index) => {
-            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            const itemTotal = item.price * (item.quantity || 1);
             total += itemTotal;
             
             itemsHTML += `
                 <div class="cart-item">
                     <div class="item-info">
                         <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1} | Price: $${item.price}</p>
+                        <p>Quantity: ${item.quantity || 1} | $${item.price.toFixed(2)} each</p>
                     </div>
                     <div class="item-price">$${itemTotal.toFixed(2)}</div>
                     <button class="remove-item" onclick="removeFromCart(${index})" aria-label="Remove item">
@@ -1417,11 +1419,12 @@
             `;
         });
         
+        // Update DOM
         cartItems.innerHTML = itemsHTML;
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // Remove item from cart
+    // REMOVE ITEM FROM CART
     function removeFromCart(index) {
         if (index >= 0 && index < cart.length) {
             const removedItem = cart[index];
@@ -1432,58 +1435,29 @@
         }
     }
 
-    // Simple notification
+    // SHOW NOTIFICATION
     function showNotification(message) {
         // Remove existing notification
         const existing = document.querySelector('.cart-notification');
         if (existing) existing.remove();
         
-        // Create notification
+        // Create new notification
         const notification = document.createElement('div');
         notification.className = 'cart-notification';
         notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-        `;
         
-        // Add animation style
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
+        // Add to body
         document.body.appendChild(notification);
         
-        // Remove after animation
+        // Remove after 2 seconds
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.remove();
             }
-            if (style.parentNode) {
-                style.remove();
-            }
         }, 2000);
     }
 
-    // Cart functions
+    // CART MODAL FUNCTIONS
     function openCart() {
         cartModal.classList.add('active');
         cartOverlay.classList.add('active');
@@ -1497,153 +1471,187 @@
         document.body.style.overflow = 'auto';
     }
 
-    // Mobile menu toggle
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active')) {
-                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-
-        // Close menu when clicking links
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-    }
-
-    // Event listeners untuk cart
-    if (openCartBtn) {
-        openCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openCart();
-        });
-        
-        // Touch event for mobile
-        openCartBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openCart();
-        }, { passive: false });
-    }
-
-    if (closeCartBtn) {
-        closeCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-    }
-
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-    }
-
-    // Checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            if (cart.length === 0) {
-                showNotification('Your cart is empty');
-                return;
-            }
-            
-            // Calculate total
-            let subtotal = 0;
-            cart.forEach(item => {
-                subtotal += parseFloat(item.price) * (item.quantity || 1);
-            });
-            
-            // Save order data
-            const orderData = {
-                items: cart,
-                subtotal: subtotal,
-                total: subtotal + 2.50,
-                store: 'KAZINE',
-                orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-            };
-            
-            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            closeCart();
-            
-            // Redirect to payment page
-            setTimeout(() => {
-                window.location.href = 'payment-kazine.html';
-            }, 300);
-        });
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href.includes('.html')) return;
-            
-            e.preventDefault();
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (mainNav && mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-    });
-
-    // Initialize on load
+    // INITIALIZE EVENT LISTENERS
     document.addEventListener('DOMContentLoaded', function() {
-        // Update cart display
-        updateCartDisplay();
+        console.log('DOM loaded, initializing cart system...');
         
-        // Add touch events for mobile buttons
+        // 1. Add event listeners to all Add to Cart buttons
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Remove any existing listeners first
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+        });
+        
+        // Add fresh listeners
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Click event for PC
+            button.addEventListener('click', addToCart);
+            
+            // Touch event for mobile
             button.addEventListener('touchstart', function(e) {
-                // Prevent default touch behavior
+                // For mobile, we want to trigger the click
                 if (e.cancelable) {
                     e.preventDefault();
                 }
-                // Trigger click event
-                this.click();
+                addToCart(e);
             }, { passive: false });
         });
         
-        console.log('Cart system initialized');
+        // 2. Cart icon click
+        if (openCartBtn) {
+            openCartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCart();
+            });
+            
+            openCartBtn.addEventListener('touchstart', function(e) {
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                openCart();
+            }, { passive: false });
+        }
+        
+        // 3. Close cart
+        if (closeCartBtn) {
+            closeCartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCart();
+            });
+        }
+        
+        // 4. Overlay click to close cart
+        if (cartOverlay) {
+            cartOverlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCart();
+            });
+        }
+        
+        // 5. Mobile menu
+        if (mobileMenuBtn && mainNav) {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                mainNav.classList.toggle('active');
+                this.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // 6. Checkout button
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty');
+                    return;
+                }
+                
+                // Save order and redirect
+                const orderData = {
+                    items: cart,
+                    subtotal: cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0),
+                    store: 'KAZINE',
+                    orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+                };
+                
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                closeCart();
+                
+                setTimeout(() => {
+                    window.location.href = 'payment-kazine.html';
+                }, 300);
+            });
+        }
+        
+        // 7. Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.includes('.html')) return;
+                
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        console.log('Cart system initialized successfully');
+        console.log('Current cart:', cart);
     });
 
-    // Debug: Log cart state
-    console.log('Initial cart:', cart);
+    // Backup initialization on window load
+    window.addEventListener('load', function() {
+        console.log('Window loaded, ensuring cart buttons work...');
+        
+        // Final check - ensure all buttons have event listeners
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Quick test - add onclick attribute as backup
+            if (!button.hasAttribute('onclick')) {
+                const productId = button.getAttribute('data-id');
+                const productTitle = button.getAttribute('data-product');
+                const productPrice = button.getAttribute('data-price');
+                
+                // Add direct onclick as backup
+                button.setAttribute('onclick', `addToCartDirect('${productId}', '${productTitle}', ${productPrice}, this)`);
+            }
+        });
+    });
+
+    // Backup direct function (just in case)
+    function addToCartDirect(productId, productTitle, productPrice, button) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        console.log('Direct function called:', productTitle);
+        
+        // Add to cart logic
+        const existingIndex = cart.findIndex(item => item.id === productId);
+        
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated`);
+        } else {
+            cart.push({
+                id: productId,
+                title: productTitle,
+                price: parseFloat(productPrice),
+                quantity: 1
+            });
+            showNotification(`${productTitle} added to cart`);
+        }
+        
+        localStorage.setItem('kazineCart', JSON.stringify(cart));
+        updateCartDisplay();
+        
+        // Visual feedback
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }, 1000);
+    }
     </script>
 </body>
 </html>
