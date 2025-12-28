@@ -8,9 +8,475 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
     <style>
-        /* ... (CSS tetap sama) ... */
-        
-        /* TOMBOL ADD TO CART - PERBAIKAN */
+        :root {
+            --pure-white: #ffffff;
+            --off-white: #fafafa;
+            --light-gray: #f0f0f0;
+            --medium-gray: #8a8a8a;
+            --dark-gray: #333333;
+            --pure-black: #000000;
+            --accent-gold: #d4af37;
+            --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.03);
+            --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--pure-white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-section {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .kazine-logo-main {
+            width: 180px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kazine-logo-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: contrast(1.1);
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: var(--pure-black);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover {
+            color: var(--medium-gray);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--pure-black);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Cart Icon */
+        .cart-icon-container {
+            position: relative;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .cart-icon {
+            font-size: 18px;
+            color: var(--pure-black);
+            transition: var(--transition-smooth);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+
+        .cart-icon:hover {
+            opacity: 0.7;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            pointer-events: none;
+            z-index: 1002;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--pure-black);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero-ambassador {
+            padding: 150px 0 80px;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .ambassador-image {
+            height: 600px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .ambassador-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ambassador-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: var(--pure-white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .ambassador-overlay h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .ambassador-overlay p {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Fashion Grid - PERBAIKAN LAYOUT */
+        .fashion-grid-section {
+            padding: 80px 0;
+            background: var(--pure-white);
+        }
+
+        .fashion-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 15px;
+        }
+
+        .grid-item {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .grid-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .grid-item:nth-child(2) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(3) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(4) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(5) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .grid-item:nth-child(6) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* PERUBAHAN: Commercial Section diganti KAFKAPAGES Preview */
+        .kafkapages-preview {
+            padding: 80px 0;
+            background: var(--pure-white);
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .kafkapages-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .kafkapages-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .kafkapages-content p {
+            font-size: 16px;
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kafkapages-photo-link {
+            display: block;
+            max-width: 900px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .kafkapages-photo {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .kafkapages-photo-link:hover .kafkapages-photo {
+            transform: scale(1.03);
+        }
+
+        .photo-caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .kafkapages-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--pure-white);
+            text-align: left;
+        }
+
+        .kafkapages-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .kafkapages-overlay p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        .kafkapages-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--pure-black);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            background: transparent;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .kafkapages-btn:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+        }
+
+        /* Shop Section */
+        .shop-section {
+            padding: 80px 0;
+            background: var(--off-white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .section-title p {
+            font-size: 14px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: var(--pure-white);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            height: 350px;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-size: 11px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* TOMBOL ADD TO CART - PERBAIKAN UTAMA */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -20,31 +486,544 @@
             font-size: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            cursor: pointer !important;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: var(--transition-smooth);
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             position: relative;
             overflow: hidden;
-            user-select: none;
-            touch-action: manipulation;
         }
 
         .add-to-cart-btn:hover {
-            background: #333333;
+            background: var(--dark-gray);
         }
 
         .add-to-cart-btn:active {
             transform: scale(0.98);
         }
 
-        .add-to-cart-btn.added {
-            background: #27ae60 !important;
-            cursor: not-allowed !important;
+        /* Checkout Button */
+        .checkout-container {
+            text-align: center;
+            margin-top: 50px;
         }
 
-        .add-to-cart-btn.added:hover {
-            background: #27ae60 !important;
+        /* Magazine Section */
+        .magazine-section {
+            padding: 80px 0;
+            background: var(--pure-white);
+        }
+
+        .magazine-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .magazine-cover img {
+            width: 100%;
+            height: auto;
+        }
+
+        .magazine-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .magazine-content h3 {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+        }
+
+        .magazine-content p {
+            font-size: 16px;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pure-black);
+            padding: 60px 0 30px;
+            color: var(--pure-white);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--medium-gray);
+            color: var(--pure-white);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .disclaimer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--dark-gray);
+            color: var(--medium-gray);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--pure-white);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--pure-black);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .item-info h4 {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .item-info p {
+            font-size: 12px;
+            color: var(--medium-gray);
+        }
+
+        .item-price {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--medium-gray);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 8px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-item:hover {
+            color: var(--pure-black);
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .cart-modal .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .cart-modal .checkout-btn:hover {
+            background: var(--dark-gray);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--medium-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .empty-cart i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .fashion-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(3, 250px);
+            }
+            
+            .grid-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(2),
+            .grid-item:nth-child(3) {
+                grid-column: span 2;
+            }
+            
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-container {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .logo-section {
+                position: static;
+                transform: none;
+                order: 1;
+                justify-self: center;
+            }
+            
+            .cart-icon-container {
+                order: 0;
+                z-index: 1001;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                order: 2;
+                z-index: 1001;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--pure-white);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition-smooth);
+                z-index: 999;
+                border-bottom: 1px solid var(--light-gray);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav a {
+                font-size: 14px;
+                padding: 10px;
+                text-align: center;
+                display: block;
+            }
+            
+            .kazine-logo-main {
+                width: 150px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .fashion-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 200px);
+            }
+            
+            .grid-item:nth-child(1),
+            .grid-item:nth-child(2),
+            .grid-item:nth-child(3),
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            
+            .magazine-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .ambassador-image {
+                height: 400px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 32px;
+            }
+            
+            .kafkapages-content h2 {
+                font-size: 28px;
+            }
+            
+            .kafkapages-photo {
+                height: 300px;
+            }
+            
+            .product-image {
+                height: 300px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .hero-ambassador {
+                padding: 120px 0 60px;
+            }
+            
+            .shop-section,
+            .fashion-grid-section,
+            .magazine-section,
+            .kafkapages-preview {
+                padding: 60px 0;
+            }
+            
+            .cart-modal {
+                max-width: 90%;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kazine-logo-main {
+                width: 120px;
+                height: 40px;
+            }
+            
+            .ambassador-image {
+                height: 300px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 24px;
+            }
+            
+            .product-image {
+                height: 250px;
+            }
+            
+            .kafkapages-overlay {
+                padding: 20px;
+            }
+            
+            .kafkapages-overlay h3 {
+                font-size: 22px;
+            }
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .add-to-cart-btn {
+                padding: 14px;
+                font-size: 13px;
+            }
+            
+            button, 
+            .kafkapages-btn,
+            .checkout-btn,
+            .remove-item,
+            .close-cart,
+            .mobile-menu-btn,
+            .social-links a,
+            .cart-icon {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            * {
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
+            
+            /* Fix untuk tombol di mobile */
+            .add-to-cart-btn:hover {
+                background: var(--pure-black);
+            }
+        }
+
+        /* Notification style */
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 2px;
+            z-index: 9999;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
     </style>
 </head>
@@ -123,7 +1102,7 @@
         </div>
     </section>
 
-    <!-- Fashion Grid -->
+    <!-- Fashion Grid - Layout sudah diperbaiki -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
@@ -174,13 +1153,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Silk Evening Dress</h3>
                         <div class="product-price">$499.99</div>
-                        <button class="add-to-cart-btn" 
-                                onclick="addToCartFromButton(this)"
-                                data-id="kazine-dress-001"
-                                data-product="Silk Evening Dress"
-                                data-price="499.99">
-                            Add to Bag
-                        </button>
+                        <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -194,13 +1167,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Wool Tailored Blazer</h3>
                         <div class="product-price">$389.99</div>
-                        <button class="add-to-cart-btn" 
-                                onclick="addToCartFromButton(this)"
-                                data-id="kazine-blazer-002"
-                                data-product="Wool Tailored Blazer"
-                                data-price="389.99">
-                            Add to Bag
-                        </button>
+                        <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -214,13 +1181,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Leather Crossbody Bag</h3>
                         <div class="product-price">$299.99</div>
-                        <button class="add-to-cart-btn" 
-                                onclick="addToCartFromButton(this)"
-                                data-id="kazine-bag-003"
-                                data-product="Leather Crossbody Bag"
-                                data-price="299.99">
-                            Add to Bag
-                        </button>
+                        <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
@@ -234,13 +1195,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Cashmere Sweater Set</h3>
                         <div class="product-price">$459.99</div>
-                        <button class="add-to-cart-btn" 
-                                onclick="addToCartFromButton(this)"
-                                data-id="kazine-sweater-004"
-                                data-product="Cashmere Sweater Set"
-                                data-price="459.99">
-                            Add to Bag
-                        </button>
+                        <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
             </div>
@@ -253,10 +1208,98 @@
         </div>
     </section>
     
-    <!-- ... (sisanya tetap sama) ... -->
+    <!-- Magazine Section -->
+    <section class="magazine-section" id="magazine">
+        <div class="container">
+            <div class="magazine-container">
+                <div class="magazine-cover">
+                    <a href="kazinevol1.html">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="KAZINE Magazine Volume 1">
+                    </a>
+                </div>
+                <div class="magazine-content">
+                    <h2>KAZINE!</h2>
+                    <h3>NEW YEAR NEW VIBES</h3>
+                    <p>Experience the inaugural edition of KAZINE, where fashion, culture, and lifestyle converge. Volume 1 celebrates new beginnings with exclusive interviews, editorial features, and behind-the-scenes access to the world's most influential creators.</p>
+                    <p>Discover the stories behind the styles and the visionaries shaping tomorrow's trends today.</p>
+                    <a href="kazinevol1.html" class="coming-soon-tag">VIEW VOLUME 1</a>
+                    <div class="coming-soon-tag">VOLUME 2 COMING SOON</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KAFKAPAGES Preview Section (mengganti Commercial Section) -->
+    <section class="kafkapages-preview" id="kafkapages">
+        <div class="container">
+            <div class="kafkapages-content">
+                <h2>EXPLORE KAFKAPAGES</h2>
+                <p>A literary journey through curated writings and visual storytelling. Immerse yourself in thought-provoking content that bridges fashion, literature, and contemporary culture.</p>
+                
+                <a href="kafkapages.html" class="kafkapages-photo-link">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="KAFKAPAGES - Literary Collection" 
+                         class="kafkapages-photo">
+                    <div class="kafkapages-overlay">
+                        <h3>KAFKAPAGES COLLECTION</h3>
+                        <p>Where literature meets visual art - Click to explore</p>
+                    </div>
+                </a>
+                
+                <div class="photo-caption">THE LITERARY SIDE OF KAZINE</div>
+                
+                <a href="kafkapages.html" class="kafkapages-btn">
+                    <span>ENTER KAFKAPAGES</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KAZINE</h3>
+                    <p>A premium fashion and lifestyle brand under THE KACHOO, specializing in curated collaborations and exclusive magazine publications.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html" style="color: var(--medium-gray); text-decoration: none;">THE KACHOO</a></p>
+                    <p><a href="#shop" style="color: var(--medium-gray); text-decoration: none;">SHOP</a></p>
+                    <p><a href="#magazine" style="color: var(--medium-gray); text-decoration: none;">MAGAZINE</a></p>
+                    <p><a href="#kafkapages" style="color: var(--medium-gray); text-decoration: none;">KAFKAPAGES</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p>Official Account (X): <strong>@TheKachoo</strong></p>
+                    <p>Email: ohkachoo@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/TheKachoo" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:ohkachoo@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional and for demonstration purposes only. No real money will be charged, and no physical products will be shipped. This is a conceptual showcase of the KAZINE brand experience.</p>
+                <p>&copy; 2023 KAZINE | A division of THE KACHOO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-    // SIMPLE CART SYSTEM - VERSI SEDERHANA YANG BERFUNGSI
+    // SIMPLE CART SYSTEM YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -276,159 +1319,37 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // FUNGSI UTAMA - DIPANGGIL DARI onclick
-    function addToCartFromButton(buttonElement) {
-        // Untuk PC: event otomatis ada
-        // Untuk Mobile: buttonElement adalah button yang diklik
-        
-        // Prevent multiple clicks
-        if (isProcessing) return;
-        isProcessing = true;
-        
-        // Get data from button attributes
-        const productId = buttonElement.getAttribute('data-id');
-        const productTitle = buttonElement.getAttribute('data-product');
-        const productPrice = buttonElement.getAttribute('data-price');
-        
-        console.log('Adding to cart:', productTitle, productPrice, productId);
-        
-        // Check if item exists
-        const existingIndex = cart.findIndex(item => item.id === productId);
-        
-        if (existingIndex !== -1) {
-            // Update quantity
-            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-            showNotification(`${productTitle} added (Quantity: ${cart[existingIndex].quantity})`);
-        } else {
-            // Add new item
-            cart.push({
-                id: productId,
-                title: productTitle,
-                price: parseFloat(productPrice),
-                quantity: 1
-            });
-            showNotification(`${productTitle} added to cart`);
-        }
-        
-        // Save to localStorage
-        localStorage.setItem('kazineCart', JSON.stringify(cart));
-        
-        // Update display
-        updateCartDisplay();
-        
-        // Button feedback
-        const originalText = buttonElement.innerHTML;
-        buttonElement.innerHTML = '<i class="fas fa-check"></i> Added';
-        buttonElement.classList.add('added');
-        
-        // Reset button after 1 second
-        setTimeout(() => {
-            buttonElement.innerHTML = originalText;
-            buttonElement.classList.remove('added');
-            isProcessing = false;
-        }, 1000);
-        
-        // Untuk mobile, return false untuk mencegah event default
-        return false;
-    }
-
-    // UPDATE CART DISPLAY
-    function updateCartDisplay() {
-        // Calculate total items
-        const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-        cartCount.textContent = totalItems;
-        
-        console.log('Updating cart display. Total items:', totalItems);
-        
-        // If cart is empty
-        if (cart.length === 0) {
-            emptyCart.style.display = 'flex';
-            checkoutBtn.style.display = 'none';
-            cartTotal.textContent = '$0.00';
-            cartItems.innerHTML = '<div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
-            return;
-        }
-        
-        // Cart has items
-        emptyCart.style.display = 'none';
-        checkoutBtn.style.display = 'block';
-        
-        let total = 0;
-        let itemsHTML = '';
-        
-        // Build cart items HTML
-        cart.forEach((item, index) => {
-            const itemTotal = item.price * (item.quantity || 1);
-            total += itemTotal;
-            
-            itemsHTML += `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1} | $${item.price.toFixed(2)} each</p>
-                    </div>
-                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                    <button class="remove-item" onclick="removeFromCart(${index})" aria-label="Remove item">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            `;
+    // Mobile menu toggle
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
-        
-        // Update DOM
-        cartItems.innerHTML = itemsHTML;
-        cartTotal.textContent = `$${total.toFixed(2)}`;
-    }
 
-    // REMOVE ITEM FROM CART
-    function removeFromCart(index) {
-        if (index >= 0 && index < cart.length) {
-            const removedItem = cart[index];
-            cart.splice(index, 1);
-            localStorage.setItem('kazineCart', JSON.stringify(cart));
-            updateCartDisplay();
-            showNotification(`${removedItem.title} removed from cart`);
-        }
-    }
-
-    // SHOW NOTIFICATION
-    function showNotification(message) {
-        // Remove existing notification
-        const existing = document.querySelector('.cart-notification');
-        if (existing) existing.remove();
-        
-        // Create new notification
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Remove after 2 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active')) {
+                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             }
-        }, 2000);
+        });
+
+        // Close menu when clicking links
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
     }
 
-    // CART MODAL FUNCTIONS
+    // Cart functions
     function openCart() {
         cartModal.classList.add('active');
         cartOverlay.classList.add('active');
@@ -442,127 +1363,304 @@
         document.body.style.overflow = 'auto';
     }
 
-    // MOBILE MENU
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+    function updateCartDisplay() {
+        const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+        cartCount.textContent = totalItems;
+        
+        if (cart.length === 0) {
+            emptyCart.style.display = 'flex';
+            checkoutBtn.style.display = 'none';
+            cartTotal.textContent = '$0.00';
+            cartItems.innerHTML = '<div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
+            return;
+        }
+        
+        emptyCart.style.display = 'none';
+        checkoutBtn.style.display = 'block';
+        
+        let total = 0;
+        let itemsHTML = '';
+        
+        cart.forEach((item, index) => {
+            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            total += itemTotal;
+            
+            itemsHTML += `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <p>Quantity: ${item.quantity || 1}</p>
+                    </div>
+                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
+                    <button class="remove-item" data-index="${index}" aria-label="Remove item">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            `;
+        });
+        
+        cartItems.innerHTML = itemsHTML;
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = parseInt(this.getAttribute('data-index'));
+                cart.splice(index, 1);
+                localStorage.setItem('kazineCart', JSON.stringify(cart));
+                updateCartDisplay();
+                showNotification('Item removed from cart');
+            });
         });
     }
 
-    // EVENT LISTENERS - HANYA UNTUK NON-ONCLICK ELEMENTS
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Page loaded. Cart initialized.');
+    // Function untuk menangani add to cart - PERBAIKAN UTAMA
+    function handleAddToCart(event) {
+        event.preventDefault();
+        event.stopPropagation();
         
-        // CART ICON
-        if (openCartBtn) {
-            openCartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openCart();
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        const button = event.currentTarget;
+        const productCard = button.closest('.product-card');
+        const productTitle = productCard.getAttribute('data-product');
+        const productPrice = productCard.getAttribute('data-price');
+        const productId = productCard.getAttribute('data-id');
+        
+        // Check if item already in cart
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+            showNotification(`${productTitle} quantity updated`);
+        } else {
+            cart.push({
+                id: productId,
+                title: productTitle,
+                price: productPrice,
+                quantity: 1
             });
-            
-            // Touch untuk mobile
-            openCartBtn.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                openCart();
-            }, { passive: false });
+            showNotification(`${productTitle} added to cart`);
         }
         
-        // CLOSE CART
-        if (closeCartBtn) {
-            closeCartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeCart();
-            });
-        }
+        // Save to localStorage
+        localStorage.setItem('kazineCart', JSON.stringify(cart));
         
-        // CART OVERLAY
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeCart();
-            });
-        }
+        // Update display
+        updateCartDisplay();
         
-        // CHECKOUT BUTTON
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (cart.length === 0) {
-                    showNotification('Your cart is empty');
-                    return;
-                }
-                
-                // Calculate total
-                let subtotal = 0;
-                cart.forEach(item => {
-                    subtotal += item.price * (item.quantity || 1);
-                });
-                
-                // Save order
-                const orderData = {
-                    items: cart,
-                    subtotal: subtotal,
-                    total: subtotal,
-                    store: 'KAZINE',
-                    orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-                };
-                
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                closeCart();
-                
-                // Redirect to payment
-                setTimeout(() => {
-                    window.location.href = 'payment-kazine.html';
-                }, 300);
-            });
-        }
+        // Visual feedback
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.style.backgroundColor = '#27ae60';
+        button.disabled = true;
         
-        // SMOOTH SCROLLING
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || href.includes('.html')) return;
-                
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu
-                    if (mainNav && mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
-            });
+        // Reset button after delay
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.backgroundColor = '';
+            button.disabled = false;
+            isProcessing = false;
+        }, 1000);
+    }
+
+    // Initialize semua tombol Add to Cart
+    function initializeAddToCartButtons() {
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Remove existing listeners by cloning
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
         });
         
-        // TOUCH EVENTS FOR MOBILE - Backup untuk tombol
+        // Add new listeners to all buttons
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            // Standard click event for desktop
+            button.addEventListener('click', handleAddToCart);
+            
+            // Touch event for mobile with proper handling
             button.addEventListener('touchstart', function(e) {
-                // Untuk mobile, panggil fungsi langsung
-                e.preventDefault();
-                addToCartFromButton(this);
-                return false;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                handleAddToCart(e);
             }, { passive: false });
+            
+            // Ensure button has proper cursor
+            button.style.cursor = 'pointer';
+        });
+    }
+
+    // Simple notification
+    function showNotification(message) {
+        // Remove existing notification
+        const existing = document.querySelector('.cart-notification');
+        if (existing) existing.remove();
+        
+        // Create notification
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 2000);
+    }
+
+    // Event listeners untuk cart
+    function setupCartEventListeners() {
+        // Open cart button
+        openCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openCart();
+        });
+        
+        // Close cart button
+        closeCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeCart();
+        });
+        
+        // Close cart on overlay click
+        cartOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeCart();
+        });
+        
+        // Touch events for mobile
+        openCartBtn.addEventListener('touchstart', function(e) {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            e.stopPropagation();
+            openCart();
+        }, { passive: false });
+        
+        closeCartBtn.addEventListener('touchstart', function(e) {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            e.stopPropagation();
+            closeCart();
+        }, { passive: false });
+        
+        cartOverlay.addEventListener('touchstart', function(e) {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            e.stopPropagation();
+            closeCart();
+        }, { passive: false });
+    }
+
+    // Checkout button
+    checkoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (cart.length === 0) {
+            showNotification('Your cart is empty');
+            return;
+        }
+        
+        // Calculate total
+        let subtotal = 0;
+        cart.forEach(item => {
+            subtotal += parseFloat(item.price) * (item.quantity || 1);
+        });
+        
+        // Save order data
+        const orderData = {
+            items: cart,
+            subtotal: subtotal,
+            total: subtotal + 2.50,
+            store: 'KAZINE',
+            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+        };
+        
+        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+        closeCart();
+        
+        // Redirect to payment page
+        setTimeout(() => {
+            window.location.href = 'payment-kazine.html';
+        }, 300);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href.includes('.html')) return;
+            
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
         });
     });
 
-    // Debug info
-    console.log('Cart system ready. Current cart:', cart);
+    // Initialize all functions when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize add to cart buttons
+        initializeAddToCartButtons();
+        
+        // Setup cart event listeners
+        setupCartEventListeners();
+        
+        // Update cart display
+        updateCartDisplay();
+        
+        // Reset processing flag
+        isProcessing = false;
+        
+        // Add hover effect removal for mobile
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+    });
+
+    // Also initialize on window load (backup)
+    window.addEventListener('load', function() {
+        initializeAddToCartButtons();
+        setupCartEventListeners();
+        updateCartDisplay();
+    });
+
+    // Fix untuk mencegah double execution
+    let initialized = false;
+    if (!initialized) {
+        initialized = true;
+        
+        // Ensure buttons work immediately
+        setTimeout(() => {
+            initializeAddToCartButtons();
+        }, 100);
+    }
     </script>
 </body>
 </html>
