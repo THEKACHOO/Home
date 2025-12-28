@@ -264,6 +264,10 @@
             flex-shrink: 0;
         }
 
+        .voucher-button:hover {
+            background: var(--dark-gray);
+        }
+
         /* Payment Form Responsive */
         .payment-form-section {
             background: var(--pure-white);
@@ -380,6 +384,12 @@
             justify-content: center;
             gap: 10px;
             min-height: 56px;
+        }
+
+        .submit-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
 
         /* Footer Responsive */
@@ -685,6 +695,29 @@
             background-size: 16px;
             padding-right: 40px;
         }
+        
+        /* Payment method specific styles */
+        .payment-method input:checked + .payment-label {
+            border-color: var(--kazine-primary);
+            background: rgba(73, 80, 87, 0.05);
+        }
+        
+        .payment-label:hover {
+            border-color: var(--medium-gray);
+            background: var(--off-white);
+        }
+        
+        /* Button disabled state */
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        button:disabled:hover {
+            transform: none !important;
+            background: var(--success-color) !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body>
@@ -742,7 +775,7 @@
                             <span id="voucherText">Voucher Applied</span>
                         </div>
                         <p style="font-size: 12px; color: var(--medium-gray); margin-top: 10px;">
-                            Valid vouchers: <strong>KACHOOBESTIE</strong> (50% off) • <strong>WELCOMEKACHOO</strong> (30% off)
+                            Enter any valid voucher code for discounts
                         </p>
                     </div>
                     
@@ -803,7 +836,7 @@
                         <label class="form-label">Select Payment Method *</label>
                         <div class="payment-methods">
                             <div class="payment-method">
-                                <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                                <input type="radio" id="paypal" name="paymentMethod" value="paypal" checked>
                                 <label class="payment-label" for="paypal">
                                     <div class="payment-icon"><i class="fab fa-paypal"></i></div>
                                     <div>
@@ -869,10 +902,10 @@
                             <label class="form-label">Select Card Type *</label>
                             <select class="form-input" id="selectedCard">
                                 <option value="">Choose card type</option>
-                                <option value="black">Black Card</option>
-                                <option value="jp-morgan">JP Morgan Reserve</option>
-                                <option value="dubai-first">Dubai First Royale</option>
-                                <option value="coutts">Coutts World Silk</option>
+                                <option value="visa">VISA</option>
+                                <option value="mastercard">MasterCard</option>
+                                <option value="amex">American Express</option>
+                                <option value="discover">Discover</option>
                             </select>
                         </div>
                     </div>
@@ -898,7 +931,6 @@
     </footer>
 
     <script>
-        // JavaScript code remains exactly the same as in your original file
         const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
         
         let cartItems = [];
@@ -907,20 +939,23 @@
         let voucherCode = '';
         let discountPercentage = 0;
         const serviceFee = 2.50;
+        
+        // Dynamic voucher codes and their discounts
+        const validVouchers = {
+            // You can add voucher codes here if needed
+            // "WELCOMEKACHOO": 30,
+            // "KACHOOBESTIE": 50
+        };
 
         function calculateDiscount(code, amount) {
             const voucher = code.trim().toUpperCase();
             
-            if (voucher === 'KACHOOBESTIE') {
+            // Check if voucher exists in validVouchers
+            if (validVouchers.hasOwnProperty(voucher)) {
+                const percentage = validVouchers[voucher];
                 return {
-                    amount: amount * 0.50,
-                    percentage: 50,
-                    code: voucher
-                };
-            } else if (voucher === 'WELCOMEKACHOO') {
-                return {
-                    amount: amount * 0.30,
-                    percentage: 30,
+                    amount: amount * (percentage / 100),
+                    percentage: percentage,
                     code: voucher
                 };
             }
@@ -1095,6 +1130,9 @@
             const bankSelection = document.getElementById('bankSelection');
             const cardSelection = document.getElementById('cardSelection');
             
+            // Set PayPal as default
+            document.getElementById('paypal').checked = true;
+            
             paymentMethods.forEach(method => {
                 method.addEventListener('change', function() {
                     bankSelection.classList.remove('active');
@@ -1107,9 +1145,90 @@
                     }
                 });
             });
+            
+            // Initialize based on default selection
+            const defaultMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (defaultMethod.value === 'debit-credit') {
+                bankSelection.classList.add('active');
+            } else if (defaultMethod.value === 'international') {
+                cardSelection.classList.add('active');
+            }
+        }
+
+        function validateForm() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const selectedBank = document.getElementById('selectedBank').value;
+            const selectedCard = document.getElementById('selectedCard').value;
+            
+            // Clear previous errors
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.style.borderColor = '';
+            });
+            
+            let isValid = true;
+            let errorMessage = '';
+            
+            if (!fullName) {
+                document.getElementById('fullName').style.borderColor = 'var(--discount-color)';
+                isValid = false;
+                errorMessage = 'Please enter your full name';
+            }
+            
+            if (!email || !email.includes('@')) {
+                document.getElementById('email').style.borderColor = 'var(--discount-color)';
+                isValid = false;
+                errorMessage = errorMessage || 'Please enter a valid email address';
+            }
+            
+            if (!country) {
+                document.getElementById('country').style.borderColor = 'var(--discount-color)';
+                isValid = false;
+                errorMessage = errorMessage || 'Please enter your country';
+            }
+            
+            if (!paymentMethod) {
+                isValid = false;
+                errorMessage = errorMessage || 'Please select a payment method';
+            }
+            
+            if (paymentMethod && paymentMethod.value === 'debit-credit' && !selectedBank) {
+                document.getElementById('selectedBank').style.borderColor = 'var(--discount-color)';
+                isValid = false;
+                errorMessage = errorMessage || 'Please select your bank';
+            }
+            
+            if (paymentMethod && paymentMethod.value === 'international' && !selectedCard) {
+                document.getElementById('selectedCard').style.borderColor = 'var(--discount-color)';
+                isValid = false;
+                errorMessage = errorMessage || 'Please select your card type';
+            }
+            
+            if (cartItems.length === 0) {
+                isValid = false;
+                errorMessage = 'Your cart is empty';
+            }
+            
+            return { isValid, errorMessage };
         }
 
         async function processPayment() {
+            // Disable button to prevent multiple clicks
+            const submitButton = document.getElementById('processPayment');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            // Validate form
+            const validation = validateForm();
+            if (!validation.isValid) {
+                alert(validation.errorMessage);
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                return;
+            }
+            
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const country = document.getElementById('country').value.trim();
@@ -1119,42 +1238,6 @@
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
             const selectedBank = document.getElementById('selectedBank').value;
             const selectedCard = document.getElementById('selectedCard').value;
-            
-            // Validation
-            if (!fullName) {
-                alert('Please enter your full name');
-                return;
-            }
-            
-            if (!email || !email.includes('@')) {
-                alert('Please enter a valid email address');
-                return;
-            }
-            
-            if (!country) {
-                alert('Please enter your country');
-                return;
-            }
-            
-            if (!paymentMethod) {
-                alert('Please select a payment method');
-                return;
-            }
-            
-            if (paymentMethod.value === 'debit-credit' && !selectedBank) {
-                alert('Please select your bank');
-                return;
-            }
-            
-            if (paymentMethod.value === 'international' && !selectedCard) {
-                alert('Please select your card type');
-                return;
-            }
-            
-            if (cartItems.length === 0) {
-                alert('Your cart is empty');
-                return;
-            }
             
             const total = subtotal - discount + serviceFee;
             const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -1191,7 +1274,7 @@
                 // Save to localStorage first
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
                 
-                // Send to Google Sheets
+                // Prepare data for Google Sheets
                 const sheetData = {
                     "Timestamp": new Date().toISOString(),
                     "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
@@ -1207,13 +1290,14 @@
                     "Shipping Fee": "0.00",
                     "Tax": "0.00",
                     "Total Amount": total.toFixed(2),
-                    "Payment Method": paymentMethod.value.toUpperCase(),
+                    "Payment Method": getPaymentMethodDisplay(paymentMethod.value, selectedBank, selectedCard),
                     "Payment Status": "PAID",
                     "Order Date": new Date().toLocaleString()
                 };
                 
                 console.log('📤 Sending to spreadsheet:', sheetData);
                 
+                // Send to Google Sheets
                 const response = await fetch(SPREADSHEET_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -1228,6 +1312,11 @@
                 orderData.orderNumber = sheetData["Order Number"];
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
                 
+                // Clear cart after successful payment
+                localStorage.removeItem('kazineCart');
+                localStorage.removeItem('kazineVoucher');
+                localStorage.removeItem('kazineTotals');
+                
                 // Redirect to confirmation page
                 setTimeout(() => {
                     window.location.href = 'confirmation-kazine.html';
@@ -1235,40 +1324,118 @@
                 
             } catch (error) {
                 console.error('Error processing payment:', error);
-                alert('Payment processed but there was an issue saving to spreadsheet. Your order is still recorded.');
                 
-                // Still redirect to confirmation
-                setTimeout(() => {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                
+                // Hide loading
+                loadingOverlay.style.display = 'none';
+                
+                // Show error but still proceed (for demo)
+                const proceed = confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?');
+                if (proceed) {
+                    // Clear cart anyway
+                    localStorage.removeItem('kazineCart');
+                    localStorage.removeItem('kazineVoucher');
+                    localStorage.removeItem('kazineTotals');
+                    
                     window.location.href = 'confirmation-kazine.html';
-                }, 1500);
+                }
+            }
+        }
+        
+        function getPaymentMethodDisplay(method, bank, card) {
+            switch(method) {
+                case 'paypal':
+                    return 'PAYPAL';
+                case 'qris':
+                    return 'QRIS';
+                case 'debit-credit':
+                    return `DEBIT/CREDIT - ${bank.toUpperCase()}`;
+                case 'international':
+                    return `INTERNATIONAL - ${card.toUpperCase()}`;
+                default:
+                    return method.toUpperCase();
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            loadCartItems();
+            // Load cart items
+            if (!loadCartItems()) {
+                return;
+            }
             
+            // Setup payment methods
+            setupPaymentMethods();
+            
+            // Voucher button event
             document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
             
+            // Enter key for voucher
             document.getElementById('voucherCode').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     applyVoucher();
                 }
             });
             
-            setupPaymentMethods();
-            
+            // Payment button event
             document.getElementById('processPayment').addEventListener('click', processPayment);
             
-            // Optional: Pre-fill form for testing
-            if (cartItems.length > 0 && !document.getElementById('fullName').value) {
-                // Uncomment below to pre-fill form for testing
-                /*
-                document.getElementById('fullName').value = 'John Doe';
-                document.getElementById('email').value = 'john@example.com';
-                document.getElementById('country').value = 'United States';
-                document.getElementById('address').value = '123 Main Street';
-                document.getElementById('twitterUsername').value = '@johndoe';
-                */
+            // Form input validation on blur
+            document.querySelectorAll('.form-input[required]').forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (!this.value.trim()) {
+                        this.style.borderColor = 'var(--discount-color)';
+                    } else {
+                        this.style.borderColor = '';
+                    }
+                });
+            });
+            
+            // Auto-fill for testing (remove in production)
+            if (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) {
+                if (cartItems.length > 0 && !document.getElementById('fullName').value) {
+                    document.getElementById('fullName').value = 'Test Customer';
+                    document.getElementById('email').value = 'test@example.com';
+                    document.getElementById('country').value = 'Indonesia';
+                    document.getElementById('address').value = '123 Test Street';
+                    document.getElementById('twitterUsername').value = '@testuser';
+                    document.getElementById('voucherCode').value = 'TEST10';
+                }
+            }
+            
+            // Add hover effect for payment methods
+            document.querySelectorAll('.payment-label').forEach(label => {
+                label.addEventListener('mouseenter', function() {
+                    if (!this.previousElementSibling.checked) {
+                        this.style.borderColor = 'var(--medium-gray)';
+                        this.style.background = 'var(--off-white)';
+                    }
+                });
+                
+                label.addEventListener('mouseleave', function() {
+                    if (!this.previousElementSibling.checked) {
+                        this.style.borderColor = '';
+                        this.style.background = '';
+                    }
+                });
+            });
+        });
+        
+        // Handle browser back button
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                loadCartItems();
+            }
+        });
+        
+        // Handle beforeunload to prevent accidental navigation
+        window.addEventListener('beforeunload', function(e) {
+            if (cartItems.length > 0) {
+                // Optional: Ask for confirmation
+                // e.preventDefault();
+                // e.returnValue = '';
             }
         });
     </script>
