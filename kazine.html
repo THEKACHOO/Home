@@ -8,7 +8,44 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
     <style>
-        /* ... (CSS tetap sama seperti sebelumnya) ... */
+        /* ... (CSS tetap sama) ... */
+        
+        /* TOMBOL ADD TO CART - PERBAIKAN */
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer !important;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #333333;
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        .add-to-cart-btn.added {
+            background: #27ae60 !important;
+            cursor: not-allowed !important;
+        }
+
+        .add-to-cart-btn.added:hover {
+            background: #27ae60 !important;
+        }
     </style>
 </head>
 <body>
@@ -86,11 +123,34 @@
         </div>
     </section>
 
-    <!-- Fashion Grid - Layout sudah diperbaiki -->
+    <!-- Fashion Grid -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
-                <!-- ... (grid items tetap sama) ... -->
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Fashion Editorial 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="Fashion Editorial 2">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Fashion Editorial 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Fashion Editorial 4">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                         alt="Fashion Editorial 5">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                         alt="Fashion Editorial 6">
+                </div>
             </div>
         </div>
     </section>
@@ -114,7 +174,13 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Silk Evening Dress</h3>
                         <div class="product-price">$499.99</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
+                        <button class="add-to-cart-btn" 
+                                onclick="addToCartFromButton(this)"
+                                data-id="kazine-dress-001"
+                                data-product="Silk Evening Dress"
+                                data-price="499.99">
+                            Add to Bag
+                        </button>
                     </div>
                 </div>
                 
@@ -128,7 +194,13 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Wool Tailored Blazer</h3>
                         <div class="product-price">$389.99</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
+                        <button class="add-to-cart-btn" 
+                                onclick="addToCartFromButton(this)"
+                                data-id="kazine-blazer-002"
+                                data-product="Wool Tailored Blazer"
+                                data-price="389.99">
+                            Add to Bag
+                        </button>
                     </div>
                 </div>
                 
@@ -142,7 +214,13 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Leather Crossbody Bag</h3>
                         <div class="product-price">$299.99</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
+                        <button class="add-to-cart-btn" 
+                                onclick="addToCartFromButton(this)"
+                                data-id="kazine-bag-003"
+                                data-product="Leather Crossbody Bag"
+                                data-price="299.99">
+                            Add to Bag
+                        </button>
                     </div>
                 </div>
                 
@@ -156,7 +234,13 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Cashmere Sweater Set</h3>
                         <div class="product-price">$459.99</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Bag</button>
+                        <button class="add-to-cart-btn" 
+                                onclick="addToCartFromButton(this)"
+                                data-id="kazine-sweater-004"
+                                data-product="Cashmere Sweater Set"
+                                data-price="459.99">
+                            Add to Bag
+                        </button>
                     </div>
                 </div>
             </div>
@@ -172,7 +256,7 @@
     <!-- ... (sisanya tetap sama) ... -->
 
     <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI - VERSI DIPERBAIKI
+    // SIMPLE CART SYSTEM - VERSI SEDERHANA YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -192,31 +276,35 @@
     // Initialize cart display
     updateCartDisplay();
 
-    // Main add to cart function - dipanggil dari onclick di button
-    function addToCart(button) {
+    // FUNGSI UTAMA - DIPANGGIL DARI onclick
+    function addToCartFromButton(buttonElement) {
+        // Untuk PC: event otomatis ada
+        // Untuk Mobile: buttonElement adalah button yang diklik
+        
+        // Prevent multiple clicks
         if (isProcessing) return;
         isProcessing = true;
         
-        const productCard = button.closest('.product-card');
-        const productTitle = productCard.getAttribute('data-product');
-        const productPrice = productCard.getAttribute('data-price');
-        const productId = productCard.getAttribute('data-id');
+        // Get data from button attributes
+        const productId = buttonElement.getAttribute('data-id');
+        const productTitle = buttonElement.getAttribute('data-product');
+        const productPrice = buttonElement.getAttribute('data-price');
         
-        console.log('Adding to cart:', { productTitle, productPrice, productId }); // Debug
+        console.log('Adding to cart:', productTitle, productPrice, productId);
         
-        // Check if item already in cart
-        const existingItemIndex = cart.findIndex(item => item.id === productId);
+        // Check if item exists
+        const existingIndex = cart.findIndex(item => item.id === productId);
         
-        if (existingItemIndex !== -1) {
-            // Update quantity if item exists
-            cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
-            showNotification(`${productTitle} quantity updated (now ${cart[existingItemIndex].quantity})`);
+        if (existingIndex !== -1) {
+            // Update quantity
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            showNotification(`${productTitle} added (Quantity: ${cart[existingIndex].quantity})`);
         } else {
             // Add new item
             cart.push({
                 id: productId,
                 title: productTitle,
-                price: productPrice,
+                price: parseFloat(productPrice),
                 quantity: 1
             });
             showNotification(`${productTitle} added to cart`);
@@ -224,39 +312,35 @@
         
         // Save to localStorage
         localStorage.setItem('kazineCart', JSON.stringify(cart));
-        console.log('Cart saved:', cart); // Debug
         
         // Update display
         updateCartDisplay();
         
-        // Visual feedback
-        const originalText = button.innerHTML;
-        const originalBg = button.style.backgroundColor;
-        const originalColor = button.style.color;
+        // Button feedback
+        const originalText = buttonElement.innerHTML;
+        buttonElement.innerHTML = '<i class="fas fa-check"></i> Added';
+        buttonElement.classList.add('added');
         
-        button.innerHTML = '<i class="fas fa-check"></i> Added';
-        button.style.backgroundColor = '#27ae60';
-        button.style.color = '#ffffff';
-        button.disabled = true;
-        
-        // Reset button after delay
+        // Reset button after 1 second
         setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.backgroundColor = originalBg;
-            button.style.color = originalColor;
-            button.disabled = false;
+            buttonElement.innerHTML = originalText;
+            buttonElement.classList.remove('added');
             isProcessing = false;
         }, 1000);
+        
+        // Untuk mobile, return false untuk mencegah event default
+        return false;
     }
 
-    // Update cart display
+    // UPDATE CART DISPLAY
     function updateCartDisplay() {
+        // Calculate total items
         const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
         cartCount.textContent = totalItems;
         
-        console.log('Cart items:', cart); // Debug
-        console.log('Total items:', totalItems); // Debug
+        console.log('Updating cart display. Total items:', totalItems);
         
+        // If cart is empty
         if (cart.length === 0) {
             emptyCart.style.display = 'flex';
             checkoutBtn.style.display = 'none';
@@ -265,21 +349,23 @@
             return;
         }
         
+        // Cart has items
         emptyCart.style.display = 'none';
         checkoutBtn.style.display = 'block';
         
         let total = 0;
         let itemsHTML = '';
         
+        // Build cart items HTML
         cart.forEach((item, index) => {
-            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            const itemTotal = item.price * (item.quantity || 1);
             total += itemTotal;
             
             itemsHTML += `
                 <div class="cart-item">
                     <div class="item-info">
                         <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1} | Price: $${item.price}</p>
+                        <p>Quantity: ${item.quantity || 1} | $${item.price.toFixed(2)} each</p>
                     </div>
                     <div class="item-price">$${itemTotal.toFixed(2)}</div>
                     <button class="remove-item" onclick="removeFromCart(${index})" aria-label="Remove item">
@@ -289,11 +375,12 @@
             `;
         });
         
+        // Update DOM
         cartItems.innerHTML = itemsHTML;
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // Remove item from cart
+    // REMOVE ITEM FROM CART
     function removeFromCart(index) {
         if (index >= 0 && index < cart.length) {
             const removedItem = cart[index];
@@ -304,13 +391,13 @@
         }
     }
 
-    // Simple notification
+    // SHOW NOTIFICATION
     function showNotification(message) {
         // Remove existing notification
         const existing = document.querySelector('.cart-notification');
         if (existing) existing.remove();
         
-        // Create notification
+        // Create new notification
         const notification = document.createElement('div');
         notification.className = 'cart-notification';
         notification.textContent = message;
@@ -325,37 +412,23 @@
             border-radius: 2px;
             z-index: 9999;
             font-size: 14px;
+            font-family: 'Inter', sans-serif;
             white-space: nowrap;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             animation: fadeInOut 2s ease-in-out;
         `;
         
-        // Add animation style
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
         document.body.appendChild(notification);
         
-        // Remove after animation
+        // Remove after 2 seconds
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.remove();
             }
-            if (style.parentNode) {
-                style.remove();
-            }
         }, 2000);
     }
 
-    // Cart functions
+    // CART MODAL FUNCTIONS
     function openCart() {
         cartModal.classList.add('active');
         cartOverlay.classList.add('active');
@@ -369,153 +442,127 @@
         document.body.style.overflow = 'auto';
     }
 
-    // Mobile menu toggle
+    // MOBILE MENU
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
             mainNav.classList.toggle('active');
             this.innerHTML = mainNav.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active')) {
-                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-
-        // Close menu when clicking links
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
     }
 
-    // Event listeners untuk cart
-    if (openCartBtn) {
-        openCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openCart();
-        });
+    // EVENT LISTENERS - HANYA UNTUK NON-ONCLICK ELEMENTS
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Page loaded. Cart initialized.');
         
-        // Touch event for mobile
-        openCartBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openCart();
-        }, { passive: false });
-    }
-
-    if (closeCartBtn) {
-        closeCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-    }
-
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-    }
-
-    // Checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            if (cart.length === 0) {
-                showNotification('Your cart is empty');
-                return;
-            }
-            
-            // Calculate total
-            let subtotal = 0;
-            cart.forEach(item => {
-                subtotal += parseFloat(item.price) * (item.quantity || 1);
+        // CART ICON
+        if (openCartBtn) {
+            openCartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCart();
             });
             
-            // Save order data
-            const orderData = {
-                items: cart,
-                subtotal: subtotal,
-                total: subtotal + 2.50,
-                store: 'KAZINE',
-                orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-            };
-            
-            localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-            closeCart();
-            
-            // Redirect to payment page
-            setTimeout(() => {
-                window.location.href = 'payment-kazine.html';
-            }, 300);
-        });
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href.includes('.html')) return;
-            
-            e.preventDefault();
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
+            // Touch untuk mobile
+            openCartBtn.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                openCart();
+            }, { passive: false });
+        }
+        
+        // CLOSE CART
+        if (closeCartBtn) {
+            closeCartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCart();
+            });
+        }
+        
+        // CART OVERLAY
+        if (cartOverlay) {
+            cartOverlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCart();
+            });
+        }
+        
+        // CHECKOUT BUTTON
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty');
+                    return;
+                }
+                
+                // Calculate total
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price * (item.quantity || 1);
                 });
                 
-                // Close mobile menu if open
-                if (mainNav && mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-    });
-
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Update cart display
-        updateCartDisplay();
+                // Save order
+                const orderData = {
+                    items: cart,
+                    subtotal: subtotal,
+                    total: subtotal,
+                    store: 'KAZINE',
+                    orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+                };
+                
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                closeCart();
+                
+                // Redirect to payment
+                setTimeout(() => {
+                    window.location.href = 'payment-kazine.html';
+                }, 300);
+            });
+        }
         
-        // Add touch events for mobile buttons
+        // SMOOTH SCROLLING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.includes('.html')) return;
+                
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // TOUCH EVENTS FOR MOBILE - Backup untuk tombol
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             button.addEventListener('touchstart', function(e) {
-                // Prevent default touch behavior
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                // Trigger click event
-                this.click();
+                // Untuk mobile, panggil fungsi langsung
+                e.preventDefault();
+                addToCartFromButton(this);
+                return false;
             }, { passive: false });
         });
-        
-        console.log('Cart system initialized');
     });
 
-    // Debug: Log cart state
-    console.log('Initial cart:', cart);
+    // Debug info
+    console.log('Cart system ready. Current cart:', cart);
     </script>
 </body>
 </html>
