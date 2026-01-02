@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafka Company - Family Heritage Since 1895</title>
+    <title>Kafka Company</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -248,6 +248,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
         }
 
         .office-card:hover {
@@ -471,6 +472,12 @@
             justify-content: center;
             border-radius: 16px;
             border: 1px solid var(--border-light);
+        }
+
+        .project-icon img {
+            max-width: 50px;
+            max-height: 50px;
+            object-fit: contain;
         }
 
         .project-title {
@@ -743,8 +750,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-crown logo-icon"></i>
-                    KAFKA<span>COMPANY</span>
+                    KAFKACOMPANY
                 </a>
                 <div class="nav-links">
                     <a href="#history">History</a>
@@ -760,8 +766,8 @@
     <section class="hero" id="history">
         <div class="container">
             <div class="hero-content">
-                <h1>Kafka Company: A Legacy in Black & White</h1>
-                <p class="hero-subtitle">Family Heritage Since 1895 • London • New York • Jakarta</p>
+                <h1>Kafka Company</h1>
+                <p class="hero-subtitle">Family Heritage • London • New York • Jakarta</p>
                 <p class="hero-desc">
                     Founded by the Kafka family in London, our company has maintained a tradition of excellence through generations. 
                     In <span class="highlight">2026</span>, we expanded to Southeast Asia with our new branch in South Jakarta, introducing our innovative <span class="highlight">KACHOO</span> brand to the region. Our monochromatic philosophy reflects our commitment to clarity, precision, and timeless elegance.
@@ -778,7 +784,7 @@
             
             <div class="office-grid">
                 <!-- London Office -->
-                <div class="office-card">
+                <div class="office-card" onclick="window.open('https://x.com/TheKachoo/status/1996842415592993206?s=20', '_blank')">
                     <div class="office-header">
                         <div class="office-location">
                             <div class="office-icon">
@@ -789,7 +795,7 @@
                         <span class="office-status">First & Founding Office</span>
                     </div>
                     <div class="office-body">
-                        <p class="office-desc">Established in 1895, our London office is the birthplace of Kafka Company. This historic location preserves our family heritage and traditional values while serving as our European operations hub.</p>
+                        <p class="office-desc">Our London office is the birthplace of Kafka Company. This historic location preserves our family heritage and traditional values while serving as our European operations hub.</p>
                         
                         <div class="office-features">
                             <h4 class="feature-title">Core Functions</h4>
@@ -804,7 +810,7 @@
                 </div>
 
                 <!-- New York Office -->
-                <div class="office-card">
+                <div class="office-card" onclick="window.open('https://x.com/TheKachoo/status/1996841960225869879?s=20', '_blank')">
                     <div class="office-header">
                         <div class="office-location">
                             <div class="office-icon">
@@ -815,7 +821,7 @@
                         <span class="office-status">Global Headquarters</span>
                     </div>
                     <div class="office-body">
-                        <p class="office-desc">Our global headquarters, established in 1978. This office directs all international operations and sets the strategic vision for Kafka Company's worldwide presence.</p>
+                        <p class="office-desc">Our global headquarters. This office directs all international operations and sets the strategic vision for Kafka Company's worldwide presence.</p>
                         
                         <div class="office-features">
                             <h4 class="feature-title">Core Functions</h4>
@@ -830,7 +836,7 @@
                 </div>
 
                 <!-- Jakarta Office -->
-                <div class="office-card">
+                <div class="office-card" onclick="window.open('https://thekachoo.github.io/Kantorkachoo/', '_blank')">
                     <div class="office-header">
                         <div class="office-location">
                             <div class="office-icon">
@@ -870,7 +876,7 @@
                 <!-- KAFKAPAGES -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-book-open"></i>
+                        <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo">
                     </div>
                     <h3 class="project-title">KAFKAPAGES</h3>
                     <p class="project-desc">A premium book publishing house specializing in literature, business, and cultural works. We champion both established and emerging voices from across Southeast Asia and beyond.</p>
@@ -879,7 +885,7 @@
                 <!-- KAZINE -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-newspaper"></i>
+                        <img src="kazine-logo.png" alt="KAZINE Logo">
                     </div>
                     <h3 class="project-title">KAZINE</h3>
                     <p class="project-desc">A high-end magazine publication featuring lifestyle, business insights, culture, and innovation trends. Each issue is a carefully curated collection of stories that matter.</p>
@@ -888,7 +894,7 @@
                 <!-- KABOOM -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-bolt"></i>
+                        <img src="kaboom-logo.png" alt="KABOOM Logo">
                     </div>
                     <h3 class="project-title">KABOOM</h3>
                     <p class="project-desc">A dynamic digital news platform delivering breaking news, in-depth analysis, and investigative journalism with unmatched speed, accuracy, and integrity.</p>
@@ -910,7 +916,7 @@
                     </div>
                     <div class="contact-details">
                         <h3>Email</h3>
-                        <a href="mailto:thekachoo@gmail.com">thekachoo@gmail.com</a>
+                        <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a>
                         <p>Primary contact for KACHOO brand inquiries</p>
                     </div>
                 </div>
@@ -962,9 +968,9 @@
                 <div class="footer-col">
                     <h3 class="footer-title">KACHOO Projects</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> KAFKAPAGES (Book Publishing)</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> KAZINE (Magazine)</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> KABOOM (News Media)</a></li>
+                        <li><a href="kafkapages.html"><i class="fas fa-chevron-right"></i> KAFKAPAGES (Book Publishing)</a></li>
+                        <li><a href="kazine.html"><i class="fas fa-chevron-right"></i> KAZINE (Magazine)</a></li>
+                        <li><a href="kaboom.html"><i class="fas fa-chevron-right"></i> KABOOM (News Media)</a></li>
                     </ul>
                 </div>
             </div>
