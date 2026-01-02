@@ -172,6 +172,45 @@
             box-shadow: 0 6px 25px rgba(0,0,0,0.2);
         }
         
+        .menu-button-icon {
+            background: transparent;
+            border: 2px solid var(--black);
+            color: var(--black);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-size: 20px;
+        }
+        
+        .menu-button-icon:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            transition: left 0.7s;
+        }
+        
+        .menu-button-icon:hover:before {
+            left: 100%;
+        }
+        
+        .menu-button-icon:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: calc(100% + 10px);
@@ -806,40 +845,79 @@
         /* Mobile-specific fixes */
         @media (max-width: 767px) {
             .header-content {
-                flex-wrap: wrap;
+                display: flex;
+                align-items: center;
                 justify-content: space-between;
-                gap: 15px;
+                gap: 10px;
                 min-height: 70px;
+                padding: 12px 0;
             }
             
             .logo-container {
                 order: 1;
+                flex: 0 0 auto;
+            }
+            
+            #logo {
+                height: 42px; /* Logo lebih besar di mobile */
             }
             
             .hotline-today {
-                order: 3;
-                width: 100%;
-                padding: 10px 0 0;
-                margin-top: 5px;
+                order: 2;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                min-width: 0;
+                padding: 0 10px;
             }
             
             .hotline-text {
-                font-size: 18px;
-                padding: 10px 24px;
+                font-size: 16px;
+                padding: 10px 20px;
                 width: 100%;
                 max-width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             
             .menu-container {
-                order: 2;
+                order: 3;
+                flex: 0 0 auto;
+            }
+            
+            .menu-button {
+                display: none; /* Sembunyikan tombol dengan teks "MENU" */
+            }
+            
+            .menu-button-icon {
+                display: flex; /* Tampilkan tombol ikon saja */
+                width: 46px;
+                height: 46px;
+                border: 2px solid var(--black);
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                background: transparent;
+                color: var(--black);
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .menu-button-icon:hover {
+                background: var(--black);
+                color: var(--white);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 25px rgba(0,0,0,0.2);
             }
             
             .dropdown-menu {
                 position: fixed;
                 top: 70px;
                 right: 20px;
-                left: 20px;
-                width: auto;
+                left: auto;
+                width: 260px;
                 box-shadow: 0 15px 50px rgba(0,0,0,0.2);
             }
             
@@ -894,17 +972,18 @@
             }
             
             .hotline-text {
-                font-size: 16px;
-                padding: 10px 20px;
+                font-size: 14px;
+                padding: 8px 16px;
             }
             
             #logo {
-                height: 35px;
+                height: 38px; /* Logo lebih besar untuk visibilitas lebih baik */
             }
             
-            .menu-button {
-                padding: 8px 18px;
-                font-size: 13px;
+            .menu-button-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
             }
             
             .hero-title {
@@ -932,6 +1011,11 @@
             .company-card {
                 padding: 22px;
             }
+            
+            .dropdown-menu {
+                right: 16px;
+                width: 240px;
+            }
         }
         
         /* Scroll animations */
@@ -952,20 +1036,20 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <!-- Logo -->
+                <!-- Logo di pojok kiri atas -->
                 <div class="logo-container" id="logoContainer">
                     <img src="kaboom-logo.png" alt="The Kaboom! Logo" id="logo">
                 </div>
                 
-                <!-- Hotline -->
+                <!-- Hotline TODAY di tengah -->
                 <div class="hotline-today">
                     <div class="hotline-text">HOTLINE TODAY</div>
                 </div>
                 
-                <!-- Menu -->
+                <!-- Menu di pojok kanan atas (hanya ikon) -->
                 <div class="menu-container">
-                    <button class="menu-button" id="menuButton">
-                        <i class="fas fa-bars"></i> MENU
+                    <button class="menu-button-icon" id="menuButton">
+                        <i class="fas fa-bars"></i>
                     </button>
                     
                     <div class="dropdown-menu" id="dropdownMenu">
@@ -1296,4 +1380,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
