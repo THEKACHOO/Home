@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumah Bulan: Dukungan Penuh untuk Anak Penderita Kanker | Artikel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            /* Tema biru malam dengan aksen cerah */
+            --night-blue: #0a1a2f;
+            --deep-blue: #1a2b4a;
+            --medium-blue: #2a3b5a;
+            --light-blue: #3a4b6a;
+            --moon-yellow: #f8d775;
+            --moon-light: #fff9e6;
+            --star-yellow: #ffeb3b;
+            --soft-white: #f8f9fa;
+            --pure-white: #ffffff;
+            --accent-teal: #4fd1c5;
+            --accent-pink: #f687b3;
+            --accent-green: #68d391;
+            
+            --primary: var(--night-blue);
+            --secondary: var(--deep-blue);
+            --accent: var(--accent-teal);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--night-blue);
+            color: var(--soft-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 26, 47, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-blue);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-100%); 
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 8px rgba(248, 215, 117, 0.5));
+        }
+
+        .logo-moon {
+            animation: moonGlow 3s infinite alternate;
+        }
+
+        @keyframes moonGlow {
+            0% { 
+                filter: drop-shadow(0 0 8px rgba(248, 215, 117, 0.5));
+            }
+            100% { 
+                filter: drop-shadow(0 0 20px rgba(248, 215, 117, 0.8));
+            }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-green));
+            color: var(--night-blue);
+            padding: 6px 15px;
+            border-radius: 20px;
+            animation: pulseCategory 2s infinite alternate;
+        }
+
+        @keyframes pulseCategory {
+            0% {
+                box-shadow: 0 4px 15px rgba(79, 209, 197, 0.3);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(79, 209, 197, 0.6);
+            }
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-teal);
+            color: var(--night-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(79, 209, 197, 0.4);
+        }
+
+        /* ===== ARTICLE HERO ===== */
+        .article-hero-section {
+            margin-top: 120px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--night-blue) 0%, var(--deep-blue) 100%);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInHero 1.2s ease-out;
+        }
+
+        @keyframes fadeInHero {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .article-hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(248, 215, 117, 0.03));
+            z-index: 0;
+        }
+
+        .floating-moon {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--moon-yellow) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+            filter: blur(1px);
+        }
+
+        .floating-moon:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-moon:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .floating-moon:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .floating-star {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--star-yellow);
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        .floating-star:nth-child(4) {
+            top: 15%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .floating-star:nth-child(5) {
+            top: 40%;
+            left: 15%;
+            animation-delay: -1s;
+        }
+
+        .floating-star:nth-child(6) {
+            bottom: 20%;
+            right: 25%;
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg); 
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg); 
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(0.8);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2);
+            }
+        }
+
+        .article-hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--accent-teal);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-title {
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: var(--pure-white);
+            animation: fadeInUp 0.8s 0.4s both;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .article-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-green));
+            border-radius: 2px;
+            animation: expandLine 1s 1s both;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; opacity: 0; }
+            to { width: 120px; opacity: 1; }
+        }
+
+        .article-subtitle {
+            font-size: clamp(20px, 2vw, 24px);
+            color: var(--moon-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s 0.6s both;
+        }
+
+        /* ===== MISSIONS SHOWCASE ===== */
+        .missions-showcase {
+            padding: 40px 0 80px;
+            position: relative;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--medium-blue) 100%);
+        }
+
+        .mission-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--moon-light);
+            animation: fadeInUp 0.8s 0.8s both;
+        }
+
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-card:nth-child(1) { animation-delay: 0.8s; }
+        .mission-card:nth-child(2) { animation-delay: 1s; }
+        .mission-card:nth-child(3) { animation-delay: 1.2s; }
+        .mission-card:nth-child(4) { animation-delay: 1.4s; }
+
+        .mission-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-pink));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .mission-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 209, 197, 0.4);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(79, 209, 197, 0.1), rgba(104, 211, 145, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .mission-card:hover .mission-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(79, 209, 197, 0.2), rgba(104, 211, 145, 0.2));
+        }
+
+        .mission-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--pure-white);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .mission-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-teal);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .mission-card:hover .mission-title:after {
+            width: 60px;
+        }
+
+        .mission-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--moon-light);
+            margin-bottom: 20px;
+        }
+
+        .mission-tag {
+            display: inline-block;
+            background: rgba(248, 215, 117, 0.1);
+            color: var(--moon-yellow);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 15px;
+            border: 1px solid rgba(248, 215, 117, 0.2);
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        .quote-section {
+            background: linear-gradient(135deg, var(--medium-blue), var(--deep-blue));
+            padding: 80px 0;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234fd1c5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote {
+            font-size: 28px;
+            line-height: 1.5;
+            color: var(--pure-white);
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 40px;
+            animation: fadeInUp 0.8s both;
+        }
+
+        .quote:before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -20px;
+            font-size: 80px;
+            color: var(--accent-teal);
+            font-family: Georgia, serif;
+            opacity: 0.5;
+        }
+
+        .quote:after {
+            content: '"';
+            position: absolute;
+            right: 0;
+            bottom: -40px;
+            font-size: 80px;
+            color: var(--accent-teal);
+            font-family: Georgia, serif;
+            opacity: 0.5;
+        }
+
+        .quote-author {
+            text-align: center;
+            font-size: 18px;
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        /* ===== STORIES SECTION ===== */
+        .stories-section {
+            background: linear-gradient(135deg, var(--deep-blue), var(--night-blue));
+            padding: 80px 0;
+            margin: 60px 0 0;
+            border-top: 1px solid rgba(79, 209, 197, 0.2);
+            border-bottom: 1px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .stories-section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--pure-white);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .stories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            animation: fadeInUp 0.8s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 209, 197, 0.4);
+        }
+
+        .story-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid var(--accent-teal);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-green));
+        }
+
+        .story-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Placeholder untuk foto */
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border: 2px dashed rgba(79, 209, 197, 0.3);
+            transition: var(--transition);
+        }
+
+        .photo-placeholder:hover {
+            border-color: var(--accent-teal);
+            background: rgba(79, 209, 197, 0.05);
+        }
+
+        .photo-placeholder i {
+            font-size: 48px;
+            color: var(--accent-teal);
+            opacity: 0.5;
+        }
+
+        .story-card:hover .story-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(79, 209, 197, 0.3);
+        }
+
+        .story-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--pure-white);
+        }
+
+        .story-quote {
+            font-size: 16px;
+            color: var(--moon-light);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* ===== STATISTICS SECTION ===== */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--medium-blue), var(--light-blue));
+        }
+
+        .stats-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--pure-white);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            transition: var(--transition);
+            animation: fadeInUp 0.8s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.2s; }
+        .stat-card:nth-child(2) { animation-delay: 0.4s; }
+        .stat-card:nth-child(3) { animation-delay: 0.6s; }
+        .stat-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 209, 197, 0.4);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            margin-bottom: 10px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--moon-light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--night-blue), var(--deep-blue));
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(79, 209, 197, 0.2);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .foundation-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .foundation-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--pure-white);
+        }
+
+        .foundation-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-pink));
+            border-radius: 2px;
+        }
+
+        .foundation-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .foundation-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--moon-light);
+        }
+
+        .foundation-info i {
+            width: 20px;
+            color: var(--accent-teal);
+            font-size: 18px;
+        }
+
+        .social-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .social-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--pure-white);
+        }
+
+        .social-info p {
+            color: var(--moon-light);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--pure-white);
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-green));
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--moon-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(79, 209, 197, 0.2);
+            color: var(--moon-light);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--moon-light);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .article-hero-section {
+                margin-top: 100px;
+                padding: 80px 0;
+            }
+            
+            .article-title {
+                font-size: 48px;
+            }
+            
+            .missions-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 60px auto 0;
+            }
+            
+            .stories-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .article-hero-section {
+                margin-top: 130px;
+                padding: 60px 0;
+            }
+            
+            .stories-section-title {
+                font-size: 32px;
+            }
+            
+            .story-card {
+                padding: 30px;
+            }
+            
+            .quote {
+                font-size: 24px;
+                padding: 0 20px;
+            }
+            
+            .quote:before,
+            .quote:after {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
+            }
+            
+            .mission-card {
+                padding: 30px;
+            }
+            
+            .mission-title {
+                font-size: 24px;
+            }
+            
+            .foundation-card {
+                padding: 30px;
+            }
+            
+            .stories-section-title {
+                font-size: 28px;
+            }
+            
+            .story-name {
+                font-size: 22px;
+            }
+            
+            .floating-moon, .floating-star {
+                display: none;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Animasi rumah berkedip */
+        .house-blink {
+            animation: houseBlink 5s infinite;
+        }
+        
+        @keyframes houseBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Animasi anak kecil melompat */
+        .child-jump {
+            animation: childJump 3s infinite;
+        }
+        
+        @keyframes childJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='#'">
+                    <!-- Ganti src dengan logo Rumah Bulan Anda -->
+                    <img src="LOGO_RUMAH_BULAN.PNG" alt="Rumah Bulan Logo" id="logo">
+                    <div class="article-category">DUKUNGAN KANKER</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="#" class="nav-btn">
+                        <i class="fas fa-home house-blink"></i> Beranda
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#stories'">
+                        <i class="fas fa-heart child-jump"></i> Kisah Inspiratif
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero-section">
+        <div class="floating-moon"></div>
+        <div class="floating-moon"></div>
+        <div class="floating-moon"></div>
+        <div class="floating-star"></div>
+        <div class="floating-star"></div>
+        <div class="floating-star"></div>
+        
+        <div class="container">
+            <div class="article-hero">
+                <span class="article-date">MARET 15, 2024</span>
+                <h1 class="article-title">Rumah Bulan: <br>Sinaran Harapan untuk Anak Penderita Kanker</h1>
+                <p class="article-subtitle">Yayasan nirlaba yang memberikan dukungan komprehensif, perawatan, dan harapan bagi anak-anak penderita kanker dan keluarganya di seluruh Indonesia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missions Showcase -->
+    <section class="missions-showcase">
+        <div class="container">
+            <div class="mission-intro scroll-animate">
+                <p>Didirikan pada tahun 2018, <strong>Rumah Bulan</strong> telah menjadi sinar harapan bagi ratusan anak penderita kanker dan keluarga mereka. Dengan pendekatan holistik yang menggabungkan perawatan medis, dukungan psikologis, dan bantuan finansial, yayasan ini berkomitmen untuk membuat perjalanan melawan kanker lebih mudah dilalui.</p>
+            </div>
+
+            <div class="missions-grid">
+                <!-- Misi 1: Dukungan Medis -->
+                <div class="mission-card scroll-animate">
+                    <div class="mission-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="mission-title">Dukungan Medis</h3>
+                    <p class="mission-description">Menyediakan akses ke perawatan kanker terbaik, termasuk kemoterapi, radioterapi, dan pengobatan paliatif. Rumah Bulan bekerja sama dengan rumah sakit terkemuka di Indonesia untuk memastikan setiap anak mendapatkan perawatan yang mereka butuhkan.</p>
+                    <p class="mission-description">Tim medis kami terdiri dari dokter spesialis onkologi anak, perawat, dan terapis yang berpengalaman dalam menangani kasus kanker pada anak.</p>
+                    <span class="mission-tag">Perawatan & Pengobatan</span>
+                </div>
+
+                <!-- Misi 2: Dukungan Psikologis -->
+                <div class="mission-card scroll-animate">
+                    <div class="mission-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="mission-title">Dukungan Psikologis</h3>
+                    <p class="mission-description">Program konseling untuk anak dan keluarga, terapi bermain, dan kelompok dukungan untuk membantu mengatasi stres emosional selama perawatan kanker. Kami percaya kesehatan mental sama pentingnya dengan kesehatan fisik.</p>
+                    <p class="mission-description">Psikolog dan konselor kami secara teratur mengadakan sesi terapi individu dan kelompok, serta kegiatan kreatif untuk membantu anak-anak mengekspresikan perasaan mereka.</p>
+                    <span class="mission-tag">Kesehatan Mental & Emosional</span>
+                </div>
+
+                <!-- Misi 3: Bantuan Finansial -->
+                <div class="mission-card scroll-animate">
+                    <div class="mission-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="mission-title">Bantuan Finansial</h3>
+                    <p class="mission-description">Bantuan biaya pengobatan, transportasi ke rumah sakit, dan kebutuhan hidup sehari-hari untuk keluarga dengan keterbatasan finansial. Kami memahami bahwa perawatan kanker dapat menjadi beban finansial yang berat.</p>
+                    <p class="mission-description">Melalui program donasi dan kemitraan dengan perusahaan, Rumah Bulan telah membantu lebih dari 300 keluarga mengakses perawatan kanker tanpa khawatir tentang biaya.</p>
+                    <span class="mission-tag">Bantuan Keuangan & Beasiswa</span>
+                </div>
+
+                <!-- Misi 4: Pendidikan & Rehabilitasi -->
+                <div class="mission-card scroll-animate">
+                    <div class="mission-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="mission-title">Pendidikan & Rehabilitasi</h3>
+                    <p class="mission-description">Program sekolah rumah dan tutor untuk anak-anak yang tidak dapat bersekolah selama pengobatan, serta program rehabilitasi pasca-perawatan untuk membantu mereka kembali ke kehidupan normal.</p>
+                    <p class="mission-description">Kami bekerja sama dengan sekolah dan guru sukarelawan untuk memastikan pendidikan anak-anak tidak tertinggal selama masa pengobatan mereka.</p>
+                    <span class="mission-tag">Sekolah & Reintegrasi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote-container">
+                <div class="quote scroll-animate">
+                    "Setiap anak adalah cahaya bulan di malam yang gelap. Meski kanker mencoba menutupi sinar mereka, dengan dukungan, cinta, dan perawatan yang tepat, mereka akan kembali bersinar lebih terang dari sebelumnya."
+                </div>
+                <div class="quote-author scroll-animate">— Tim Rumah Bulan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="stats-title scroll-animate">Dampak yang Telah Kami Buat</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">320+</div>
+                    <div class="stat-label">Anak Terbantu</div>
+                </div>
+                
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Dokter & Perawat</div>
+                </div>
+                
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Rumah Sakit Mitra</div>
+                </div>
+                
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">Rp 2,5 M+</div>
+                    <div class="stat-label">Bantuan Finansial</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section class="stories-section" id="stories">
+        <div class="container">
+            <h2 class="stories-section-title scroll-animate">Kisah Inspiratif</h2>
+            
+            <div class="stories-container">
+                <div class="story-card scroll-animate">
+                    <div class="story-avatar">
+                        <!-- Ganti src dengan foto anak pertama -->
+                        <img src="ANAK1.JPG" alt="Sasha">
+                    </div>
+                    <h3 class="story-name">Sasha, 8 tahun</h3>
+                    <p class="story-quote">"Aku sudah selesai kemoterapi! Sekarang aku bisa kembali sekolah dan bermain dengan teman-teman. Terima kasih Rumah Bulan!"</p>
+                    
+                    <!-- Placeholder untuk foto tambahan -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    
+                    <p>Sasha didiagnosis leukemia pada usia 6 tahun. Setelah 2 tahun pengobatan intensif dengan dukungan penuh dari Rumah Bulan, ia dinyatakan remisi total dan kini dapat kembali mengejar cita-citanya menjadi penari.</p>
+                </div>
+                
+                <div class="story-card scroll-animate">
+                    <div class="story-avatar">
+                        <!-- Ganti src dengan foto anak kedua -->
+                        <img src="ANAK2.JPG" alt="Rafi">
+                    </div>
+                    <h3 class="story-name">Rafi, 10 tahun</h3>
+                    <p class="story-quote">"Aku suka menggambar di Rumah Bulan. Kakak-kakak di sini selalu menemani dan mendengarkan ceritaku."</p>
+                    
+                    <!-- Placeholder untuk foto tambahan -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    
+                    <p>Rafi sedang menjalani pengobatan tumor otak. Melalui terapi seni dan dukungan psikologis dari Rumah Bulan, ia belajar mengungkapkan perasaannya melalui gambar dan kini lebih optimis menjalani pengobatan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="foundation-card scroll-animate">
+                    <h3>Rumah Bulan</h3>
+                    <div class="foundation-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: info@rumahbulan.org</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @_RumahBulan</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>Telepon: (021) 1234-5678</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jl. Harapan No. 15, Jakarta Selatan 12120, Indonesia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-info">
+                        <h4>Terhubung dengan Kami</h4>
+                        <p>Ikuti perkembangan terbaru dan kampanye kami di media sosial. Setiap like, share, dan retweet membantu kami menjangkau lebih banyak anak yang membutuhkan.</p>
+                        <div style="margin-top: 10px;">
+                            <a href="https://twitter.com/_RumahBulan" target="_blank" style="color: var(--accent-teal); text-decoration: none; font-weight: 600;">
+                                <i class="fab fa-twitter"></i> @_RumahBulan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>Tentang Rumah Bulan</h3>
+                    <p>Rumah Bulan adalah yayasan nirlaba yang didedikasikan untuk memberikan dukungan komprehensif bagi anak-anak penderita kanker dan keluarga mereka. Didirikan pada tahun 2018, kami telah membantu ratusan anak mengakses perawatan yang mereka butuhkan.</p>
+                    <p>Misi kami adalah menjadi "sinar harapan" di tengah kegelapan diagnosis kanker. Kami percaya bahwa dengan dukungan yang tepat, setiap anak dapat melewati perjalanan sulit ini dan kembali bersinar dengan penuh harapan.</p>
+                    <p>Melalui pendekatan holistik yang mencakup dukungan medis, psikologis, finansial, dan pendidikan, kami berkomitmen untuk meningkatkan kualitas hidup anak-anak penderita kanker dan memberikan mereka kesempatan untuk bermimpi lagi.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2024 Rumah Bulan Cancer Support Foundation. Semua hak dilindungi.</p>
+                <p class="disclaimer">Semua konten di situs ini adalah informasi resmi dari Yayasan Rumah Bulan. Untuk verifikasi informasi atau pertanyaan lebih lanjut, silakan hubungi kami melalui kontak yang tersedia. Nama dan foto anak-anak telah diubah untuk melindungi privasi mereka.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-moon');
+                void this.offsetWidth;
+                this.classList.add('logo-moon');
+            });
+        }
+        
+        // Enhanced scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        // Add scroll listener with throttling
+        let scrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!scrolling) {
+                scrolling = true;
+                setTimeout(() => {
+                    handleScrollAnimation();
+                    scrolling = false;
+                }, 100);
+            }
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add enhanced hover effects to mission cards
+        document.querySelectorAll('.mission-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            });
+        });
+        
+        // Add pulse animation to story cards
+        document.querySelectorAll('.story-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Enhanced smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Floating elements animation on scroll
+        const floatingMoons = document.querySelectorAll('.floating-moon');
+        const floatingStars = document.querySelectorAll('.floating-star');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            floatingMoons.forEach((el, index) => {
+                const speed = 0.3 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.05}px) rotate(${scrolled * 0.05}deg)`;
+            });
+            
+            floatingStars.forEach((el, index) => {
+                const speed = 0.2 + (index * 0.05);
+                el.style.transform = `translateY(${scrolled * speed * 0.05}px)`;
+            });
+        });
+        
+        // Add interactive photo placeholders
+        document.querySelectorAll('.photo-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                alert('Tempat untuk menambahkan foto anak-anak Rumah Bulan. Silakan ganti dengan foto JPG/PNG Anda.');
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-moon');
+                }, 1500);
+            }
+            
+            // Add initial animation to hero elements
+            const heroElements = document.querySelectorAll('.article-date, .article-title, .article-subtitle');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add random twinkle to stars
+            setInterval(() => {
+                floatingStars.forEach(star => {
+                    if (Math.random() > 0.7) {
+                        star.style.animation = 'none';
+                        setTimeout(() => {
+                            star.style.animation = 'twinkle 3s infinite alternate';
+                        }, 10);
+                    }
+                });
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
