@@ -476,7 +476,7 @@
             margin-bottom: 20px;
         }
 
-        /* TOMBOL ADD TO CART - PERBAIKAN UTAMA */
+        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -782,7 +782,7 @@
             visibility: visible;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - PERBAIKAN MOBILE */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -875,93 +875,135 @@
             }
         }
 
+        /* PERBAIKAN UTAMA UNTUK MOBILE (768px ke bawah) */
         @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+            /* Hero Section Mobile */
+            .hero-ambassador {
+                padding: 120px 0 50px;
+            }
+            
+            .ambassador-image {
+                height: 400px;
+                margin: 0 -20px;
+                width: calc(100% + 40px);
+                border-radius: 0;
+            }
+            
+            .ambassador-overlay {
+                bottom: 25px;
+                left: 25px;
+                right: 25px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 32px;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+            }
+            
+            .ambassador-overlay p {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+            
+            /* Fashion Grid Mobile - SUSUNAN BARU */
+            .fashion-grid-section {
+                padding: 50px 0;
             }
             
             .fashion-grid {
+                display: grid;
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, 200px);
+                grid-template-rows: repeat(6, auto);
+                gap: 12px;
             }
             
-            .grid-item:nth-child(1),
+            .grid-item {
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            
+            /* Item pertama lebih tinggi untuk emphasis */
+            .grid-item:nth-child(1) {
+                height: 350px;
+                grid-column: 1;
+                grid-row: 1;
+            }
+            
+            /* Item 2-6 dengan tinggi seragam */
             .grid-item:nth-child(2),
             .grid-item:nth-child(3),
             .grid-item:nth-child(4),
             .grid-item:nth-child(5),
             .grid-item:nth-child(6) {
-                grid-column: span 1;
-                grid-row: span 1;
+                height: 250px;
+                grid-column: 1;
+                grid-row: auto;
             }
             
-            .magazine-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .grid-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
             
-            .ambassador-image {
-                height: 400px;
+            /* Shop Section Mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 40px;
             }
             
-            .ambassador-overlay h2 {
-                font-size: 32px;
+            .product-card {
+                margin-bottom: 0;
+            }
+            
+            .product-image {
+                height: 280px;
+            }
+            
+            .product-info {
+                padding: 20px 15px;
+            }
+            
+            .product-name {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+            
+            /* TOMBOL TIDAK DIUBAH - tetap seperti semula */
+            .add-to-cart-btn {
+                padding: 12px;
+                font-size: 12px;
+            }
+            
+            /* KAFKAPAGES Mobile */
+            .kafkapages-preview {
+                padding: 50px 0;
             }
             
             .kafkapages-content h2 {
                 font-size: 28px;
+                letter-spacing: 1px;
+            }
+            
+            .kafkapages-content p {
+                font-size: 14px;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+            
+            .kafkapages-photo-link {
+                margin: 30px auto;
             }
             
             .kafkapages-photo {
                 height: 300px;
-            }
-            
-            .product-image {
-                height: 300px;
-            }
-            
-            .section-title h2 {
-                font-size: 28px;
-            }
-            
-            .hero-ambassador {
-                padding: 120px 0 60px;
-            }
-            
-            .shop-section,
-            .fashion-grid-section,
-            .magazine-section,
-            .kafkapages-preview {
-                padding: 60px 0;
-            }
-            
-            .cart-modal {
-                max-width: 90%;
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .kazine-logo-main {
-                width: 120px;
-                height: 40px;
-            }
-            
-            .ambassador-image {
-                height: 300px;
-            }
-            
-            .ambassador-overlay h2 {
-                font-size: 24px;
-            }
-            
-            .product-image {
-                height: 250px;
             }
             
             .kafkapages-overlay {
@@ -971,15 +1013,138 @@
             .kafkapages-overlay h3 {
                 font-size: 22px;
             }
+            
+            .kafkapages-overlay p {
+                font-size: 13px;
+            }
+            
+            /* Magazine Section Mobile */
+            .magazine-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .magazine-content h2 {
+                font-size: 36px;
+            }
+            
+            .magazine-content h3 {
+                font-size: 20px;
+            }
+            
+            .magazine-content p {
+                font-size: 15px;
+            }
+            
+            /* Section Titles Mobile */
+            .section-title {
+                margin-bottom: 40px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+            
+            .section-title p {
+                font-size: 13px;
+                letter-spacing: 1.5px;
+            }
+            
+            /* Cart Modal Mobile */
+            .cart-modal {
+                max-width: 90%;
+                width: 90%;
+            }
+            
+            .shop-section,
+            .magazine-section {
+                padding: 50px 0;
+            }
+            
+            /* Footer Mobile */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .disclaimer {
+                padding-top: 30px;
+                font-size: 10px;
+            }
+        }
+
+        /* Mobile Kecil (576px ke bawah) */
+        @media (max-width: 576px) {
+            /* Hero Section */
+            .ambassador-image {
+                height: 350px;
+            }
+            
+            .ambassador-overlay h2 {
+                font-size: 26px;
+            }
+            
+            /* Fashion Grid Mobile Kecil */
+            .fashion-grid {
+                gap: 10px;
+            }
+            
+            .grid-item:nth-child(1) {
+                height: 300px;
+            }
+            
+            .grid-item:nth-child(2),
+            .grid-item:nth-child(3),
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                height: 220px;
+            }
+            
+            /* Products Grid Mobile Kecil */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 320px;
+            }
+            
+            /* Logo Mobile Kecil */
+            .kazine-logo-main {
+                width: 120px;
+                height: 40px;
+            }
+            
+            /* KAFKAPAGES Mobile Kecil */
+            .kafkapages-photo {
+                height: 250px;
+            }
+            
+            .kafkapages-overlay h3 {
+                font-size: 20px;
+            }
+            
+            /* Magazine Content Mobile Kecil */
+            .magazine-content h2 {
+                font-size: 32px;
+            }
+            
+            .magazine-content h3 {
+                font-size: 18px;
+            }
         }
 
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
-            .add-to-cart-btn {
-                padding: 14px;
-                font-size: 13px;
+            /* Pastikan semua tombol tetap berfungsi dan tidak berubah */
+            .add-to-cart-btn:hover {
+                background: var(--pure-black);
             }
             
+            /* Touch-friendly elements */
             button, 
             .kafkapages-btn,
             .checkout-btn,
@@ -992,13 +1157,9 @@
                 min-width: 44px;
             }
             
+            /* Prevent blue highlight on tap */
             * {
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
-            }
-            
-            /* Fix untuk tombol di mobile */
-            .add-to-cart-btn:hover {
-                background: var(--pure-black);
             }
         }
 
@@ -1102,7 +1263,7 @@
         </div>
     </section>
 
-    <!-- Fashion Grid - Layout sudah diperbaiki -->
+    <!-- Fashion Grid - Layout sudah diperbaiki untuk mobile -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
@@ -1153,6 +1314,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Silk Evening Dress</h3>
                         <div class="product-price">$499.99</div>
+                        <!-- TOMBOL TIDAK DIUBAH -->
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
@@ -1167,6 +1329,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Wool Tailored Blazer</h3>
                         <div class="product-price">$389.99</div>
+                        <!-- TOMBOL TIDAK DIUBAH -->
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
@@ -1181,6 +1344,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Leather Crossbody Bag</h3>
                         <div class="product-price">$299.99</div>
+                        <!-- TOMBOL TIDAK DIUBAH -->
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
@@ -1195,6 +1359,7 @@
                         <div class="brand-name">KAZINE EXCLUSIVE</div>
                         <h3 class="product-name">Cashmere Sweater Set</h3>
                         <div class="product-price">$459.99</div>
+                        <!-- TOMBOL TIDAK DIUBAH -->
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
