@@ -178,7 +178,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
+            padding: 140px 0 40px;
             background: var(--gradient-light);
             text-align: center;
         }
@@ -195,6 +195,32 @@
             color: var(--dark-gray);
             max-width: 700px;
             margin: 0 auto 40px;
+        }
+
+        /* Advertisement Banner */
+        .advertisement-banner {
+            padding: 40px 0;
+            background: var(--off-white);
+            text-align: center;
+        }
+
+        .ad-banner-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ad-banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .ad-banner-container:hover img {
+            transform: scale(1.02);
         }
 
         /* Books Section */
@@ -274,6 +300,10 @@
             font-weight: 700;
         }
 
+        .book-badge.coming-soon {
+            background: #6c757d;
+        }
+
         .book-content {
             padding: 25px;
         }
@@ -288,7 +318,29 @@
         .book-author {
             color: var(--medium-gray);
             font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .book-note {
+            color: #e74c3c;
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #fff5f5;
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .book-release-date {
+            color: #2c3e50;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
         }
 
         .book-price {
@@ -326,6 +378,18 @@
             color: var(--primary-white);
         }
 
+        .lang-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: var(--medium-gray);
+            color: var(--medium-gray);
+        }
+
+        .lang-btn.disabled:hover {
+            background: transparent;
+            color: var(--medium-gray);
+        }
+
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -341,6 +405,17 @@
         .add-to-cart-btn:hover {
             background: var(--dark-gray);
             transform: translateY(-2px);
+        }
+
+        .add-to-cart-btn.disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .add-to-cart-btn.disabled:hover {
+            background: var(--medium-gray);
+            transform: none;
         }
 
         /* Cart Modal */
@@ -635,6 +710,10 @@
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 25px;
             }
+            
+            .ad-banner-container {
+                max-width: 95%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -662,7 +741,7 @@
             }
             
             .hero {
-                padding: 120px 0 60px;
+                padding: 120px 0 30px;
             }
             
             .hero h2 {
@@ -673,6 +752,10 @@
                 font-size: 16px;
                 padding: 0 10px;
             }
+            
+            .advertisement-banner {
+                padding: 30px 0;
+            }
         }
 
         @media (max-width: 576px) {
@@ -681,7 +764,7 @@
             }
             
             .hero {
-                padding: 110px 0 50px;
+                padding: 110px 0 20px;
             }
             
             .hero h2 {
@@ -842,6 +925,17 @@
             <p>Turn pages, not just heads. The loudest room is often the emptiest mind. Let your imagination do the clout-chasing for you. Seek substance over static, and wonder over whispers.</p>
         </div>
     </section>
+
+    <!-- Advertisement Banner -->
+    <!-- TANDAI DI SINI: Ganti src="advertisement-banner.jpg" dengan link dari GitHub Anda -->
+    <section class="advertisement-banner">
+        <div class="container">
+            <div class="ad-banner-container">
+                <img src="elijah.jpg" alt="KAFKAPAGES feat ELIJAH!">
+            </div>
+        </div>
+    </section>
+
     <!-- Books Section -->
     <section class="books-section" id="books">
         <div class="container">
@@ -904,19 +998,20 @@
                     </div>
                 </div>
                 
-                <!-- Book 4 - The Last Order: Rowan -->
-                <div class="book-card" data-book="The Last Order : Rowan">
+                <!-- Book 4 - The Last Order: Rowan (Indonesian only) -->
+                <div class="book-card" data-book="The Last Order: Rowan">
                     <div class="book-image">
                         <img src="thelastorder.png" alt="The Last Order: Rowan">
                     </div>
                     <div class="book-content">
                         <h3>The Last Order: Rowan</h3>
                         <p class="book-author">By Kafka</p>
+                        <div class="book-note">English version not yet published</div>
                         <div class="book-price">$12</div>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
-                            <button class="lang-btn" data-lang="english">English</button>
+                            <button class="lang-btn disabled" data-lang="english" disabled>English</button>
                         </div>
                         
                         <button class="add-to-cart-btn" data-price="12">Add to Cart</button>
@@ -924,7 +1019,7 @@
                 </div>
                 
                 <!-- Book 5 - The Madman: Malvier -->
-                <div class="book-card" data-book="The Madman : Malvier (Pre Order)">
+                <div class="book-card" data-book="The Madman: Malvier (Pre Order)">
                     <div class="book-image">
                         <img src="themadman1.png" alt="The Madman: Malvier">
                         <div class="book-badge">PRE-ORDER</div>
@@ -932,6 +1027,7 @@
                     <div class="book-content">
                         <h3>The Madman: Malvier</h3>
                         <p class="book-author">By Kafka</p>
+                        <div class="book-release-date">Official release: February 14, 2026</div>
                         <div class="book-price">$30</div>
                         
                         <div class="language-buttons">
@@ -939,7 +1035,28 @@
                             <button class="lang-btn" data-lang="english">English</button>
                         </div>
                         
-                        <button class="add-to-cart-btn" data-price="30">Pre-Order Now</button>
+                        <button class="add-to-cart-btn disabled" data-price="30" disabled>Pre-Order Now</button>
+                    </div>
+                </div>
+                
+                <!-- Book 6 - TIME AND LOST: The Man Behind Delanosa (New) -->
+                <div class="book-card" data-book="TIME AND LOST: The Man Behind Delanosa">
+                    <div class="book-image">
+                        <img src="timeandlost.png" alt="TIME AND LOST: The Man Behind Delanosa">
+                        <div class="book-badge coming-soon">COMING SOON</div>
+                    </div>
+                    <div class="book-content">
+                        <h3>TIME AND LOST: The Man Behind Delanosa</h3>
+                        <p class="book-author">By Kafka</p>
+                        <div class="book-release-date">Coming February 14, 2026</div>
+                        <div class="book-price">$28.99</div>
+                        
+                        <div class="language-buttons">
+                            <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
+                            <button class="lang-btn" data-lang="english">English</button>
+                        </div>
+                        
+                        <button class="add-to-cart-btn disabled" data-price="28.99" disabled>Coming Soon</button>
                     </div>
                 </div>
             </div>
@@ -954,13 +1071,14 @@
                 <p>We're excited to announce our upcoming releases! Stay tuned for these captivating stories that will soon be available in both Indonesian and English editions.</p>
                 
                 <div class="book-list">
-                    <div class="book-tag">The Man Behind Delanosa: Time and Lost</div>
+                    <!-- The Man Behind Delanosa: Time and Lost dihapus -->
                     <div class="book-tag">The Hidden Story Vol 2</div>
                     <div class="book-tag">Utara dan Selatan</div>
                     <div class="book-tag">The Malevolent</div>
                     <div class="book-tag">The Lost Soulmate</div>
                     <div class="book-tag">The Madman : Evelyn</div>
-                    <div class="book-tag">Melayang bersama Gravitasi</div>
+                    <!-- Melayang bersama Gravitasi diganti jadi Pusat Gravitasi -->
+                    <div class="book-tag">Pusat Gravitasi</div>
                     <div class="book-tag">Pencetak Sejarah</div>
                 </div>
                 
@@ -1078,8 +1196,8 @@
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // Add to cart functionality
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    // Add to cart functionality (only for enabled buttons)
+    document.querySelectorAll('.add-to-cart-btn:not(.disabled)').forEach(button => {
         button.addEventListener('click', function() {
             const bookCard = this.closest('.book-card');
             const bookTitle = bookCard.getAttribute('data-book');
@@ -1101,8 +1219,8 @@
         });
     });
 
-    // Language button selection
-    document.querySelectorAll('.lang-btn').forEach(button => {
+    // Language button selection (only for enabled buttons)
+    document.querySelectorAll('.lang-btn:not(.disabled)').forEach(button => {
         button.addEventListener('click', function() {
             const parent = this.closest('.language-buttons');
             parent.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1177,4 +1295,4 @@
     updateCartDisplay();
     </script>
 </body>
-    </html>
+</html>
