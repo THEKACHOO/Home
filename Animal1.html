@@ -485,6 +485,14 @@
             transition: var(--transition);
         }
 
+        .speaker-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
         .speaker-card:hover .speaker-avatar {
             transform: scale(1.05);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
@@ -540,6 +548,14 @@
             padding: 20px;
             animation: fadeIn 0.3s ease;
         }
+
+        .bio-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -1118,38 +1134,42 @@
     </section>
 
     <!-- Speaker Section -->
-    <section class="speaker-section" id="speaker">
-        <div class="container">
-            <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
-            
-            <div class="speaker-container">
-                <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
-                    <div class="speaker-avatar">BS</div>
-                    <h3 class="speaker-name">Bumi Senandika</h3>
-                    <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
-                    <button class="speaker-btn">
-                        <i class="fas fa-user-circle"></i> View Full Profile
-                    </button>
+<section class="speaker-section" id="speaker">
+    <div class="container">
+        <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
+        
+        <div class="speaker-container">
+            <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
+                <div class="speaker-avatar">
+                    <img src="bumisenandika.jpg" alt="Bumi Senandika">
                 </div>
+                <h3 class="speaker-name">Bumi Senandika</h3>
+                <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
+                <button class="speaker-btn">
+                    <i class="fas fa-user-circle"></i> View Full Profile
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Biography Modals -->
-    <!-- Bumi Senandika Bio -->
-    <div class="bio-modal" id="bumiBio">
-        <div class="bio-modal-content">
-            <button class="bio-close" onclick="closeBio('bumi')">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="bio-header">
-                <div class="bio-avatar">BS</div>
-                <div>
-                    <h2 class="bio-title">Bumi Senandika</h2>
-                    <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
-                </div>
+<!-- Biography Modals -->
+<!-- Bumi Senandika Bio -->
+<div class="bio-modal" id="bumiBio">
+    <div class="bio-modal-content">
+        <button class="bio-close" onclick="closeBio('bumi')">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="bio-header">
+            <div class="bio-avatar">
+                <img src="bumisenandika.jpg" alt="Bumi Senandika">
             </div>
+            <div>
+                <h2 class="bio-title">Bumi Senandika</h2>
+                <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
+            </div>
+        </div>
             
             <div class="bio-content">
                 <p>Bumi Senandika Mahiswara, widely known as Bumi, was born on February 14, 1992, in West Jakarta, DKI Jakarta. Standing at 183 cm, he has built his life and career around a deep commitment to environmental protection and ecological restoration. He completed his undergraduate studies in Environmental Engineering at the Bandung Institute of Technology (2010–2015), followed by a Master's degree in Environmental Engineering at The University of Melbourne (2015–2018), where he further refined his technical and strategic understanding of sustainable environmental management.</p>
