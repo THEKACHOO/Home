@@ -64,7 +64,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
             width: 100%;
         }
 
@@ -260,13 +260,11 @@
         .article-content-wrapper {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         .article-image {
             width: 100%;
             height: 500px;
-            background: linear-gradient(45deg, var(--teak-brown), var(--accent-green));
             border-radius: 20px;
             margin: 60px 0;
             overflow: hidden;
@@ -275,32 +273,11 @@
             border: 1px solid var(--light-beige);
         }
 
-        .article-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .article-image img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(182, 141, 76, 0.1) 100%);
-            z-index: 1;
-        }
-
-        .image-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            object-fit: cover;
+            display: block;
         }
 
         .image-credit {
@@ -321,6 +298,7 @@
             font-size: 19px;
             line-height: 1.9;
             color: var(--gray-700);
+            padding: 0 10px;
         }
 
         .article-body p {
@@ -335,6 +313,7 @@
             position: relative;
             padding-left: 0;
             padding-bottom: 20px;
+            padding-right: 10px;
         }
 
         .article-body h2:after {
@@ -354,6 +333,7 @@
             margin: 60px 0 25px;
             color: var(--accent-green-dark);
             line-height: 1.3;
+            padding-right: 10px;
         }
 
         .highlight-quote {
@@ -487,12 +467,12 @@
         }
 
         .speaker-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
 
         .speaker-card:hover .speaker-avatar {
             transform: scale(1.05);
@@ -551,12 +531,12 @@
         }
 
         .bio-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -834,6 +814,10 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
             .header-content {
                 flex-wrap: wrap;
                 gap: 15px;
@@ -878,9 +862,22 @@
                 padding: 25px;
                 font-size: 22px;
             }
+            
+            .article-body {
+                padding: 0 5px;
+            }
+            
+            .article-body h2,
+            .article-body h3 {
+                padding-right: 5px;
+            }
         }
 
         @media (max-width: 576px) {
+            .container {
+                padding: 0 16px;
+            }
+            
             .article-title {
                 font-size: 36px;
             }
@@ -893,12 +890,9 @@
                 height: 300px;
             }
             
-            .image-placeholder {
-                font-size: 24px;
-            }
-            
             .article-body {
                 font-size: 17px;
+                padding: 0;
             }
             
             .highlight-quote {
@@ -914,11 +908,13 @@
             .article-body h2 {
                 font-size: 28px;
                 margin: 60px 0 30px;
+                padding-right: 0;
             }
             
             .article-body h3 {
                 font-size: 24px;
                 margin: 40px 0 20px;
+                padding-right: 0;
             }
             
             .speaker-section-title {
@@ -930,6 +926,10 @@
             }
             
             .species-spotlight {
+                padding: 20px;
+            }
+            
+            .interview-note {
                 padding: 20px;
             }
         }
@@ -1005,14 +1005,15 @@
 
                 <!-- First Insight -->
                 <div class="article-image scroll-animate">
-    <img src="animal1untuk1.jpg" alt="The Human Footprint: Habitat Loss and Biodiversity Collapse" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="image-credit">
-        Photographs by <span>Rai (@nayzta)</span>
-    </div>
-</div>
-                    
-                    <h2>The Human Footprint: Habitat Loss and Biodiversity Collapse</h2>
-                    
+                    <img src="animal1untuk1.jpg" alt="The Human Footprint: Habitat Loss and Biodiversity Collapse">
+                    <div class="image-credit">
+                        Photographs by <span>Rai (@nayzta)</span>
+                    </div>
+                </div>
+                
+                <h2 class="scroll-animate">The Human Footprint: Habitat Loss and Biodiversity Collapse</h2>
+                
+                <div class="article-body scroll-animate">
                     <p>The loss of animal habitats is largely due to human activity—land conversion into urban areas and agriculture has altered 70% of Earth's ice-free land, which then causes the loss of biodiversity. Ecosystems like coral reefs and the Arctic have already suffered severe damage, affecting species such as polar bears and corals.</p>
                     
                     <div class="highlight-quote scroll-animate">
@@ -1021,7 +1022,7 @@
                     
                     <p>Animals also play a role as natural "carbon sinks"—losing them could accelerate natural climate change. Additionally, wildlife trade and intensive farming increase the risk of zoonotic pandemics. As Bumi explains, "Although there has been progress such as agreements at COP16 (2024-2025) for biodiversity funding and bans on biodiversity trade in some countries, implementation is still slow."</p>
                     
-                    <div class="species-spotlight">
+                    <div class="species-spotlight scroll-animate">
                         <h4><i class="fas fa-exclamation-triangle"></i> Ecosystem Alert: Coral Reefs</h4>
                         <p>Coral reefs, home to 25% of marine life, are experiencing massive bleaching events due to rising sea temperatures. Without immediate global climate action, we risk losing these vital ecosystems entirely within decades, causing cascading extinctions throughout ocean food chains.</p>
                     </div>
@@ -1029,23 +1030,24 @@
 
                 <!-- Second Insight -->
                 <div class="article-image scroll-animate">
-    <img src="animal1untuk2.jpg" alt="Human Lifestyle Impacts" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="image-credit">
-        Photographs by <span>Rai (@nayzta)</span>
-    </div>
+                    <img src="animal1untuk2.jpg" alt="Human Lifestyle Impacts">
+                    <div class="image-credit">
+                        Photographs by <span>Rai (@nayzta)</span>
+                    </div>
                 </div>
-                    
-                    <h2>The Connection Between Human Lifestyle Choices and Animal Threats</h2>
-                    
+                
+                <h2 class="scroll-animate">The Connection Between Human Lifestyle Choices and Animal Threats</h2>
+                
+                <div class="article-body scroll-animate">
                     <p>The relationship between human lifestyle and threats to animals is very close: consumptive lifestyles and human habitat expansion threaten wildlife through habitat loss, resource conflicts, and illegal hunting, while in the realm of pets, irresponsible lifestyles (neglecting basic needs, cruel treatment) create suffering.</p>
                     
-                    <h3>The Competition for Resources</h3>
+                    <h3 class="scroll-animate">The Competition for Resources</h3>
                     
                     <p>Increasing human population and development creates competition for resources (food, water, land) with wildlife, forcing them out of their natural habitats and increasing conflicts (crop damage, livestock predation, disease transmission), which often ends in the eradication of wild animals.</p>
                     
                     <p>Bumi notes, "Often, humans keep animals only as objects of entertainment, not as living beings that need responsibility. That's why since the beginning of Hewanku Zoo, its main focus has been on conservation rather than providing circus entertainment because that could become dangerous animal exploitation."</p>
                     
-                    <div class="species-spotlight">
+                    <div class="species-spotlight scroll-animate">
                         <h4><i class="fas fa-shopping-cart"></i> Consumer Alert: Wildlife Products</h4>
                         <p>Demand for animal products (skins, medicines) drives illegal hunting and trade, threatening vulnerable species. Every purchase of ivory, exotic skins, or traditional medicines containing animal parts directly funds extinction.</p>
                     </div>
@@ -1053,23 +1055,24 @@
 
                 <!-- Third Insight -->
                 <div class="article-image scroll-animate">
-    <img src="animal1untuk3.jpg" alt="Individual Actions for Conservation" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="image-credit">
-        Photographs by <span>Rai (@nayzta)</span>
-    </div>
+                    <img src="animal1untuk3.jpg" alt="Individual Actions for Conservation">
+                    <div class="image-credit">
+                        Photographs by <span>Rai (@nayzta)</span>
+                    </div>
                 </div>
-                    
-                    <h2>Small but Meaningful Actions: What Individuals Can Do Daily</h2>
-                    
+                
+                <h2 class="scroll-animate">Small but Meaningful Actions: What Individuals Can Do Daily</h2>
+                
+                <div class="article-body scroll-animate">
                     <p>We can start with the easiest things that we can apply at home in our daily lives by reducing our carbon footprint, saving energy, recycling, and reducing waste to combat climate change that threatens animal habitats.</p>
                     
-                    <h3>Daily Choices That Matter</h3>
+                    <h3 class="scroll-animate">Daily Choices That Matter</h3>
                     
                     <p>Avoid buying wildlife products such as skins, fur, and ivory to prevent illegal hunting. Provide safe spaces for insects—instead of killing ants, we can sweep them and move them outside to a safer place. Provide drinking water for birds in summer. Reduce pollution that can damage nature—don't throw trash in rivers, reduce the use of harmful chemicals.</p>
                     
                     <p>We can also participate in volunteer activities, reforestation, beach cleanups, and take part in tree planting programs to improve air quality by producing oxygen and absorbing carbon dioxide, preventing floods and soil erosion which can provide habitat for wildlife.</p>
                     
-                    <div class="species-spotlight">
+                    <div class="species-spotlight scroll-animate">
                         <h4><i class="fas fa-leaf"></i> Simple Action: Responsible Tourism</h4>
                         <p>When going on recreation, be a responsible tourist. Choose ecotourism that supports conservation activities and avoid places that captivate by making wildlife entertainment. Observe wildlife from a distance, don't disturb them, don't feed wild animals in the wild randomly.</p>
                     </div>
@@ -1077,23 +1080,24 @@
 
                 <!-- Fourth Insight -->
                 <div class="article-image scroll-animate">
-    <img src="animal1untuk4.jpg" alt="Media & Storytelling Role" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="image-credit">
-        Photographs by <span>Rai (@nayzta)</span>
-    </div>
+                    <img src="animal1untuk4.jpg" alt="Media & Storytelling Role">
+                    <div class="image-credit">
+                        Photographs by <span>Rai (@nayzta)</span>
+                    </div>
                 </div>
-                    
-                    <h2>The Crucial Role of Media and Storytelling</h2>
-                    
+                
+                <h2 class="scroll-animate">The Crucial Role of Media and Storytelling</h2>
+                
+                <div class="article-body scroll-animate">
                     <p>The media plays a crucial role in shaping narratives and storytelling that can increase awareness and empathy for animal welfare. Media can present it through visuals and emotions, and mobilize public action, so that perception from object to subject can change the narrative from "what animals can provide" to "what animals feel and need."</p>
                     
-                    <h3>Education Through Engagement</h3>
+                    <h3 class="scroll-animate">Education Through Engagement</h3>
                     
                     <p>Media is a platform that we can use as an educational source—by participating in spreading accurate information about threats, needs, and how to care for animals through articles, videos, or campaigns. These can be our small steps to protect them in simple ways.</p>
                     
                     <p>As Bumi emphasizes, "This will place them as subjects of care, although it can also be a double-edged sword if sensational or ignores root problems. The power of storytelling can transform indifference into action when done responsibly."</p>
                     
-                    <div class="species-spotlight">
+                    <div class="species-spotlight scroll-animate">
                         <h4><i class="fas fa-video"></i> Media Impact: Visual Documentation</h4>
                         <p>Photographs like those by Rai (@nayzta) in this article provide visual evidence that moves people beyond statistics. Seeing animals in their habitats—or what remains of them—creates emotional connections that drive lasting change.</p>
                     </div>
@@ -1101,25 +1105,26 @@
 
                 <!-- Fifth Insight -->
                 <div class="article-image scroll-animate">
-    <img src="animal1untuk5.jpg" alt="Message to Young Generation" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="image-credit">
-        Photographs by <span>Rai (@nayzta)</span>
-    </div>
+                    <img src="animal1untuk5.jpg" alt="Message to Young Generation">
+                    <div class="image-credit">
+                        Photographs by <span>Rai (@nayzta)</span>
+                    </div>
                 </div>
-                    
-                    <h2>A Message to the Younger Generation: Compassion, Coexistence, and Responsibility</h2>
-                    
+                
+                <h2 class="scroll-animate">A Message to the Younger Generation: Compassion, Coexistence, and Responsibility</h2>
+                
+                <div class="article-body scroll-animate">
                     <p>In essence, we have extraordinary power to create a world where humans and animals can coexist with full compassion and mutual respect. Let's learn to see animals not as objects, but as fellow living beings who can feel joy, pain, fear—just like us humans.</p>
                     
                     <div class="highlight-quote scroll-animate">
                         "Give compassion and our responsibility as beings who can better protect them. Give simple empathy like: feeding wild animals wisely, helping neglected animals, choosing to adopt rather than buy pets."
                     </div>
                     
-                    <h3>Coexistence Means Sharing Earth Fairly</h3>
+                    <h3 class="scroll-animate">Coexistence Means Sharing Earth Fairly</h3>
                     
                     <p>Our daily choices—what food we buy—determine whether forests still stand for tigers and orangutans, whether oceans are still safe for whales and turtles, or whether farm animals are treated with respect. Therefore, let's work together to reduce plastic, eat plant-based more often, and support animal-friendly products.</p>
                     
-                    <h3>This Responsibility Is Ours</h3>
+                    <h3 class="scroll-animate">This Responsibility Is Ours</h3>
                     
                     <p>We are the most environmentally conscious generation in history. Let's join hands with one voice, provide campaigns, peaceful protests, create content on social media to stand on the side of animals, defend them, protect them, become their front guard. Be activists in schools, communities, or even at home to educate people around you.</p>
                     
@@ -1130,69 +1135,69 @@
     </section>
 
     <!-- Speaker Section -->
-<section class="speaker-section" id="speaker">
-    <div class="container">
-        <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
-        
-        <div class="speaker-container">
-            <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
-                <div class="speaker-avatar">
+    <section class="speaker-section" id="speaker">
+        <div class="container">
+            <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
+            
+            <div class="speaker-container">
+                <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
+                    <div class="speaker-avatar">
+                        <img src="bumisenandika.jpg" alt="Bumi Senandika">
+                    </div>
+                    <h3 class="speaker-name">Bumi Senandika</h3>
+                    <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
+                    <button class="speaker-btn">
+                        <i class="fas fa-user-circle"></i> View Full Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Modals -->
+    <!-- Bumi Senandika Bio -->
+    <div class="bio-modal" id="bumiBio">
+        <div class="bio-modal-content">
+            <button class="bio-close" onclick="closeBio('bumi')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="bio-header">
+                <div class="bio-avatar">
                     <img src="bumisenandika.jpg" alt="Bumi Senandika">
                 </div>
-                <h3 class="speaker-name">Bumi Senandika</h3>
-                <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
-                <button class="speaker-btn">
-                    <i class="fas fa-user-circle"></i> View Full Profile
-                </button>
+                <div>
+                    <h2 class="bio-title">Bumi Senandika</h2>
+                    <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Biography Modals -->
-<!-- Bumi Senandika Bio -->
-<div class="bio-modal" id="bumiBio">
-    <div class="bio-modal-content">
-        <button class="bio-close" onclick="closeBio('bumi')">
-            <i class="fas fa-times"></i>
-        </button>
-        
-        <div class="bio-header">
-            <div class="bio-avatar">
-                <img src="bumisenandika.jpg" alt="Bumi Senandika">
-            </div>
-            <div>
-                <h2 class="bio-title">Bumi Senandika</h2>
-                <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
-            </div>
-        </div>
-            
-            <div class="bio-content">
-                <p>Bumi Senandika Mahiswara, widely known as Bumi, was born on February 14, 1992, in West Jakarta, DKI Jakarta. Standing at 183 cm, he has built his life and career around a deep commitment to environmental protection and ecological restoration. He completed his undergraduate studies in Environmental Engineering at the Bandung Institute of Technology (2010–2015), followed by a Master's degree in Environmental Engineering at The University of Melbourne (2015–2018), where he further refined his technical and strategic understanding of sustainable environmental management.</p>
                 
-                <h3>Professional Journey</h3>
-                
-                <p>Beginning his professional journey in 2018, Bumi served as a Field Coordinator at Burung Indonesia until 2021, leading the Endemic Java–Bali Bird Habitat Restoration Program, where he worked closely with local communities and conservation practitioners on the ground. From 2021 to 2023, he took on the role of Restoration Lead at Yayasan Konservasi Alam Nusantara (YKAN), The Nature Conservancy Indonesia, overseeing large-scale ecosystem restoration initiatives.</p>
-                
-                <p>Since 2023, Bumi has been the Co-Founder and Executive Director of Prakriti Nusantara, a non-profit organization integrated with a social enterprise model, dedicated to primary forest reforestation, the private acquisition of critical lands for permanent protection, and the development of wildlife corridors for flagship species, reflecting his long-term vision for sustainable and lasting conservation impact in Indonesia.</p>
-                
-                <h3>Conservation Philosophy</h3>
-                
-                <p>Bumi approaches conservation through a combination of technical environmental engineering expertise and community-based strategies. His work emphasizes that true sustainability requires balancing ecological needs with human wellbeing, creating solutions that benefit both wildlife and local communities. This holistic approach has been central to his success in implementing lasting conservation programs across Indonesia's diverse ecosystems.</p>
-                
-                <p>Through his leadership at Prakriti Nusantara, Bumi continues to pioneer innovative conservation models that integrate traditional ecological knowledge with modern scientific approaches, creating scalable solutions for Indonesia's most pressing environmental challenges.</p>
-                
-                <div class="bio-social">
-                    <a href="https://twitter.com/KONKLVSI" target="_blank" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://twitter.com/HEWANKUZOO" target="_blank" title="Website">
-                        <i class="fas fa-globe"></i>
-                    </a>
+                <div class="bio-content">
+                    <p>Bumi Senandika Mahiswara, widely known as Bumi, was born on February 14, 1992, in West Jakarta, DKI Jakarta. Standing at 183 cm, he has built his life and career around a deep commitment to environmental protection and ecological restoration. He completed his undergraduate studies in Environmental Engineering at the Bandung Institute of Technology (2010–2015), followed by a Master's degree in Environmental Engineering at The University of Melbourne (2015–2018), where he further refined his technical and strategic understanding of sustainable environmental management.</p>
+                    
+                    <h3>Professional Journey</h3>
+                    
+                    <p>Beginning his professional journey in 2018, Bumi served as a Field Coordinator at Burung Indonesia until 2021, leading the Endemic Java–Bali Bird Habitat Restoration Program, where he worked closely with local communities and conservation practitioners on the ground. From 2021 to 2023, he took on the role of Restoration Lead at Yayasan Konservasi Alam Nusantara (YKAN), The Nature Conservancy Indonesia, overseeing large-scale ecosystem restoration initiatives.</p>
+                    
+                    <p>Since 2023, Bumi has been the Co-Founder and Executive Director of Prakriti Nusantara, a non-profit organization integrated with a social enterprise model, dedicated to primary forest reforestation, the private acquisition of critical lands for permanent protection, and the development of wildlife corridors for flagship species, reflecting his long-term vision for sustainable and lasting conservation impact in Indonesia.</p>
+                    
+                    <h3>Conservation Philosophy</h3>
+                    
+                    <p>Bumi approaches conservation through a combination of technical environmental engineering expertise and community-based strategies. His work emphasizes that true sustainability requires balancing ecological needs with human wellbeing, creating solutions that benefit both wildlife and local communities. This holistic approach has been central to his success in implementing lasting conservation programs across Indonesia's diverse ecosystems.</p>
+                    
+                    <p>Through his leadership at Prakriti Nusantara, Bumi continues to pioneer innovative conservation models that integrate traditional ecological knowledge with modern scientific approaches, creating scalable solutions for Indonesia's most pressing environmental challenges.</p>
+                    
+                    <div class="bio-social">
+                        <a href="https://twitter.com/KONKLVSI" target="_blank" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://twitter.com/HEWANKUZOO" target="_blank" title="Website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Footer -->
     <footer>
