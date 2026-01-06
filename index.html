@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE KACHOO | Official Website</title>
+    <title>THE KACHOO | Digital Innovation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
@@ -354,138 +354,61 @@
         }
 
         /* KAZINE Magazine Section */
-.kazine-magazine {
-    padding: 100px 0;
-    background: var(--gradient-dark);
-}
+        .kazine-magazine {
+            padding: 100px 0;
+            background: var(--gradient-dark);
+        }
 
-.magazine-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: justify;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
+        .magazine-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
 
-.magazine-image {
-    background: var(--gradient-light);
-    border-radius: 15px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 80px;
-    color: var(--pure-white);
-    position: relative;
-    overflow: hidden;
-}
+        .magazine-image {
+            background: var(--gradient-light);
+            border-radius: 15px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
 
-.magazine-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .magazine-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.magazine-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: var(--pure-white);
-    color: var(--primary-black);
-    padding: 0px 0px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 14px;
-}
+        .magazine-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--pure-white);
+            color: var(--primary-black);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
 
-/* TAMBAHKAN INI - Bagian Content */
-.magazine-content {
-    color: var(--pure-white);
-}
+        .magazine-content h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
 
-.magazine-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    line-height: 1.2;
-    font-weight: 700;
-}
-
-.magazine-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    opacity: 0.9;
-}
-
-.magazine-content .btn {
-    display: inline-block;
-    background: var(--pure-white);
-    color: var(--primary-black);
-    padding: 14px 35px;
-    border-radius: 30px;
-    font-weight: 700;
-    text-decoration: none;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.magazine-content .btn:hover {
-    background: transparent;
-    color: var(--pure-white);
-    border-color: var(--pure-white);
-    transform: translateY(-3px);
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .magazine-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 30px;
-    }
-    
-    .magazine-image {
-        height: 400px;
-        font-size: 60px;
-    }
-    
-    .magazine-content {
-        text-align: justify;
-    }
-    
-    .magazine-content h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .kazine-magazine {
-        padding: 0px 0;
-    }
-    
-    .magazine-container {
-        padding: 0 20px;
-        gap: 0px;
-    }
-    
-    .magazine-image {
-        height: 350px;
-        font-size: 50px;
-        border-radius: 12px;
-    }
-    
-    .magazine-content h2 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-    }
-    
-    .magazine-content p {
-        font-size: 1rem;
-    }
-    }
+        .magazine-content p {
+            color: var(--accent-color);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
 
         .btn-secondary {
             display: inline-block;
@@ -923,15 +846,15 @@
             <div class="magazine-container">
                 <div class="magazine-image">
                     <a href="kazinevol1.html" aria-label="View KAZINE Volume 1">
-                        <img src="kazinevol1s1.png" 
-                             alt="KAZINE Volume 1">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="KAZINE Volume 1 Cover">
                         <div class="magazine-badge">VOL. 1</div>
                     </a>
                 </div>
                 <div class="magazine-content">
                     <h2>KAZINE VOLUME 1 IS HERE</h2>
                     <p>Discover the inaugural issue of KAZINE, featuring cutting-edge design trends, exclusive interviews with creative pioneers, and in-depth analysis of the digital publishing landscape.</p>
-                    <p>This premier edition includes over 50+ pages of curated content, interactive elements, and stunning visual storytelling that redefines what a digital magazine can be.</p>
+                    <p>This premier edition includes over 50 pages of curated content, interactive elements, and stunning visual storytelling that redefines what a digital magazine can be.</p>
                     <a href="kazinevol1.html" class="btn-secondary">CHECK KAZINE VOL 1 IN HERE</a>
                 </div>
             </div>
@@ -1125,4 +1048,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
