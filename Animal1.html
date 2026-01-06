@@ -262,44 +262,44 @@
             margin: 0 auto;
         }
 
-        /* Article Image Container - Sistem baru untuk gambar */
         .article-image {
             width: 100%;
-            margin: 60px 0;
+            height: 500px;
+            background: linear-gradient(45deg, var(--teak-brown), var(--accent-green));
             border-radius: 20px;
+            margin: 60px 0;
             overflow: hidden;
             position: relative;
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             border: 1px solid var(--light-beige);
         }
 
-        .article-photo {
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 500px; /* Default height */
-            object-fit: cover; /* Ini yang membuat gambar pas di container */
-            display: block;
-            transition: var(--transition);
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(182, 141, 76, 0.1) 100%);
+            z-index: 1;
         }
 
-        .article-photo:hover {
-            transform: scale(1.02);
-        }
-
-        /* Class khusus untuk mengatur tinggi foto */
-        .photo-small {
-            height: 350px !important;
-        }
-        
-        .photo-medium {
-            height: 450px !important;
-        }
-        
-        .photo-large {
-            height: 550px !important;
-        }
-        
-        .photo-full {
-            height: 600px !important;
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .image-credit {
@@ -343,7 +343,7 @@
             left: 0;
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--teak-brown), var(--accent-green);
+            background: linear-gradient(90deg, var(--teak-brown), var(--accent-green));
             border-radius: 2px;
         }
 
@@ -471,7 +471,14 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--teak-brown), var(--accent-green));
             margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: 700;
             overflow: hidden;
             border: 4px solid var(--cream-white);
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -479,11 +486,12 @@
         }
 
         .speaker-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
 
         .speaker-card:hover .speaker-avatar {
             transform: scale(1.05);
@@ -540,6 +548,14 @@
             padding: 20px;
             animation: fadeIn 0.3s ease;
         }
+
+        .bio-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -602,15 +618,14 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--teak-brown), var(--accent-green));
             flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .bio-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 700;
         }
 
         .bio-title {
@@ -804,25 +819,8 @@
                 font-size: 48px;
             }
             
-            .article-photo {
+            .article-image {
                 height: 400px;
-            }
-            
-            /* Responsive untuk class tinggi foto */
-            .photo-small {
-                height: 300px !important;
-            }
-            
-            .photo-medium {
-                height: 350px !important;
-            }
-            
-            .photo-large {
-                height: 450px !important;
-            }
-            
-            .photo-full {
-                height: 500px !important;
             }
             
             .article-body h2 {
@@ -855,27 +853,6 @@
                 margin-top: 130px;
             }
             
-            .article-photo {
-                height: 350px;
-            }
-            
-            /* Responsive untuk class tinggi foto di mobile */
-            .photo-small {
-                height: 250px !important;
-            }
-            
-            .photo-medium {
-                height: 300px !important;
-            }
-            
-            .photo-large {
-                height: 400px !important;
-            }
-            
-            .photo-full {
-                height: 450px !important;
-            }
-            
             .bio-header {
                 flex-direction: column;
                 text-align: center;
@@ -885,6 +862,7 @@
             .bio-avatar {
                 width: 80px;
                 height: 80px;
+                font-size: 28px;
             }
             
             .speaker-section-title {
@@ -910,25 +888,12 @@
                 font-size: 18px;
             }
             
-            .article-photo {
+            .article-image {
                 height: 300px;
             }
             
-            /* Responsive untuk class tinggi foto di mobile kecil */
-            .photo-small {
-                height: 200px !important;
-            }
-            
-            .photo-medium {
-                height: 250px !important;
-            }
-            
-            .photo-large {
-                height: 350px !important;
-            }
-            
-            .photo-full {
-                height: 400px !important;
+            .image-placeholder {
+                font-size: 24px;
             }
             
             .article-body {
@@ -1040,16 +1005,10 @@
                 <!-- First Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <!-- CARA MENAMBAH FOTO: -->
-                        <!-- 1. Ganti "animal1untuk1.jpg" dengan nama file foto Anda -->
-                        <!-- 2. Ganti "alt text" dengan deskripsi foto -->
-                        <!-- 3. Pilih salah satu class tinggi foto: 
-                             photo-small (350px), photo-medium (450px), 
-                             photo-large (550px), photo-full (600px) -->
-                        <img src="animal1untuk1.jpg" alt="Deskripsi foto 1" class="article-photo photo-medium">
-                        <div class="image-credit">
-                            Photographs by <span>Rai (@nayzta)</span>
-                        </div>
+                        <img src="animal1untuk1.jpg" alt="animal1" class="article-photo">
+        <div class="image-credit">
+            Photographs by <span>Rai (@nayzta)</span>
+        </div>
                     </div>
                     
                     <h2>The Human Footprint: Habitat Loss and Biodiversity Collapse</h2>
@@ -1071,10 +1030,10 @@
                 <!-- Second Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <img src="animal1untuk2.jpg" alt="Deskripsi foto 2" class="article-photo photo-large">
-                        <div class="image-credit">
-                            Photographs by <span>Rai (@nayzta)</span>
-                        </div>
+                        <img src="animal1untuk2.jpg" alt="animal2" class="article-photo">
+        <div class="image-credit">
+            Photographs by <span>Rai (@nayzta)</span>
+        </div>
                     </div>
                     
                     <h2>The Connection Between Human Lifestyle Choices and Animal Threats</h2>
@@ -1096,7 +1055,8 @@
                 <!-- Third Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <img src="animal1untuk3.jpg" alt="Deskripsi foto 3" class="article-photo photo-medium">
+                        <img src="animal1untuk3.jpg" alt="animal3" class="article-photo">
+        <div class="image-credit">
                         <div class="image-credit">
                             Photographs by <span>Rai (@nayzta)</span>
                         </div>
@@ -1121,7 +1081,8 @@
                 <!-- Fourth Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <img src="animal1untuk4.jpg" alt="Deskripsi foto 4" class="article-photo photo-full">
+                        <img src="animal1untuk4.jpg" alt="animal4" class="article-photo">
+        <div class="image-credit">
                         <div class="image-credit">
                             Photographs by <span>Rai (@nayzta)</span>
                         </div>
@@ -1146,7 +1107,8 @@
                 <!-- Fifth Insight -->
                 <div class="insight-section scroll-animate">
                     <div class="article-image scroll-animate">
-                        <img src="animal1untuk5.jpg" alt="Deskripsi foto 5" class="article-photo photo-small">
+                        <img src="animal1untuk5.jpg" alt="animal5" class="article-photo">
+        <div class="image-credit">
                         <div class="image-credit">
                             Photographs by <span>Rai (@nayzta)</span>
                         </div>
@@ -1175,217 +1137,217 @@
     </section>
 
     <!-- Speaker Section -->
-    <section class="speaker-section" id="speaker">
-        <div class="container">
-            <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
-            
-            <div class="speaker-container">
-                <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
-                    <div class="speaker-avatar">
-                        <img src="bumisenandika.jpg" alt="Bumi Senandika">
-                    </div>
-                    <h3 class="speaker-name">Bumi Senandika</h3>
-                    <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
-                    <button class="speaker-btn">
-                        <i class="fas fa-user-circle"></i> View Full Profile
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Biography Modals -->
-    <!-- Bumi Senandika Bio -->
-    <div class="bio-modal" id="bumiBio">
-        <div class="bio-modal-content">
-            <button class="bio-close" onclick="closeBio('bumi')">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="bio-header">
-                <div class="bio-avatar">
+<section class="speaker-section" id="speaker">
+    <div class="container">
+        <h2 class="speaker-section-title scroll-animate">Featured Conservationist</h2>
+        
+        <div class="speaker-container">
+            <div class="speaker-card scroll-animate" onclick="openBio('bumi')">
+                <div class="speaker-avatar">
                     <img src="bumisenandika.jpg" alt="Bumi Senandika">
                 </div>
-                <div>
-                    <h2 class="bio-title">Bumi Senandika</h2>
-                    <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
-                </div>
+                <h3 class="speaker-name">Bumi Senandika</h3>
+                <p class="speaker-role">A representative of Hewanku Zoo<br>Last-Chance Species Protector</p>
+                <button class="speaker-btn">
+                    <i class="fas fa-user-circle"></i> View Full Profile
+                </button>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Biography Modals -->
+<!-- Bumi Senandika Bio -->
+<div class="bio-modal" id="bumiBio">
+    <div class="bio-modal-content">
+        <button class="bio-close" onclick="closeBio('bumi')">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="bio-header">
+            <div class="bio-avatar">
+                <img src="bumisenandika.jpg" alt="Bumi Senandika">
+            </div>
+            <div>
+                <h2 class="bio-title">Bumi Senandika</h2>
+                <p class="bio-subtitle">A representative of Hewanku Zoo • Last-Chance Species Protector<br>Leading Indonesia's Race Against Extinction</p>
+            </div>
+        </div>
+            
+            <div class="bio-content">
+                <p>Bumi Senandika Mahiswara, widely known as Bumi, was born on February 14, 1992, in West Jakarta, DKI Jakarta. Standing at 183 cm, he has built his life and career around a deep commitment to environmental protection and ecological restoration. He completed his undergraduate studies in Environmental Engineering at the Bandung Institute of Technology (2010–2015), followed by a Master's degree in Environmental Engineering at The University of Melbourne (2015–2018), where he further refined his technical and strategic understanding of sustainable environmental management.</p>
                 
-                <div class="bio-content">
-                    <p>Bumi Senandika Mahiswara, widely known as Bumi, was born on February 14, 1992, in West Jakarta, DKI Jakarta. Standing at 183 cm, he has built his life and career around a deep commitment to environmental protection and ecological restoration. He completed his undergraduate studies in Environmental Engineering at the Bandung Institute of Technology (2010–2015), followed by a Master's degree in Environmental Engineering at The University of Melbourne (2015–2018), where he further refined his technical and strategic understanding of sustainable environmental management.</p>
-                    
-                    <h3>Professional Journey</h3>
-                    
-                    <p>Beginning his professional journey in 2018, Bumi served as a Field Coordinator at Burung Indonesia until 2021, leading the Endemic Java–Bali Bird Habitat Restoration Program, where he worked closely with local communities and conservation practitioners on the ground. From 2021 to 2023, he took on the role of Restoration Lead at Yayasan Konservasi Alam Nusantara (YKAN), The Nature Conservancy Indonesia, overseeing large-scale ecosystem restoration initiatives.</p>
-                    
-                    <p>Since 2023, Bumi has been the Co-Founder and Executive Director of Prakriti Nusantara, a non-profit organization integrated with a social enterprise model, dedicated to primary forest reforestation, the private acquisition of critical lands for permanent protection, and the development of wildlife corridors for flagship species, reflecting his long-term vision for sustainable and lasting conservation impact in Indonesia.</p>
-                    
-                    <h3>Conservation Philosophy</h3>
-                    
-                    <p>Bumi approaches conservation through a combination of technical environmental engineering expertise and community-based strategies. His work emphasizes that true sustainability requires balancing ecological needs with human wellbeing, creating solutions that benefit both wildlife and local communities. This holistic approach has been central to his success in implementing lasting conservation programs across Indonesia's diverse ecosystems.</p>
-                    
-                    <p>Through his leadership at Prakriti Nusantara, Bumi continues to pioneer innovative conservation models that integrate traditional ecological knowledge with modern scientific approaches, creating scalable solutions for Indonesia's most pressing environmental challenges.</p>
-                    
-                    <div class="bio-social">
-                        <a href="https://twitter.com/KONKLVSI" target="_blank" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://twitter.com/HEWANKUZOO" target="_blank" title="Website">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>
+                <h3>Professional Journey</h3>
+                
+                <p>Beginning his professional journey in 2018, Bumi served as a Field Coordinator at Burung Indonesia until 2021, leading the Endemic Java–Bali Bird Habitat Restoration Program, where he worked closely with local communities and conservation practitioners on the ground. From 2021 to 2023, he took on the role of Restoration Lead at Yayasan Konservasi Alam Nusantara (YKAN), The Nature Conservancy Indonesia, overseeing large-scale ecosystem restoration initiatives.</p>
+                
+                <p>Since 2023, Bumi has been the Co-Founder and Executive Director of Prakriti Nusantara, a non-profit organization integrated with a social enterprise model, dedicated to primary forest reforestation, the private acquisition of critical lands for permanent protection, and the development of wildlife corridors for flagship species, reflecting his long-term vision for sustainable and lasting conservation impact in Indonesia.</p>
+                
+                <h3>Conservation Philosophy</h3>
+                
+                <p>Bumi approaches conservation through a combination of technical environmental engineering expertise and community-based strategies. His work emphasizes that true sustainability requires balancing ecological needs with human wellbeing, creating solutions that benefit both wildlife and local communities. This holistic approach has been central to his success in implementing lasting conservation programs across Indonesia's diverse ecosystems.</p>
+                
+                <p>Through his leadership at Prakriti Nusantara, Bumi continues to pioneer innovative conservation models that integrate traditional ecological knowledge with modern scientific approaches, creating scalable solutions for Indonesia's most pressing environmental challenges.</p>
+                
+                <div class="bio-social">
+                    <a href="https://twitter.com/KONKLVSI" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://twitter.com/HEWANKUZOO" target="_blank" title="Website">
+                        <i class="fas fa-globe"></i>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="company-card scroll-animate">
-                        <h3>THE Kachoo</h3>
-                        <div class="company-info">
-                            <div>
-                                <i class="fas fa-envelope"></i>
-                                <span>Email: ohkachoo@gmail.com</span>
-                            </div>
-                            <div>
-                                <i class="fab fa-twitter"></i>
-                                <span>Twitter: @TheKachoo</span>
-                            </div>
-                            <div>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
-                            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>THE Kachoo</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: ohkachoo@gmail.com</span>
                         </div>
-                        
-                        <div class="studio-info">
-                            <h4>Visual Documentation</h4>
-                            <p>All photographs in this urgent report were captured by <strong>Rai (@nayzta)</strong>.</p>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia</span>
                         </div>
                     </div>
                     
-                    <div class="footer-about scroll-animate">
-                        <h3>About This Emergency Report</h3>
-                        <p>This is not a real conservation article, for roleplay purpose only.</p>
-                        <p>Our mission is to move beyond awareness to mobilization. We document not just what we're losing, but exactly what needs to happen—and how quickly—to prevent irreversible losses. This report incorporates emergency assessments from Bumi Senandika and visual documentation from Rai, providing a real-time picture of the extinction crisis.</p>
-                        <p><strong>Publication Note:</strong> This content was accelerated for urgent publication due to the time-sensitive nature of the crisis documented.</p>
+                    <div class="studio-info">
+                        <h4>Visual Documentation</h4>
+                        <p>All photographs in this urgent report were captured by <strong>Rai (@nayzta)</strong>.</p>
                     </div>
                 </div>
                 
-                <div class="footer-bottom scroll-animate">
-                    <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
-                    <p class="disclaimer">This is an emergency conservation report. All data reflects the most current extinction risk assessments from IUCN, Conservation International, and frontline conservation organizations. Time-sensitive information verified as of January 2026. Photographic documentation by Rai (@nayzta).</p>
+                <div class="footer-about scroll-animate">
+                    <h3>About This Emergency Report</h3>
+                    <p>This is not a real conservation article, for roleplay purpose only.</p>
+                    <p>Our mission is to move beyond awareness to mobilization. We document not just what we're losing, but exactly what needs to happen—and how quickly—to prevent irreversible losses. This report incorporates emergency assessments from Bumi Senandika and visual documentation from Rai, providing a real-time picture of the extinction crisis.</p>
+                    <p><strong>Publication Note:</strong> This content was accelerated for urgent publication due to the time-sensitive nature of the crisis documented.</p>
                 </div>
             </div>
-        </footer>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 The Kaboom! Under The Kachoo. All rights reserved.</p>
+                <p class="disclaimer">This is an emergency conservation report. All data reflects the most current extinction risk assessments from IUCN, Conservation International, and frontline conservation organizations. Time-sensitive information verified as of January 2026. Photographic documentation by Rai (@nayzta).</p>
+            </div>
+        </div>
+    </footer>
 
-        <script>
-            // Logo animation
-            const logo = document.getElementById('logo');
-            
-            if (logo) {
-                logo.addEventListener('click', function() {
-                    this.classList.remove('logo-kaboom');
-                    void this.offsetWidth;
-                    this.classList.add('logo-kaboom');
-                });
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kaboom');
+                void this.offsetWidth;
+                this.classList.add('logo-kaboom');
+            });
+        }
+        
+        // Biography Modal Functions
+        function openBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-            
-            // Biography Modal Functions
-            function openBio(person) {
-                const modal = document.getElementById(person + 'Bio');
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
+        }
+        
+        function closeBio(person) {
+            const modal = document.getElementById(person + 'Bio');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             }
-            
-            function closeBio(person) {
-                const modal = document.getElementById(person + 'Bio');
-                if (modal) {
-                    modal.classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.bio-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
                     document.body.style.overflow = '';
                 }
-            }
-            
-            // Close modal when clicking outside
-            document.querySelectorAll('.bio-modal').forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                });
             });
-            
-            // Scroll animations
-            const scrollElements = document.querySelectorAll('.scroll-animate');
-            
-            const elementInView = (el, dividend = 1) => {
-                const elementTop = el.getBoundingClientRect().top;
-                return (
-                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-                );
-            };
-            
-            const displayScrollElement = (element) => {
-                element.classList.add('visible');
-            };
-            
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el, 1.2)) {
-                        displayScrollElement(el);
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', () => {
-                handleScrollAnimation();
-            });
-            
-            // Initialize scroll animations
-            handleScrollAnimation();
-            
-            // Add pulse animation to speaker cards
-            document.querySelectorAll('.speaker-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.classList.add('pulse');
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.classList.remove('pulse');
-                });
-            });
-            
-            // Smooth scroll for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Initialize
-            document.addEventListener('DOMContentLoaded', function() {
-                // Trigger initial animations
-                handleScrollAnimation();
-                
-                // Add logo click animation
-                if (logo) {
-                    setTimeout(() => {
-                        logo.classList.add('logo-kaboom');
-                    }, 1000);
+        });
+        
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
                 }
             });
-        </script>
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add pulse animation to speaker cards
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kaboom');
+                }, 1000);
+            }
+        });
+    </script>
 </body>
     </html>
