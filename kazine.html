@@ -948,246 +948,33 @@
             }
             
             /* Shop Section Mobile */
-            .shop-section .products-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 25px !important;
-        margin-bottom: 50px !important;
-    }
-    
-    .shop-section .product-card {
-        background: var(--pure-white) !important;
-        border-radius: 2px !important;
-        overflow: hidden !important;
-        transition: var(--transition-smooth) !important;
-    }
-    
-    .shop-section .product-card:hover {
-        transform: translateY(-5px) !important;
-        box-shadow: var(--shadow-hover) !important;
-    }
-    
-    .shop-section .product-image {
-        height: 350px !important;
-        background: var(--light-gray) !important;
-        overflow: hidden !important;
-    }
-    
-    .shop-section .product-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-    }
-    
-    .shop-section .product-info {
-        padding: 25px 20px !important;
-        text-align: center !important;
-    }
-    
-    .shop-section .brand-name {
-        font-size: 11px !important;
-        color: var(--medium-gray) !important;
-        letter-spacing: 2px !important;
-        text-transform: uppercase !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .shop-section .product-name {
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        margin-bottom: 15px !important;
-    }
-@media (max-width: 768px) {
-    /* ROOT SCALING untuk zoom out */
-    html {
-        zoom: 0.85; /* Zoom out sedikit agar semua muat */
-        -webkit-text-size-adjust: 85%;
-    }
-    
-    body {
-        min-width: 1000px; /* Force minimum width seperti desktop */
-        overflow-x: auto;
-    }
-    
-    .container {
-        min-width: 1000px;
-        padding: 0 30px;
-    }
-    
-    /* ========= HEADER - DIPERBESAR ========= */
-    header {
-        padding: 20px 0 !important; /* DIPERBESAR */
-        position: relative;
-        min-height: 100px;
-        border-bottom: 2px solid var(--light-gray);
-    }
-    
-    .header-container {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        min-height: 80px;
-    }
-    
-    /* Logo DIPERBESAR 2x */
-    .kazine-logo-main {
-        width: 350px !important; /* DIPERBESAR BESAR */
-        height: 120px !important; /* DIPERBESAR BESAR */
-        margin: 0 auto;
-    }
-    
-    .kazine-logo-main img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain;
-        transform: scale(1.2);
-    }
-    
-    /* Cart icon DIPERBESAR */
-    .cart-icon-container {
-        position: static;
-        transform: none;
-    }
-    
-    .cart-icon {
-        font-size: 32px !important; /* DIPERBESAR */
-        width: 70px !important;
-        height: 70px !important;
-    }
-    
-    .cart-count {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 16px !important;
-        font-weight: bold;
-        top: 5px;
-        right: 5px;
-    }
-    
-    /* Navigation - TETAP TAMPIL SEPERTI DESKTOP */
-    nav {
-        display: flex !important;
-        position: static !important;
-        transform: none !important;
-        opacity: 1 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-    
-    nav ul {
-        flex-direction: row !important;
-        gap: 40px !important; /* DIPERBESAR spacing */
-    }
-    
-    nav a {
-        font-size: 18px !important; /* DIPERBESAR */
-        padding: 15px 5px !important;
-        font-weight: 500;
-    }
-    
-    /* Sembunyikan mobile menu button */
-    .mobile-menu-btn {
-        display: none !important;
-    }
-    
-    /* ========= SEMUA SECTION TAMPIL SEPERTI DESKTOP ========= */
-    
-    /* Hero Section */
-    .hero-ambassador {
-        padding: 40px 0 60px !important;
-    }
-    
-    .ambassador-image {
-        height: 400px !important; /* DIPERBESAR */
-        border-radius: 10px;
-    }
-    
-    .ambassador-overlay h2 {
-        font-size: 42px !important; /* DIPERBESAR */
-    }
-    
-    .ambassador-overlay p {
-        font-size: 18px !important; /* DIPERBESAR */
-    }
-    
-    /* Fashion Grid - TETAP 6 KOLOM */
-    .fashion-grid {
-        grid-template-columns: repeat(6, 1fr) !important;
-        grid-template-rows: repeat(2, 250px) !important;
-        gap: 20px !important;
-    }
-    
-    .grid-item:nth-child(1) {
-        grid-column: span 2 !important;
-        grid-row: span 2 !important;
-    }
-    
-    .grid-item:nth-child(2) {
-        grid-column: span 2 !important;
-        grid-row: span 1 !important;
-    }
-    
-    .grid-item:nth-child(3) {
-        grid-column: span 2 !important;
-        grid-row: span 1 !important;
-    }
-    
-    /* SHOP SECTION - TETAP 4 KOLOM SEPERTI DESKTOP */
-    .products-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 30px !important;
-        margin-bottom: 60px !important;
-    }
-    
-    .product-card {
-        transform: scale(1.05); /* Sedikit diperbesar */
-        margin-bottom: 0 !important;
-    }
-    
-    .product-image {
-        height: 300px !important;
-        border-radius: 8px;
-    }
-    
-    .product-info {
-        padding: 25px 20px !important;
-    }
-    
-    .brand-name {
-        font-size: 14px !important; /* DIPERBESAR */
-    }
-    
-    .product-name {
-        font-size: 20px !important; /* DIPERBESAR */
-        margin-bottom: 15px !important;
-    }
-    
-    .product-price {
-        font-size: 22px !important; /* DIPERBESAR */
-        font-weight: 600;
-        margin-bottom: 20px !important;
-    }
-    
-    /* TOMBOL - DIPERBESAR untuk mobile */
-    .add-to-cart-btn {
-        padding: 18px 20px !important; /* DIPERBESAR */
-        font-size: 16px !important; /* DIPERBESAR */
-        letter-spacing: 3px !important;
-        min-height: 60px !important; /* DIPERBESAR untuk touch */
-        border-radius: 8px;
-    }
-    
-    /* Section Titles DIPERBESAR */
-    .section-title h2 {
-        font-size: 42px !important; /* DIPERBESAR */
-        letter-spacing: 4px !important;
-        margin-bottom: 20px !important;
-    }
-    
-    .section-title p {
-        font-size: 18px !important; /* DIPERBESAR */
-        letter-spacing: 3px !important;
-    }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 40px;
+            }
+            
+            .product-card {
+                margin-bottom: 0;
+            }
+            
+            .product-image {
+                height: 280px;
+            }
+            
+            .product-info {
+                padding: 20px 15px;
+            }
+            
+            .product-name {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
             
             /* TOMBOL TIDAK DIUBAH - tetap seperti semula */
             .add-to-cart-btn {
@@ -1316,16 +1103,14 @@
             }
             
             /* Products Grid Mobile Kecil */
-            .shop-section .products-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 20px !important;
-        min-width: 1300px !important; /* Lebih lebar untuk mobile kecil */
-    }
-    
-    .shop-section .product-image {
-        height: 320px !important;
-    }
-        }
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 320px;
+            }
             
             /* Logo Mobile Kecil */
             .kazine-logo-main {
@@ -2202,4 +1987,4 @@
     }
     </script>
 </body>
-</html>
+    </html>
