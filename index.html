@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE KACHOO | Digital Innovation</title>
+    <title>THE KACHOO | Official Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
@@ -353,50 +353,9 @@
             color: var(--primary-black);
         }
 
-        /* KAZINE Magazine Section */
-        .kazine-magazine {
-            padding: 100px 0;
-            background: var(--gradient-dark);
-        }
-
-        .magazine-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-.magazine-image {
-            background: var(--gradient-light);
-            border-radius: 15px;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: var(--pure-white);
-            position: relative;
-            overflow: hidden;
-        }
-.magazine-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-magazine-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--pure-white);
-            color: var(--primary-black);
-padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-}
-
-/* KAZINE Magazine Section - Minimal Margin */
+        /* KAZINE Magazine Section - Mobile mirip Desktop */
 .kazine-magazine {
-    padding: 20px 0;
+    padding: 20px;
     background: var(--gradient-dark);
     width: 100%;
     overflow: hidden;
@@ -404,26 +363,22 @@ padding: 8px 15px;
 
 .magazine-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Mobile: 1 kolom dulu */
     gap: 30px;
-    align-items: center;
+    align-items: start;
     width: 100%;
-    max-width: 800px; /* Sesuaikan dengan lebar gambar */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 10px;
 }
 
 .magazine-image {
-    background: var(--gradient-light);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 3/4; /* Proporsi majalah standar */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    aspect-ratio: 3/4;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .magazine-image img {
@@ -439,62 +394,59 @@ padding: 8px 15px;
     right: 15px;
     background: var(--pure-white);
     color: var(--primary-black);
-    padding: 6px 12px;
-    border-radius: 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
     font-weight: 700;
     font-size: 12px;
     z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .magazine-content {
-    text-align: center;
     color: var(--pure-white);
-    padding: 0 5px;
 }
 
 .magazine-content h2 {
     font-size: 1.8rem;
     margin-bottom: 15px;
     line-height: 1.3;
+    background: linear-gradient(to right, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .magazine-content p {
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 15px;
     opacity: 0.9;
 }
 
-/* Desktop styles */
+/* Tablet (768px ke atas) - sudah 2 kolom seperti desktop */
 @media (min-width: 768px) {
     .kazine-magazine {
-        padding: 40px 0;
+        padding: 40px;
     }
     
     .magazine-container {
-        grid-template-columns: 400px 1fr; /* Lebar gambar fixed, konten fleksibel */
+        grid-template-columns: 350px 1fr; /* 2 kolom seperti desktop */
         gap: 50px;
-        max-width: 1000px;
-        padding: 0 20px;
-        align-items: start;
+        align-items: center;
     }
     
     .magazine-image {
         aspect-ratio: 3/4;
         border-radius: 12px;
         height: auto;
+        max-width: 350px; /* Lebar maksimum gambar */
     }
     
     .magazine-badge {
         top: 20px;
         right: 20px;
-        padding: 8px 15px;
+        padding: 10px 18px;
         font-size: 14px;
-    }
-    
-    .magazine-content {
-        text-align: left;
-        padding: 20px 0 0 0;
     }
     
     .magazine-content h2 {
@@ -503,36 +455,74 @@ padding: 8px 15px;
     }
     
     .magazine-content p {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         margin-bottom: 20px;
     }
 }
 
-/* Untuk layar sangat kecil (mobile) */
-@media (max-width: 480px) {
+/* Desktop besar */
+@media (min-width: 1024px) {
     .magazine-container {
-        padding: 0 5px;
-        gap: 0px;
+        grid-template-columns: 400px 1fr;
+        gap: 60px;
     }
     
     .magazine-image {
-        border-radius: 5px;
-        aspect-ratio: 3/4;
+        max-width: 400px;
+    }
+}
+
+/* Mobile sangat kecil (kurang dari 768px) tapi tetap 2 kolom */
+@media (max-width: 767px) {
+    /* Opsi 1: Tetap 2 kolom tapi lebih kecil */
+    .magazine-container {
+        grid-template-columns: 160px 1fr;
+        gap: 20px;
+        align-items: start;
     }
     
-    .magazine-content {
-        padding: 0 10px;
+    .magazine-image {
+        aspect-ratio: 3/4;
+        border-radius: 8px;
+        max-width: 160px;
+    }
+    
+    .magazine-badge {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 10px;
     }
     
     .magazine-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
     }
     
     .magazine-content p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        margin-bottom: 12px;
     }
-                                 }
-        
+}
+
+/* Jika ingin mobile sangat kecil kembali ke 1 kolom */
+/*
+@media (max-width: 480px) {
+    .magazine-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .magazine-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .magazine-content {
+        text-align: center;
+    }
+}
+
         .magazine-content h2 {
             font-size: 42px;
             font-weight: 800;
