@@ -353,188 +353,130 @@
             color: var(--primary-black);
         }
 
-        /* KAZINE Magazine Section - Mobile mirip Desktop */
+        /* KAZINE Magazine Section - Sederhana & Responsif */
 .kazine-magazine {
-    padding: 20px;
+    padding: 60px 20px;
     background: var(--gradient-dark);
-    width: 100%;
-    overflow: hidden;
 }
 
 .magazine-container {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile: 1 kolom dulu */
-    gap: 30px;
-    align-items: start;
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .magazine-image {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 10px;
+    background: var(--gradient-light);
+    border-radius: 15px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: var(--pure-white);
     position: relative;
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 3/4;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .magazine-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    object-fit: contain; /* Ganti dari cover ke contain agar seluruh gambar terlihat */
+    padding: 20px;
 }
 
 .magazine-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     background: var(--pure-white);
     color: var(--primary-black);
-    padding: 8px 16px;
+    padding: 8px 15px;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     z-index: 10;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .magazine-content {
     color: var(--pure-white);
+    text-align: center;
 }
 
 .magazine-content h2 {
     font-size: 1.8rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     line-height: 1.3;
-    background: linear-gradient(to right, #fff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .magazine-content p {
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     opacity: 0.9;
 }
 
-/* Tablet (768px ke atas) - sudah 2 kolom seperti desktop */
-@media (min-width: 768px) {
+/* Desktop */
+@media (min-width: 992px) {
     .kazine-magazine {
-        padding: 40px;
+        padding: 100px 40px;
     }
     
     .magazine-container {
-        grid-template-columns: 350px 1fr; /* 2 kolom seperti desktop */
-        gap: 50px;
-        align-items: center;
-    }
-    
-    .magazine-image {
-        aspect-ratio: 3/4;
-        border-radius: 12px;
-        height: auto;
-        max-width: 350px; /* Lebar maksimum gambar */
-    }
-    
-    .magazine-badge {
-        top: 20px;
-        right: 20px;
-        padding: 10px 18px;
-        font-size: 14px;
-    }
-    
-    .magazine-content h2 {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-    }
-    
-    .magazine-content p {
-        font-size: 1.05rem;
-        margin-bottom: 20px;
-    }
-}
-
-/* Desktop besar */
-@media (min-width: 1024px) {
-    .magazine-container {
-        grid-template-columns: 400px 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 60px;
     }
     
     .magazine-image {
-        max-width: 400px;
-    }
-}
-
-/* Mobile sangat kecil (kurang dari 768px) tapi tetap 2 kolom */
-@media (max-width: 767px) {
-    /* Opsi 1: Tetap 2 kolom tapi lebih kecil */
-    .magazine-container {
-        grid-template-columns: 160px 1fr;
-        gap: 20px;
-        align-items: start;
-    }
-    
-    .magazine-image {
-        aspect-ratio: 3/4;
-        border-radius: 8px;
-        max-width: 160px;
-    }
-    
-    .magazine-badge {
-        top: 10px;
-        right: 10px;
-        padding: 6px 12px;
-        font-size: 10px;
-    }
-    
-    .magazine-content h2 {
-        font-size: 1.4rem;
-        margin-bottom: 12px;
-    }
-    
-    .magazine-content p {
-        font-size: 0.9rem;
-        margin-bottom: 12px;
-    }
-}
-
-/* Jika ingin mobile sangat kecil kembali ke 1 kolom */
-/*
-@media (max-width: 480px) {
-    .magazine-container {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .magazine-image {
-        max-width: 250px;
-        margin: 0 auto;
+        height: 500px;
+        font-size: 80px;
+        max-width: 500px;
+        margin: 0;
     }
     
     .magazine-content {
-        text-align: center;
+        text-align: left;
+    }
+    
+    .magazine-content h2 {
+        font-size: 2.2rem;
     }
 }
 
-        .magazine-content h2 {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    .magazine-image {
+        height: 450px;
+        max-width: 450px;
+        font-size: 70px;
+    }
+}
 
-        .magazine-content p {
-            color: var(--accent-color);
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+/* Mobile kecil */
+@media (max-width: 480px) {
+    .kazine-magazine {
+        padding: 40px 15px;
+    }
+    
+    .magazine-image {
+        height: 350px;
+        max-width: 350px;
+        font-size: 50px;
+        border-radius: 10px;
+    }
+    
+    .magazine-badge {
+        top: 15px;
+        right: 15px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 
         .btn-secondary {
             display: inline-block;
