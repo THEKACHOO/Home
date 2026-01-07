@@ -776,11 +776,10 @@ img {
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .article-hero-section {
-                margin-top: 100px;
-                padding: 40px 0;
-            }
+       @media (max-width: 992px) {
+    .article-image {
+        min-height: 150px; /* Bukan height fixed */
+    }
             
             .article-title {
                 font-size: 48px;
@@ -847,9 +846,9 @@ img {
         }
 
         @media (max-width: 576px) {
-            .article-title {
-                font-size: 36px;
-            }
+    .article-image {
+        min-height: 100px; /* Bukan height fixed */
+    }
             
             .article-subtitle {
                 font-size: 18px;
