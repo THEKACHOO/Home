@@ -185,7 +185,7 @@
             z-index: 1001;
         }
 
-        /* Hero Section */
+        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
             padding: 150px 0 80px;
             background: var(--off-white);
@@ -193,7 +193,9 @@
         }
 
         .ambassador-image {
-            height: 600px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 21 / 9; /* Rasio 21:9 untuk 1920x823px */
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             position: relative;
             overflow: hidden;
@@ -228,52 +230,45 @@
             text-transform: uppercase;
         }
 
-        /* Fashion Grid - PERBAIKAN LAYOUT */
+        /* =============== PERUBAHAN FASHION GRID =============== */
         .fashion-grid-section {
             padding: 80px 0;
             background: var(--pure-white);
         }
 
+        /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(2, 300px);
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+            grid-template-rows: repeat(3, auto);   /* 3 baris */
             gap: 15px;
+        }
+
+        /* Baris 1: 3 kolom atas 800x800px */
+        .grid-item:nth-child(1),
+        .grid-item:nth-child(2),
+        .grid-item:nth-child(3) {
+            aspect-ratio: 1 / 1; /* Square 800x800px */
+        }
+
+        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
+        .grid-item:nth-child(4),
+        .grid-item:nth-child(5),
+        .grid-item:nth-child(6) {
+            aspect-ratio: 4 / 5; /* Portrait 800x1000px */
+        }
+
+        /* Baris 3: 3 kolom bawah 800x800px */
+        .grid-item:nth-child(7),
+        .grid-item:nth-child(8),
+        .grid-item:nth-child(9) {
+            aspect-ratio: 1 / 1; /* Square 800x800px */
         }
 
         .grid-item {
             overflow: hidden;
             position: relative;
-        }
-
-        .grid-item:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .grid-item:nth-child(2) {
-            grid-column: span 2;
-            grid-row: span 1;
-        }
-
-        .grid-item:nth-child(3) {
-            grid-column: span 2;
-            grid-row: span 1;
-        }
-
-        .grid-item:nth-child(4) {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .grid-item:nth-child(5) {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .grid-item:nth-child(6) {
-            grid-column: span 2;
-            grid-row: span 1;
+            width: 100%;
         }
 
         .grid-item img {
@@ -287,7 +282,7 @@
             transform: scale(1.05);
         }
 
-        /* PERUBAHAN: Commercial Section diganti KAFKAPAGES Preview */
+        /* =============== PERUBAHAN KAFKAPAGES (21:9 - 1920x823px) =============== */
         .kafkapages-preview {
             padding: 80px 0;
             background: var(--pure-white);
@@ -321,7 +316,7 @@
 
         .kafkapages-photo-link {
             display: block;
-            max-width: 900px;
+            max-width: 100%;
             margin: 40px auto;
             position: relative;
             overflow: hidden;
@@ -332,7 +327,8 @@
 
         .kafkapages-photo {
             width: 100%;
-            height: 400px;
+            height: auto;
+            aspect-ratio: 21 / 9; /* Rasio 21:9 untuk 1920x823px */
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -394,7 +390,7 @@
             color: var(--pure-white);
         }
 
-        /* Shop Section */
+        /* =============== SHOP SECTION =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -782,35 +778,15 @@
             visibility: visible;
         }
 
-        /* RESPONSIVE - PERBAIKAN MOBILE */
+        /* =============== RESPONSIVE DESIGN =============== */
+        /* Tablet */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
-            .fashion-grid {
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(3, 250px);
-            }
-            
-            .grid-item:nth-child(1) {
-                grid-column: span 2;
-                grid-row: span 2;
-            }
-            
-            .grid-item:nth-child(2),
-            .grid-item:nth-child(3) {
-                grid-column: span 2;
-            }
-            
-            .grid-item:nth-child(4),
-            .grid-item:nth-child(5),
-            .grid-item:nth-child(6) {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
         }
 
+        /* Tablet dan Mobile Menu */
         @media (max-width: 992px) {
             .header-container {
                 display: grid;
@@ -875,15 +851,15 @@
             }
         }
 
-        /* PERBAIKAN UTAMA UNTUK MOBILE (768px ke bawah) */
+        /* =============== PERUBAHAN UKURAN UNTUK MOBILE =============== */
+        /* Semua foto ukuran sama untuk mobile */
         @media (max-width: 768px) {
-            /* Hero Section Mobile */
+            /* Hero Section Mobile - tetap 21:9 */
             .hero-ambassador {
                 padding: 120px 0 50px;
             }
             
             .ambassador-image {
-                height: 400px;
                 margin: 0 -20px;
                 width: calc(100% + 40px);
                 border-radius: 0;
@@ -906,7 +882,7 @@
                 letter-spacing: 2px;
             }
             
-            /* Fashion Grid Mobile - SUSUNAN BARU */
+            /* Fashion Grid Mobile - 1 kolom, semua foto sama ukuran */
             .fashion-grid-section {
                 padding: 50px 0;
             }
@@ -914,31 +890,22 @@
             .fashion-grid {
                 display: grid;
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, auto);
+                grid-template-rows: repeat(9, auto);
                 gap: 12px;
             }
             
             .grid-item {
+                width: 100%;
+                aspect-ratio: 1 / 1; /* Semua jadi square di mobile */
                 border-radius: 4px;
                 overflow: hidden;
             }
             
-            /* Item pertama lebih tinggi untuk emphasis */
-            .grid-item:nth-child(1) {
-                height: 350px;
-                grid-column: 1;
-                grid-row: 1;
-            }
-            
-            /* Item 2-6 dengan tinggi seragam */
-            .grid-item:nth-child(2),
-            .grid-item:nth-child(3),
+            /* Override untuk portrait di mobile */
             .grid-item:nth-child(4),
             .grid-item:nth-child(5),
             .grid-item:nth-child(6) {
-                height: 250px;
-                grid-column: 1;
-                grid-row: auto;
+                aspect-ratio: 1 / 1; /* Jadi square juga di mobile */
             }
             
             .grid-item img {
@@ -982,7 +949,7 @@
                 font-size: 12px;
             }
             
-            /* KAFKAPAGES Mobile */
+            /* KAFKAPAGES Mobile - tetap 21:9 */
             .kafkapages-preview {
                 padding: 50px 0;
             }
@@ -1000,10 +967,6 @@
             
             .kafkapages-photo-link {
                 margin: 30px auto;
-            }
-            
-            .kafkapages-photo {
-                height: 300px;
             }
             
             .kafkapages-overlay {
@@ -1077,10 +1040,6 @@
         /* Mobile Kecil (576px ke bawah) */
         @media (max-width: 576px) {
             /* Hero Section */
-            .ambassador-image {
-                height: 350px;
-            }
-            
             .ambassador-overlay h2 {
                 font-size: 26px;
             }
@@ -1090,28 +1049,6 @@
                 gap: 10px;
             }
             
-            .grid-item:nth-child(1) {
-                height: 300px;
-            }
-            
-            .grid-item:nth-child(2),
-            .grid-item:nth-child(3),
-            .grid-item:nth-child(4),
-            .grid-item:nth-child(5),
-            .grid-item:nth-child(6) {
-                height: 220px;
-            }
-            
-            /* Products Grid Mobile Kecil */
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .product-image {
-                height: 320px;
-            }
-            
             /* Logo Mobile Kecil */
             .kazine-logo-main {
                 width: 120px;
@@ -1119,10 +1056,6 @@
             }
             
             /* KAFKAPAGES Mobile Kecil */
-            .kafkapages-photo {
-                height: 250px;
-            }
-            
             .kafkapages-overlay h3 {
                 font-size: 20px;
             }
@@ -1134,6 +1067,16 @@
             
             .magazine-content h3 {
                 font-size: 18px;
+            }
+            
+            /* Products Grid Mobile Kecil */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 320px;
             }
         }
 
@@ -1253,7 +1196,7 @@
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
                      alt="Brand Ambassador - Elevated Style">
                 <div class="ambassador-overlay">
                     <h2>ELEVATED STYLE</h2>
@@ -1263,33 +1206,50 @@
         </div>
     </section>
 
-    <!-- Fashion Grid - Layout sudah diperbaiki untuk mobile -->
+    <!-- Fashion Grid - 9 foto dengan layout baru -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
+                <!-- Baris 1: 3 kolom atas 800x800px -->
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
                          alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
                          alt="Fashion Editorial 2">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
                          alt="Fashion Editorial 3">
                 </div>
+                
+                <!-- Baris 2: 3 kolom tengah 800x1000px (portrait) -->
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=1000" 
                          alt="Fashion Editorial 4">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=1000" 
                          alt="Fashion Editorial 5">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=1000" 
                          alt="Fashion Editorial 6">
+                </div>
+                
+                <!-- Baris 3: 3 kolom bawah 800x800px -->
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
+                         alt="Fashion Editorial 7">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
+                         alt="Fashion Editorial 8">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&h=800" 
+                         alt="Fashion Editorial 9">
                 </div>
             </div>
         </div>
@@ -1560,7 +1520,7 @@
         </div>
     </section>
 
-    <!-- KAFKAPAGES Preview Section (mengganti Commercial Section) -->
+    <!-- KAFKAPAGES Preview Section -->
     <section class="kafkapages-preview" id="kafkapages">
         <div class="container">
             <div class="kafkapages-content">
@@ -1987,4 +1947,4 @@
     }
     </script>
 </body>
-    </html>
+</html>
