@@ -419,7 +419,6 @@
         .mission-card:nth-child(1) { animation-delay: 0.8s; }
         .mission-card:nth-child(2) { animation-delay: 1s; }
         .mission-card:nth-child(3) { animation-delay: 1.2s; }
-        .mission-card:nth-child(4) { animation-delay: 1.4s; }
 
         .mission-card:before {
             content: '';
@@ -493,6 +492,34 @@
             line-height: 1.7;
             color: var(--moon-light);
             margin-bottom: 20px;
+        }
+
+        .mission-image {
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .mission-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .mission-image-caption {
+            text-align: center;
+            padding: 10px;
+            background: rgba(10, 26, 47, 0.8);
+            color: var(--accent-teal);
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .mission-tag {
@@ -606,7 +633,7 @@
         .story-card {
             flex: 1;
             min-width: 300px;
-            max-width: 500px;
+            max-width: 800px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -644,6 +671,52 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .story-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--pure-white);
+        }
+
+        .story-quote {
+            font-size: 16px;
+            color: var(--moon-light);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .story-content {
+            text-align: left;
+            line-height: 1.8;
+            margin: 25px 0;
+            color: var(--moon-light);
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 40px auto 20px;
+            overflow: hidden;
+            border: 4px solid var(--accent-teal);
+            box-shadow: 0 15px 40px rgba(79, 209, 197, 0.3);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--accent-teal);
+            font-size: 16px;
         }
 
         /* Foto grid untuk beberapa foto */
@@ -705,21 +778,6 @@
             box-shadow: 0 15px 40px rgba(79, 209, 197, 0.3);
         }
 
-        .story-name {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--pure-white);
-        }
-
-        .story-quote {
-            font-size: 16px;
-            color: var(--moon-light);
-            margin-bottom: 20px;
-            line-height: 1.4;
-            font-style: italic;
-        }
-
         /* ===== STATISTICS SECTION ===== */
         .stats-section {
             padding: 80px 0;
@@ -776,6 +834,55 @@
         .stat-label {
             font-size: 18px;
             color: var(--moon-light);
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--medium-blue), var(--deep-blue));
+        }
+
+        .gallery-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--pure-white);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            transition: var(--transition);
+            border: 2px solid rgba(79, 209, 197, 0.2);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-teal);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
         /* ===== SUPPORT SECTION ===== */
@@ -837,6 +944,34 @@
         .support-option:hover {
             background: rgba(255, 255, 255, 0.07);
             transform: translateX(5px);
+        }
+
+        .support-image {
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .support-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .support-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .support-image-caption {
+            text-align: center;
+            padding: 10px;
+            background: rgba(10, 26, 47, 0.8);
+            color: var(--accent-teal);
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .option-title {
@@ -903,67 +1038,6 @@
             margin-top: 40px;
             padding-top: 30px;
             border-top: 1px solid rgba(248, 215, 117, 0.2);
-        }
-
-        /* ===== GALLERY SECTION ===== */
-        .gallery-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--medium-blue), var(--deep-blue));
-        }
-
-        .gallery-title {
-            font-size: 36px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--pure-white);
-            animation: fadeInUp 0.8s both;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .gallery-item {
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            height: 250px;
-            transition: var(--transition);
-            border: 2px solid rgba(79, 209, 197, 0.2);
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-teal);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 26, 47, 0.85);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
         }
 
         /* ===== FOOTER ===== */
@@ -1361,6 +1435,13 @@
                         <i class="fas fa-stethoscope"></i>
                     </div>
                     <h3 class="mission-title">Dukungan Medis</h3>
+                    
+                    <!-- GAMBAR RUMAHBULAN2.PNG DI AWAL SEBELUM DUKUNGAN -->
+                    <div class="mission-image">
+                        <img src="rumahbulan2.png" alt="Fasilitas Rumah Bulan">
+                        <div class="mission-image-caption">Rumah Bulan - Fasilitas Terapi</div>
+                    </div>
+                    
                     <p class="mission-description">Menyediakan akses ke perawatan kanker terbaik, termasuk kemoterapi, radioterapi, dan pengobatan paliatif. Rumah Bulan bekerja sama dengan rumah sakit terkemuka di Indonesia untuk memastikan setiap anak mendapatkan perawatan yang mereka butuhkan.</p>
                     <p class="mission-description">Tim medis kami terdiri dari dokter spesialis onkologi anak, perawat, dan terapis yang berpengalaman dalam menangani kasus kanker pada anak.</p>
                     <span class="mission-tag">Perawatan & Pengobatan</span>
@@ -1415,22 +1496,21 @@
                     <h3 class="story-name">Naomi, 10 tahun</h3>
                     <p class="story-quote">"Aku suka sekali di Rumah Bulan. Kakak-kakak di sini selalu menemani dan mendengarkan ceritaku."</p>
                     
-                    <div class="photos-grid">
-                        <div class="photo-item">
-                            <img src="rumahbulan2.png" alt="Rumah Bulan 2">
-                            <div class="photo-caption">Rumah Bulan - Taman Bermain</div>
-                        </div>
-                        <div class="photo-item">
-                            <img src="rumahbulan3.png" alt="Rumah Bulan 3">
-                            <div class="photo-caption">Ruang Terapi Seni</div>
-                        </div>
+                    <div class="story-content">
+                        <p>Halo, namaku Naomi. Aku salah satu ksatria bulan di Rumah Bulan. Umurku 10 tahun. Aku berteman dengan ALL sejak 2025 awal. Aku datang ke Rumah Bulan waktu pengobatanku masih panjang. Di sini ada kakak-kakak yang menemani. Mereka nggak selalu bertanya soal hasil lab atau obat apa yang aku minum. Kadang mereka cuma duduk dan temani aku menggambar, atau bacain aku buku sampai aku tidur.</p>
+                        
+                        <p>Aku juga punya banyak teman di sini. Kami sama-sama punya bekas infus di tangan. Sama-sama takut jarum, tapi kami pura-pura berani aja. Kami saling tunggu kalau ada yang ke rumah sakit. Kalau satu orang nggak pulang cepat, kami tau kalau dia sedang berjuang hari itu.</p>
+                        
+                        <p>Suatu hari nanti, aku mau pergi ke pasar malam, naik carousel bareng teman-teman Rumah Bulan. Aku mau main sama mereka tanpa harus minum obat lagi.</p>
                     </div>
                     
-                    <p>Halo, namaku Naomi. Aku salah satu ksatria bulan di Rumah Bulan. Umurku 10 tahun. Aku berteman dengan ALL sejak 2025 awal. Aku datang ke Rumah Bulan waktu pengobatanku masih panjang. Di sini ada kakak-kakak yang menemani. Mereka nggak selalu bertanya soal hasil lab atau obat apa yang aku minum. Kadang mereka cuma duduk dan temani aku menggambar, atau bacain aku buku sampai aku tidur.</p>
+                    <!-- FOTO PROFIL NAOMI DI AKHIR SECTION -->
+                    <div class="profile-photo">
+                        <img src="naomi.png" alt="Foto Naomi">
+                    </div>
+                    <div class="profile-caption">Naomi, 10 tahun - Ksatria Bulan Rumah Bulan</div>
                     
-                    <p>Aku juga punya banyak teman di sini. Kami sama-sama punya bekas infus di tangan. Sama-sama takut jarum, tapi kami pura-pura berani aja. Kami saling tunggu kalau ada yang ke rumah sakit. Kalau satu orang nggak pulang cepat, kami tau kalau dia sedang berjuang hari itu.</p>
-                    
-                    <p>Suatu hari nanti, aku mau pergi ke pasar malam, naik carousel bareng teman-teman Rumah Bulan. Aku mau main sama mereka tanpa harus minum obat lagi.</p>
+                    <p><strong>Ukuran foto yang disarankan untuk naomi.png:</strong> 800x800px (persegi, rasio 1:1)</p>
                 </div>
             </div>
         </div>
@@ -1441,21 +1521,18 @@
         <div class="container">
             <h2 class="gallery-title scroll-animate">Kehidupan di Rumah Bulan</h2>
             <div class="gallery-grid">
+                <!-- TANPA CAPTION UNTUK FOTO-FOTO INI -->
                 <div class="gallery-item scroll-animate">
                     <img src="pasien1.png" alt="Pasien 1">
-                    <div class="gallery-caption">Sesi Terapi Bermain</div>
+                    <!-- TIDAK ADA CAPTION -->
                 </div>
                 <div class="gallery-item scroll-animate">
                     <img src="pasien2.png" alt="Pasien 2">
-                    <div class="gallery-caption">Kegiatan Seni Kreatif</div>
+                    <!-- TIDAK ADA CAPTION -->
                 </div>
                 <div class="gallery-item scroll-animate">
                     <img src="pasien3.png" alt="Pasien 3">
-                    <div class="gallery-caption">Dukungan Kelompok</div>
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="rumahbulan2.png" alt="Rumah Bulan 2">
-                    <div class="gallery-caption">Fasilitas Rumah Bulan</div>
+                    <!-- TIDAK ADA CAPTION -->
                 </div>
             </div>
         </div>
@@ -1499,6 +1576,13 @@
                     <div class="support-option scroll-animate">
                         <h3 class="option-title"><i class="fas fa-donate"></i> Dukungan Finansial</h3>
                         <p>Dukungan finansial dapat disalurkan melalui:</p>
+                        
+                        <!-- GAMBAR RUMAHBULAN3.PNG DI ATAS LINK KITABISA -->
+                        <div class="support-image">
+                            <img src="rumahbulan3.png" alt="Suasana Rumah Bulan">
+                            <div class="support-image-caption">Suasana Harian di Rumah Bulan</div>
+                        </div>
+                        
                         <div class="option-details">
                             <p class="bank-info">Transfer ke rekening dukungan:</p>
                             <p><strong>Bank Central Asia (BCA)</strong><br>
@@ -1727,7 +1811,6 @@
             item.addEventListener('click', function() {
                 const img = this.querySelector('img');
                 const src = img.getAttribute('src');
-                const caption = this.querySelector('.gallery-caption').textContent;
                 
                 // Create lightbox
                 const lightbox = document.createElement('div');
@@ -1755,16 +1838,6 @@
                     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
                 `;
                 
-                const lightboxCaption = document.createElement('div');
-                lightboxCaption.textContent = caption;
-                lightboxCaption.style.cssText = `
-                    color: white;
-                    font-size: 20px;
-                    margin-top: 20px;
-                    text-align: center;
-                    max-width: 800px;
-                `;
-                
                 const closeBtn = document.createElement('button');
                 closeBtn.innerHTML = '×';
                 closeBtn.style.cssText = `
@@ -1781,7 +1854,6 @@
                 
                 lightbox.appendChild(closeBtn);
                 lightbox.appendChild(lightboxImg);
-                lightbox.appendChild(lightboxCaption);
                 document.body.appendChild(lightbox);
                 
                 // Close lightbox
