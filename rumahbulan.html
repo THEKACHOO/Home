@@ -749,6 +749,133 @@
             color: var(--moon-light);
         }
 
+        /* ===== SUPPORT SECTION ===== */
+        .support-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--deep-blue), var(--medium-blue));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .support-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--pure-white);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .support-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--moon-light);
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        .support-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s 0.4s both;
+        }
+
+        .support-description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--moon-light);
+        }
+
+        .support-option {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .support-option:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
+        }
+
+        .option-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--pure-white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-title i {
+            color: var(--accent-teal);
+        }
+
+        .option-details {
+            margin: 10px 0;
+            padding: 10px 0;
+        }
+
+        .bank-info {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-teal);
+            margin: 10px 0;
+        }
+
+        .link-info {
+            margin: 15px 0;
+        }
+
+        .link-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-green));
+            color: var(--night-blue);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(79, 209, 197, 0.3);
+        }
+
+        .address-info {
+            background: rgba(248, 215, 117, 0.1);
+            border: 1px solid rgba(248, 215, 117, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .support-message {
+            text-align: center;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--moon-yellow);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(248, 215, 117, 0.2);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(135deg, var(--night-blue), var(--deep-blue));
@@ -810,12 +937,29 @@
             align-items: center;
             gap: 15px;
             color: var(--moon-light);
+            transition: var(--transition);
+            padding: 8px 0;
+        }
+
+        .foundation-info div:hover {
+            color: var(--accent-teal);
+            transform: translateX(5px);
         }
 
         .foundation-info i {
             width: 20px;
             color: var(--accent-teal);
             font-size: 18px;
+        }
+
+        .email-link {
+            color: var(--moon-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .email-link:hover {
+            color: var(--accent-teal);
         }
 
         .social-info {
@@ -835,6 +979,29 @@
             color: var(--moon-light);
             line-height: 1.6;
             font-size: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-teal);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: rgba(79, 209, 197, 0.1);
+            transform: translateY(-3px);
         }
 
         .footer-about h3 {
@@ -901,6 +1068,10 @@
             .stories-section {
                 padding: 60px 0;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -942,6 +1113,14 @@
             .quote:after {
                 font-size: 60px;
             }
+            
+            .support-content {
+                padding: 30px 20px;
+            }
+            
+            .option-title {
+                font-size: 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -975,6 +1154,10 @@
             
             .floating-moon, .floating-star {
                 display: none;
+            }
+            
+            .social-links {
+                flex-direction: column;
             }
         }
 
@@ -1027,7 +1210,6 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo-container" onclick="window.location.href='#'">
-                    <!-- Ganti src dengan logo Rumah Bulan Anda -->
                     <img src="logorumahbulan.jpg" alt="Rumah Bulan Logo" id="logo">
                     <div class="article-category">DUKUNGAN</div>
                 </div>
@@ -1053,7 +1235,9 @@
         <div class="container">
             <div class="article-hero">
                 <span class="article-date">Januari 11, 2026</span>
-                <h1 class="article-title">Rumah Bulan: <br>Cancer Support Foundation</h1
+                <h1 class="article-title">Rumah Bulan: <br>Cancer Support Foundation</h1>
+                <p class="article-subtitle">Sinar harapan bagi anak dengan kanker usia 6—17 tahun dan keluarga mereka. Tempat di mana harapan tumbuh, dukungan mengalir, dan tidak ada yang berjuang sendirian.</p>
+            </div>
         </div>
     </section>
 
@@ -1113,21 +1297,75 @@
         </div>
     </section>
 
+    <!-- Stories Section -->
+    <section class="stories-section">
+        <div class="container">
+            <h2 class="stories-section-title scroll-animate">Kisah Penghuni Rumah Bulan</h2>
+            <div class="stories-container">
                 <div class="story-card scroll-animate">
                     <div class="story-avatar">
-                        <!-- Ganti src dengan foto anak kedua -->
-                        <img src="nama_rumahbulan.JPG" alt="Nama">
+                        <img src="nama_rumahbulan.JPG" alt="Naomi">
                     </div>
-                    <h3 class="story-name">Naomi</h3>
+                    <h3 class="story-name">Naomi, 10 tahun</h3>
                     <p class="story-quote">"Aku suka sekali di Rumah Bulan. Kakak-kakak di sini selalu menemani dan mendengarkan ceritaku."</p>
                     
-                    <!-- Placeholder untuk foto tambahan -->
                     <div class="photo-placeholder">
                         <i class="fas fa-camera"></i>
                     </div>
                     
-                    <p>Naomi adalah salah satu penghuni Rumah Bulan yang didiagnosis Acute Lymphoblastic Leukemia (ALL) sejak 2025 awal lalu. Jenis kanker darah yang satu ini merupakan salah satu yang paling sering menyerang anak, khususnya para penghuni Rumah Bulan.</p>
+                    <p>Halo, namaku Naomi. Aku salah satu ksatria bulan di Rumah Bulan. Umurku 10 tahun. Aku berteman dengan ALL sejak 2025 awal. Aku datang ke Rumah Bulan waktu pengobatanku masih panjang. Di sini ada kakak-kakak yang menemani. Mereka nggak selalu bertanya soal hasil lab atau obat apa yang aku minum. Kadang mereka cuma duduk dan temani aku menggambar, atau bacain aku buku sampai aku tidur.</p>
+                    
+                    <p>Aku juga punya banyak teman di sini. Kami sama-sama punya bekas infus di tangan. Sama-sama takut jarum, tapi kami pura-pura berani aja. Kami saling tunggu kalau ada yang ke rumah sakit. Kalau satu orang nggak pulang cepat, kami tau kalau dia sedang berjuang hari itu.</p>
+                    
+                    <p>Suatu hari nanti, aku mau pergi ke pasar malam, naik carousel bareng teman-teman Rumah Bulan. Aku mau main sama mereka tanpa harus minum obat lagi.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-container">
+                <h2 class="support-title scroll-animate">Cara Mendukung Rumah Bulan</h2>
+                <p class="support-subtitle scroll-animate">Rumah Bulan adalah rumah singgah bagi anak-anak dengan kanker, tempat untuk beristirahat, ditemani, dan ruang untuk tetap menjadi anak-anak di tengah perjalanan pengobatan.</p>
+                
+                <div class="support-content scroll-animate">
+                    <p class="support-description">Jika kamu ingin menjadi bagian dari perjalanan ini, dukunganmu akan membantu Rumah Bulan tetap membuka pintunya.</p>
+                    
+                    <div class="support-option scroll-animate">
+                        <h3 class="option-title"><i class="fas fa-donate"></i> Dukungan Finansial</h3>
+                        <p>Dukungan finansial dapat disalurkan melalui:</p>
+                        <div class="option-details">
+                            <p class="bank-info">Transfer ke rekening dukungan:</p>
+                            <p><strong>Bank Central Asia (BCA)</strong><br>
+                            No. Rekening: 972 451 7890<br>
+                            a.n. Yayasan Rumah Bulan</p>
+                        </div>
+                        <div class="link-info">
+                            <p><strong>Platform donasi daring:</strong></p>
+                            <a href="https://kitabisa.com/dukungrumahbulan" target="_blank" class="link-btn">
+                                <i class="fas fa-external-link-alt"></i> kitabisa.com/dukungrumahbulan
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="support-option scroll-animate">
+                        <h3 class="option-title"><i class="fas fa-hands-helping"></i> Dukungan Nonmateri</h3>
+                        <p>Dukungan nonmateri dapat disalurkan langsung ke alamat:</p>
+                        <div class="address-info">
+                            <p><strong>Rumah Bulan</strong><br>
+                            Jl. Taman Sela No. 11<br>
+                            Kel. Pondok Sari, Kec. Ciputat Timur<br>
+                            Kota Tangerang Selatan, Banten 15413</p>
+                        </div>
+                    </div>
+                    
+                    <p class="support-message scroll-animate">
+                        Mari bersama menjaga Rumah Bulan agar tak ada anak yang harus berjuang sendirian.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1136,24 +1374,40 @@
         <div class="container">
             <div class="footer-content">
                 <div class="foundation-card scroll-animate">
-                    <h3>Rumah Bulan</h3>
+                    <h3>Kontak Rumah Bulan</h3>
                     <div class="foundation-info">
                         <div>
-                            <i class="fab fa-twitter"></i>
-                            <span>Twitter: @_RumahBulan</span>
+                            <i class="fas fa-globe"></i>
+                            <span>Website: <a href="https://www.rumahbulan.id" target="_blank" class="email-link">www.rumahbulan.id</a></span>
+                        </div>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: <a href="mailto:halo@rumahbulan.id" class="email-link">halo@rumahbulan.id</a></span>
+                        </div>
+                        <div>
+                            <i class="fas fa-hands-helping"></i>
+                            <span>Donasi: <a href="mailto:support@rumahbulan.id" class="email-link">support@rumahbulan.id</a></span>
+                        </div>
+                        <div>
+                            <i class="fas fa-users"></i>
+                            <span>Relawan: <a href="mailto:relawan@rumahbulan.id" class="email-link">relawan@rumahbulan.id</a></span>
                         </div>
                         <div>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Alamat</span>
+                            <span>Jl. Taman Sela No. 11, Pondok Sari, Ciputat Timur, Tangerang Selatan, Banten 15413</span>
                         </div>
                     </div>
                     
                     <div class="social-info">
                         <h4>Terhubung dengan Kami</h4>
                         <p>Ikuti perkembangan terbaru dan kampanye kami di media sosial. Setiap like, share, dan retweet membantu kami menjangkau lebih banyak anak yang membutuhkan.</p>
-                        <div style="margin-top: 10px;">
-                            <a href="https://twitter.com/_RumahBulan" target="_blank" style="color: var(--accent-teal); text-decoration: none; font-weight: 600;">
+                        
+                        <div class="social-links">
+                            <a href="https://twitter.com/_RumahBulan" target="_blank" class="social-link">
                                 <i class="fab fa-twitter"></i> @_RumahBulan
+                            </a>
+                            <a href="https://instagram.com/RumahBulan.id" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i> @RumahBulan.id
                             </a>
                         </div>
                     </div>
@@ -1290,6 +1544,19 @@
             });
         });
         
+        // Email link hover effects
+        document.querySelectorAll('.email-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.color = 'var(--accent-teal)';
+                this.style.textDecoration = 'underline';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.color = 'var(--moon-light)';
+                this.style.textDecoration = 'none';
+            });
+        });
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Trigger initial animations
@@ -1319,6 +1586,17 @@
                     }
                 });
             }, 3000);
+            
+            // Support button effects
+            document.querySelectorAll('.link-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
         });
     </script>
 </body>
