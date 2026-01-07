@@ -246,41 +246,87 @@
             margin: 0 auto;
         }
 
-        .article-image {
-            width: 100%;
-            height: 500px;
-            background: var(--gray-900);
-            border-radius: 20px;
-            margin: 60px 0;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
+        /* ===== ARTICLE IMAGE FIX ===== */
+.article-image {
+    width: 100%;
+    min-height: 200px; /* Ubah dari height fixed */
+    background: var(--gray-50); /* Background terang */
+    border-radius: 20px;
+    margin: 60px 0;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible; /* Ubah dari hidden */
+}
 
-        .article-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 1;
-        }
+.article-image img {
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
 
-        .image-credit {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            z-index: 3;
-            backdrop-filter: blur(5px);
-        }
+/* Hapus pseudo element yang mungkin menutupi */
+.article-image:before {
+    display: none; /* Nonaktifkan overlay gelap */
+}
 
+.image-placeholder {
+    display: none; /* Sembunyikan placeholder */
+}
+
+.image-title {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--black);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+    padding: 10px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 20px 20px;
+}
+
+.image-credit {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--gray-600);
+    text-align: center;
+    width: 100%;
+}
+
+/* Pastikan tidak ada cropping */
+img {
+    object-fit: contain !important;
+}
+
+/* Responsive images */
+@media (max-width: 768px) {
+    .article-image {
+        min-height: 150px;
+        margin: 40px 0;
+    }
+    
+    .article-image img {
+        max-width: 95%;
+    }
+    
+    .image-title {
+        font-size: 20px;
+        padding: 8px;
+    }
+}
         .article-body {
             font-size: 19px;
             line-height: 1.9;
@@ -914,12 +960,12 @@
             <div class="article-body scroll-animate">
                 <p>In a region as vast and diverse as the Asia-Pacific, unity is often spoken of as a destination—something to be achieved through agreements, institutions, or shared economic goals. Yet, as Vaelen Sterling Roosevelt articulates, the deeper question is not how we unify systems, but how we preserve humanity within them.</p>
                 
-                <div class="article-image scroll-animate">
-                    <img src="human2.png" alt="HUMANITY BEYOND UNIFORMITY" 
-             style="max-width: 100%; height: auto; display: inline-block;">
-        <div class="image-credit">
-            Visuals by <span>Rai</span>
-        </div>
+                <!-- Di dalam article-body (gambar pertama) -->
+<div class="article-image scroll-animate">
+    <img src="human1.png" alt="HUMANITY BEYOND UNIFORMITY">
+    <div class="image-title">HUMANITY BEYOND UNIFORMITY</div>
+    <div class="image-credit">
+        Visuals by <span>Rai</span>
     </div>
 </div>
                 
@@ -931,16 +977,14 @@
             </div>
 
             <!-- First Insight -->
-<!-- First Insight -->
 <div class="insight-section scroll-animate">
-    <div class="article-image scroll-animate" style="text-align: center; padding: 20px;">
-        <img src="human2.png" alt="HUMANITY BEYOND UNIFORMITY" 
-             style="max-width: 100%; height: auto; display: inline-block;">
+    <div class="article-image scroll-animate">
+        <img src="human2.png" alt="HUMANITY BEYOND UNIFORMITY">
+        <div class="image-title">HUMANITY BEYOND UNIFORMITY</div>
         <div class="image-credit">
             Visuals by <span>Rai</span>
         </div>
     </div>
-</div>
                 
                 <h2>Humanity Beyond Uniformity</h2>
                 
@@ -956,13 +1000,14 @@
             </div>
 
             <!-- Second Insight -->
-            <div class="insight-section scroll-animate">
-                <div class="article-image scroll-animate">
-                    <div class="image-placeholder">THE GAP BETWEEN UNITY AND REALITY</div>
-                    <div class="image-credit">
-                        Visuals by <span>Rai</span>
-                    </div>
-                </div>
+<div class="insight-section scroll-animate">
+    <div class="article-image scroll-animate">
+        <img src="human3.png" alt="THE GAP BETWEEN UNITY AND REALITY">
+        <div class="image-title">THE GAP BETWEEN UNITY AND REALITY</div>
+        <div class="image-credit">
+            Visuals by <span>Rai</span>
+        </div>
+    </div>
                 
                 <h2>The Gap Between Unity on Paper and Life on the Ground</h2>
                 
@@ -979,14 +1024,15 @@
                 <p>Dr. Roosevelt observed, "The gap often stems from insufficient community consultation. Unity policies designed in air-conditioned offices often melt in the heat of street-level realities. We need mechanisms that bring policymaking closer to the people it affects."</p>
             </div>
 
-            <!-- Third Insight -->
-            <div class="insight-section scroll-animate">
-                <div class="article-image scroll-animate">
-                    <div class="image-placeholder">WHEN INSTITUTIONS FALL SHORT</div>
-                    <div class="image-credit">
-                        Visuals by <span>Rai</span>
-                    </div>
-                </div>
+           <!-- Third Insight -->
+<div class="insight-section scroll-animate">
+    <div class="article-image scroll-animate">
+        <img src="human4.png" alt="WHEN INSTITUTIONS FALL SHORT">
+        <div class="image-title">WHEN INSTITUTIONS FALL SHORT</div>
+        <div class="image-credit">
+            Visuals by <span>Rai</span>
+        </div>
+    </div>
                 
                 <h2>When Institutions Fall Short, Humanity Moves</h2>
                 
@@ -1003,14 +1049,15 @@
                 <p>At the grassroots level, solutions are rarely ideological. They are restorative. They ask how to heal before how to regulate, how to repair relationships before assigning blame. This is where Roosevelt's concept of restorative sovereignty becomes tangible: a society is strong not because it commands, but because it can restore—relationships, dignity, and trust.</p>
             </div>
 
-            <!-- Fourth Insight -->
-            <div class="insight-section scroll-animate">
-                <div class="article-image scroll-animate">
-                    <div class="image-placeholder">BEYOND FORMAL DIPLOMACY</div>
-                    <div class="image-credit">
-                        Visuals by <span>Rai</span>
-                    </div>
-                </div>
+            <!-- Third Insight -->
+<div class="insight-section scroll-animate">
+    <div class="article-image scroll-animate">
+        <img src="human4.png" alt="WHEN INSTITUTIONS FALL SHORT">
+        <div class="image-title">WHEN INSTITUTIONS FALL SHORT</div>
+        <div class="image-credit">
+            Visuals by <span>Rai</span>
+        </div>
+    </div>
                 
                 <h2>Moving Beyond Formal Diplomacy</h2>
                 
@@ -1028,13 +1075,14 @@
             </div>
 
             <!-- Fifth Insight -->
-            <div class="insight-section scroll-animate">
-                <div class="article-image scroll-animate">
-                    <div class="image-placeholder">WHAT TRULY UNITES US</div>
-                    <div class="image-credit">
-                        Visuals by <span>Rai</span>
-                    </div>
-                </div>
+<div class="insight-section scroll-animate">
+    <div class="article-image scroll-animate">
+        <img src="human6.png" alt="WHAT TRULY UNITES US">
+        <div class="image-title">WHAT TRULY UNITES US</div>
+        <div class="image-credit">
+            Visuals by <span>Rai</span>
+        </div>
+    </div>
                 
                 <h2>What Truly Unites Us: Values and Practical Cooperation</h2>
                 
