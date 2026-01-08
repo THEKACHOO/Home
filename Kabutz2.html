@@ -22,17 +22,17 @@
             --gray-800: #262626;
             --gray-900: #171717;
             
-            /* Green/Earth palette */
-            --primary-green: #10b981;
-            --green-light: #d1fae5;
-            --green-dark: #059669;
-            --earth-brown: #92400e;
-            --brown-light: #fef3c7;
-            --forest-green: #065f46;
-            --forest-light: #a7f3d0;
-            --leaf-green: #16a34a;
-            --sky-blue: #0ea5e9;
-            --blue-light: #e0f2fe;
+            /* Green Pastel palette */
+            --primary-green: #7FBF7F;
+            --green-light: #E8F5E8;
+            --green-dark: #6AA56A;
+            --earth-brown: #A1887F;
+            --brown-light: #F5E9E0;
+            --forest-green: #5A8A5A;
+            --forest-light: #D4EDDA;
+            --leaf-green: #81C784;
+            --sky-blue: #90CAF9;
+            --blue-light: #E3F2FD;
             
             --accent: var(--primary-green);
             --primary: var(--forest-green);
@@ -158,10 +158,10 @@
 
         @keyframes pulseCategory {
             0% {
-                box-shadow: 0 4px 15px rgba(6, 95, 70, 0.2);
+                box-shadow: 0 4px 15px rgba(90, 138, 90, 0.2);
             }
             100% {
-                box-shadow: 0 4px 20px rgba(6, 95, 70, 0.4);
+                box-shadow: 0 4px 20px rgba(90, 138, 90, 0.4);
             }
         }
 
@@ -196,7 +196,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(6, 95, 70, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(90, 138, 90, 0.1), transparent);
             transition: left 0.7s;
         }
 
@@ -208,7 +208,90 @@
             background: var(--forest-green);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(6, 95, 70, 0.2);
+            box-shadow: 0 6px 25px rgba(90, 138, 90, 0.2);
+        }
+
+        /* ===== CLAY 3D ANIMATION ===== */
+        .clay-animation {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--green-light), var(--white));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clay-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 300px;
+        }
+
+        .clay-element {
+            position: absolute;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: floatClay 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+            transition: all 0.5s ease;
+        }
+
+        .clay-package {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--leaf-green), var(--primary-green));
+            border-radius: 20px;
+            left: 20%;
+            top: 40%;
+            animation-delay: 0s;
+            box-shadow: 
+                inset 10px 10px 20px rgba(255,255,255,0.5),
+                inset -10px -10px 20px rgba(0,0,0,0.1),
+                0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .clay-courier {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--primary-green));
+            border-radius: 30px 30px 10px 10px;
+            right: 25%;
+            top: 35%;
+            animation-delay: 1s;
+            box-shadow: 
+                inset 10px 10px 20px rgba(255,255,255,0.5),
+                inset -10px -10px 20px rgba(0,0,0,0.1),
+                0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .clay-tree {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--forest-green), var(--leaf-green));
+            border-radius: 10px 10px 30px 30px;
+            left: 40%;
+            top: 60%;
+            animation-delay: 2s;
+            box-shadow: 
+                inset 10px 10px 20px rgba(255,255,255,0.5),
+                inset -10px -10px 20px rgba(0,0,0,0.1),
+                0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        @keyframes floatClay {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                box-shadow: 
+                    inset 10px 10px 20px rgba(255,255,255,0.5),
+                    inset -10px -10px 20px rgba(0,0,0,0.1),
+                    0 15px 30px rgba(0,0,0,0.15);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(5deg); 
+                box-shadow: 
+                    inset 10px 10px 20px rgba(255,255,255,0.5),
+                    inset -10px -10px 20px rgba(0,0,0,0.1),
+                    0 25px 40px rgba(0,0,0,0.2);
+            }
         }
 
         /* ===== ARTICLE HERO ===== */
@@ -387,6 +470,30 @@
             font-style: normal;
         }
 
+        /* ===== IMAGE PLACEHOLDERS ===== */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--green-light), var(--forest-light));
+            border-radius: 20px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest-green);
+            font-weight: 600;
+            font-size: 18px;
+            border: 2px dashed var(--primary-green);
+            animation: fadeInUp 0.8s both;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+
         /* ===== VIP FEATURE ===== */
         .vip-feature {
             background: linear-gradient(135deg, var(--green-light), var(--white));
@@ -408,7 +515,10 @@
             border-radius: 20px;
             padding: 40px;
             border: 1px solid var(--gray-200);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.05),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
@@ -427,7 +537,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(16, 185, 129, 0.03));
+            background: linear-gradient(135deg, transparent, rgba(127, 191, 127, 0.03));
             opacity: 0;
             transition: var(--transition);
         }
@@ -438,7 +548,10 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.1),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
         }
 
         .feature-icon {
@@ -453,6 +566,9 @@
             font-size: 28px;
             color: var(--forest-green);
             transition: var(--transition);
+            box-shadow: 
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
         }
 
         .feature-card:hover .feature-icon {
@@ -519,7 +635,10 @@
             border-radius: 20px;
             padding: 30px;
             border: 1px solid var(--gray-200);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.05),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
             transition: var(--transition);
             min-width: 180px;
             animation: fadeInUp 0.8s both;
@@ -531,7 +650,10 @@
 
         .account-card:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.1),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
         }
 
         .account-icon {
@@ -546,6 +668,9 @@
             font-size: 28px;
             color: var(--white);
             transition: var(--transition);
+            box-shadow: 
+                inset 5px 5px 10px rgba(255,255,255,0.3),
+                inset -5px -5px 10px rgba(0,0,0,0.1);
         }
 
         .account-card:hover .account-icon {
@@ -603,7 +728,10 @@
             padding: 40px;
             border-radius: 20px;
             border: 1px solid var(--gray-200);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.05),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -734,6 +862,10 @@
             .accounts-grid {
                 max-width: 500px;
             }
+            
+            .clay-container {
+                height: 250px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -766,6 +898,25 @@
                 min-width: 140px;
                 padding: 20px;
             }
+            
+            .clay-container {
+                height: 200px;
+            }
+            
+            .clay-package {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .clay-courier {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .clay-tree {
+                width: 50px;
+                height: 50px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -793,6 +944,14 @@
             .account-card {
                 width: 100%;
                 max-width: 300px;
+            }
+            
+            .image-placeholder {
+                height: 300px;
+            }
+            
+            .clay-container {
+                height: 150px;
             }
         }
 
@@ -850,8 +1009,26 @@
                     Environmental action does not always begin with protests or large-scale campaigns. Sometimes, it starts quietly, with one task, one user, and one tree.
                 </div>
 
+                <!-- [IMAGE PLACEHOLDER 1] -->
+                <div class="image-placeholder scroll-animate">
+                    <div style="text-align: center;">
+                        <i class="fas fa-leaf"></i>
+                        <div>Gambar konsep hijau dan sustainability</div>
+                        <div style="font-size: 14px; margin-top: 10px; color: var(--gray-500);">Tempat untuk gambar yang menunjukkan konsep hijau TaskIt</div>
+                    </div>
+                </div>
+
                 <div class="content-text scroll-animate">
                     <p>TaskIt, a mobile application founded in 2022, introduces a new green initiative that transforms daily activities into tangible environmental impact. Through its upcoming VIP Loyalty Card feature, TaskIt commits to planting one real tree for every completed loyalty card, directly contributing to global reforestation efforts.</p>
+                    
+                    <!-- [IMAGE PLACEHOLDER 2] -->
+                    <div class="image-placeholder scroll-animate" style="margin: 40px 0;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>Gambar aplikasi TaskIt</div>
+                            <div style="font-size: 14px; margin-top: 10px; color: var(--gray-500);">Tempat untuk screenshot atau mockup aplikasi TaskIt</div>
+                        </div>
+                    </div>
                     
                     <p>This initiative reflects TaskIt's core belief that helping people and protecting the planet should go hand in hand. Built on a flexible task-based system, TaskIt allows users to request assistance for a wide range of needs while encouraging a community-driven approach to problem solving. Now, that same system is being extended to care for the Earth itself.</p>
                 </div>
@@ -860,7 +1037,31 @@
                     "You can't do it? You can Task It!"
                     <span class="author">— TaskIt Motto</span>
                 </div>
+
+                <!-- [IMAGE PLACEHOLDER 3] -->
+                <div class="image-placeholder scroll-animate">
+                    <div style="text-align: center;">
+                        <i class="fas fa-tree"></i>
+                        <div>Gambar lingkungan dan pohon</div>
+                        <div style="font-size: 14px; margin-top: 10px; color: var(--gray-500);">Tempat untuk gambar pohon atau lingkungan yang dilestarikan</div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CLAY 3D Animation -->
+    <section class="clay-animation">
+        <div class="container">
+            <h2 class="section-title scroll-animate" style="text-align: center;">Clay Animation: The TaskIt Journey</h2>
+            <div class="clay-container">
+                <div class="clay-element clay-package"></div>
+                <div class="clay-element clay-courier"></div>
+                <div class="clay-element clay-tree"></div>
+            </div>
+            <p class="content-text scroll-animate" style="text-align: center; max-width: 600px; margin: 30px auto;">
+                Setiap tugas yang diselesaikan seperti paket yang dikirimkan oleh kurir, dan setiap paket yang tuntas berarti satu pohon baru ditanam.
+            </p>
         </div>
     </section>
 
@@ -884,6 +1085,10 @@
                         </div>
                         <h3 class="feature-title">Real Trees Planted</h3>
                         <p class="feature-description">Every completed VIP Loyalty Card results in one real tree being planted through verified reforestation platforms. Each tree is tracked and contributes to global restoration efforts.</p>
+                        <!-- [IMAGE PLACEHOLDER 4.1] -->
+                        <div class="image-placeholder scroll-animate" style="height: 150px; margin: 20px 0 0;">
+                            <i class="fas fa-seedling"></i>
+                        </div>
                     </div>
 
                     <!-- Feature 2 -->
@@ -893,6 +1098,10 @@
                         </div>
                         <h3 class="feature-title">Transparent Tracking</h3>
                         <p class="feature-description">Watch your environmental impact grow in real-time through the Forest section on TaskIt's website. See individual contributions and collective achievements.</p>
+                        <!-- [IMAGE PLACEHOLDER 4.2] -->
+                        <div class="image-placeholder scroll-animate" style="height: 150px; margin: 20px 0 0;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                     </div>
 
                     <!-- Feature 3 -->
@@ -902,6 +1111,19 @@
                         </div>
                         <h3 class="feature-title">VIP Community Benefits</h3>
                         <p class="feature-description">VIP members receive seasonal gifts and opportunities to become faces of TaskIt's campaigns, turning everyday users into environmental ambassadors.</p>
+                        <!-- [IMAGE PLACEHOLDER 4.3] -->
+                        <div class="image-placeholder scroll-animate" style="height: 150px; margin: 20px 0 0;">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- [IMAGE PLACEHOLDER 5] -->
+                <div class="image-placeholder scroll-animate" style="margin-top: 60px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-users"></i>
+                        <div>Gambar komunitas dan impact</div>
+                        <div style="font-size: 14px; margin-top: 10px; color: var(--gray-500);">Tempat untuk gambar komunitas TaskIt atau hasil penanaman pohon</div>
                     </div>
                 </div>
 
@@ -961,6 +1183,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="company-card scroll-animate">
+                    <!-- [IMAGE PLACEHOLDER 6] -->
+                    <div class="image-placeholder scroll-animate" style="height: 120px; margin-bottom: 30px;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-palette"></i>
+                            <div>Logo atau karya The Kadio Studio</div>
+                        </div>
+                    </div>
+                    
                     <h3>THE Kachoo</h3>
                     <div class="company-info">
                         <div>
@@ -1054,12 +1284,26 @@
         document.querySelectorAll('.feature-card, .account-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.02)';
-                this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.1)';
+                this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.1), inset 5px 5px 10px rgba(255,255,255,0.5), inset -5px -5px 10px rgba(0,0,0,0.05)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05), inset 5px 5px 10px rgba(255,255,255,0.5), inset -5px -5px 10px rgba(0,0,0,0.05)';
+            });
+        });
+        
+        // Clay animation interactions
+        const clayElements = document.querySelectorAll('.clay-element');
+        clayElements.forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.animationPlayState = 'paused';
+                this.style.transform = 'scale(1.2)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.animationPlayState = 'running';
+                this.style.transform = 'scale(1)';
             });
         });
         
@@ -1100,6 +1344,11 @@
             if (heroSection) {
                 heroSection.style.animation = 'gradientShift 15s ease infinite, fadeInHero 1.2s ease-out';
             }
+            
+            // Randomize clay animation delays
+            clayElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.5 + Math.random() * 2}s`;
+            });
         });
     </script>
 </body>
