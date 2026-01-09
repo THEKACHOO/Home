@@ -211,22 +211,37 @@
             box-shadow: 0 6px 25px rgba(90, 138, 90, 0.2);
         }
 
-        /* ===== CLAY FLOATING PHOTOS (400x400 PX) ===== */
-        .clay-photos-section {
+        /* ===== ARTICLE HERO WITH CLAY PHOTOS ===== */
+        .article-hero-section {
+            margin-top: 120px;
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--green-light), var(--white));
+            background: linear-gradient(135deg, var(--white) 0%, var(--green-light) 30%, var(--blue-light) 70%, var(--white) 100%);
+            background-size: 400% 400%;
             position: relative;
-            min-height: 600px;
             overflow: hidden;
+            animation: gradientShift 15s ease infinite;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
         }
 
-        .clay-photos-container {
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .article-hero {
             position: relative;
-            height: 600px;
-            max-width: 1400px;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
         }
 
+        /* CLAY PHOTOS IN HERO SECTION */
         .clay-photo {
             position: absolute;
             width: 400px;
@@ -246,26 +261,26 @@
         }
 
         .clay-1 {
-            top: 50px;
+            top: 10%;
             left: 5%;
             animation-delay: 0s;
         }
 
         .clay-2 {
-            top: 100px;
+            top: 15%;
             right: 5%;
             animation-delay: 2s;
         }
 
         .clay-3 {
-            bottom: 80px;
-            left: 10%;
+            bottom: 15%;
+            left: 8%;
             animation-delay: 4s;
         }
 
         .clay-4 {
-            bottom: 50px;
-            right: 8%;
+            bottom: 10%;
+            right: 7%;
             animation-delay: 6s;
         }
 
@@ -284,59 +299,6 @@
             }
         }
 
-        .clay-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .clay-message {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--forest-green);
-            margin-bottom: 20px;
-        }
-
-        .clay-submessage {
-            font-size: 20px;
-            color: var(--gray-600);
-            margin-bottom: 30px;
-        }
-
-        /* ===== ARTICLE HERO ===== */
-        .article-hero-section {
-            margin-top: 120px;
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--white) 0%, var(--green-light) 30%, var(--blue-light) 70%, var(--white) 100%);
-            background-size: 400% 400%;
-            position: relative;
-            overflow: hidden;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .article-hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         .article-date {
             font-size: 14px;
             color: var(--forest-green);
@@ -346,6 +308,8 @@
             margin-bottom: 20px;
             display: block;
             animation: fadeInUp 0.8s 0.2s both;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes fadeInUp {
@@ -372,6 +336,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fadeInUp 0.8s 0.4s both;
+            position: relative;
+            z-index: 2;
         }
 
         .article-title:after {
@@ -400,6 +366,8 @@
             font-weight: 400;
             line-height: 1.6;
             animation: fadeInUp 0.8s 0.6s both;
+            position: relative;
+            z-index: 2;
         }
 
         /* ===== MISSION HIGHLIGHT ===== */
@@ -931,44 +899,62 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1200px) {
-            .clay-photos-container {
-                height: 500px;
-            }
-            
             .clay-photo {
-                width: 300px;
-                height: 300px;
+                width: 350px;
+                height: 350px;
             }
             
             .clay-1 {
-                top: 50px;
                 left: 3%;
             }
             
             .clay-2 {
-                top: 80px;
                 right: 3%;
             }
             
             .clay-3 {
-                bottom: 60px;
-                left: 8%;
+                left: 5%;
             }
             
             .clay-4 {
-                bottom: 40px;
-                right: 5%;
+                right: 4%;
             }
         }
 
         @media (max-width: 992px) {
             .article-hero-section {
                 margin-top: 100px;
-                padding: 80px 0;
+                padding: 60px 0;
+                min-height: 600px;
             }
             
             .article-title {
                 font-size: 48px;
+            }
+            
+            .clay-photo {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .clay-1 {
+                left: 2%;
+                top: 8%;
+            }
+            
+            .clay-2 {
+                right: 2%;
+                top: 12%;
+            }
+            
+            .clay-3 {
+                left: 4%;
+                bottom: 12%;
+            }
+            
+            .clay-4 {
+                right: 3%;
+                bottom: 8%;
             }
             
             .regulation-grid {
@@ -978,20 +964,6 @@
             }
             
             .accounts-grid {
-                max-width: 500px;
-            }
-            
-            .clay-photos-container {
-                height: 400px;
-            }
-            
-            .clay-photo {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .clay-content {
-                padding: 30px 20px;
                 max-width: 500px;
             }
         }
@@ -1015,7 +987,46 @@
             
             .article-hero-section {
                 margin-top: 130px;
-                padding: 60px 0;
+                padding: 40px 0;
+                min-height: 500px;
+            }
+            
+            .clay-photo {
+                width: 180px;
+                height: 180px;
+                opacity: 0.9;
+            }
+            
+            .clay-1 {
+                left: 5%;
+                top: 10%;
+                z-index: 1;
+            }
+            
+            .clay-2 {
+                right: 5%;
+                top: 15%;
+                z-index: 1;
+            }
+            
+            .clay-3 {
+                left: 8%;
+                bottom: 15%;
+                z-index: 1;
+            }
+            
+            .clay-4 {
+                right: 7%;
+                bottom: 10%;
+                z-index: 1;
+            }
+            
+            .article-title {
+                font-size: 36px;
+            }
+            
+            .article-subtitle {
+                font-size: 18px;
             }
             
             .accounts-title {
@@ -1027,40 +1038,49 @@
                 padding: 20px;
             }
             
-            .clay-photos-container {
-                height: 350px;
-            }
-            
-            .clay-photo {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .clay-content {
-                padding: 25px 15px;
-                max-width: 400px;
-            }
-            
-            .clay-message {
-                font-size: 22px;
-            }
-            
-            .clay-submessage {
-                font-size: 16px;
-            }
-            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 576px) {
+            .article-hero-section {
+                min-height: 450px;
+            }
+            
+            .clay-photo {
+                width: 140px;
+                height: 140px;
+                opacity: 0.85;
+            }
+            
+            .clay-1 {
+                left: 3%;
+                top: 12%;
+            }
+            
+            .clay-2 {
+                right: 3%;
+                top: 18%;
+            }
+            
+            .clay-3 {
+                left: 6%;
+                bottom: 18%;
+            }
+            
+            .clay-4 {
+                right: 5%;
+                bottom: 12%;
+            }
+            
             .article-title {
-                font-size: 36px;
+                font-size: 32px;
             }
             
             .article-subtitle {
-                font-size: 18px;
+                font-size: 16px;
+                padding: 0 10px;
             }
             
             .regulation-card, .stat-card, .account-card, .company-card {
@@ -1081,28 +1101,6 @@
                 max-width: 300px;
             }
             
-            .clay-photos-container {
-                height: 300px;
-            }
-            
-            .clay-photo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .clay-content {
-                padding: 20px 15px;
-                max-width: 320px;
-            }
-            
-            .clay-message {
-                font-size: 18px;
-            }
-            
-            .clay-submessage {
-                font-size: 14px;
-            }
-            
             .stats-grid {
                 grid-template-columns: 1fr;
                 max-width: 300px;
@@ -1114,6 +1112,37 @@
             
             .motto-subtext {
                 font-size: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .clay-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .clay-1 {
+                left: 2%;
+                top: 15%;
+            }
+            
+            .clay-2 {
+                right: 2%;
+                top: 20%;
+            }
+            
+            .clay-3 {
+                left: 4%;
+                bottom: 20%;
+            }
+            
+            .clay-4 {
+                right: 3%;
+                bottom: 15%;
+            }
+            
+            .article-title {
+                font-size: 28px;
             }
         }
 
@@ -1137,7 +1166,7 @@
             <div class="header-content">
                 <div class="logo-container" onclick="window.location.href='kaboom.html'">
                     <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
-                    <div class="article-category">TASK IT</div>
+                    <div class="article-category">GREEN TECH</div>
                 </div>
                 
                 <div class="navigation">
@@ -1152,8 +1181,14 @@
         </div>
     </header>
 
-    <!-- Article Hero -->
+    <!-- Article Hero with Clay Photos -->
     <section class="article-hero-section">
+        <!-- Clay Photos Floating Around -->
+        <img src="taskit1.png" alt="TaskIt App Screenshot 1" class="clay-photo clay-1">
+        <img src="taskit2.png" alt="TaskIt App Screenshot 2" class="clay-photo clay-2">
+        <img src="taskit3.png" alt="TaskIt App Screenshot 3" class="clay-photo clay-3">
+        <img src="taskit4.png" alt="TaskIt App Screenshot 4" class="clay-photo clay-4">
+        
         <div class="container">
             <div class="article-hero">
                 <span class="article-date">JANUARY 11, 2026</span>
@@ -1180,29 +1215,6 @@
         </div>
     </section>
 
-    <!-- Clay Floating Photos (400x400 px) -->
-    <section class="clay-photos-section">
-        <div class="clay-photos-container">
-            <!-- TaskIt Photo 1 (Top Left) - 400x400 px -->
-            <img src="taskit1.png" alt="TaskIt App CLAY 1" class="clay-photo clay-1 scroll-animate">
-            
-            <!-- TaskIt Photo 2 (Top Right) - 400x400 px -->
-            <img src="taskit2.png" alt="TaskIt App CLAY 2" class="clay-photo clay-2 scroll-animate">
-            
-            <!-- TaskIt Photo 3 (Bottom Left) - 400x400 px -->
-            <img src="taskit3.png" alt="TaskIt App CLAY 3" class="clay-photo clay-3 scroll-animate">
-            
-            <!-- TaskIt Photo 4 (Bottom Right) - 400x400 px -->
-            <img src="taskit4.png" alt="TaskIt App CLAY 4" class="clay-photo clay-4 scroll-animate">
-            
-            <div class="clay-content scroll-animate">
-                <h3 class="clay-message">Every Completed Task = One Tree Planted</h3>
-                <p class="clay-submessage">Setiap tugas yang diselesaikan seperti paket yang dikirimkan oleh kurir, dan setiap paket yang tuntas berarti satu pohon baru ditanam.</p>
-                <p class="clay-submessage" style="font-size: 16px; margin-top: 10px;">Every completed task is like a package delivered by a courier, and every completed package means one new tree planted.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- TaskIt Motto -->
     <section class="taskit-motto">
         <div class="container">
@@ -1224,7 +1236,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskiticon1.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="icontaskit1.png" alt="TaskIt Icon 1" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">VIP User Achievement</h3>
                     </div>
@@ -1239,7 +1251,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskiticon2.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="icontaskit2.png" alt="TaskIt Icon 2" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Platform Milestones</h3>
                     </div>
@@ -1254,7 +1266,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskiticon3.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="icontaskit3.png" alt="TaskIt Icon 3" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Tasker Champions</h3>
                     </div>
