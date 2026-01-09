@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskIt's Green Mission: Turning Everyday Tasks into Real Impact | KABOOM!</title>
+    <title>TaskIt's Green Mission | KABOOM!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -436,8 +436,8 @@
         /* CLAY PHOTOS FOR MOTTO SECTION */
         .clay-motto {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
             animation: floatClay 8s ease-in-out infinite;
             object-fit: contain;
@@ -450,18 +450,17 @@
             opacity: 0.9;
         }
 
-        /* Clay 1 & 2: Kiri & Kanan Bawah Motto */
-        .clay-motto-1 {
-            bottom: 10px;
-            left: 2%;
-            animation-delay: 0s;
-        }
+        /* Clay 1 (kiri bawah motto) */
+.clay-motto-1 {
+    bottom: 5px;    /* ⭐ 5px dari BAWAH container */
+    left: 5px;      /* ⭐ 5px dari KIRI container */
+}
 
-        .clay-motto-2 {
-            bottom: 10px;
-            right: 2%;
-            animation-delay: 2s;
-        }
+/* Clay 2 (kanan bawah motto) */
+.clay-motto-2 {
+    bottom: 5px;    /* ⭐ 5px dari BAWAH container */
+    right: 5px;     /* ⭐ 5px dari KANAN container */
+}
 
         @keyframes floatClay {
             0%, 100% { 
@@ -532,8 +531,8 @@
         /* CLAY PHOTOS FOR STATS SECTION */
         .clay-stats {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
             animation: floatStats 8s ease-in-out infinite;
             object-fit: contain;
@@ -546,18 +545,17 @@
             opacity: 0.85;
         }
 
-        /* Clay 3 & 4: Kiri & Kanan Atas Stats */
-        .clay-stats-1 {
-            top: 10px;
-            left: 2%;
-            animation-delay: 1s;
-        }
+       /* Clay 3 (kiri atas stats) */
+.clay-stats-1 {
+    top: 5px;       /* ⭐ 5px dari ATAS container */
+    left: 5px;      /* ⭐ 5px dari KIRI container */
+}
 
-        .clay-stats-2 {
-            top: 10px;
-            right: 2%;
-            animation-delay: 3s;
-        }
+/* Clay 4 (kanan atas stats) */
+.clay-stats-2 {
+    top: 5px;       /* ⭐ 5px dari ATAS container */
+    right: 5px;     /* ⭐ 5px dari KANAN container */
+}
 
         @keyframes floatStats {
             0%, 100% { 
@@ -1262,7 +1260,7 @@
             <div class="header-content">
                 <div class="logo-container" onclick="window.location.href='kaboom.html'">
                     <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
-                    <div class="article-category">GREEN TECH</div>
+                    <div class="article-category">TASK IT!</div>
                 </div>
                 
                 <div class="navigation">
