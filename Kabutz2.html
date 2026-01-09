@@ -213,28 +213,32 @@
 
         /* ===== CLAY FLOATING PHOTOS ===== */
         .clay-photos-section {
-            padding: 60px 0;
+            padding: 80px 0;
             background: linear-gradient(135deg, var(--green-light), var(--white));
             position: relative;
-            min-height: 400px;
+            min-height: 600px;
             overflow: hidden;
         }
 
         .clay-photos-container {
             position: relative;
-            height: 400px;
-            max-width: 1200px;
+            height: 600px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .clay-photo {
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 400px;
+            height: 400px;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
             animation: floatClay 8s ease-in-out infinite;
             object-fit: contain;
             z-index: 1;
+            border-radius: 20px;
+            background: var(--white);
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .clay-1 {
@@ -245,7 +249,7 @@
 
         .clay-2 {
             top: 100px;
-            right: 8%;
+            right: 5%;
             animation-delay: 2s;
         }
 
@@ -257,7 +261,7 @@
 
         .clay-4 {
             bottom: 50px;
-            right: 5%;
+            right: 8%;
             animation-delay: 6s;
         }
 
@@ -280,24 +284,25 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .clay-message {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--forest-green);
             margin-bottom: 20px;
         }
 
         .clay-submessage {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--gray-600);
             margin-bottom: 30px;
         }
@@ -461,12 +466,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: var(--forest-green);
             transition: var(--transition);
             box-shadow: 
                 inset 5px 5px 10px rgba(255,255,255,0.5),
                 inset -5px -5px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .regulation-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
         }
 
         .regulation-card:hover .regulation-icon {
@@ -916,6 +926,37 @@
         }
 
         /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .clay-photos-container {
+                height: 500px;
+            }
+            
+            .clay-photo {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .clay-1 {
+                top: 50px;
+                left: 3%;
+            }
+            
+            .clay-2 {
+                top: 80px;
+                right: 3%;
+            }
+            
+            .clay-3 {
+                bottom: 60px;
+                left: 8%;
+            }
+            
+            .clay-4 {
+                bottom: 40px;
+                right: 5%;
+            }
+        }
+
         @media (max-width: 992px) {
             .article-hero-section {
                 margin-top: 100px;
@@ -937,12 +978,17 @@
             }
             
             .clay-photos-container {
-                height: 300px;
+                height: 400px;
             }
             
             .clay-photo {
-                width: 120px;
-                height: 120px;
+                width: 200px;
+                height: 200px;
+            }
+            
+            .clay-content {
+                padding: 30px 20px;
+                max-width: 500px;
             }
         }
 
@@ -978,20 +1024,21 @@
             }
             
             .clay-photos-container {
-                height: 250px;
+                height: 350px;
             }
             
             .clay-photo {
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
             }
             
             .clay-content {
-                padding: 30px 20px;
+                padding: 25px 15px;
+                max-width: 400px;
             }
             
             .clay-message {
-                font-size: 20px;
+                font-size: 22px;
             }
             
             .clay-submessage {
@@ -1031,12 +1078,25 @@
             }
             
             .clay-photos-container {
-                height: 200px;
+                height: 300px;
             }
             
             .clay-photo {
-                width: 80px;
-                height: 80px;
+                width: 120px;
+                height: 120px;
+            }
+            
+            .clay-content {
+                padding: 20px 15px;
+                max-width: 320px;
+            }
+            
+            .clay-message {
+                font-size: 18px;
+            }
+            
+            .clay-submessage {
+                font-size: 14px;
             }
             
             .stats-grid {
@@ -1116,20 +1176,20 @@
         </div>
     </section>
 
-    <!-- Clay Floating Photos -->
+    <!-- Clay Floating Photos (400x400 px) -->
     <section class="clay-photos-section">
         <div class="clay-photos-container">
-            <!-- Clay Photo 1 (Top Left) -->
-            <img src="https://cdn.pixabay.com/photo/2020/05/06/18/35/courier-5138299_1280.png" alt="Clay Courier" class="clay-photo clay-1 scroll-animate">
+            <!-- TaskIt Photo 1 (Top Left) -->
+            <img src="taskit1.png" alt="TaskIt App Screenshot 1" class="clay-photo clay-1 scroll-animate">
             
-            <!-- Clay Photo 2 (Top Right) -->
-            <img src="https://cdn.pixabay.com/photo/2017/08/07/22/21/parcel-2608780_1280.png" alt="Clay Package" class="clay-photo clay-2 scroll-animate">
+            <!-- TaskIt Photo 2 (Top Right) -->
+            <img src="taskit2.png" alt="TaskIt App Screenshot 2" class="clay-photo clay-2 scroll-animate">
             
-            <!-- Clay Photo 3 (Bottom Left) -->
-            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/12/courier-1294775_1280.png" alt="Clay Delivery" class="clay-photo clay-3 scroll-animate">
+            <!-- TaskIt Photo 3 (Bottom Left) -->
+            <img src="taskit3.png" alt="TaskIt App Screenshot 3" class="clay-photo clay-3 scroll-animate">
             
-            <!-- Clay Photo 4 (Bottom Right) -->
-            <img src="https://cdn.pixabay.com/photo/2013/07/12/12/32/box-146319_1280.png" alt="Clay Box" class="clay-photo clay-4 scroll-animate">
+            <!-- TaskIt Photo 4 (Bottom Right) -->
+            <img src="taskit4.png" alt="TaskIt App Screenshot 4" class="clay-photo clay-4 scroll-animate">
             
             <div class="clay-content scroll-animate">
                 <h3 class="clay-message">Every Completed Task = One Tree Planted</h3>
@@ -1160,7 +1220,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <i class="fas fa-crown"></i>
+                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">VIP User Achievement</h3>
                     </div>
@@ -1175,7 +1235,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <i class="fas fa-tasks"></i>
+                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Platform Milestones</h3>
                     </div>
@@ -1190,7 +1250,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <i class="fas fa-trophy"></i>
+                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Tasker Champions</h3>
                     </div>
@@ -1380,11 +1440,11 @@
             }
         });
         
-        // Floating clay photo interactions
+        // Floating TaskIt photo interactions
         const clayPhotos = document.querySelectorAll('.clay-photo');
         clayPhotos.forEach(photo => {
             photo.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.2)';
+                this.style.transform = 'scale(1.15)';
                 this.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))';
                 this.style.zIndex = '100';
             });
@@ -1447,11 +1507,11 @@
                 heroSection.style.animation = 'gradientShift 15s ease infinite, fadeInHero 1.2s ease-out';
             }
             
-            // Randomize clay photo animation delays
+            // Randomize TaskIt photo animation delays
             clayPhotos.forEach((photo, index) => {
                 photo.style.animationDelay = `${index * 2 + Math.random() * 2}s`;
             });
         });
     </script>
 </body>
-</html>
+    </html>
