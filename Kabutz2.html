@@ -415,11 +415,163 @@
             color: var(--primary-green);
         }
 
+        /* ===== TASKIT MOTTO ===== */
+        .taskit-motto {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--forest-light), var(--green-light));
+            margin: 40px 0;
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .motto-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        /* CLAY PHOTOS FOR MOTTO SECTION */
+        .clay-motto {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            animation: floatClay 8s ease-in-out infinite;
+            object-fit: contain;
+            z-index: 1;
+            border-radius: 20px;
+            background: transparent !important;
+            padding: 0;
+            box-shadow: none;
+            transition: var(--transition);
+            opacity: 0.9;
+        }
+
+        /* Clay 1 & 2: Kiri & Kanan Bawah Motto */
+        .clay-motto-1 {
+            bottom: 20px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .clay-motto-2 {
+            bottom: 20px;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatClay {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-15px) rotate(3deg); 
+            }
+            50% { 
+                transform: translateY(-8px) rotate(-2deg); 
+            }
+            75% { 
+                transform: translateY(-12px) rotate(2deg); 
+            }
+        }
+
+        .motto-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .motto-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--forest-green), var(--primary-green), var(--leaf-green));
+        }
+
+        .motto-text {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--forest-green);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .motto-subtext {
+            font-size: 18px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
         /* ===== CURRENT STATS ===== */
         .current-stats {
-            padding: 60px 0;
+            padding: 100px 0 60px;
             background: linear-gradient(135deg, var(--green-light), var(--white));
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* CLAY PHOTOS FOR STATS SECTION */
+        .clay-stats {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            animation: floatStats 8s ease-in-out infinite;
+            object-fit: contain;
+            z-index: 1;
+            border-radius: 20px;
+            background: transparent !important;
+            padding: 0;
+            box-shadow: none;
+            transition: var(--transition);
+            opacity: 0.85;
+        }
+
+        /* Clay 3 & 4: Kiri & Kanan Atas Stats */
+        .clay-stats-1 {
+            top: 30px;
+            left: 8%;
+            animation-delay: 1s;
+        }
+
+        .clay-stats-2 {
+            top: 30px;
+            right: 8%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatStats {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-12px) rotate(2deg); 
+            }
+            50% { 
+                transform: translateY(-6px) rotate(-1deg); 
+            }
+            75% { 
+                transform: translateY(-10px) rotate(1deg); 
+            }
         }
 
         .stats-title {
@@ -430,6 +582,7 @@
             position: relative;
             padding-bottom: 20px;
             display: inline-block;
+            z-index: 2;
         }
 
         .stats-title:after {
@@ -450,6 +603,8 @@
             gap: 30px;
             max-width: 1000px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-card {
@@ -504,6 +659,8 @@
             border-left: 4px solid var(--forest-green);
             animation: fadeInUp 0.8s both;
             animation-delay: 1.6s;
+            position: relative;
+            z-index: 2;
         }
 
         .total-impact p {
@@ -549,121 +706,6 @@
             line-height: 1.8;
             color: var(--gray-700);
             margin-bottom: 30px;
-        }
-
-        /* ===== TASKIT MOTTO WITH CLAY PHOTOS ===== */
-        .taskit-motto {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--forest-light), var(--green-light));
-            margin: 40px 0;
-            position: relative;
-            min-height: 500px;
-            overflow: hidden;
-        }
-
-        .motto-container {
-            position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-            height: 100%;
-        }
-
-        /* TRANSPARENT CLAY PHOTOS */
-        .clay-photo {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
-            animation: floatClay 8s ease-in-out infinite;
-            object-fit: contain;
-            z-index: 1;
-            border-radius: 20px;
-            /* HAPUS BACKGROUND PUTIH - BIARKAN TRANSPARAN */
-            background: transparent !important;
-            padding: 0;
-            /* HAPUS BOX SHADOW YANG MEMBERI BACKGROUND */
-            box-shadow: none;
-            transition: var(--transition);
-            /* AGAR PNG TRANSPARAN TAMPIL DENGAN BAIK */
-            mix-blend-mode: multiply;
-        }
-
-        .clay-1 {
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            animation-delay: 0s;
-        }
-
-        .clay-2 {
-            top: 50%;
-            right: 5%;
-            transform: translateY(-50%);
-            animation-delay: 2s;
-        }
-
-        .clay-3 {
-            bottom: 20%;
-            left: 8%;
-            animation-delay: 4s;
-        }
-
-        .clay-4 {
-            bottom: 20%;
-            right: 7%;
-            animation-delay: 6s;
-        }
-
-        @keyframes floatClay {
-            0%, 100% { 
-                transform: translateY(-50%) rotate(0deg); 
-            }
-            25% { 
-                transform: translateY(-55%) rotate(5deg); 
-            }
-            50% { 
-                transform: translateY(-45%) rotate(-3deg); 
-            }
-            75% { 
-                transform: translateY(-52%) rotate(3deg); 
-            }
-        }
-
-        .motto-box {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .motto-box:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--forest-green), var(--primary-green), var(--leaf-green));
-        }
-
-        .motto-text {
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--forest-green);
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .motto-subtext {
-            font-size: 18px;
-            color: var(--gray-600);
-            font-weight: 500;
         }
 
         /* ===== OFFICIAL ACCOUNTS ===== */
@@ -903,57 +945,71 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1200px) {
-            .clay-photo {
-                width: 300px;
-                height: 300px;
+            .clay-motto {
+                width: 250px;
+                height: 250px;
             }
             
-            .clay-1 {
-                left: 3%;
-            }
-            
-            .clay-2 {
-                right: 3%;
-            }
-            
-            .clay-3 {
+            .clay-motto-1 {
                 left: 5%;
             }
             
-            .clay-4 {
-                right: 4%;
+            .clay-motto-2 {
+                right: 5%;
+            }
+            
+            .clay-stats {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .clay-stats-1 {
+                left: 5%;
+            }
+            
+            .clay-stats-2 {
+                right: 5%;
             }
         }
 
         @media (max-width: 992px) {
             .taskit-motto {
-                min-height: 400px;
                 padding: 80px 0;
+                min-height: 350px;
             }
             
-            .clay-photo {
-                width: 220px;
-                height: 220px;
+            .clay-motto {
+                width: 200px;
+                height: 200px;
             }
             
-            .clay-1 {
-                left: 2%;
-                top: 50%;
+            .clay-motto-1 {
+                left: 3%;
+                bottom: 30px;
             }
             
-            .clay-2 {
-                right: 2%;
-                top: 50%;
-            }
-            
-            .clay-3 {
-                left: 4%;
-                bottom: 15%;
-            }
-            
-            .clay-4 {
+            .clay-motto-2 {
                 right: 3%;
-                bottom: 15%;
+                bottom: 30px;
+            }
+            
+            .current-stats {
+                padding: 80px 0 60px;
+            }
+            
+            .clay-stats {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .clay-stats-1 {
+                left: 3%;
+                top: 40px;
+            }
+            
+            .clay-stats-2 {
+                right: 3%;
+                top: 40px;
             }
             
             .motto-text {
@@ -994,34 +1050,44 @@
             }
             
             .taskit-motto {
-                min-height: 350px;
                 padding: 60px 0;
+                min-height: 300px;
             }
             
-            .clay-photo {
-                width: 160px;
-                height: 160px;
-                opacity: 0.9;
+            .clay-motto {
+                width: 150px;
+                height: 150px;
+                opacity: 0.8;
             }
             
-            .clay-1 {
+            .clay-motto-1 {
                 left: 5%;
-                top: 50%;
+                bottom: 40px;
             }
             
-            .clay-2 {
+            .clay-motto-2 {
                 right: 5%;
-                top: 50%;
+                bottom: 40px;
             }
             
-            .clay-3 {
-                left: 8%;
-                bottom: 20%;
+            .current-stats {
+                padding: 70px 0 50px;
             }
             
-            .clay-4 {
-                right: 7%;
-                bottom: 20%;
+            .clay-stats {
+                width: 140px;
+                height: 140px;
+                opacity: 0.8;
+            }
+            
+            .clay-stats-1 {
+                left: 5%;
+                top: 50px;
+            }
+            
+            .clay-stats-2 {
+                right: 5%;
+                top: 50px;
             }
             
             .article-title {
@@ -1044,46 +1110,59 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
-
-        @media (max-width: 576px) {
-            .taskit-motto {
-                min-height: 300px;
-                padding: 50px 0;
-            }
             
-            .clay-photo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .clay-1 {
-                left: 3%;
-                top: 50%;
-            }
-            
-            .clay-2 {
-                right: 3%;
-                top: 50%;
-            }
-            
-            .clay-3 {
-                left: 6%;
-                bottom: 25%;
-            }
-            
-            .clay-4 {
-                right: 5%;
-                bottom: 25%;
+            .motto-text {
+                font-size: 26px;
             }
             
             .motto-box {
                 padding: 30px 20px;
                 max-width: 90%;
             }
+        }
+
+        @media (max-width: 576px) {
+            .taskit-motto {
+                padding: 50px 0;
+                min-height: 250px;
+            }
+            
+            .clay-motto {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .clay-motto-1 {
+                left: 3%;
+                bottom: 50px;
+            }
+            
+            .clay-motto-2 {
+                right: 3%;
+                bottom: 50px;
+            }
+            
+            .current-stats {
+                padding: 60px 0 40px;
+            }
+            
+            .clay-stats {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .clay-stats-1 {
+                left: 3%;
+                top: 60px;
+            }
+            
+            .clay-stats-2 {
+                right: 3%;
+                top: 60px;
+            }
             
             .motto-text {
-                font-size: 24px;
+                font-size: 22px;
             }
             
             .motto-subtext {
@@ -1124,23 +1203,34 @@
         }
 
         @media (max-width: 400px) {
-            .clay-photo {
+            .clay-motto {
                 width: 100px;
                 height: 100px;
             }
             
-            .clay-1 {
+            .clay-motto-1 {
                 left: 2%;
-                top: 50%;
+                bottom: 60px;
             }
             
-            .clay-2 {
+            .clay-motto-2 {
                 right: 2%;
-                top: 50%;
+                bottom: 60px;
             }
             
-            .clay-3, .clay-4 {
-                display: none; /* Sembunyikan 2 clay di bawah di mobile kecil */
+            .clay-stats {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .clay-stats-1 {
+                left: 2%;
+                top: 70px;
+            }
+            
+            .clay-stats-2 {
+                right: 2%;
+                top: 70px;
             }
             
             .article-title {
@@ -1148,7 +1238,7 @@
             }
             
             .motto-text {
-                font-size: 22px;
+                font-size: 20px;
             }
         }
 
@@ -1218,11 +1308,9 @@
     <!-- TaskIt Motto with Clay Photos -->
     <section class="taskit-motto">
         <div class="motto-container">
-            <!-- Clay Photos Transparan di Kiri-Kanan -->
-            <img src="taskit1.png" alt="TaskIt CLAY 1" class="clay-photo clay-1">
-            <img src="taskit2.png" alt="TaskIt CLAY 2" class="clay-photo clay-2">
-            <img src="taskit3.png" alt="TaskIt CLAY 3" class="clay-photo clay-3">
-            <img src="taskit4.png" alt="TaskIt CLAY 4" class="clay-photo clay-4">
+            <!-- Clay 1 & 2: Kiri & Kanan Bawah Motto -->
+            <img src="taskit1.png" alt="TaskIt CLAY 1" class="clay-motto clay-motto-1">
+            <img src="taskit2.png" alt="TaskIt CLAY 2" class="clay-motto clay-motto-2">
             
             <div class="container">
                 <div class="motto-box scroll-animate">
@@ -1288,39 +1376,45 @@
         </div>
     </section>
 
-    <!-- Current Stats -->
+    <!-- Current Stats with Clay Photos -->
     <section class="current-stats">
-        <div class="container">
-            <h2 class="stats-title scroll-animate">Current Impact & Statistics</h2>
+        <div class="stats-container">
+            <!-- Clay 3 & 4: Kiri & Kanan Atas Stats -->
+            <img src="taskit3.png" alt="TaskIt CLAY 3" class="clay-stats clay-stats-1">
+            <img src="taskit4.png" alt="TaskIt CLAY 4" class="clay-stats clay-stats-2">
             
-            <div class="stats-grid">
-                <div class="stat-card scroll-animate">
-                    <div class="stat-number">900+</div>
-                    <div class="stat-label">Tasks Completed</div>
-                    <div class="stat-subtext">On the TaskIt platform</div>
+            <div class="container">
+                <h2 class="stats-title scroll-animate">Current Impact & Statistics</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card scroll-animate">
+                        <div class="stat-number">900+</div>
+                        <div class="stat-label">Tasks Completed</div>
+                        <div class="stat-subtext">On the TaskIt platform</div>
+                    </div>
+                    
+                    <div class="stat-card scroll-animate">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Tasker Champions</div>
+                        <div class="stat-subtext">Reached 100 task points</div>
+                    </div>
+                    
+                    <div class="stat-card scroll-animate">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">VIP Users</div>
+                        <div class="stat-subtext">Growing their trees</div>
+                    </div>
+                    
+                    <div class="stat-card scroll-animate">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">Trees Planted</div>
+                        <div class="stat-subtext">And counting</div>
+                    </div>
                 </div>
                 
-                <div class="stat-card scroll-animate">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Tasker Champions</div>
-                    <div class="stat-subtext">Reached 100 task points</div>
+                <div class="total-impact scroll-animate">
+                    <p>Since TaskIt has completed 900+ tasks, and has 5 tasker champions, along with 6 VIP users who have grown their trees, TaskIt has so far planted 20 trees through its comprehensive regulation system.</p>
                 </div>
-                
-                <div class="stat-card scroll-animate">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">VIP Users</div>
-                    <div class="stat-subtext">Growing their trees</div>
-                </div>
-                
-                <div class="stat-card scroll-animate">
-                    <div class="stat-number">20</div>
-                    <div class="stat-label">Trees Planted</div>
-                    <div class="stat-subtext">And counting</div>
-                </div>
-            </div>
-            
-            <div class="total-impact scroll-animate">
-                <p>Since TaskIt has completed 900+ tasks, and has 5 tasker champions, along with 6 VIP users who have grown their trees, TaskIt has so far planted 20 trees through its comprehensive regulation system.</p>
             </div>
         </div>
     </section>
@@ -1465,10 +1559,10 @@
         });
         
         // Floating TaskIt photo interactions
-        const clayPhotos = document.querySelectorAll('.clay-photo');
+        const clayPhotos = document.querySelectorAll('.clay-motto, .clay-stats');
         clayPhotos.forEach(photo => {
             photo.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.2)';
+                this.style.transform = 'scale(1.15)';
                 this.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) brightness(1.1)';
                 this.style.zIndex = '100';
             });
