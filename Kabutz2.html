@@ -415,31 +415,21 @@ header {
     color: var(--primary-green);
 }
 
-/* ===== TASKIT MOTTO WITH CLAY PHOTOS ===== */
-.taskit-motto {
-    padding: 150px 0; /* ⭐ TAMBAH PADDING untuk clay atas-bawah */
+/* ===== TASKIT MOTTO SECTION ===== */
+.taskit-motto-section {
     text-align: center;
-    background: linear-gradient(135deg, var(--forest-light), var(--green-light));
-    margin: 40px 0;
     position: relative;
-    overflow: hidden;
 }
 
-.motto-container {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* CLAY PHOTOS FOR MOTTO SECTION */
-.clay-motto {
-    position: absolute;
+/* ⭐⭐⭐⭐ CLAY 1: SEBELUM MOTTO CONTAINER ⭐⭐⭐⭐ */
+.clay-before-motto {
+    display: block;
     width: 300px;
     height: 300px;
+    margin: 40px auto;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
     animation: floatClay 8s ease-in-out infinite;
     object-fit: contain;
-    z-index: 1;
     border-radius: 20px;
     background: transparent !important;
     padding: 0;
@@ -448,38 +438,8 @@ header {
     opacity: 0.9;
 }
 
-/* ⭐⭐⭐⭐ CLAY 1: DI ATAS MOTTO (SEBELUM MOTTO) ⭐⭐⭐⭐ */
-.clay-motto-1 {
-    top: 30px;          /* ⭐ ATAS container motto */
-    left: 50%;          /* ⭐ TENGAH HORIZONTAL */
-    transform: translateX(-50%); /* ⭐ PUSATKAN */
-    animation-delay: 0s;
-}
-
-/* ⭐⭐⭐⭐ CLAY 2: DI BAWAH MOTTO (SETELAH MOTTO) ⭐⭐⭐⭐ */
-.clay-motto-2 {
-    bottom: 30px;       /* ⭐ BAWAH container motto */
-    left: 50%;          /* ⭐ TENGAH HORIZONTAL */
-    transform: translateX(-50%); /* ⭐ PUSATKAN */
-    animation-delay: 2s;
-}
-
-@keyframes floatClay {
-    0%, 100% { 
-        transform: translateX(-50%) translateY(0) rotate(0deg); 
-    }
-    25% { 
-        transform: translateX(-50%) translateY(-15px) rotate(3deg); 
-    }
-    50% { 
-        transform: translateX(-50%) translateY(-8px) rotate(-2deg); 
-    }
-    75% { 
-        transform: translateX(-50%) translateY(-12px) rotate(2deg); 
-    }
-}
-
-.motto-box {
+/* ⭐⭐⭐⭐ MOTTO CONTAINER ⭐⭐⭐⭐ */
+.motto-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 40px;
@@ -491,97 +451,132 @@ header {
     z-index: 2;
 }
 
-/* ===== CURRENT STATS ===== */
-.current-stats {
-    padding: 150px 0; /* ⭐ TAMBAH PADDING untuk clay atas-bawah */
-    background: linear-gradient(135deg, var(--green-light), var(--white));
+.motto-container:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--forest-green), var(--primary-green), var(--leaf-green));
+}
+
+/* ⭐⭐⭐⭐ CLAY 2: SETELAH MOTTO CONTAINER ⭐⭐⭐⭐ */
+.clay-after-motto {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin: 40px auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    animation: floatClay 8s ease-in-out infinite;
+    object-fit: contain;
+    border-radius: 20px;
+    background: transparent !important;
+    padding: 0;
+    box-shadow: none;
+    transition: var(--transition);
+    opacity: 0.9;
+    animation-delay: 2s;
+}
+
+@keyframes floatClay {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-15px) rotate(3deg); 
+    }
+    50% { 
+        transform: translateY(-8px) rotate(-2deg); 
+    }
+    75% { 
+        transform: translateY(-12px) rotate(2deg); 
+    }
+}
+
+.motto-text {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--forest-green);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.motto-subtext {
+    font-size: 18px;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* ===== CURRENT STATS SECTION ===== */
+.current-stats-section {
     text-align: center;
     position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, var(--green-light), var(--white));
+    padding: 60px 0;
 }
 
-.stats-container {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* CLAY PHOTOS FOR STATS SECTION */
-.clay-stats {
-    position: absolute;
+/* ⭐⭐⭐⭐ CLAY 3: SEBELUM STATS CONTENT ⭐⭐⭐⭐ */
+.clay-before-stats {
+    display: block;
     width: 250px;
     height: 250px;
+    margin: 0 auto 40px;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
     animation: floatStats 8s ease-in-out infinite;
     object-fit: contain;
-    z-index: 1;
     border-radius: 20px;
     background: transparent !important;
     padding: 0;
     box-shadow: none;
     transition: var(--transition);
     opacity: 0.85;
-}
-
-/* ⭐⭐⭐⭐ CLAY 3: DI ATAS STATS (SEBELUM STATS) ⭐⭐⭐⭐ */
-.clay-stats-1 {
-    top: 30px;          /* ⭐ ATAS container stats */
-    left: 50%;          /* ⭐ TENGAH HORIZONTAL */
-    transform: translateX(-50%); /* ⭐ PUSATKAN */
     animation-delay: 1s;
 }
 
-/* ⭐⭐⭐⭐ CLAY 4: DI BAWAH STATS (SETELAH STATS) ⭐⭐⭐⭐ */
-.clay-stats-2 {
-    bottom: 30px;       /* ⭐ BAWAH container stats */
-    left: 50%;          /* ⭐ TENGAH HORIZONTAL */
-    transform: translateX(-50%); /* ⭐ PUSATKAN */
+/* ⭐⭐⭐⭐ CLAY 4: SETELAH STATS CONTENT ⭐⭐⭐⭐ */
+.clay-after-stats {
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin: 40px auto 0;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    animation: floatStats 8s ease-in-out infinite;
+    object-fit: contain;
+    border-radius: 20px;
+    background: transparent !important;
+    padding: 0;
+    box-shadow: none;
+    transition: var(--transition);
+    opacity: 0.85;
     animation-delay: 3s;
 }
 
 @keyframes floatStats {
     0%, 100% { 
-        transform: translateX(-50%) translateY(0) rotate(0deg); 
+        transform: translateY(0) rotate(0deg); 
     }
     25% { 
-        transform: translateX(-50%) translateY(-12px) rotate(2deg); 
+        transform: translateY(-12px) rotate(2deg); 
     }
     50% { 
-        transform: translateX(-50%) translateY(-6px) rotate(-1deg); 
+        transform: translateY(-6px) rotate(-1deg); 
     }
     75% { 
-        transform: translateX(-50%) translateY(-10px) rotate(1deg); 
+        transform: translateY(-10px) rotate(1deg); 
     }
 }
 
 /* ===== RESPONSIVE (SAMA UNTUK MOBILE & PC) ===== */
-@media (max-width: 1200px) {
-    .clay-motto {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .clay-stats {
-        width: 200px;
-        height: 200px;
-    }
-}
-
 @media (max-width: 992px) {
-    .taskit-motto {
-        padding: 130px 0;
-    }
-    
-    .clay-motto {
+    .clay-before-motto,
+    .clay-after-motto {
         width: 220px;
         height: 220px;
     }
     
-    .current-stats {
-        padding: 130px 0;
-    }
-    
-    .clay-stats {
+    .clay-before-stats,
+    .clay-after-stats {
         width: 180px;
         height: 180px;
     }
@@ -591,6 +586,72 @@ header {
     }
 }
 
+@media (max-width: 768px) {
+    .clay-before-motto,
+    .clay-after-motto {
+        width: 180px;
+        height: 180px;
+        margin: 30px auto;
+    }
+    
+    .clay-before-stats,
+    .clay-after-stats {
+        width: 150px;
+        height: 150px;
+        margin: 30px auto;
+    }
+    
+    .motto-container {
+        padding: 30px 20px;
+        max-width: 90%;
+    }
+    
+    .motto-text {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 576px) {
+    .clay-before-motto,
+    .clay-after-motto {
+        width: 140px;
+        height: 140px;
+        margin: 25px auto;
+    }
+    
+    .clay-before-stats,
+    .clay-after-stats {
+        width: 120px;
+        height: 120px;
+        margin: 25px auto;
+    }
+    
+    .motto-text {
+        font-size: 22px;
+    }
+    
+    .motto-subtext {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .clay-before-motto,
+    .clay-after-motto {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .clay-before-stats,
+    .clay-after-stats {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .motto-text {
+        font-size: 20px;
+    }
+}
 @media (max-width: 768px) {
     .taskit-motto {
         padding: 110px 0;
