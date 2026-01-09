@@ -211,7 +211,7 @@
             box-shadow: 0 6px 25px rgba(90, 138, 90, 0.2);
         }
 
-        /* ===== ARTICLE HERO WITH CLAY PHOTOS ===== */
+        /* ===== ARTICLE HERO ===== */
         .article-hero-section {
             margin-top: 120px;
             padding: 80px 0;
@@ -220,9 +220,6 @@
             position: relative;
             overflow: hidden;
             animation: gradientShift 15s ease infinite;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
         }
 
         @keyframes gradientShift {
@@ -238,65 +235,6 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
-            width: 100%;
-        }
-
-        /* CLAY PHOTOS IN HERO SECTION */
-        .clay-photo {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
-            animation: floatClay 8s ease-in-out infinite;
-            object-fit: contain;
-            z-index: 1;
-            border-radius: 20px;
-            background: var(--white);
-            padding: 15px;
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.1),
-                inset 5px 5px 10px rgba(255,255,255,0.5),
-                inset -5px -5px 10px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-
-        .clay-1 {
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .clay-2 {
-            top: 15%;
-            right: 5%;
-            animation-delay: 2s;
-        }
-
-        .clay-3 {
-            bottom: 15%;
-            left: 8%;
-            animation-delay: 4s;
-        }
-
-        .clay-4 {
-            bottom: 10%;
-            right: 7%;
-            animation-delay: 6s;
-        }
-
-        @keyframes floatClay {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            25% { 
-                transform: translateY(-20px) rotate(5deg); 
-            }
-            50% { 
-                transform: translateY(-10px) rotate(-3deg); 
-            }
-            75% { 
-                transform: translateY(-15px) rotate(3deg); 
-            }
         }
 
         .article-date {
@@ -308,8 +246,6 @@
             margin-bottom: 20px;
             display: block;
             animation: fadeInUp 0.8s 0.2s both;
-            position: relative;
-            z-index: 2;
         }
 
         @keyframes fadeInUp {
@@ -336,8 +272,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fadeInUp 0.8s 0.4s both;
-            position: relative;
-            z-index: 2;
         }
 
         .article-title:after {
@@ -366,8 +300,6 @@
             font-weight: 400;
             line-height: 1.6;
             animation: fadeInUp 0.8s 0.6s both;
-            position: relative;
-            z-index: 2;
         }
 
         /* ===== MISSION HIGHLIGHT ===== */
@@ -619,12 +551,83 @@
             margin-bottom: 30px;
         }
 
-        /* ===== TASKIT MOTTO ===== */
+        /* ===== TASKIT MOTTO WITH CLAY PHOTOS ===== */
         .taskit-motto {
-            padding: 60px 0;
+            padding: 100px 0;
             text-align: center;
             background: linear-gradient(135deg, var(--forest-light), var(--green-light));
             margin: 40px 0;
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .motto-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        /* TRANSPARENT CLAY PHOTOS */
+        .clay-photo {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            animation: floatClay 8s ease-in-out infinite;
+            object-fit: contain;
+            z-index: 1;
+            border-radius: 20px;
+            /* HAPUS BACKGROUND PUTIH - BIARKAN TRANSPARAN */
+            background: transparent !important;
+            padding: 0;
+            /* HAPUS BOX SHADOW YANG MEMBERI BACKGROUND */
+            box-shadow: none;
+            transition: var(--transition);
+            /* AGAR PNG TRANSPARAN TAMPIL DENGAN BAIK */
+            mix-blend-mode: multiply;
+        }
+
+        .clay-1 {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            animation-delay: 0s;
+        }
+
+        .clay-2 {
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            animation-delay: 2s;
+        }
+
+        .clay-3 {
+            bottom: 20%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        .clay-4 {
+            bottom: 20%;
+            right: 7%;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatClay {
+            0%, 100% { 
+                transform: translateY(-50%) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-55%) rotate(5deg); 
+            }
+            50% { 
+                transform: translateY(-45%) rotate(-3deg); 
+            }
+            75% { 
+                transform: translateY(-52%) rotate(3deg); 
+            }
         }
 
         .motto-box {
@@ -636,6 +639,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            z-index: 2;
         }
 
         .motto-box:before {
@@ -900,8 +904,8 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1200px) {
             .clay-photo {
-                width: 350px;
-                height: 350px;
+                width: 300px;
+                height: 300px;
             }
             
             .clay-1 {
@@ -922,39 +926,38 @@
         }
 
         @media (max-width: 992px) {
-            .article-hero-section {
-                margin-top: 100px;
-                padding: 60px 0;
-                min-height: 600px;
-            }
-            
-            .article-title {
-                font-size: 48px;
+            .taskit-motto {
+                min-height: 400px;
+                padding: 80px 0;
             }
             
             .clay-photo {
-                width: 280px;
-                height: 280px;
+                width: 220px;
+                height: 220px;
             }
             
             .clay-1 {
                 left: 2%;
-                top: 8%;
+                top: 50%;
             }
             
             .clay-2 {
                 right: 2%;
-                top: 12%;
+                top: 50%;
             }
             
             .clay-3 {
                 left: 4%;
-                bottom: 12%;
+                bottom: 15%;
             }
             
             .clay-4 {
                 right: 3%;
-                bottom: 8%;
+                bottom: 15%;
+            }
+            
+            .motto-text {
+                font-size: 28px;
             }
             
             .regulation-grid {
@@ -987,38 +990,38 @@
             
             .article-hero-section {
                 margin-top: 130px;
-                padding: 40px 0;
-                min-height: 500px;
+                padding: 60px 0;
+            }
+            
+            .taskit-motto {
+                min-height: 350px;
+                padding: 60px 0;
             }
             
             .clay-photo {
-                width: 180px;
-                height: 180px;
+                width: 160px;
+                height: 160px;
                 opacity: 0.9;
             }
             
             .clay-1 {
                 left: 5%;
-                top: 10%;
-                z-index: 1;
+                top: 50%;
             }
             
             .clay-2 {
                 right: 5%;
-                top: 15%;
-                z-index: 1;
+                top: 50%;
             }
             
             .clay-3 {
                 left: 8%;
-                bottom: 15%;
-                z-index: 1;
+                bottom: 20%;
             }
             
             .clay-4 {
                 right: 7%;
-                bottom: 10%;
-                z-index: 1;
+                bottom: 20%;
             }
             
             .article-title {
@@ -1044,34 +1047,47 @@
         }
 
         @media (max-width: 576px) {
-            .article-hero-section {
-                min-height: 450px;
+            .taskit-motto {
+                min-height: 300px;
+                padding: 50px 0;
             }
             
             .clay-photo {
-                width: 140px;
-                height: 140px;
-                opacity: 0.85;
+                width: 120px;
+                height: 120px;
             }
             
             .clay-1 {
                 left: 3%;
-                top: 12%;
+                top: 50%;
             }
             
             .clay-2 {
                 right: 3%;
-                top: 18%;
+                top: 50%;
             }
             
             .clay-3 {
                 left: 6%;
-                bottom: 18%;
+                bottom: 25%;
             }
             
             .clay-4 {
                 right: 5%;
-                bottom: 12%;
+                bottom: 25%;
+            }
+            
+            .motto-box {
+                padding: 30px 20px;
+                max-width: 90%;
+            }
+            
+            .motto-text {
+                font-size: 24px;
+            }
+            
+            .motto-subtext {
+                font-size: 16px;
             }
             
             .article-title {
@@ -1105,44 +1121,34 @@
                 grid-template-columns: 1fr;
                 max-width: 300px;
             }
-            
-            .motto-text {
-                font-size: 24px;
-            }
-            
-            .motto-subtext {
-                font-size: 16px;
-            }
         }
 
         @media (max-width: 400px) {
             .clay-photo {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
             
             .clay-1 {
                 left: 2%;
-                top: 15%;
+                top: 50%;
             }
             
             .clay-2 {
                 right: 2%;
-                top: 20%;
+                top: 50%;
             }
             
-            .clay-3 {
-                left: 4%;
-                bottom: 20%;
-            }
-            
-            .clay-4 {
-                right: 3%;
-                bottom: 15%;
+            .clay-3, .clay-4 {
+                display: none; /* Sembunyikan 2 clay di bawah di mobile kecil */
             }
             
             .article-title {
                 font-size: 28px;
+            }
+            
+            .motto-text {
+                font-size: 22px;
             }
         }
 
@@ -1181,14 +1187,8 @@
         </div>
     </header>
 
-    <!-- Article Hero with Clay Photos -->
+    <!-- Article Hero -->
     <section class="article-hero-section">
-        <!-- Clay Photos Floating Around -->
-        <img src="taskit1.png" alt="TaskIt App Screenshot 1" class="clay-photo clay-1">
-        <img src="taskit2.png" alt="TaskIt App Screenshot 2" class="clay-photo clay-2">
-        <img src="taskit3.png" alt="TaskIt App Screenshot 3" class="clay-photo clay-3">
-        <img src="taskit4.png" alt="TaskIt App Screenshot 4" class="clay-photo clay-4">
-        
         <div class="container">
             <div class="article-hero">
                 <span class="article-date">JANUARY 11, 2026</span>
@@ -1215,12 +1215,20 @@
         </div>
     </section>
 
-    <!-- TaskIt Motto -->
+    <!-- TaskIt Motto with Clay Photos -->
     <section class="taskit-motto">
-        <div class="container">
-            <div class="motto-box scroll-animate">
-                <div class="motto-text">"You can't do it? You can Task It!"</div>
-                <div class="motto-subtext">— TaskIt Official Motto</div>
+        <div class="motto-container">
+            <!-- Clay Photos Transparan di Kiri-Kanan -->
+            <img src="taskit1.png" alt="TaskIt CLAY 1" class="clay-photo clay-1">
+            <img src="taskit2.png" alt="TaskIt CLAY 2" class="clay-photo clay-2">
+            <img src="taskit3.png" alt="TaskIt CLAY 3" class="clay-photo clay-3">
+            <img src="taskit4.png" alt="TaskIt CLAY 4" class="clay-photo clay-4">
+            
+            <div class="container">
+                <div class="motto-box scroll-animate">
+                    <div class="motto-text">"You can't do it? You can Task It!"</div>
+                    <div class="motto-subtext">— TaskIt Official Motto</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1460,8 +1468,8 @@
         const clayPhotos = document.querySelectorAll('.clay-photo');
         clayPhotos.forEach(photo => {
             photo.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.15)';
-                this.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))';
+                this.style.transform = 'scale(1.2)';
+                this.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) brightness(1.1)';
                 this.style.zIndex = '100';
             });
             
@@ -1516,12 +1524,6 @@
             heroElements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.2}s`;
             });
-            
-            // Add gradient animation to hero section
-            const heroSection = document.querySelector('.article-hero-section');
-            if (heroSection) {
-                heroSection.style.animation = 'gradientShift 15s ease infinite, fadeInHero 1.2s ease-out';
-            }
             
             // Randomize TaskIt photo animation delays
             clayPhotos.forEach((photo, index) => {
