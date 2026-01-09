@@ -211,7 +211,7 @@
             box-shadow: 0 6px 25px rgba(90, 138, 90, 0.2);
         }
 
-        /* ===== CLAY FLOATING PHOTOS ===== */
+        /* ===== CLAY FLOATING PHOTOS (400x400 PX) ===== */
         .clay-photos-section {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--green-light), var(--white));
@@ -238,7 +238,11 @@
             border-radius: 20px;
             background: var(--white);
             padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.1),
+                inset 5px 5px 10px rgba(255,255,255,0.5),
+                inset -5px -5px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
         }
 
         .clay-1 {
@@ -1133,7 +1137,7 @@
             <div class="header-content">
                 <div class="logo-container" onclick="window.location.href='kaboom.html'">
                     <img src="kaboom-logo.png" alt="KABOOM! Logo" id="logo">
-                    <div class="article-category">GREEN TECH</div>
+                    <div class="article-category">TASK IT</div>
                 </div>
                 
                 <div class="navigation">
@@ -1179,17 +1183,17 @@
     <!-- Clay Floating Photos (400x400 px) -->
     <section class="clay-photos-section">
         <div class="clay-photos-container">
-            <!-- TaskIt Photo 1 (Top Left) -->
-            <img src="taskit1.png" alt="TaskIt App Screenshot 1" class="clay-photo clay-1 scroll-animate">
+            <!-- TaskIt Photo 1 (Top Left) - 400x400 px -->
+            <img src="taskit1.png" alt="TaskIt App CLAY 1" class="clay-photo clay-1 scroll-animate">
             
-            <!-- TaskIt Photo 2 (Top Right) -->
-            <img src="taskit2.png" alt="TaskIt App Screenshot 2" class="clay-photo clay-2 scroll-animate">
+            <!-- TaskIt Photo 2 (Top Right) - 400x400 px -->
+            <img src="taskit2.png" alt="TaskIt App CLAY 2" class="clay-photo clay-2 scroll-animate">
             
-            <!-- TaskIt Photo 3 (Bottom Left) -->
-            <img src="taskit3.png" alt="TaskIt App Screenshot 3" class="clay-photo clay-3 scroll-animate">
+            <!-- TaskIt Photo 3 (Bottom Left) - 400x400 px -->
+            <img src="taskit3.png" alt="TaskIt App CLAY 3" class="clay-photo clay-3 scroll-animate">
             
-            <!-- TaskIt Photo 4 (Bottom Right) -->
-            <img src="taskit4.png" alt="TaskIt App Screenshot 4" class="clay-photo clay-4 scroll-animate">
+            <!-- TaskIt Photo 4 (Bottom Right) - 400x400 px -->
+            <img src="taskit4.png" alt="TaskIt App CLAY 4" class="clay-photo clay-4 scroll-animate">
             
             <div class="clay-content scroll-animate">
                 <h3 class="clay-message">Every Completed Task = One Tree Planted</h3>
@@ -1220,7 +1224,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="taskiticon1.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">VIP User Achievement</h3>
                     </div>
@@ -1235,7 +1239,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="taskiticon2.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Platform Milestones</h3>
                     </div>
@@ -1250,7 +1254,7 @@
                 <div class="regulation-card scroll-animate">
                     <div class="regulation-header">
                         <div class="regulation-icon">
-                            <img src="taskit-icon.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
+                            <img src="taskiticon3.png" alt="TaskIt Icon" style="width: 50px; height: 50px;">
                         </div>
                         <h3 class="regulation-title">Tasker Champions</h3>
                     </div>
@@ -1514,4 +1518,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
