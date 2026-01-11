@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kachoo Guidelines 2026 | Design System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray-medium: #8E8E8E;
+            --gray-dark: #1A1A1A;
+            --gray-border: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .main-header {
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary-white);
+            border-bottom: 1px solid var(--gray-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-kachoo {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-black);
+            letter-spacing: -0.5px;
+        }
+
+        .year-badge {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 0.4rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 4rem 5% 3rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--primary-black);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray-medium);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 500;
+        }
+
+        /* Heyzine Flipbook Section */
+        .heyzine-section {
+            padding: 2rem 5% 5rem;
+            background: var(--primary-white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* HEYZINE FLIPBOOK CONTAINER */
+        .heyzine-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--primary-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-border);
+        }
+
+        .heyzine-header {
+            background: var(--primary-white);
+            padding: 1.5rem 2.5rem;
+            border-bottom: 1px solid var(--gray-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .heyzine-title {
+            color: var(--primary-black);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .heyzine-title i {
+            color: var(--primary-black);
+        }
+
+        .heyzine-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: var(--gray-light);
+            border: 1px solid var(--gray-border);
+            color: var(--primary-black);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .control-btn:hover {
+            background: var(--gray-medium);
+            color: var(--primary-white);
+            transform: scale(1.05);
+        }
+
+        /* HEYZINE FRAME */
+        .heyzine-frame-container {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            min-height: 550px;
+            background: var(--gray-light);
+            overflow: hidden;
+        }
+
+        #heyzineFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .loading-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary-white);
+            z-index: 10;
+        }
+
+        .loading-spinner {
+            font-size: 3.5rem;
+            color: var(--primary-black);
+            margin-bottom: 1.8rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .flipbook-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2.5rem;
+            background: var(--gray-light);
+            border-top: 1px solid var(--gray-border);
+            font-size: 0.95rem;
+            color: var(--gray-dark);
+        }
+
+        .page-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .download-btn {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .download-btn:hover {
+            background: var(--gray-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 5%;
+            background: var(--gray-light);
+            color: var(--primary-black);
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            color: var(--primary-black);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: var(--primary-white);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--gray-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-black);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary-black);
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.8rem;
+            border: 2px solid var(--gray-border);
+        }
+
+        .contact-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--primary-black);
+        }
+
+        .contact-desc {
+            font-size: 1rem;
+            color: var(--gray-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            background: var(--gray-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-border);
+        }
+
+        .contact-link:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .main-footer {
+            padding: 2.5rem 5%;
+            text-align: center;
+            background: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .footer-logo {
+            height: 35px;
+            margin-bottom: 1.2rem;
+            filter: invert(1);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .heyzine-frame-container {
+                height: 65vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .heyzine-header {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1.2rem;
+            }
+            
+            .heyzine-frame-container {
+                height: 55vh;
+                min-height: 450px;
+            }
+            
+            .flipbook-info {
+                flex-direction: column;
+                gap: 1.2rem;
+                text-align: center;
+                padding: 1.2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-card {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .heyzine-frame-container {
+                height: 45vh;
+                min-height: 350px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Kachoo Logo -->
+    <header class="main-header">
+        <div class="logo-container">
+            <!-- Replace with your logo: logo-thekachoo.png -->
+            <img src="logo-thekachoo.png" alt="Kachoo Logo" class="logo-kachoo" 
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMTUiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTMwIDMwTDcwIDMwTDcwIDcwTDMwIDcwTDMwIDMwWiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI2Ii8+PGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iNSIgZmlsbD0id2hpdGUiLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjY1IiByPSI1IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0yNSAyNUw3NSA3NSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=';">
+            <div class="logo-text">KACHOO</div>
+        </div>
+        <div class="year-badge">2026</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">GUIDELINES</h1>
+        <p class="hero-subtitle">Comprehensive design system and visual standards for all Kachoo projects and collaborations</p>
+    </section>
+
+    <!-- Heyzine Flipbook Section -->
+    <section class="heyzine-section">
+        <div class="section-title">
+            <h2>Guidelines Kachoo</h2>
+            <p>Browse through our design guidelines using the interactive flipbook below</p>
+        </div>
+        
+        <div class="heyzine-container">
+            <div class="heyzine-header">
+                <div class="heyzine-title">
+                    <i class="fas fa-book-open"></i> Read me!
+                </div>
+                <div class="heyzine-controls">
+                    <button class="control-btn" id="btnFullscreen" title="Fullscreen">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button class="control-btn" id="btnReload" title="Reload">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- HEYZINE FLIPBOOK FRAME -->
+            <!-- REPLACE THE URL BELOW WITH YOUR HEYZINE FLIPBOOK LINK -->
+            <div class="heyzine-frame-container">
+                <div class="loading-container" id="loadingContainer">
+                    <i class="fas fa-spinner loading-spinner"></i>
+                    <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Loading Heyzine Flipbook</h3>
+                    <p style="color: var(--gray-medium); text-align: center; max-width: 400px;">
+                        Loading interactive guidelines flipbook. This may take a moment...
+                    </p>
+                </div>
+                
+                <!-- 
+                    IMPORTANT: REPLACE THE SRC ATTRIBUTE BELOW WITH YOUR ACTUAL HEYZINE FLIPBOOK URL
+                    Example: https://heyzine.com/flip-book/your-flipbook-id.html
+                -->
+                <iframe id="heyzineFrame" 
+                        src="https://heyzine.com/flip-book/your-flipbook-id-here.html" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen 
+                        allow="autoplay; fullscreen"
+                        title="Kachoo Design Guidelines Flipbook">
+                </iframe>
+            </div>
+            
+            <div class="flipbook-info">
+                <div class="page-info">
+                    <i class="fas fa-book"></i>
+                    <span>Design Guidelines & Standards</span>
+                </div>
+                <button class="download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i> Download Guidelines PDF
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Contact Information</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <!-- Icon X Twitter yang benar -->
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3 class="contact-text">Twitter / X</h3>
+                    <p class="contact-desc">For direct communication and inquiries</p>
+                    <a href="https://x.com/HaiKachoo" target="_blank" class="contact-link">
+                        @HaiKachoo
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-text">Email</h3>
+                    <p class="contact-desc">For business inquiries and collaboration proposals</p>
+                    <a href="mailto:ohkachoo@gmail.com" class="contact-link">
+                        ohkachoo@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - FULL BLACK, NO BLUE -->
+    <footer class="main-footer">
+        <img src="logo-thekachoo.png" alt="Kachoo Logo" class="footer-logo" 
+             onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMTAiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTMwIDMwTDcwIDMwTDcwIDcwTDMwIDcwTDMwIDMwWiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSI1Ii8+PGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iNCIgZmlsbD0iYmxhY2siLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjY1IiByPSI0IiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik0yNSAyNUw3NSA3NSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=';">
+        <p class="footer-text">
+            © 2026 Kachoo Design Guidelines. All rights reserved.<br>
+            Design system and visual standards are proprietary property of Kachoo.
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heyzineFrame = document.getElementById('heyzineFrame');
+            const loadingContainer = document.getElementById('loadingContainer');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const btnFullscreen = document.getElementById('btnFullscreen');
+            const btnReload = document.getElementById('btnReload');
+            
+            // Hide loading when Heyzine is loaded
+            heyzineFrame.onload = function() {
+                setTimeout(() => {
+                    loadingContainer.style.opacity = '0';
+                    loadingContainer.style.transition = 'opacity 0.5s ease';
+                    
+                    setTimeout(() => {
+                        loadingContainer.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            };
+            
+            // Handle loading errors
+            heyzineFrame.onerror = function() {
+                loadingContainer.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: #ff4444; font-size: 3.5rem; margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Unable to Load Flipbook</h3>
+                    <p style="color: var(--gray-medium); text-align: center; max-width: 500px; margin-bottom: 2rem;">
+                        There was an error loading the Heyzine flipbook. Please check the URL or try the following:
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="window.location.reload()" style="background: var(--primary-black); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-redo"></i> Reload Page
+                        </button>
+                        <button onclick="openDirectLink()" style="background: var(--primary-white); color: var(--primary-black); border: 1px solid var(--gray-border); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-external-link-alt"></i> Open Direct Link
+                        </button>
+                    </div>
+                `;
+            };
+            
+            function openDirectLink() {
+                // Replace with your actual Heyzine URL
+                window.open('https://heyzine.com/flip-book/your-flipbook-id-here.html', '_blank');
+            }
+            
+            // Fullscreen functionality
+            let isFullscreen = false;
+            
+            btnFullscreen.addEventListener('click', () => {
+                const container = document.querySelector('.heyzine-frame-container');
+                
+                if (!isFullscreen) {
+                    if (container.requestFullscreen) {
+                        container.requestFullscreen();
+                    } else if (container.webkitRequestFullscreen) {
+                        container.webkitRequestFullscreen();
+                    } else if (container.msRequestFullscreen) {
+                        container.msRequestFullscreen();
+                    }
+                    btnFullscreen.innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                    btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+                
+                isFullscreen = !isFullscreen;
+            });
+            
+            // Reload functionality
+            btnReload.addEventListener('click', () => {
+                loadingContainer.style.display = 'flex';
+                loadingContainer.style.opacity = '1';
+                
+                setTimeout(() => {
+                    heyzineFrame.src = heyzineFrame.src;
+                }, 1000);
+            });
+            
+            // Download button functionality
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+                downloadBtn.disabled = true;
+                
+                setTimeout(() => {
+                    downloadBtn.innerHTML = '<i class="fas fa-check"></i> Download Ready!';
+                    
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = originalText;
+                        downloadBtn.disabled = false;
+                        alert('Guidelines PDF download is ready. Please check your downloads folder.');
+                    }, 1500);
+                }, 2000);
+            });
+            
+            // Handle fullscreen change events
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('msfullscreenchange', handleFullscreenChange);
+            
+            function handleFullscreenChange() {
+                if (!document.fullscreenElement && 
+                    !document.webkitFullscreenElement && 
+                    !document.msFullscreenElement) {
+                    isFullscreen = false;
+                    btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            }
+            
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
