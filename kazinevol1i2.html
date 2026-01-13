@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAZINE VOL 1 ISSUE 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <style>
+        :root {
+            --vibrant-primary: #9E3B3B;
+            --soft-secondary: #EA7B7B;
+            --deep-accent: #000000;
+            --warm-neutral: #8E1616;
+            --rich-brown: #5C1A1A;
+            --fresh-accent: #EA7B7B;
+            --pure-white: #FFFFFF;
+            --off-white: #FFF5F5;
+            --light-gray: #F9F2F2;
+            --medium-gray: #A8A8A8;
+            --dark-gray: #444444;
+            --pure-black: #111111;
+            --shadow-subtle: 0 4px 12px rgba(158, 59, 59, 0.08);
+            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-hover: 0 12px 32px rgba(142, 22, 22, 0.15);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--pure-white) 100%);
+            color: var(--deep-accent);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--pure-white);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--soft-secondary);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .kazine-logo {
+            height: 40px;
+            filter: drop-shadow(0 2px 4px rgba(158, 59, 59, 0.2));
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--soft-secondary);
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            border: 2px solid var(--soft-secondary);
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: transparent;
+            color: var(--warm-neutral);
+            transform: translateX(-5px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .hero-section {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--pure-white) 50%, var(--light-gray) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(158, 59, 59, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(234, 123, 123, 0.2) 0%, transparent 50%);
+        }
+
+        .volume-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            color: var(--pure-white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 52px);
+            font-weight: 800;
+            color: var(--vibrant-primary);
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0 rgba(234, 123, 123, 0.2);
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+
+        .hero-title span {
+            color: var(--warm-neutral);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--rich-brown);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        .issue-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+            background: var(--pure-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-subtle);
+            border: 2px solid var(--soft-secondary);
+            min-width: 120px;
+            flex: 1;
+            max-width: 160px;
+            transition: var(--transition-smooth);
+        }
+
+        .info-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--vibrant-primary);
+        }
+
+        .info-item .number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .info-item .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--rich-brown);
+            font-weight: 600;
+        }
+
+        .heyzine-section {
+            padding: 60px 0;
+            background: var(--pure-white);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            color: var(--vibrant-primary);
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vibrant-primary), var(--soft-secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--rich-brown);
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        .heyzine-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--off-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 3px solid var(--soft-secondary);
+            position: relative;
+        }
+
+        .heyzine-header {
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            padding: 15px 20px;
+            border-bottom: 3px solid var(--soft-secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heyzine-title {
+            color: var(--pure-white);
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .heyzine-title i {
+            color: var(--fresh-accent);
+            font-size: 18px;
+        }
+
+        .heyzine-frame {
+            width: 100%;
+            height: 0;
+            padding-bottom: 70%;
+            background: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heyzine-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: var(--pure-white);
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--deep-accent);
+            background: var(--pure-white);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .loading-spinner {
+            font-size: 36px;
+            color: var(--vibrant-primary);
+            margin-bottom: 15px;
+            display: block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .view-full-btn {
+            display: block;
+            width: 100%;
+            max-width: 280px;
+            margin: 30px auto 0;
+            padding: 14px 25px;
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            color: var(--pure-white);
+            text-decoration: none;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            border: 3px solid var(--vibrant-primary);
+            font-size: 15px;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .view-full-btn:hover {
+            background: transparent;
+            color: var(--vibrant-primary);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-section {
+            padding: 70px 0;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--pure-white) 100%);
+            position: relative;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-card {
+            background: var(--pure-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            border: 2px solid var(--soft-secondary);
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--vibrant-primary);
+        }
+
+        .team-header {
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            padding: 25px 20px;
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, transparent 40%, rgba(234, 123, 123, 0.2) 100%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-position {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-location {
+            font-size: 13px;
+            margin-top: 10px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-location i {
+            color: var(--soft-secondary);
+        }
+
+        .team-details {
+            padding: 20px;
+        }
+
+        .team-details p {
+            color: var(--rich-brown);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .contributors-section {
+            padding: 70px 0;
+            background: var(--pure-white);
+        }
+
+        .contributors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contributor-category {
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--light-gray) 100%);
+            border-radius: 16px;
+            padding: 25px;
+            border: 3px solid var(--soft-secondary);
+            transition: var(--transition-smooth);
+            height: 100%;
+        }
+
+        .contributor-category:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--vibrant-primary);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--vibrant-primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--warm-neutral);
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--soft-secondary);
+        }
+
+        .contributor-list {
+            list-style: none;
+        }
+
+        .contributor-item {
+            padding: 12px 0;
+            border-bottom: 2px dashed var(--soft-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .contributor-item:hover {
+            transform: translateX(8px);
+            border-bottom-color: var(--vibrant-primary);
+        }
+
+        .contributor-item:last-child {
+            border-bottom: none;
+        }
+
+        .contributor-item i {
+            color: var(--warm-neutral);
+            font-size: 16px;
+            margin-top: 2px;
+            min-width: 20px;
+        }
+
+        .contributor-item span {
+            color: var(--rich-brown);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .sponsors-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--light-gray) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .sponsor-item {
+            background: var(--pure-white);
+            padding: 25px 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .sponsor-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vibrant-primary), var(--warm-neutral));
+        }
+
+        .sponsor-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--vibrant-primary);
+        }
+
+        .sponsor-name {
+            font-weight: 800;
+            color: var(--vibrant-primary);
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--vibrant-primary) 0%, var(--warm-neutral) 100%);
+            color: var(--pure-white);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-secondary), var(--pure-white), var(--warm-neutral));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--soft-secondary);
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--soft-secondary);
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: var(--soft-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--pure-white);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            background: var(--soft-secondary);
+            transform: translateY(-4px) rotate(8deg);
+            box-shadow: 0 6px 15px rgba(158, 59, 59, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+            
+            .kazine-logo {
+                height: 35px;
+            }
+            
+            .back-btn {
+                padding: 7px 14px;
+                font-size: 13px;
+            }
+            
+            .hero-section {
+                padding: 50px 0 30px;
+            }
+            
+            .volume-badge {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+            
+            .info-item {
+                min-width: 100px;
+                padding: 12px 10px;
+            }
+            
+            .info-item .number {
+                font-size: 24px;
+            }
+            
+            .info-item .label {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+            
+            .heyzine-section {
+                padding: 50px 0;
+            }
+            
+            .heyzine-header {
+                padding: 12px 15px;
+            }
+            
+            .heyzine-title {
+                font-size: 14px;
+            }
+            
+            .heyzine-frame {
+                padding-bottom: 80%;
+            }
+            
+            .team-section,
+            .contributors-section,
+            .sponsors-section {
+                padding: 50px 0;
+            }
+            
+            .team-container,
+            .contributors-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .sponsor-item {
+                padding: 20px 12px;
+            }
+            
+            .sponsor-name {
+                font-size: 16px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .view-full-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-title {
+                font-size: 24px;
+                padding: 0 5px;
+            }
+            
+            .hero-subtitle {
+                font-size: 15px;
+                padding: 0 10px;
+            }
+            
+            .issue-info {
+                gap: 10px;
+            }
+            
+            .info-item {
+                min-width: calc(50% - 10px);
+                max-width: calc(50% - 10px);
+                padding: 10px 8px;
+            }
+            
+            .section-title h2 {
+                font-size: 22px;
+            }
+            
+            .section-title p {
+                font-size: 14px;
+            }
+            
+            .heyzine-frame {
+                padding-bottom: 90%;
+            }
+            
+            .contributor-category {
+                padding: 20px;
+            }
+            
+            .category-title {
+                font-size: 20px;
+            }
+            
+            .contributor-item span {
+                font-size: 13px;
+            }
+            
+            .social-links a {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .heyzine-frame {
+                padding-bottom: 65%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .heyzine-frame {
+                padding-bottom: 60%;
+            }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-section {
+                padding: 30px 0 20px;
+            }
+            
+            .heyzine-frame {
+                padding-bottom: 50%;
+            }
+            
+            .team-section,
+            .contributors-section,
+            .sponsors-section {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo-section">
+                <a href="index.html">
+                    <img src="KAZINE.png" alt="KAZINE Logo" class="kazine-logo" 
+                         onerror="this.onerror=null; this.style.display='none';">
+                </a>
+            </div>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="volume-badge">Welcome!</div>
+            <h1 class="hero-title">KAZINE <span>VOL. 1 ISSUE 2</span></h1>
+            <p class="hero-subtitle">Loving you is the best thing ever! So, be my Valentine?</p>
+            
+            <div class="issue-info">
+                <div class="info-item">
+                    <span class="number">100</span>
+                    <span class="label">SPECIAL PAGES</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">6</span>
+                    <span class="label">BEST VISUAL MODELS</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">3</span>
+                    <span class="label">CREATIVE INTERVIEWS</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">12</span>
+                    <span class="label">VALUED PARTNERS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="heyzine-section" id="read-magazine">
+        <div class="container">
+            <div class="section-title">
+                <h2>BE MY VALENTINE?</h2>
+                <p>Flip through the magazine with interactive controls. View two pages at once for a true magazine experience</p>
+            </div>
+            
+            <div class="heyzine-container">
+                <div class="heyzine-header">
+                    <div class="heyzine-title">
+                        <i class="fas fa-book-open"></i> KAZINE Volume 1 Issue 2
+                    </div>
+                </div>
+                
+                <div class="heyzine-frame" id="heyzineFrame">
+                    <div class="loading-container" id="loadingContainer">
+                        <i class="fas fa-spinner fa-spin loading-spinner"></i>
+                        <h3>Loading Magazine...</h3>
+                        <p>Preparing your reading experience</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://drive.google.com/file/d/1yyudNeThK0GlxnEyFX7i1hnq9Hak_X3h/view?usp=drivesdk" 
+               target="_blank" 
+               class="view-full-btn"
+               download="KAZINE-Volume1.pdf">
+                <i class="fas fa-download"></i> DOWNLOAD FULL PDF EDITION
+            </a>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Visionary Leadership</h2>
+                <p>Meet the minds behind THE KACHOO's global success</p>
+            </div>
+        
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-name">Gathur Delano Kafka</div>
+                        <div class="team-position">Head of South Jakarta Branch</div>
+                        <div class="team-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            The Kafka Company, South Jakarta
+                        </div>
+                    </div>
+                    <div class="team-details">
+                        <p>Driving Southeast Asian market growth with cultural intelligence and strategic vision. Managing Indonesian operations with focus on regional integration and innovation.</p>
+                    </div>
+                </div>
+    </section>
+
+    <section class="contributors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Contributors</h2>
+                <p>The talented creatives and experts who brought this edition to life</p>
+            </div>
+            
+            <div class="contributors-grid">
+                <div class="contributor-category">
+                    <h3 class="category-title">Brand Ambassadors & Models</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <i class="fas fa-crown"></i>
+                            <span><strong>Rachel Theodora Hearst</strong> from CADENCE: Brand Ambassador Kazine</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-camera-retro"></i>
+                            <span><strong>Elijah Gilead</strong> Commercial Model for Kafkapages</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span><strong>Marcelinus Chitraditya H.P</strong> from CADENCE: Main Campaign Model Kazine Vol 1 Issue 1</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span><strong>Sheila Kanna</strong> from CADENCE: Main Campaign Model Kazine Vol 1 Issue 1</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-star"></i>
+                            <span><strong>Grayson Tahitoe</strong> from MODEX: Campaign Model Kazine Vol 1 Issue 1</span>
+                        <li class="contributor-item">
+                            <i class="fas fa-star"></i>
+                            <span><strong>Arunika Jingga</strong> from MODEX: Campaign Model Kazine Vol 1 Issue 1</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="contributor-category">
+                    <h3 class="category-title">Expert Speakers & Specialists</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>Gabriel Luca Wirakusuma</strong> from Makarya: Speaker on Makeup Artistry & Creative Expression</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-spa"></i>
+                            <span><strong>Nona Rengganis</strong> from Ayu Merona: Speaker on Skincare Science & Wellness</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-leaf"></i>
+                            <span><strong>Adiratna Danudihardja:</strong> Speaker on Modern Lifestyle & Cultural Trends</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contributors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Production Team</h2>
+                <p>The production experts and specialists behind this edition</p>
+            </div>
+            
+            <div class="contributors-grid">
+                <div class="contributor-category">
+                    <h3 class="category-title">Photography Team</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <i class="fas fa-camera"></i>
+                            <span><strong>Studio 35°</strong>: Photographer for Brand Ambassador and Commercial Model in KAZINE and KAFKAPAGES</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-camera"></i>
+                            <span><strong>Pancarona</strong>: Photographer for Speaker in KAZINE</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-camera"></i>
+                            <span><strong>Rai</strong>: Photographer for Speaker in KABOOM</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-camera"></i>
+                            <span><strong>Alfiano Gamaliel Radevan</strong>: Photographer in Cadence Team</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="contributor-category">
+                    <h3 class="category-title">Makeup & Styling Team</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>Gabriel Luca Wirakusuma</strong>: Makeup Artist for Brand Ambassador and Commercial Model KAZINE</span>
+                        </li>
+                        <li class="contributor-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>Kinaryeosih Anjani</strong>: Makeup Artist in Cadence Team</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sponsors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Valued Partners</h2>
+                <p>In collaboration with industry leaders and innovative brands</p>
+            </div>
+            
+            <div class="sponsors-grid">
+                <div class="sponsor-item" onclick="window.open('https://x.com/cadencemodels', '_blank')">
+                    <div class="sponsor-name">Cadence</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/modex_ofc', '_blank')">
+                    <div class="sponsor-name">MODEX</div>
+                </div>   
+                <div class="sponsor-item" onclick="window.open('https://x.com/0nedisplay', '_blank')">
+                    <div class="sponsor-name">Studio 35°</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/abrakamantra', '_blank')">
+                    <div class="sponsor-name">Pancarona</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/makaryabyglw', '_blank')">
+                    <div class="sponsor-name">Makarya</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/by_ayumerona', '_blank')">
+                    <div class="sponsor-name">Ayu Merona</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/ruanggrasa', '_blank')">
+                    <div class="sponsor-name">Ruang Rasa</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/eyples_cloths', '_blank')">
+                    <div class="sponsor-name">A+ Clothes</div>
+                </div>
+                <!-- THESERA diletakkan setelah A+ Clothes -->
+                <div class="sponsor-item" onclick="window.open('https://x.com/THESERAOFC', '_blank')">
+                    <div class="sponsor-name">THESERA</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/ralagroup', '_blank')">
+                    <div class="sponsor-name">RAIA Group</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/taskitrp', '_blank')">
+                    <div class="sponsor-name">TaskIt</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('#', '_blank')">
+                    <div class="sponsor-name">Kafkapages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Volume 1 Issue 2</h3>
+                    <p>KAZINE Volume 1 Issue 2 represents Be My Valentine!.</p>
+                    <p>Published by THE KACHOO • © 2026 All Rights Reserved</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Access</h3>
+                    <p><a href="index.html">← Back to KAZINE Home</a></p>
+                    <p><a href="#read-magazine">📖 Read Digital Edition</a></p>
+                    <p><a href="https://drive.google.com/file/d/1yyudNeThK0GlxnEyFX7i1hnq9Hak_X3h/view?usp=drivesdk" target="_blank">📥 Download PDF Version</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Email: ohkachoo@gmail.com</p>
+                    <p>Official: @TheKachoo</p>
+                    <div class="social-links">
+                        <a href="https://x.com/@thekachoo" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>This publication is a conceptual showcase of digital innovation. All content represents creative vision and artistic expression.</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--soft-secondary);">
+                    KAZINE Volume 1 Issue 2 • The Innovation Issue • Published by THE KACHOO
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const heyzineFrame = document.getElementById('heyzineFrame');
+    const loadingContainer = document.getElementById('loadingContainer');
+    
+    const HEYZINE_URL = 'https://heyzine.com/flip-book/5b7a932096.html';
+    
+    function loadHeyzine() {
+        loadingContainer.style.display = 'flex';
+        heyzineFrame.innerHTML = '';
+        heyzineFrame.appendChild(loadingContainer);
+        
+        setTimeout(() => {
+            loadingContainer.style.display = 'none';
+            
+            const iframe = document.createElement('iframe');
+            iframe.className = 'heyzine-iframe';
+            iframe.src = HEYZINE_URL + '#view=book';
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('scrolling', 'no');
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('allow', 'autoplay; fullscreen');
+            iframe.setAttribute('title', 'KAZINE Volume 1 Digital Magazine');
+            iframe.setAttribute('loading', 'lazy');
+            
+            iframe.onload = () => {
+                iframe.style.opacity = '0';
+                iframe.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    iframe.style.transition = 'all 0.5s ease';
+                    iframe.style.opacity = '1';
+                    iframe.style.transform = 'scale(1)';
+                }, 100);
+            };
+            
+            iframe.onerror = () => {
+                heyzineFrame.innerHTML = `
+                    <div class="loading-container">
+                        <i class="fas fa-exclamation-triangle loading-spinner"></i>
+                        <h3>Unable to load Heyzine Flipbook</h3>
+                        <p>Please try one of these options:</p>
+                        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                            <a href="${HEYZINE_URL}" target="_blank" 
+                               style="background: var(--vibrant-primary); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                                <i class="fas fa-external-link-alt"></i> Open Heyzine in new tab
+                            </a>
+                            <a href="https://drive.google.com/file/d/1E1xAiey--rVwXKeDoCPPeYim_hRLrdcN/view?usp=drivesdk" target="_blank" 
+                               style="background: var(--vibrant-primary); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                                <i class="fas fa-download"></i> Download PDF Version
+                            </a>
+                        </div>
+                    </div>
+                `;
+            };
+            
+            heyzineFrame.innerHTML = '';
+            heyzineFrame.appendChild(iframe);
+            
+        }, 1000);
+    }
+    
+    window.addEventListener('load', () => {
+        loadHeyzine();
+        
+        const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
+        heroElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(15px)';
+            
+            setTimeout(() => {
+                el.style.transition = 'all 0.6s ease-out';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 200 + (index * 80));
+        });
+        
+        adjustHeyzineHeight();
+    });
+    
+    function adjustHeyzineHeight() {
+        const frame = document.querySelector('.heyzine-frame');
+        const container = document.querySelector('.heyzine-container');
+        
+        if (!frame || !container) return;
+        
+        const width = container.offsetWidth;
+        const isMobile = window.innerWidth <= 768;
+        const isSmallMobile = window.innerWidth <= 480;
+        
+        if (isSmallMobile) {
+            frame.style.paddingBottom = '100%';
+        } else if (isMobile) {
+            frame.style.paddingBottom = '85%';
+        } else {
+            frame.style.paddingBottom = '65%';
+        }
+    }
+    
+    window.addEventListener('resize', () => {
+        adjustHeyzineHeight();
+    });
+    
+    document.querySelectorAll('.team-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+            card.style.zIndex = '100';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.zIndex = '1';
+        });
+        
+        setTimeout(() => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300 + (index * 100));
+        }, 600);
+    });
+    
+    document.querySelectorAll('.contributor-item').forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-15px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.4s ease-out';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, 400 + (index * 50));
+        }, 800);
+    });
+    
+    document.querySelectorAll('.sponsor-item').forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8) rotate(-3deg)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1) rotate(0)';
+            }, 900 + (Math.floor(index / 3) * 150));
+        }, 1000);
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroSection = document.querySelector('.hero-section');
+        
+        if (heroSection && window.innerWidth > 768) {
+            const rate = scrolled * -0.3;
+            heroSection.style.backgroundPosition = `center ${rate}px`;
+        }
+    });
+    
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchStartY - touchEndY;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+        }
+    }
+    
+    window.addEventListener('load', () => {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            if (img.complete) {
+                img.style.opacity = '1';
+            } else {
+                img.addEventListener('load', () => {
+                    img.style.transition = 'opacity 0.3s ease';
+                    img.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
