@@ -957,7 +957,7 @@
     </footer>
 
     <script>
-        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycby59b5R3zmF9lNQCu6cij6ki5gYhpsWW5AYB40XekiVTOvE0NLBWEPFd53agA5IXJ5uDA/exec";
+        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
         
         let cartItems = [];
         let subtotal = 0;
@@ -1272,139 +1272,135 @@
         }
 
         async function processPayment() {
-    // Disable button to prevent multiple clicks
-    const submitButton = document.getElementById('processPayment');
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    
-    // Validate form
-    const validation = validateForm();
-    if (!validation.isValid) {
-        alert(validation.errorMessage);
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-        return;
-    }
-    
-    // Collect form data
-    const fullName = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const country = document.getElementById('country').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const twitterUsername = document.getElementById('twitterUsername').value.trim();
-    const otherRequest = document.getElementById('otherRequest').value.trim();
-    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-    const selectedBank = document.getElementById('selectedBank').value;
-    const selectedCard = document.getElementById('selectedCard').value;
-    
-    const total = subtotal - discount + serviceFee;
-    const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    
-    // Prepare order data
-    const orderData = {
-        "Timestamp": new Date().toISOString(),
-        "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
-        "Customer Name": fullName,
-        "Customer Email": email,
-        "Customer Address": country + (address ? `, ${address}` : ''),
-        "Customer Twitter/X": twitterUsername || 'Not provided',
-        "Other Request": otherRequest || 'No special request',
-        "Items": cartItems.map(item => `${item.title} x${item.quantity || 1}`).join(', '),
-        "Item Count": itemCount,
-        "Subtotal": subtotal.toFixed(2),
-        "Discount Voucher": voucherCode || 'None',
-        "Shipping Fee": "0.00",
-        "Tax": "0.00",
-        "Total Amount": total.toFixed(2),
-        "Payment Method": getPaymentMethodDisplay(paymentMethod.value, selectedBank, selectedCard),
-        "Payment Status": "PAID",
-        "Order Date": new Date().toLocaleString()
-    };
-    
-    // Show loading
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.style.display = 'flex';
-    
-    try {
-        // Save to localStorage first
-        localStorage.setItem('kazineOrder', JSON.stringify({
-            ...orderData,
-            cartItems: cartItems,
-            customer: {
-                fullName: fullName,
-                email: email,
-                country: country,
-                address: address,
-                twitter: twitterUsername,
-                request: otherRequest
-            },
-            paymentDetails: {
-                method: paymentMethod.value,
-                bank: selectedBank,
-                card: selectedCard
-            }
-        }));
-        
-        console.log('📤 Sending to spreadsheet:', orderData);
-        
-        // Send to Google Sheets with proper CORS handling
-        const response = await fetch(SPREADSHEET_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(orderData)
-        });
-        
-        // Check if response is ok
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        console.log('✅ Response from server:', result);
-        
-        if (result.success) {
-            // Clear cart after successful payment
-            localStorage.removeItem('kazineCart');
-            localStorage.removeItem('kazineVoucher');
-            localStorage.removeItem('kazineTotals');
+            // Disable button to prevent multiple clicks
+            const submitButton = document.getElementById('processPayment');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             
-            // Redirect to confirmation page
-            setTimeout(() => {
-                window.location.href = 'confirmation-kazine.html';
-            }, 1500);
-        } else {
-            throw new Error(result.error || 'Unknown error from server');
+            // Validate form
+            const validation = validateForm();
+            if (!validation.isValid) {
+                alert(validation.errorMessage);
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                return;
+            }
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const twitterUsername = document.getElementById('twitterUsername').value.trim();
+            const otherRequest = document.getElementById('otherRequest').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const selectedBank = document.getElementById('selectedBank').value;
+            const selectedCard = document.getElementById('selectedCard').value;
+            
+            const total = subtotal - discount + serviceFee;
+            const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            
+            // Prepare order data
+            const orderData = {
+                customer: {
+                    fullName: fullName,
+                    email: email,
+                    country: country,
+                    address: address || 'Not provided',
+                    twitter: twitterUsername || 'Not provided',
+                    request: otherRequest || 'No special request'
+                },
+                items: cartItems,
+                subtotal: subtotal,
+                discount: discount,
+                serviceFee: serviceFee,
+                total: total,
+                itemCount: itemCount,
+                paymentMethod: paymentMethod.value,
+                selectedBank: paymentMethod.value === 'debit-credit' ? selectedBank : null,
+                selectedCard: paymentMethod.value === 'international' ? selectedCard : null,
+                voucherCode: voucherCode,
+                paymentDate: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            // Show loading
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            
+            try {
+                // Save to localStorage first
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                
+                // Prepare data for Google Sheets
+                const sheetData = {
+                    "Timestamp": new Date().toISOString(),
+                    "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
+                    "Customer Name": fullName,
+                    "Customer Email": email,
+                    "Customer Address": address || 'Not provided',
+                    "Customer Twitter/X": twitterUsername || 'Not provided',
+                    "Other Request": otherRequest || 'No special request',
+                    "Items": JSON.stringify(cartItems.map(item => `${item.title} x${item.quantity || 1}`)),
+                    "Item Count": itemCount,
+                    "Subtotal": subtotal.toFixed(2),
+                    "Discount Voucher": voucherCode || 'None',
+                    "Shipping Fee": "0.00",
+                    "Tax": "0.00",
+                    "Total Amount": total.toFixed(2),
+                    "Payment Method": getPaymentMethodDisplay(paymentMethod.value, selectedBank, selectedCard),
+                    "Payment Status": "PAID",
+                    "Order Date": new Date().toLocaleString()
+                };
+                
+                console.log('📤 Sending to spreadsheet:', sheetData);
+                
+                // Send to Google Sheets
+                const response = await fetch(SPREADSHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetData)
+                });
+                
+                // Update order status
+                orderData.status = 'completed';
+                orderData.orderNumber = sheetData["Order Number"];
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                
+                // Clear cart after successful payment
+                localStorage.removeItem('kazineCart');
+                localStorage.removeItem('kazineVoucher');
+                localStorage.removeItem('kazineTotals');
+                
+                // Redirect to confirmation page
+                setTimeout(() => {
+                    window.location.href = 'confirmation-kazine.html';
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                
+                // Hide loading
+                loadingOverlay.style.display = 'none';
+                
+                // Show error but still proceed (for demo)
+                const proceed = confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?');
+                if (proceed) {
+                    // Clear cart anyway
+                    localStorage.removeItem('kazineCart');
+                    localStorage.removeItem('kazineVoucher');
+                    localStorage.removeItem('kazineTotals');
+                    
+                    window.location.href = 'confirmation-kazine.html';
+                }
+            }
         }
-        
-    } catch (error) {
-        console.error('❌ Error processing payment:', error);
-        
-        // Hide loading
-        loadingOverlay.style.display = 'none';
-        
-        // Re-enable button
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-        
-        // Show user-friendly error message
-        const userMessage = error.message.includes('Failed to fetch') 
-            ? 'Network error: Cannot connect to server. Please check your internet connection.'
-            : `Error: ${error.message}`;
-        
-        alert(userMessage + '\n\nYour order has been saved locally. Please contact support.');
-        
-        // Still allow user to proceed to confirmation
-        const proceed = confirm('Would you like to proceed to order confirmation anyway?');
-        if (proceed) {
-            localStorage.removeItem('kazineCart');
-            localStorage.removeItem('kazineVoucher');
-            localStorage.removeItem('kazineTotals');
-            window.location.href = 'confirmation-kazine.html';
-        }
-    }
-}
         
         function getPaymentMethodDisplay(method, bank, card) {
             switch(method) {
