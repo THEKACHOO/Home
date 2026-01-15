@@ -63,6 +63,39 @@
             position: relative;
         }
         
+        /* Back to Home Button */
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #000;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-btn:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .home-btn i {
+            font-size: 0.9rem;
+        }
+        
         .logo-container {
             margin-bottom: 2rem;
         }
@@ -405,6 +438,18 @@
             .intro-text {
                 font-size: 1.2rem;
             }
+            
+            .back-to-home {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .home-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -414,15 +459,20 @@
     
     <!-- Header Section -->
     <header>
+        <!-- Back to Home Button -->
+        <div class="back-to-home">
+            <a href="index.html" class="home-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </div>
+        
         <div class="logo-container">
             <!-- Ganti dengan gambar KAZINE.png -->
             <img src="KAZINE.png" alt="KAZINE" class="logo-img">
         </div>
         
-        <!-- Link to Volume 1 Issue 1-->
-        <a href="kazinevol1.html" class="volume-link">
-            <img src="kazinevol1s1.png" alt="Kazine Volume 1 Issue 1" class="volume-img">
-        </a>
+        <!-- Note: Link dan gambar volume 1 issue 1 telah dihapus sesuai permintaan -->
         
         <h2 class="section-title" style="margin-top: 3rem;">Open Audition for Campaign & Commercial Models</h2>
     </header>
@@ -597,4 +647,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
