@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowongan Pekerjaan | KACHOO Group - KAZINE, KABOOM!, KACHOO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d3;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            
+            /* Elegant black & white theme */
+            --primary-black: #000000;
+            --secondary-black: #1a1a1a;
+            --accent-black: #333333;
+            --light-black: #444444;
+            --white: #ffffff;
+            --off-white: #f8f8f8;
+            --gray-light: #f0f0f0;
+            --gray-medium: #e0e0e0;
+            
+            --accent: var(--primary-black);
+            --primary: var(--primary-black);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-medium);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-100%); 
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            min-height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-kachoo {
+            animation: kachooEffect 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes kachooEffect {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1);
+            }
+            25% { 
+                transform: scale(1.2) rotate(-5deg); 
+                filter: brightness(1.2);
+            }
+            50% { 
+                transform: scale(1.3) rotate(5deg); 
+                filter: brightness(1.3);
+            }
+            75% { 
+                transform: scale(1.2) rotate(-3deg); 
+                filter: brightness(1.2);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1);
+            }
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            animation: pulseCategory 2s infinite alternate;
+        }
+
+        @keyframes pulseCategory {
+            0% {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--primary-black);
+            color: var(--primary-black);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-black);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            margin-top: 120px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--white) 0%, var(--off-white) 100%);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInHero 1.2s ease-out;
+        }
+
+        @keyframes fadeInHero {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.03));
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg); 
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg); 
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-date {
+            font-size: 14px;
+            color: var(--primary-black);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            color: var(--secondary-black);
+            animation: fadeInUp 0.8s 0.4s both;
+        }
+
+        .hero-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-black), var(--accent-black));
+            border-radius: 2px;
+            animation: expandLine 1s 1s both;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; opacity: 0; }
+            to { width: 120px; opacity: 1; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 2vw, 24px);
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid var(--primary-black);
+            cursor: pointer;
+            margin-top: 20px;
+            animation: fadeInUp 0.8s 0.8s both;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== PROJECTS OVERVIEW ===== */
+        .projects-overview {
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary-black);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gray-700);
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--gray-medium);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.8s; }
+        .project-card:nth-child(2) { animation-delay: 1s; }
+        .project-card:nth-child(3) { animation-delay: 1.2s; }
+
+        .project-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-black), var(--accent-black));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gray-light), var(--off-white));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: var(--primary-black);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .project-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--secondary-black);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .project-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-black);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .project-card:hover .project-title:after {
+            width: 60px;
+        }
+
+        .project-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: var(--off-white);
+            color: var(--primary-black);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* ===== JOBS SECTION ===== */
+        .jobs-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--off-white), var(--white));
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jobs-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .jobs-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .job-category {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--gray-medium);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .job-category:nth-child(1) { animation-delay: 0.2s; }
+        .job-category:nth-child(2) { animation-delay: 0.4s; }
+        .job-category:nth-child(3) { animation-delay: 0.6s; }
+
+        .job-category-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--secondary-black);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .job-category-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-black), var(--accent-black));
+            border-radius: 2px;
+        }
+
+        .job-list {
+            list-style: none;
+        }
+
+        .job-item {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .job-item:last-child {
+            border-bottom: none;
+        }
+
+        .job-item:hover {
+            background: var(--off-white);
+            border-radius: 10px;
+            transform: translateX(5px);
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .job-title i {
+            color: var(--accent-black);
+            font-size: 16px;
+        }
+
+        .job-description {
+            font-size: 16px;
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-left: 26px;
+        }
+
+        /* ===== APPLICATION SECTION ===== */
+        .application-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--white), var(--off-white));
+            margin: 60px 0 0;
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .application-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .application-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--secondary-black);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .application-text {
+            font-size: 18px;
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        .application-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .step {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            width: 200px;
+            border: 1px solid var(--gray-medium);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            animation: fadeInUp 0.8s both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.4s; }
+        .step:nth-child(2) { animation-delay: 0.6s; }
+        .step:nth-child(3) { animation-delay: 0.8s; }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-black);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-black);
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--off-white), var(--white));
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--gray-medium);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .company-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-medium);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .company-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--secondary-black);
+        }
+
+        .company-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-black), var(--accent-black));
+            border-radius: 2px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-info div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-700);
+        }
+
+        .company-info i {
+            width: 20px;
+            color: var(--primary-black);
+            font-size: 18px;
+        }
+
+        .studio-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .studio-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-black);
+        }
+
+        .studio-info p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-about h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--secondary-black);
+        }
+
+        .footer-about h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-black), var(--accent-black));
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-medium);
+            color: var(--primary-black);
+            font-size: 14px;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-style: italic;
+            color: var(--primary-black);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-section {
+                margin-top: 100px;
+                padding: 80px 0;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 60px auto 0;
+            }
+            
+            .application-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .article-category {
+                order: 2;
+            }
+            
+            .navigation {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .hero-section {
+                margin-top: 130px;
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .job-category {
+                padding: 30px;
+            }
+            
+            .job-category-title {
+                font-size: 28px;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .project-card {
+                padding: 30px;
+            }
+            
+            .project-title {
+                font-size: 24px;
+            }
+            
+            .company-card {
+                padding: 30px;
+            }
+            
+            .floating-element {
+                display: none;
+            }
+            
+            .job-title {
+                font-size: 18px;
+            }
+            
+            .job-description {
+                font-size: 15px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container" onclick="window.location.href='index.html'">
+                    <img src="kaboom-logo.png" alt="KACHOO Group Logo" id="logo">
+                    <div class="article-category">KARIR</div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="index.html" class="nav-btn">
+                        <i class="fas fa-home"></i> Beranda
+                    </a>
+                    <button class="nav-btn" onclick="window.location.href='#apply'">
+                        <i class="fas fa-paper-plane"></i> Lamar Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-date">Januari 16, 2026</span>
+                <h1 class="hero-title">Bergabunglah dengan<br>Tim KACHOO Group</h1>
+                <p class="hero-subtitle">Kami membuka lowongan untuk berbagai posisi di tiga proyek utama: Tim Inti KACHOO, Majalah KAZINE, dan Platform Berita KABOOM! Temukan peran yang sesuai dengan passion dan keahlian Anda.</p>
+                <a href="#jobs" class="cta-button scroll-animate">
+                    <i class="fas fa-search"></i> Lihat Lowongan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Overview -->
+    <section class="projects-overview">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Tiga Proyek Utama</h2>
+            <p class="section-subtitle scroll-animate">KACHOO Group menghadirkan ekosistem media terintegrasi yang menyatukan penerbitan, fashion, dan jurnalisme untuk menciptakan dampak positif.</p>
+
+            <div class="projects-grid">
+                <!-- Project 1: KACHOO -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="project-title">TIM INTI KACHOO</h3>
+                    <p class="project-description">Tim inti yang mengelola operasional dan strategi seluruh KACHOO Group. Bertanggung jawab atas manajemen proyek, keuangan, administrasi, hukum, dan dukungan eksekutif untuk memastikan kelancaran operasional seluruh unit bisnis.</p>
+                    <span class="project-tag">Manajemen & Operasional</span>
+                </div>
+
+                <!-- Project 2: KAZINE -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="project-title">KAZINE</h3>
+                    <p class="project-description">Majalah fashion yang menggabungkan keunggulan editorial dengan kurasi retail pakaian. Setiap edisi menampilkan koleksi eksklusif, sorotan desainer, dan komentar fashion yang memicu pemikiran, sementara butik pendamping menawarkan pilihan pakaian yang mencerminkan visi estetika majalah.</p>
+                    <span class="project-tag">Majalah & Butik Fashion</span>
+                </div>
+
+                <!-- Project 3: KABOOM -->
+                <div class="project-card scroll-animate">
+                    <div class="project-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="project-title">KABOOM!</h3>
+                    <p class="project-description">Platform berita dinamis yang berkomitmen untuk menyajikan jurnalisme yang mendalam, akurat, dan menarik. Meliputi berbagai topik mulai dari urusan global hingga tren budaya, dengan penekanan khusus pada cerita yang menginspirasi perubahan positif dan dialog yang berarti.</p>
+                    <span class="project-tag">Platform Berita & Jurnalisme</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section" id="jobs">
+        <div class="container">
+            <div class="jobs-container">
+                <!-- Tim Inti KACHOO -->
+                <div class="job-category scroll-animate">
+                    <h2 class="job-category-title">Tim Inti KACHOO</h2>
+                    <ul class="job-list">
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-tasks"></i> Project Management</h3>
+                            <p class="job-description">Membantu penyiapan campaign KAZINE selanjutnya, mengolah ide dan inovasi baru dengan proyek KACHOO. Bertanggung jawab atas perencanaan, pelaksanaan, dan monitoring seluruh proyek di bawah naungan KACHOO Group.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-calculator"></i> Staff Keuangan</h3>
+                            <p class="job-description">Membantu pengurusan invoice, gaji karyawan, dan kebutuhan keuangan lainnya. Bertanggung jawab atas pencatatan transaksi, pembuatan laporan keuangan, dan koordinasi dengan pihak eksternal terkait urusan keuangan perusahaan.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-user-tie"></i> Sekretaris Direktur</h3>
+                            <p class="job-description">Membantu pencatatan hasil diskusi dan rapat, membantu mencatat kepentingan lain yang sesuai dengan kebutuhan Direktur dan KACHOO. Mengatur jadwal, koordinasi pertemuan, dan penanganan korespondensi eksekutif.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-gavel"></i> Staff Legal</h3>
+                            <p class="job-description">Membantu pengurusan koordinasi untuk urusan hukum dengan firma hukum TN Lex & Co atau firma hukum lainnya. Menangani kontrak, perizinan, dan memastikan kepatuhan perusahaan terhadap regulasi yang berlaku.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-headset"></i> Staff Admin</h3>
+                            <p class="job-description">Membantu menjawab pesan dan pertanyaan khalayak umum yang masuk di DM akun KACHOO. Menangani komunikasi publik, administrasi umum, dan dukungan operasional sehari-hari.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- KAZINE -->
+                <div class="job-category scroll-animate">
+                    <h2 class="job-category-title">KAZINE</h2>
+                    <ul class="job-list">
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-edit"></i> Asisten Editor KAZINE</h3>
+                            <p class="job-description">Bertugas membantu proses pengeditan bersama Ketua Editor KACHOO. Melakukan proofreading, fact-checking, dan koordinasi dengan penulis untuk memastikan kualitas konten sesuai standar editorial.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-camera"></i> Pemimpin Tim Photographer</h3>
+                            <p class="job-description">Memimpin jalannya pemotretan bersama model dan photographer, serta memastikan hasil pemotretan sesuai dengan konsep sebelum diedit. Bertanggung jawab atas perencanaan, eksekusi, dan kualitas visual seluruh sesi pemotretan.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-handshake"></i> Public Relation</h3>
+                            <p class="job-description">Membantu mengoordinasikan pihak partnership dan model supaya tetap terhubung dengan proyek KAZINE dan KACHOO. Membangun dan menjaga hubungan dengan media, influencer, dan mitra strategis.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-bullhorn"></i> Marketing Staff</h3>
+                            <p class="job-description">Membantu promosi KAZINE pada khalayak, bersama Public Relation mencari influencer atau pihak luar yang cocok dengan konsep KAZINE sebagai promosi media sosial. Mengembangkan strategi pemasaran dan kampanye promosi.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-paint-brush"></i> Make-Up Artist Expert</h3>
+                            <p class="job-description">Sebagai Ketua Make-up Artist, membantu koordinasi dengan para MUA, bertanggung jawab untuk hal kecantikan pada model KAZINE, pencocokan tone up warna pada majalah KAZINE. Menciptakan konsep makeup yang sesuai dengan tema setiap edisi.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- KABOOM -->
+                <div class="job-category scroll-animate">
+                    <h2 class="job-category-title">KABOOM!</h2>
+                    <ul class="job-list">
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-pen-fancy"></i> Jurnalis / Script Writer</h3>
+                            <p class="job-description">Menulis atau merevisi naskah berita sebelum terbit. Melakukan riset, wawancara, dan penyusunan konten berita yang akurat, menarik, dan sesuai dengan standar jurnalistik.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-camera-retro"></i> Cameraman</h3>
+                            <p class="job-description">Bertugas mencari foto-foto yang akan digunakan di dalam website dan webpage KABOOM. Melakukan pemotretan lapangan, editing visual, dan memastikan kualitas gambar sesuai dengan kebutuhan editorial.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-microphone"></i> News Anchor</h3>
+                            <p class="job-description">Bertugas mencari berita yang cocok untuk diberitakan, menjadi pihak yang mewawancarai narasumber. Menyajikan berita secara profesional di depan kamera dan bertanggung jawab atas kredibilitas konten yang disampaikan.</p>
+                        </li>
+                        <li class="job-item">
+                            <h3 class="job-title"><i class="fas fa-edit"></i> Asisten Editor KABOOM</h3>
+                            <p class="job-description">Bertugas membantu proses pengeditan bersama Ketua Editor KACHOO. Memastikan kelayakan berita, melakukan penyuntingan naskah, dan koordinasi dengan reporter dan jurnalis.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="application-section" id="apply">
+        <div class="container">
+            <div class="application-container">
+                <h2 class="application-title scroll-animate">Cara Melamar</h2>
+                <p class="application-text scroll-animate">Bergabunglah dengan tim dinamis yang sedang berkembang. Kami mencari individu yang kreatif, berdedikasi, dan bersemangat untuk berkontribusi dalam membangun ekosistem media yang inovatif.</p>
+                
+                <div class="application-steps">
+                    <div class="step scroll-animate">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Siapkan Dokumen</h3>
+                        <p class="step-description">Siapkan CV terbaru, portofolio (jika ada), dan surat lamaran yang menjelaskan minat Anda terhadap posisi yang dilamar.</p>
+                    </div>
+                    
+                    <div class="step scroll-animate">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Kirim Lamaran</h3>
+                        <p class="step-description">Kirim lamaran Anda ke email: <strong>recruitment@kachoo.com</strong> dengan subject: "[Nama Posisi] - [Nama Anda]"</p>
+                    </div>
+                    
+                    <div class="step scroll-animate">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Proses Seleksi</h3>
+                        <p class="step-description">Tim kami akan meninjau lamaran Anda dan menghubungi kandidat terpilih untuk tahap wawancara selanjutnya.</p>
+                    </div>
+                </div>
+                
+                <a href="mailto:recruitment@kachoo.com?subject=Lamaran Pekerjaan - KACHOO Group" class="cta-button scroll-animate">
+                    <i class="fas fa-paper-plane"></i> Kirim Lamaran Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-card scroll-animate">
+                    <h3>KACHOO Group</h3>
+                    <div class="company-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: recruitment@kachoo.com</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter: @TheKachoo</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jalan Jenderal Sudirman No. 61-62, Jakarta Selatan 12930, Indonesia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-info">
+                        <h4>Tentang KACHOO Group</h4>
+                        <p>KACHOO Group adalah ekosistem media terintegrasi yang terdiri dari tiga unit bisnis utama: Tim Inti KACHOO (manajemen & operasional), KAZINE (majalah & butik fashion), dan KABOOM! (platform berita).</p>
+                    </div>
+                </div>
+                
+                <div class="footer-about scroll-animate">
+                    <h3>Bergabung dengan Kami</h3>
+                    <p>Kami percaya bahwa tim yang hebat terdiri dari individu-individu yang tidak hanya terampil tetapi juga memiliki visi yang sejalan. Di KACHOO Group, kami menciptakan lingkungan kerja yang mendukung pertumbuhan profesional dan personal setiap anggota tim.</p>
+                    <p>Setiap proyek kami dirancang untuk memberikan dampak positif dan menciptakan nilai bagi masyarakat. Jika Anda memiliki passion di bidang media, fashion, atau jurnalisme, dan ingin menjadi bagian dari perjalanan kami, kami sangat menantikan lamaran Anda.</p>
+                    <p>"Saya menciptakan proyek-proyek ini untuk mempermudah semua orang, memperluas koneksi jaringan, dan juga berencana untuk lebih dekat dengan dunia pendidikan." - Gathur Delano Kafka</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom scroll-animate">
+                <p>&copy; 2026 KACHOO Group. Seluruh hak cipta dilindungi undang-undang.</p>
+                <p class="disclaimer">Proses rekrutmen dilakukan secara transparan dan adil. Semua kandidat akan diperlakukan setara tanpa memandang latar belakang, gender, suku, agama, atau status lainnya. Informasi lowongan dapat berubah sewaktu-waktu sesuai kebutuhan perusahaan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo animation
+        const logo = document.getElementById('logo');
+        
+        if (logo) {
+            logo.addEventListener('click', function() {
+                this.classList.remove('logo-kachoo');
+                void this.offsetWidth;
+                this.classList.add('logo-kachoo');
+            });
+        }
+        
+        // Enhanced scroll animations
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        // Add scroll listener with throttling
+        let scrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!scrolling) {
+                scrolling = true;
+                setTimeout(() => {
+                    handleScrollAnimation();
+                    scrolling = false;
+                }, 100);
+            }
+        });
+        
+        // Initialize scroll animations
+        handleScrollAnimation();
+        
+        // Add enhanced hover effects to project cards
+        document.querySelectorAll('.project-card, .step').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+            });
+        });
+        
+        // Enhanced smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Floating elements animation on scroll
+        const floatingElements = document.querySelectorAll('.floating-element');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            floatingElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.05}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            handleScrollAnimation();
+            
+            // Add logo click animation
+            if (logo) {
+                setTimeout(() => {
+                    logo.classList.add('logo-kachoo');
+                }, 1500);
+            }
+            
+            // Add initial animation to hero elements
+            const heroElements = document.querySelectorAll('.hero-date, .hero-title, .hero-subtitle');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add click animation to job items
+            document.querySelectorAll('.job-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const emailSubject = encodeURIComponent(`Lamaran Posisi: ${this.querySelector('.job-title').textContent.trim()}`);
+                    window.location.href = `mailto:recruitment@kachoo.com?subject=${emailSubject}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
