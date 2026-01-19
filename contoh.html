@@ -498,10 +498,85 @@
             transform: translateX(5px);
         }
 
+        /* Digital Feature Section */
+        .digital-feature-section {
+            padding: 100px 0;
+            background: var(--primary-white);
+        }
+
+        @media (max-width: 768px) {
+            .digital-feature-section {
+                padding: 60px 0;
+            }
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                gap: 24px;
+            }
+        }
+
+        .feature-card {
+            background: var(--primary-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--border-radius);
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            transform: translateY(0);
+            box-shadow: var(--card-shadow);
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                padding: 32px 24px;
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            color: var(--primary-black);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: var(--primary-black);
+        }
+
+        .feature-description {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
         /* Publish Process Section */
         .publish-section {
             padding: 100px 0;
-            background: var(--primary-white);
+            background: var(--accent-gray);
         }
 
         @media (max-width: 768px) {
@@ -635,7 +710,7 @@
         /* FAQ Form Section */
         .faq-form-section {
             padding: 100px 0;
-            background: var(--accent-gray);
+            background: var(--primary-white);
         }
 
         @media (max-width: 768px) {
@@ -647,7 +722,7 @@
         .form-container {
             max-width: 600px;
             margin: 0 auto;
-            background: var(--primary-white);
+            background: var(--accent-gray);
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: var(--border-radius);
             padding: 48px;
@@ -766,9 +841,9 @@
             display: block;
             width: 100%;
             padding: 20px;
-            background: var(--accent-gray);
+            background: var(--primary-white);
             color: var(--primary-black);
-            border: 2px solid var(--accent-gray);
+            border: 2px solid var(--primary-white);
             border-radius: var(--border-radius);
             font-family: 'Inter', sans-serif;
             font-size: 16px;
@@ -965,7 +1040,8 @@
             }
 
             .platform-button,
-            .publish-step {
+            .publish-step,
+            .feature-card {
                 padding: 24px 20px;
             }
 
@@ -1022,8 +1098,8 @@
             <!-- Desktop Navigation Menu (visible only on desktop) -->
             <nav class="desktop-nav">
                 <a href="kafka.html" class="nav-button">Holding Company</a>
-                <a href="kafkapages.html" class="nav-button" target="_blank">Kafkapages</a>
-                <a href="kazine.html" class="nav-button" target="_blank">Kazine Collection</a>
+                <a href="kafkapages.html" class="nav-button" target="_blank">KAFKAPAGES</a>
+                <a href="kazine.html" class="nav-button" target="_blank">KAZINE COLLECTION</a>
                 <a href="kaboom.html" class="nav-button" target="_blank">Kaboom</a>
                 <a href="kazinevol1.html" class="nav-button" target="_blank">Kazine Vol 1</a>
                 <a href="projectkachoo.html" class="nav-button">Project</a>
@@ -1054,13 +1130,13 @@
             <li class="mobile-menu-item">
                 <a href="kafkapages.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
                     <i class="fas fa-book" style="margin-right: 12px;"></i>
-                    Kafkapages
+                    KAFKAPAGES
                 </a>
             </li>
             <li class="mobile-menu-item">
                 <a href="kazine.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
                     <i class="fas fa-tshirt" style="margin-right: 12px;"></i>
-                    Kazine Collection
+                    KAZINE COLLECTION
                 </a>
             </li>
             <li class="mobile-menu-item">
@@ -1135,15 +1211,15 @@
             
             <div class="platform-grid">
                 <a href="https://thekachoo.github.io/Home/kafkapages.html" class="platform-button" target="_blank">
-                    <img src="kafkapages-logo.png" alt="Kafkapages Logo" class="platform-logo">
-                    <h3 class="platform-title">Kafkapages</h3>
+                    <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo">
+                    <h3 class="platform-title">KAFKAPAGES</h3>
                     <p class="platform-description">Advanced document platform with AI-powered editing and collaboration tools for modern teams.</p>
                     <span class="platform-cta">CHECK THIS OUT <i class="fas fa-arrow-right"></i></span>
                 </a>
                 
                 <a href="https://thekachoo.github.io/Home/kazine.html" class="platform-button" target="_blank">
-                    <img src="kazine-logo.png" alt="Kazine Logo" class="platform-logo">
-                    <h3 class="platform-title">Kazine</h3>
+                    <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo">
+                    <h3 class="platform-title">KAZINE</h3>
                     <p class="platform-description">Digital fashion & lifestyle magazine pushing boundaries in creative publishing.</p>
                     <span class="platform-cta">EXPLORE FASHION <i class="fas fa-arrow-right"></i></span>
                 </a>
@@ -1153,6 +1229,47 @@
                     <h3 class="platform-title">KABOOM</h3>
                     <p class="platform-description">Real-time news platform delivering curated content and breaking stories.</p>
                     <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Feature Section -->
+    <section class="digital-feature-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Digital Features</h2>
+            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Discover our innovative digital solutions and services</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile Apps</h3>
+                    <p class="feature-description">Access all KACHOO platforms through our mobile applications available on iOS and Android devices.</p>
+                    <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
+                        Coming Soon
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI Integration</h3>
+                    <p class="feature-description">Advanced AI tools for content creation, editing, and personalized recommendations across all platforms.</p>
+                    <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
+                        AI-Powered
+                    </div>
+                </div>
+                
+                <a href="https://thekachoo.github.io/payment/" class="feature-card" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="feature-title">CHOBANK</h3>
+                    <p class="feature-description">Our digital banking solution for seamless transactions, payments, and financial management.</p>
+                    <span class="platform-cta" style="margin: 0 auto;">EXPLORE CHOBANK <i class="fas fa-arrow-right"></i></span>
                 </a>
             </div>
         </div>
@@ -1176,7 +1293,7 @@
                     <div class="step-number">2</div>
                     <h3 class="step-title">Submit Your Work</h3>
                     <p class="step-description">Send your proposal via email or direct message to <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a> on X app. Make sure your submission follows our guidelines for faster processing.</p>
-                    <div style="padding: 8px 16px; background: var(--accent-gray); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
+                    <div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
                         Email or DM <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a>
                     </div>
                 </div>
@@ -1185,7 +1302,7 @@
                     <div class="step-number">3</div>
                     <h3 class="step-title">Get Response</h3>
                     <p class="step-description">We will respond to your submission within maximum <strong>2×24 hours</strong>. Our team will review your proposal and provide feedback or next steps.</p>
-                    <div style="padding: 8px 16px; background: var(--accent-gray); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
+                    <div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
                         Max 48 Hours Response
                     </div>
                 </div>
@@ -1255,10 +1372,10 @@
                     <h3>Platforms</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">Kafkapages</a>
+                            <a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a>
                         </li>
                         <li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/Home/kazine.html" target="_blank">Kazine Collection</a>
+                            <a href="https://thekachoo.github.io/Home/kazine.html" target="_blank">KAZINE COLLECTION</a>
                         </li>
                         <li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i>
                             <a href="https://thekachoo.github.io/Home/kaboom.html" target="_blank">Kaboom</a>
@@ -1524,6 +1641,23 @@
 
         document.querySelectorAll('.platform-button').forEach(button => {
             platformObserver.observe(button);
+        });
+
+        // Animate feature cards on scroll
+        const featureObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            featureObserver.observe(card);
         });
 
         // Set initial header state
