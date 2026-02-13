@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAFKAPAGES | Book Store</title>
+    <title>KAFKAPAGES OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
@@ -556,55 +556,6 @@
             display: block;
         }
 
-        /* Coming Soon Section */
-        .coming-soon {
-            padding: 80px 0;
-            background: var(--primary-white);
-        }
-
-        .coming-soon-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .coming-soon h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--primary-black);
-        }
-
-        .coming-soon p {
-            font-size: 18px;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-        }
-
-        .book-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .book-tag {
-            background: var(--off-white);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            color: var(--primary-black);
-            border: 1px solid var(--light-gray);
-            transition: all 0.3s ease;
-        }
-
-        .book-tag:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            transform: translateY(-3px);
-        }
-
         /* Contact Section */
         .contact-section {
             padding: 80px 0;
@@ -702,7 +653,7 @@
                 font-size: 36px;
             }
             
-            .section-title, .coming-soon h2, .contact-content h2 {
+            .section-title, .contact-content h2 {
                 font-size: 32px;
             }
             
@@ -777,11 +728,11 @@
                 padding: 0;
             }
             
-            .section-title, .coming-soon h2, .contact-content h2 {
+            .section-title, .contact-content h2 {
                 font-size: 26px;
             }
             
-            .books-section, .coming-soon, .contact-section {
+            .books-section, .contact-section {
                 padding: 60px 0;
             }
             
@@ -899,12 +850,11 @@
                 </div>
             </div>
             
-            <!-- Navigation HIDDEN IN MOBILE -->
+            <!-- Navigation HIDDEN IN MOBILE - Coming Soon link removed -->
             <nav>
                 <ul id="mainMenu">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="#books">BOOKS</a></li>
-                    <li><a href="#coming-soon">COMING SOON</a></li>
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </nav>
@@ -1018,28 +968,28 @@
                     </div>
                 </div>
                 
-                <!-- Book 5 - The Madman: Malvier -->
-                <div class="book-card" data-book="The Madman: Malvier (Pre Order)">
+                <!-- Book 5 - The Madman: Malvier (Now Available, English Only) -->
+                <div class="book-card" data-book="The Madman: Malvier">
                     <div class="book-image">
                         <img src="themadman1.png" alt="The Madman: Malvier">
-                        <div class="book-badge">PRE-ORDER</div>
+                        <!-- PRE-ORDER BADGE AND RELEASE DATE REMOVED -->
                     </div>
                     <div class="book-content">
                         <h3>The Madman: Malvier</h3>
                         <p class="book-author">By Kafka</p>
-                        <div class="book-release-date">Official release: February 14, 2026</div>
                         <div class="book-price">$30</div>
                         
                         <div class="language-buttons">
-                            <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
-                            <button class="lang-btn" data-lang="english">English</button>
+                            <!-- ONLY ENGLISH BUTTON AVAILABLE, INDONESIAN BUTTON REMOVED -->
+                            <button class="lang-btn active" data-lang="english">English</button>
                         </div>
                         
-                        <button class="add-to-cart-btn disabled" data-price="30" disabled>Pre-Order Now</button>
+                        <!-- ADD TO CART BUTTON IS NOW ENABLED -->
+                        <button class="add-to-cart-btn" data-price="30">Add to Cart</button>
                     </div>
                 </div>
                 
-                <!-- Book 6 - TIME AND LOST: The Man Behind Delanosa (New) -->
+                <!-- Book 6 - TIME AND LOST: The Man Behind Delanosa (Pre-Order, Dual Language) -->
                 <div class="book-card" data-book="TIME AND LOST: The Man Behind Delanosa">
                     <div class="book-image">
                         <img src="timeandlost.png" alt="TIME AND LOST: The Man Behind Delanosa">
@@ -1059,28 +1009,6 @@
                         <button class="add-to-cart-btn disabled" data-price="30" disabled>Pre-Order</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Coming Soon Section -->
-    <section class="coming-soon" id="coming-soon">
-        <div class="container">
-            <div class="coming-soon-content">
-                <h2>COMING SOON</h2>
-                <p>We're excited to announce our upcoming releases! Stay tuned for these captivating stories that will soon be available in both Indonesian and English editions.</p>
-                
-                <div class="book-list">
-                    <div class="book-tag">The Hidden Story Vol 2</div>
-                    <div class="book-tag">Utara dan Selatan</div>
-                    <div class="book-tag">The Malevolent</div>
-                    <div class="book-tag">The Lost Soulmate</div>
-                    <div class="book-tag">The Madman : Evelyn</div>
-                    <div class="book-tag">Pusat Gravitasi</div>
-                    <div class="book-tag">Pencetak Sejarah</div>
-                </div>
-                
-                <p>Sign up for our newsletter to be the first to know when these books become available for pre-order!</p>
             </div>
         </div>
     </section>
@@ -1118,7 +1046,6 @@
                     <ul style="list-style: none;">
                         <li style="margin-bottom: 10px;"><a href="index.html" style="color: var(--medium-gray); text-decoration: none;">Home</a></li>
                         <li style="margin-bottom: 10px;"><a href="#books" style="color: var(--medium-gray); text-decoration: none;">Books</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#coming-soon" style="color: var(--medium-gray); text-decoration: none;">Coming Soon</a></li>
                         <li style="margin-bottom: 10px;"><a href="#contact" style="color: var(--medium-gray); text-decoration: none;">Contact</a></li>
                     </ul>
                 </div>
@@ -1293,4 +1220,4 @@
     updateCartDisplay();
     </script>
 </body>
-</html>
+    </html>
