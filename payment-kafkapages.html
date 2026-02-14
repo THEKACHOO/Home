@@ -21,10 +21,8 @@
             --secondary-color: #333333;
             --discount-color: #dc3545;
             --success-color: #28a745;
-            --paypal-blue: #003087;
-            --paypal-light-blue: #009cde;
             --qris-green: #00a859;
-            --bank-blue: #1e3a8a;
+            --chobank-blue: #1e3a8a;
             --card-gold: #d4af37;
             --selected-border: #000000;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -410,45 +408,25 @@
         }
 
         /* Selected payment method styles */
-        .payment-option input:checked + .payment-label.paypal {
-            border-color: var(--paypal-blue);
-            background: linear-gradient(135deg, rgba(0, 48, 135, 0.05) 0%, rgba(0, 156, 222, 0.05) 100%);
-            box-shadow: 0 0 0 2px rgba(0, 48, 135, 0.2);
-        }
-
         .payment-option input:checked + .payment-label.qris {
             border-color: var(--qris-green);
             background: linear-gradient(135deg, rgba(0, 168, 89, 0.05) 0%, rgba(0, 168, 89, 0.1) 100%);
             box-shadow: 0 0 0 2px rgba(0, 168, 89, 0.2);
         }
 
-        .payment-option input:checked + .payment-label.bank {
-            border-color: var(--bank-blue);
+        .payment-option input:checked + .payment-label.chobank {
+            border-color: var(--chobank-blue);
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(30, 58, 138, 0.1) 100%);
             box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
         }
 
-        .payment-option input:checked + .payment-label.international {
-            border-color: var(--card-gold);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%);
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
-        }
-
         /* Icon colors for each payment method */
-        .payment-icon.paypal {
-            color: var(--paypal-blue);
-        }
-
         .payment-icon.qris {
             color: var(--qris-green);
         }
 
-        .payment-icon.bank {
-            color: var(--bank-blue);
-        }
-
-        .payment-icon.international {
-            color: var(--card-gold);
+        .payment-icon.chobank {
+            color: var(--chobank-blue);
         }
 
         .payment-icon {
@@ -482,6 +460,70 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* CHOBANK Card Input Styles */
+        .card-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-family: monospace;
+        }
+
+        .card-input-group input.valid {
+            border-color: var(--success-color);
+        }
+
+        .card-ok-button {
+            padding: 0 20px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 46px;
+            min-width: 60px;
+        }
+
+        .card-ok-button:disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+        }
+
+        .card-validation-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--success-color);
+            color: white;
+            font-size: 16px;
+        }
+
+        .card-validation-message {
+            font-size: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-validation-message .valid-text {
+            color: var(--success-color);
+            font-weight: 600;
         }
 
         /* Submit Button */
@@ -590,15 +632,14 @@
             .voucher-input-group {
                 flex-direction: column;
             }
-        }
 
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-            padding-right: 40px;
+            .card-input-group {
+                flex-wrap: wrap;
+            }
+            
+            .card-ok-button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -660,9 +701,9 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="your.email@example.com">
-                        <div class="form-note">Digital delivery via email is faster (optional but recommended)</div>
+                        <label for="email">Email Address (Optional)</label>
+                        <input type="email" id="email" placeholder="your.email@example.com">
+                        <div class="form-note">Digital delivery via email is faster (optional)</div>
                     </div>
                     
                     <div class="form-group">
@@ -682,19 +723,6 @@
                         <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--pure-black);">Payment Method *</h3>
                         <div class="payment-options">
                             <div class="payment-option">
-                                <input type="radio" id="paypal" name="paymentMethod" value="paypal">
-                                <label class="payment-label paypal" for="paypal">
-                                    <div class="payment-icon paypal">
-                                        <i class="fab fa-paypal"></i>
-                                    </div>
-                                    <div>
-                                        <div>PayPal</div>
-                                        <div class="payment-details">Pay with PayPal account</div>
-                                    </div>
-                                </label>
-                            </div>
-                            
-                            <div class="payment-option">
                                 <input type="radio" id="qris" name="paymentMethod" value="qris">
                                 <label class="payment-label qris" for="qris">
                                     <div class="payment-icon qris">
@@ -708,58 +736,40 @@
                             </div>
                             
                             <div class="payment-option">
-                                <input type="radio" id="bank" name="paymentMethod" value="bank">
-                                <label class="payment-label bank" for="bank">
-                                    <div class="payment-icon bank">
+                                <input type="radio" id="chobank" name="paymentMethod" value="chobank">
+                                <label class="payment-label chobank" for="chobank">
+                                    <div class="payment-icon chobank">
                                         <i class="fas fa-university"></i>
                                     </div>
                                     <div>
-                                        <div>Bank Transfer</div>
-                                        <div class="payment-details">Local bank transfer</div>
-                                    </div>
-                                </label>
-                            </div>
-                            
-                            <div class="payment-option">
-                                <input type="radio" id="international" name="paymentMethod" value="international">
-                                <label class="payment-label international" for="international">
-                                    <div class="payment-icon international">
-                                        <i class="fas fa-globe"></i>
-                                    </div>
-                                    <div>
-                                        <div>International Card</div>
-                                        <div class="payment-details">VISA, MasterCard, etc.</div>
+                                        <div>CHOBANK</div>
+                                        <div class="payment-details">Transfer via CHOBANK</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
                         
-                        <!-- Bank Selection -->
-                        <div class="payment-specific" id="bankSelection">
-                            <div class="form-group">
-                                <label>Select Bank *</label>
-                                <select class="form-input" id="selectedBank">
-                                    <option value="">Choose your bank</option>
-                                    <option value="bca">BCA</option>
-                                    <option value="bni">BNI</option>
-                                    <option value="bri">BRI</option>
-                                    <option value="mandiri">Mandiri</option>
-                                </select>
+                        <!-- QRIS Section (No additional input needed) -->
+                        <div class="payment-specific" id="qrisSection">
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="fas fa-qrcode" style="font-size: 120px; color: var(--qris-green); margin-bottom: 20px;"></i>
+                                <h4 style="margin-bottom: 10px;">Scan QRIS to Pay</h4>
+                                <p style="color: var(--medium-gray);">Open your banking app and scan the QR code above</p>
                             </div>
                         </div>
                         
-                        <!-- International Card Selection -->
-                        <div class="payment-specific" id="cardSelection">
+                        <!-- CHOBANK Section with 16-digit card input -->
+                        <div class="payment-specific" id="chobankSection">
                             <div class="form-group">
-                                <label>Select Card Type *</label>
-                                <select class="form-input" id="selectedCard">
-                                    <option value="">Choose card type</option>
-                                    <option value="visa">Visa</option>
-                                    <option value="mastercard">Mastercard</option>
-                                    <option value="black">Black Card</option>
-                                    <option value="jp-morgan">JP Morgan Reserve Card</option>
-                                    <option value="dubai-first">Dubai First Royale Mastercard</option>
-                                </select>
+                                <label>CHOBANK Card Number * (16 digits)</label>
+                                <div class="card-input-group">
+                                    <input type="text" id="chobankCardNumber" maxlength="16" placeholder="1234 5678 9012 3456" pattern="\d*">
+                                    <button type="button" class="card-ok-button" id="validateCardBtn" disabled>OK</button>
+                                </div>
+                                <div class="card-validation-message" id="cardValidationMessage">
+                                    <!-- Validation icon and message will appear here -->
+                                </div>
+                                <div class="form-note">Enter your 16-digit CHOBANK card number</div>
                             </div>
                         </div>
                     </div>
@@ -842,6 +852,9 @@
     let voucherCode = '';
     const SERVICE_FEE = 2.50;
     
+    // CHOBANK validation state
+    let isCardValidated = false;
+    
     // Google Sheets URL
     const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycby7m89h4gCRMuiDqlAusopkS3XR7_Abq5jaNI_6YE5Wh1ZjpjFOHj9IM_Vv-9F5v8nC/exec";
 
@@ -861,6 +874,11 @@
     const voucherBadge = document.getElementById('voucherBadge');
     const voucherText = document.getElementById('voucherText');
     const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    // CHOBANK Elements
+    const chobankCardInput = document.getElementById('chobankCardNumber');
+    const validateCardBtn = document.getElementById('validateCardBtn');
+    const cardValidationMessage = document.getElementById('cardValidationMessage');
 
     // Voucher calculation
     function calculateDiscount(code, amount) {
@@ -1044,18 +1062,27 @@
     // Setup payment methods
     function setupPaymentMethods() {
         const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
-        const bankSelection = document.getElementById('bankSelection');
-        const cardSelection = document.getElementById('cardSelection');
+        const qrisSection = document.getElementById('qrisSection');
+        const chobankSection = document.getElementById('chobankSection');
         
         paymentMethods.forEach(method => {
             method.addEventListener('change', function() {
-                bankSelection.classList.remove('active');
-                cardSelection.classList.remove('active');
+                qrisSection.classList.remove('active');
+                chobankSection.classList.remove('active');
                 
-                if (this.value === 'bank') {
-                    bankSelection.classList.add('active');
-                } else if (this.value === 'international') {
-                    cardSelection.classList.add('active');
+                if (this.value === 'qris') {
+                    qrisSection.classList.add('active');
+                } else if (this.value === 'chobank') {
+                    chobankSection.classList.add('active');
+                }
+                
+                // Reset card validation when switching methods
+                if (this.value !== 'chobank') {
+                    isCardValidated = false;
+                    chobankCardInput.value = '';
+                    chobankCardInput.classList.remove('valid');
+                    cardValidationMessage.innerHTML = '';
+                    validateCardBtn.disabled = true;
                 }
                 
                 updateSubmitButton();
@@ -1063,22 +1090,62 @@
         });
     }
 
+    // CHOBANK Card Validation
+    function setupCardValidation() {
+        // Only allow numbers in card input
+        chobankCardInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+            
+            // Enable/disable OK button based on length
+            if (this.value.length === 16) {
+                validateCardBtn.disabled = false;
+            } else {
+                validateCardBtn.disabled = true;
+                isCardValidated = false;
+                this.classList.remove('valid');
+                cardValidationMessage.innerHTML = '';
+            }
+            
+            updateSubmitButton();
+        });
+
+        // Validate card when OK button is clicked
+        validateCardBtn.addEventListener('click', function() {
+            const cardNumber = chobankCardInput.value;
+            
+            if (cardNumber.length === 16) {
+                isCardValidated = true;
+                chobankCardInput.classList.add('valid');
+                cardValidationMessage.innerHTML = `
+                    <span class="card-validation-icon"><i class="fas fa-check"></i></span>
+                    <span class="valid-text">✓ Card number verified</span>
+                `;
+            } else {
+                isCardValidated = false;
+                chobankCardInput.classList.remove('valid');
+                cardValidationMessage.innerHTML = `
+                    <span class="voucher-error"><i class="fas fa-times-circle"></i> Invalid card number</span>
+                `;
+            }
+            
+            updateSubmitButton();
+        });
+    }
+
     // Update submit button state
     function updateSubmitButton() {
         const fullName = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('email').value.trim();
+        const twitterAccount = document.getElementById('twitterAccount').value.trim();
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-        const selectedBank = document.getElementById('selectedBank').value;
-        const selectedCard = document.getElementById('selectedCard').value;
         
-        let isValid = fullName && email && paymentMethod && cartItems.length > 0;
+        let isValid = fullName && twitterAccount && paymentMethod && cartItems.length > 0;
         
-        if (paymentMethod && paymentMethod.value === 'bank' && !selectedBank) {
-            isValid = false;
-        }
-        
-        if (paymentMethod && paymentMethod.value === 'international' && !selectedCard) {
-            isValid = false;
+        if (paymentMethod) {
+            if (paymentMethod.value === 'chobank') {
+                // For CHOBANK, card must be validated
+                isValid = isValid && isCardValidated;
+            }
+            // For QRIS, no additional validation needed
         }
         
         submitButton.disabled = !isValid;
@@ -1087,9 +1154,8 @@
     // Form validation
     function setupFormValidation() {
         document.getElementById('fullName').addEventListener('input', updateSubmitButton);
-        document.getElementById('email').addEventListener('input', updateSubmitButton);
-        document.getElementById('selectedBank').addEventListener('change', updateSubmitButton);
-        document.getElementById('selectedCard').addEventListener('change', updateSubmitButton);
+        document.getElementById('twitterAccount').addEventListener('input', updateSubmitButton);
+        // Email is not required, so we don't validate it
     }
 
     // Send data to Google Sheets - DIPERBARUI untuk mendukung 2 bahasa
@@ -1119,7 +1185,7 @@
                 "Timestamp": new Date().toISOString(),
                 "Order Number": orderData.orderNumber,
                 "Customer Name": orderData.customer.fullName,
-                "Customer Email": orderData.customer.email,
+                "Customer Email": orderData.customer.email || 'Not provided',
                 "Customer Address": orderData.customer.address,
                 "Customer Twitter/X": orderData.customer.twitter,
                 "Other Request": orderData.customer.notes,
@@ -1132,8 +1198,7 @@
                 "Service Fee": SERVICE_FEE.toFixed(2),
                 "Total Amount": orderData.total.toFixed(2),
                 "Payment Method": orderData.paymentMethod.toUpperCase(),
-                "Bank Selected": orderData.selectedBank || 'N/A',
-                "Card Selected": orderData.selectedCard || 'N/A',
+                "Card Number (CHOBANK)": orderData.cardNumber || 'N/A',
                 "Payment Status": "PAID",
                 "Order Date": new Date().toLocaleString(),
                 "Store": "KAFKAPAGES",
@@ -1162,7 +1227,7 @@
         }
     }
 
-    // Process payment - DIPERBARUI untuk mendukung 2 bahasa
+    // Process payment - DIPERBARUI untuk mendukung CHOBANK dan QRIS
     async function processPayment() {
         const fullName = document.getElementById('fullName').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -1170,8 +1235,7 @@
         const twitterAccount = document.getElementById('twitterAccount').value.trim();
         const itemDetails = document.getElementById('itemDetails').value.trim();
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-        const selectedBank = document.getElementById('selectedBank').value;
-        const selectedCard = document.getElementById('selectedCard').value;
+        const chobankCardNumber = document.getElementById('chobankCardNumber').value;
         
         // Validation
         if (!fullName) {
@@ -1179,8 +1243,8 @@
             return;
         }
         
-        if (!email || !email.includes('@')) {
-            alert('Please enter a valid email address');
+        if (!twitterAccount) {
+            alert('Please enter your X (Twitter) account');
             return;
         }
         
@@ -1189,14 +1253,15 @@
             return;
         }
         
-        if (paymentMethod.value === 'bank' && !selectedBank) {
-            alert('Please select your bank');
-            return;
-        }
-        
-        if (paymentMethod.value === 'international' && !selectedCard) {
-            alert('Please select your card type');
-            return;
+        if (paymentMethod.value === 'chobank') {
+            if (!isCardValidated) {
+                alert('Please validate your CHOBANK card number first');
+                return;
+            }
+            if (chobankCardNumber.length !== 16) {
+                alert('Please enter a valid 16-digit CHOBANK card number');
+                return;
+            }
         }
         
         if (cartItems.length === 0) {
@@ -1211,9 +1276,9 @@
         const orderData = {
             customer: {
                 fullName: fullName,
-                email: email,
+                email: email || 'Not provided',
                 address: address || 'Not provided',
-                twitter: twitterAccount || 'Not provided',
+                twitter: twitterAccount,
                 notes: itemDetails || 'No special request'
             },
             items: cartItems.map(item => {
@@ -1232,8 +1297,7 @@
             total: total,
             itemCount: itemCount,
             paymentMethod: paymentMethod.value,
-            selectedBank: paymentMethod.value === 'bank' ? selectedBank : null,
-            selectedCard: paymentMethod.value === 'international' ? selectedCard : null,
+            cardNumber: paymentMethod.value === 'chobank' ? chobankCardNumber : null,
             voucherCode: voucherCode,
             paymentDate: new Date().toISOString(),
             status: 'pending',
@@ -1288,6 +1352,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         loadCartData();
         setupPaymentMethods();
+        setupCardValidation();
         setupFormValidation();
         
         // Voucher events
@@ -1303,4 +1368,4 @@
     });
     </script>
 </body>
-</html>
+    </html>
