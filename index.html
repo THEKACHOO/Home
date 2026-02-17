@@ -1095,15 +1095,17 @@
                 <div class="logo-text">KACHOO</div>
             </div>
             
-            <!-- Desktop Navigation Menu (visible only on desktop) -->
+            <!-- Desktop Navigation Menu (visible only on desktop) - MODIFIED -->
             <nav class="desktop-nav">
                 <a href="kafka.html" class="nav-button">Holding Company</a>
                 <a href="kafkapages.html" class="nav-button" target="_blank">Kafkapages</a>
                 <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank">Kazine Collection</a>
                 <a href="kaboom.html" class="nav-button" target="_blank">Kaboom</a>
                 <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank">Kazine Issues</a>
-                <a href="projectkachoo.html" class="nav-button">Project</a>
+                <!-- Project/Choredata moved to before Holding Company -->
+                <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank">Choredata</a>
                 <a href="guidelines.html" class="nav-button">Guidelines</a>
+                <!-- AI-Cho/Chobank removed -->
             </nav>
             
             <!-- Mobile Menu Button (right side, visible only on mobile) -->
@@ -1113,7 +1115,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu - MODIFIED -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -1150,10 +1152,11 @@
                     Kazine Vol 1
                 </a>
             </li>
+            <!-- Choredata moved to before Holding Company, using new link -->
             <li class="mobile-menu-item">
-                <a href="projectkachoo.html" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <a href="https://thekachoo.github.io/Datacho/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
                     <i class="fas fa-calendar-alt" style="margin-right: 12px;"></i>
-                    Project
+                    Choredata
                 </a>
             </li>
             <li class="mobile-menu-item">
@@ -1162,12 +1165,7 @@
                     Guidelines
                 </a>
             </li>
-            <li class="mobile-menu-item">
-                <a href="aicho.html" class="mobile-menu-link" onclick="closeMobileMenu()">
-                    <i class="fas fa-question-circle" style="margin-right: 12px;"></i>
-                    AI-Cho
-                </a>
-            </li>
+            <!-- AI-Cho/Chobank removed -->
         </ul>
     </div>
 
@@ -1182,7 +1180,7 @@
         </div>
     </section>
 
-    <!-- Kazine Promo Section -->
+    <!-- Kazine Promo Section (typo fixed) -->
     <section class="kazine-promo-section">
         <div class="container promo-container">
             <h2 class="promo-title">KAZINE VOLUME 1 ISSUE 2</h2>
@@ -1192,7 +1190,7 @@
             <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" target="_blank">
                 <img src="kazinevol1s2.png" alt="Kazine Vol 1 Issue 2" class="promo-image">
             </a>
-            <p class="promo-caption">Click the image to read Kazine Vol 1 Issue 1</p>
+            <p class="promo-caption">Click the image to read Kazine Vol 1 Issue 2</p>
         </div>
     </section>
 
@@ -1234,7 +1232,7 @@
         <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Discover our innovative digital solutions and services</p>
         
         <div class="feature-grid">
-            <!-- CHOBANK Card -->
+            <!-- CHOBANK Card (name updated from aicho/Chobank) -->
             <div class="feature-card">
                 <a href="https://thekachoo.github.io/payment/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
                     <div class="feature-icon">
@@ -1296,7 +1294,7 @@
         </div>
     </section>
 
-    <!-- FAQ Form Section -->
+    <!-- FAQ Form Section - Link to aicho.html removed -->
     <section class="faq-form-section" id="contact">
         <div class="container">
             <div class="form-container">
@@ -1325,9 +1323,7 @@
                         <i class="fas fa-paper-plane"></i> Submit Question & Rating
                     </button>
                     
-                    <a href="aicho.html" class="qna-link">
-                        <i class="fas fa-question-circle"></i> Check Your Questions & Answers Here
-                    </a>
+                    <!-- aicho.html link removed -->
                     
                     <div id="formMessage" class="form-message"></div>
                 </form>
@@ -1659,8 +1655,8 @@
             });
         });
 
-        // Handle project link
-        document.querySelectorAll('a[href="projectkachoo.html"]').forEach(link => {
+        // Handle project/choredata link (now using new href)
+        document.querySelectorAll('a[href="https://thekachoo.github.io/Datacho/"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (!this.getAttribute('target')) {
                     e.preventDefault();
@@ -1679,15 +1675,15 @@
             });
         });
 
-        // Handle qna link
-        document.querySelectorAll('a[href="aicho.html"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                }
-            });
-        });
+        // Handle qna link removed
+        // document.querySelectorAll('a[href="aicho.html"]').forEach(link => {
+        //     link.addEventListener('click', function(e) {
+        //         if (!this.getAttribute('target')) {
+        //             e.preventDefault();
+        //             window.location.href = this.href;
+        //         }
+        //     });
+        // });
 
         // Handle CHOBANK link for desktop
         document.querySelectorAll('a[href="https://thekachoo.github.io/payment/"]').forEach(link => {
