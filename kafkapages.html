@@ -139,35 +139,6 @@
             width: 100%;
         }
 
-        /* cart icon – dipertahankan hanya sebagai aksen (tanpa fungsi beli) */
-        .cart-icon-container {
-            position: relative;
-            margin-left: 20px;
-            opacity: 0.5;
-            pointer-events: none; /* non-fungsional, hanya estetik */
-        }
-
-        .cart-icon {
-            font-size: 22px;
-            color: var(--primary-black);
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--primary-black);
-            color: var(--primary-white);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
         /* Hero Section */
         .hero {
             padding: 140px 0 40px;
@@ -384,7 +355,7 @@
             pointer-events: none;
         }
 
-        /* READ BUTTON */
+        /* READ BUTTON - Updated text to "Read Now" */
         .read-pdf-btn {
             width: 100%;
             padding: 12px;
@@ -401,10 +372,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .read-pdf-btn i {
-            font-size: 16px;
         }
 
         .read-pdf-btn:hover {
@@ -621,7 +588,7 @@
             <iframe id="pdfIframe" title="PDF preview" style="display: none;"></iframe>
             <div id="pdfFallback" class="pdf-fallback">
                 <i class="fas fa-book-open" style="font-size: 48px; margin-bottom: 15px; color: var(--medium-gray);"></i>
-                <p>Select a book and click "Read"</p>
+                <p>Select a book and click "Read Now"</p>
             </div>
         </div>
     </div>
@@ -647,12 +614,7 @@
                 </ul>
             </nav>
             
-            <div class="cart-icon-container">
-                <div class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div class="cart-count">0</div>
-                </div>
-            </div>
+            <!-- Shopping cart icon removed as requested -->
         </div>
     </header>
 
@@ -694,10 +656,11 @@
                         </div>
                         
                         <!-- Data attributes untuk masing-masing bahasa -->
+                        <!-- Button text changed to "Read Now" -->
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/1ozXEEp4zbR1-5B3007VqR8EOp9qjS2G1/view?usp=drivesdk"
                                 data-pdf-english="https://drive.google.com/file/d/1pAr77pahWIwIQLEcUrUhEypuG80bSabI/view?usp=drivesdk"
-                                data-title="HIDE AND LIES">📖 Read</button>
+                                data-title="HIDE AND LIES">Read Now</button>
                     </div>
                 </div>
                 
@@ -719,7 +682,7 @@
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/18YY_na7T-g_pQPTGVRs7w_aUb6A0f6PQ/view?usp=drivesdk"
                                 data-pdf-english="https://drive.google.com/file/d/1RstdlNfJl1xQ_Jk6X3L8Y6hKEIZrpNYn/view?usp=drivesdk"
-                                data-title="The Hidden Story Vol 1">📖 Read</button>
+                                data-title="The Hidden Story Vol 1">Read Now</button>
                     </div>
                 </div>
                 
@@ -741,7 +704,7 @@
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/1JJ3Z1iNrrNJBHopkO9pSI6HJNtVaU_ua/view?usp=drivesdk"
                                 data-pdf-english="https://drive.google.com/file/d/1P6rX59_a6vc9eFr7q9MA6xZRBmPUbRbn/view?usp=drivesdk"
-                                data-title="The Anthology of Jane">📖 Read</button>
+                                data-title="The Anthology of Jane">Read Now</button>
                     </div>
                 </div>
                 
@@ -764,7 +727,7 @@
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/1t1GQAL8mzZ1on_yccmy6PJqnMvPB5fE9/view?usp=drivesdk"
                                 data-pdf-english=""  <!-- kosong karena English belum tersedia -->
-                                data-title="The Last Order: Rowan">📖 Read</button>
+                                data-title="The Last Order: Rowan">Read Now</button>
                     </div>
                 </div>
                 
@@ -785,7 +748,7 @@
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian=""  <!-- kosong -->
                                 data-pdf-english="https://drive.google.com/file/d/1MALVIEReng234/view?usp=sharing"
-                                data-title="The Madman: Malvier">📖 Read</button>
+                                data-title="The Madman: Malvier">Read Now</button>
                     </div>
                 </div>
                 
@@ -809,7 +772,7 @@
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/1TIMEindo567/view?usp=sharing"
                                 data-pdf-english="https://drive.google.com/file/d/1TIMEeng890/view?usp=sharing"
-                                data-title="TIME AND LOST (Preview)">📖 Read sample</button>
+                                data-title="TIME AND LOST (Preview)">Read Now</button>
                     </div>
                 </div>
             </div>
@@ -841,7 +804,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>KAFKAPAGES</h3>
-                    <p>The Book Publisher by THE KACHOO, dedicated to publishing compelling stories in multiple languages.</p>
+                    <!-- Updated text as requested -->
+                    <p>Publisher by THE KACHOO</p>
                 </div>
                 
                 <div class="footer-section">
@@ -853,14 +817,13 @@
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Language Editions</h3>
-                    <p>All our books are available in both Indonesian and English editions. Choose your preferred language, then click Read.</p>
-                </div>
+                <!-- Language Editions section removed as requested -->
+                
             </div>
             
             <div class="disclaimer">
-                <p><strong>IMPORTANT NOTE:</strong> This is a demo reading interface. All PDF links are sample placeholders. No real transactions.</p>
+                <!-- Updated disclaimer text -->
+                <p><strong>IMPORTANT NOTE:</strong> This is for roleplay purpose only</p>
                 <p style="margin-top: 10px;">&copy; 2026 KAFKAPAGES | The Publisher by THE KACHOO. All rights reserved.</p>
             </div>
         </div>
@@ -1007,4 +970,4 @@
         })();
     </script>
 </body>
-            </html>
+        </html>
