@@ -311,11 +311,16 @@
             border-left: 3px solid #3498db;
         }
 
-        .book-price {
-            font-size: 22px;
-            font-weight: 700;
+        .book-synopsis {
+            font-size: 14px;
+            color: var(--dark-gray);
             margin-bottom: 20px;
-            color: var(--primary-black);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .language-buttons {
@@ -648,8 +653,8 @@
                     <div class="book-content">
                         <h3>HIDE AND LIES: The Man Behind Delanosa</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-price">—</div>
-                        
+                        <div class="book-synopsis">A compilation of evidence and interpretations: police records, law enforcement files, expert analyses, classified reports, and the echoes of public discourse. Theories from specialists, critics, politicians, and the public fragmented, conflicting, and incomplete. Containing his original handwritten notes in the appendix</div>
+        
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
                             <button class="lang-btn" data-lang="english">English</button>
@@ -672,7 +677,7 @@
                     <div class="book-content">
                         <h3>The Hidden Story Vol 1</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-price">—</div>
+                        <div class="book-synopsis">The Man Behind Delanosa's hidden story.</div>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -694,7 +699,7 @@
                     <div class="book-content">
                         <h3>The Anthology of Jane</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-price">—</div>
+                        <div class="book-synopsis">She was lost, along with the secrets of the man behind Delanosa. No one ever told this story. Yet it is the story that lies at the root of the world’s chaos.</div>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -717,7 +722,7 @@
                         <h3>The Last Order: Rowan</h3>
                         <p class="book-author">By Ghost Writer</p>
                         <div class="book-note">English version not yet published</div>
-                        <div class="book-price">—</div>
+                        <div class="book-synopsis">Kisah tersembunyi Rowan, yang menjadi perintah terakhirnya.</div>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -739,11 +744,7 @@
                     <div class="book-content">
                         <h3>The Madman: Malvier</h3>
                         <p class="book-author">By Gathur D. Kafka</p>
-                        <div class="book-price">—</div>
-                        
-                        <div class="language-buttons">
-                            <button class="lang-btn active" data-lang="english">English</button>
-                        </div>
+                        <div class="book-synopsis">This is not a story about redemption. It’s about Malvier Hartmann. Born into power, raised among expectations that could suffocate anyone else, he learned early that the world wasn’t built for people like him. People saying that he was born wrong, even cursed. And if madness has a name, it might as well be his.</div>
                         
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="#"
@@ -761,8 +762,8 @@
                     <div class="book-content">
                         <h3>TIME AND LOST: The Man Behind Delanosa</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-release-date">Coming February 14, 2026</div>
-                        <div class="book-price">—</div>
+                        <div class="book-release-date">Coming Soon</div>
+                        <div class="book-synopsis">—</div>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -970,4 +971,4 @@
         })();
     </script>
 </body>
-        </html>
+    </html>
