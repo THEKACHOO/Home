@@ -316,11 +316,63 @@
             color: var(--dark-gray);
             margin-bottom: 20px;
             line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        /* Default untuk desktop: tampil full */
+        .synopsis-content {
+            display: inline;
+        }
+
+        .read-more-link {
+            display: none;
+            color: var(--primary-black);
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 5px;
+            text-decoration: underline;
+        }
+
+        .read-more-link:hover {
+            color: var(--dark-gray);
+        }
+
+        /* Mobile: dipotong 3 baris dengan efek gradient */
+        @media (max-width: 768px) {
+            .synopsis-container {
+                position: relative;
+                max-height: 4.5em; /* 3 baris * 1.5 line-height */
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
+            
+            .synopsis-container.expanded {
+                max-height: none;
+                overflow: visible;
+            }
+            
+            .synopsis-container.expanded + .read-more-link {
+                display: none;
+            }
+            
+            .read-more-link {
+                display: inline-block;
+                margin-top: 5px;
+                font-size: 13px;
+            }
+            
+            .synopsis-fade {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1.5em;
+                background: linear-gradient(to bottom, transparent, var(--primary-white));
+                pointer-events: none;
+            }
+            
+            .synopsis-container.expanded .synopsis-fade {
+                display: none;
+            }
         }
 
         .language-buttons {
@@ -360,7 +412,7 @@
             pointer-events: none;
         }
 
-        /* READ BUTTON - Updated text to "Read Now" */
+        /* READ BUTTON */
         .read-pdf-btn {
             width: 100%;
             padding: 12px;
@@ -618,8 +670,6 @@
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </nav>
-            
-            <!-- Shopping cart icon removed as requested -->
         </div>
     </header>
 
@@ -640,7 +690,7 @@
         </div>
     </section>
 
-    <!-- Books Section dengan PDF links berbeda per bahasa -->
+    <!-- Books Section -->
     <section class="books-section" id="books">
         <div class="container">
             <h2 class="section-title">AVAILABLE BOOKS</h2>
@@ -653,15 +703,21 @@
                     <div class="book-content">
                         <h3>HIDE AND LIES: The Man Behind Delanosa</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-synopsis">A compilation of evidence and interpretations: police records, law enforcement files, expert analyses, classified reports, and the echoes of public discourse. Theories from specialists, critics, politicians, and the public fragmented, conflicting, and incomplete. Containing his original handwritten notes in the appendix</div>
+                        
+                        <!-- Synopsis dengan fitur read more -->
+                        <div class="synopsis-container" id="synopsis-1">
+                            <div class="synopsis-content">
+                                A compilation of evidence and interpretations: police records, law enforcement files, expert analyses, classified reports, and the echoes of public discourse. Theories from specialists, critics, politicians, and the public fragmented, conflicting, and incomplete. Containing his original handwritten notes in the appendix
+                            </div>
+                            <div class="synopsis-fade"></div>
+                        </div>
+                        <span class="read-more-link" onclick="toggleSynopsis('synopsis-1', this)">Baca selengkapnya</span>
         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
                             <button class="lang-btn" data-lang="english">English</button>
                         </div>
                         
-                        <!-- Data attributes untuk masing-masing bahasa -->
-                        <!-- Button text changed to "Read Now" -->
                         <button class="read-pdf-btn" 
                                 data-pdf-indonesian="https://drive.google.com/file/d/1ozXEEp4zbR1-5B3007VqR8EOp9qjS2G1/view?usp=drivesdk"
                                 data-pdf-english="https://drive.google.com/file/d/1pAr77pahWIwIQLEcUrUhEypuG80bSabI/view?usp=drivesdk"
@@ -677,7 +733,14 @@
                     <div class="book-content">
                         <h3>The Hidden Story Vol 1</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-synopsis">The Man Behind Delanosa's hidden story.</div>
+                        
+                        <div class="synopsis-container" id="synopsis-2">
+                            <div class="synopsis-content">
+                                The Man Behind Delanosa's hidden story. Sebuah eksplorasi mendalam tentang rahasia di balik legenda Delanosa yang tidak pernah terungkap sebelumnya. Kisah ini mengungkap fakta-fakta tersembunyi yang selama ini menjadi misteri.
+                            </div>
+                            <div class="synopsis-fade"></div>
+                        </div>
+                        <span class="read-more-link" onclick="toggleSynopsis('synopsis-2', this)">Baca selengkapnya</span>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -699,7 +762,14 @@
                     <div class="book-content">
                         <h3>The Anthology of Jane</h3>
                         <p class="book-author">By Ghost Writer</p>
-                        <div class="book-synopsis">She was lost, along with the secrets of the man behind Delanosa. No one ever told this story. Yet it is the story that lies at the root of the world’s chaos.</div>
+                        
+                        <div class="synopsis-container" id="synopsis-3">
+                            <div class="synopsis-content">
+                                She was lost, along with the secrets of the man behind Delanosa. No one ever told this story. Yet it is the story that lies at the root of the world's chaos. Sebuah perjalanan emosional mencari kebenaran di tengah kepalsuan.
+                            </div>
+                            <div class="synopsis-fade"></div>
+                        </div>
+                        <span class="read-more-link" onclick="toggleSynopsis('synopsis-3', this)">Baca selengkapnya</span>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -713,7 +783,7 @@
                     </div>
                 </div>
                 
-                <!-- Book 4 - The Last Order: Rowan (Indonesian only) -->
+                <!-- Book 4 - The Last Order: Rowan -->
                 <div class="book-card" data-book="The Last Order: Rowan">
                     <div class="book-image">
                         <img src="thelastorder.png" alt="The Last Order: Rowan">
@@ -722,7 +792,14 @@
                         <h3>The Last Order: Rowan</h3>
                         <p class="book-author">By Ghost Writer</p>
                         <div class="book-note">English version not yet published</div>
-                        <div class="book-synopsis">Kisah tersembunyi Rowan, yang menjadi perintah terakhirnya.</div>
+                        
+                        <div class="synopsis-container" id="synopsis-4">
+                            <div class="synopsis-content">
+                                Kisah tersembunyi Rowan, yang menjadi perintah terakhirnya. Sebuah misi rahasia yang menentukan nasib kerajaan dan rahasia kelam yang selama ini dipendam. Rowan harus memilih antara loyalitas atau kebenaran.
+                            </div>
+                            <div class="synopsis-fade"></div>
+                        </div>
+                        <span class="read-more-link" onclick="toggleSynopsis('synopsis-4', this)">Baca selengkapnya</span>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -737,23 +814,32 @@
                 </div>
                 
                 <!-- Book 5 - The Madman: Malvier (English Only) -->
-                <div class="book-card" data-book="The Madman: Malvier">
-                    <div class="book-image">
-                        <img src="themadman1.png" alt="The Madman: Malvier">
-                    </div>
-                    <div class="book-content">
-                        <h3>The Madman: Malvier</h3>
-                        <p class="book-author">By Gathur D. Kafka</p>
-                        <div class="book-synopsis">This is not a story about redemption. It’s about Malvier Hartmann. Born into power, raised among expectations that could suffocate anyone else, he learned early that the world wasn’t built for people like him. People saying that he was born wrong, even cursed. And if madness has a name, it might as well be his.</div>
-                        
-                        <button class="read-pdf-btn" 
-                                data-pdf-indonesian="#"
-                                data-pdf-english="https://drive.google.com/file/d/1WDNEykjqZEYlFe9F8MvKuh6cNv4-Sc6Y/view?usp=drivesdk"
-                                data-title="The Madman: Malvier">Read Now</button>
-                    </div>
-                </div>
+<div class="book-card" data-book="The Madman: Malvier">
+    <div class="book-image">
+        <img src="themadman1.png" alt="The Madman: Malvier">
+    </div>
+    <div class="book-content">
+        <h3>The Madman: Malvier</h3>
+        <p class="book-author">By Gathur D. Kafka</p>
+        
+        <!-- Synopsis dengan fitur read more -->
+        <div class="synopsis-container" id="synopsis-5">
+            <div class="synopsis-content">
+                This is not a story about redemption. It's about Malvier Hartmann. Born into power, raised among expectations that could suffocate anyone else, he learned early that the world wasn't built for people like him. People saying that he was born wrong, even cursed. And if madness has a name, it might as well be his. This is his story—unfiltered, unhinged, and utterly honest. A descent into the mind of someone who stopped pretending to be sane in a world that lost its mind long ago.
+            </div>
+            <div class="synopsis-fade"></div>
+        </div>
+        <span class="read-more-link" onclick="toggleSynopsis('synopsis-5', this)">Baca selengkapnya</span>
+        
+        <!-- Language buttons dihapus, langsung English aja -->
+        <button class="read-pdf-btn" 
+                data-pdf-indonesian="#"
+                data-pdf-english="https://drive.google.com/file/d/1WDNEykjqZEYlFe9F8MvKuh6cNv4-Sc6Y/view?usp=drivesdk"
+                data-title="The Madman: Malvier">Read Now</button>
+    </div>
+</div>
                 
-                <!-- Book 6 - TIME AND LOST: Pre-Order (dual language preview) -->
+                <!-- Book 6 - TIME AND LOST -->
                 <div class="book-card" data-book="TIME AND LOST: The Man Behind Delanosa">
                     <div class="book-image">
                         <img src="timeandlost.png" alt="TIME AND LOST: The Man Behind Delanosa">
@@ -763,7 +849,14 @@
                         <h3>TIME AND LOST: The Man Behind Delanosa</h3>
                         <p class="book-author">By Ghost Writer</p>
                         <div class="book-release-date">Coming Soon</div>
-                        <div class="book-synopsis">—</div>
+                        
+                        <div class="synopsis-container" id="synopsis-6">
+                            <div class="synopsis-content">
+                                Sebuah perjalanan melintasi ruang dan waktu untuk mengungkap kebenaran terakhir tentang Delanosa. Ketika masa lalu dan masa depan bertabrakan, hanya satu yang bisa selamat. Akankah kebenaran terungkap atau justru terkubur selamanya?
+                            </div>
+                            <div class="synopsis-fade"></div>
+                        </div>
+                        <span class="read-more-link" onclick="toggleSynopsis('synopsis-6', this)">Baca selengkapnya</span>
                         
                         <div class="language-buttons">
                             <button class="lang-btn active" data-lang="indonesian">Indonesian</button>
@@ -805,7 +898,6 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>KAFKAPAGES</h3>
-                    <!-- Updated text as requested -->
                     <p>The Book Publisher by THE KACHOO, dedicated to publishing compelling stories.</p>
                 </div>
                 
@@ -817,13 +909,9 @@
                         <li style="margin-bottom: 10px;"><a href="#contact" style="color: var(--medium-gray); text-decoration: none;">Contact</a></li>
                     </ul>
                 </div>
-                
-                <!-- Language Editions section removed as requested -->
-                
             </div>
             
             <div class="disclaimer">
-                <!-- Updated disclaimer text -->
                 <p><strong>IMPORTANT NOTE:</strong> This is for roleplay purpose only.</p>
                 <p style="margin-top: 10px;">&copy; 2026 KAFKAPAGES by THE KACHOO. All rights reserved.</p>
             </div>
@@ -863,20 +951,18 @@
                 return driveLink;
             }
 
-            // Buka panel dengan PDF berdasarkan bahasa yang dipilih
+            // Buka panel dengan PDF
             function openPdfReader(bookTitle, indoUrl, engUrl, activeLang) {
-                // Tentukan URL berdasarkan bahasa aktif
                 let pdfUrl = '';
                 if (activeLang === 'indonesian' && indoUrl) {
                     pdfUrl = indoUrl;
                 } else if (activeLang === 'english' && engUrl) {
                     pdfUrl = engUrl;
                 } else {
-                    // Fallback: coba ambil yang tersedia
                     pdfUrl = indoUrl || engUrl;
                 }
 
-                if (!pdfUrl) {
+                if (!pdfUrl || pdfUrl === '#') {
                     alert('Maaf, PDF untuk bahasa yang dipilih belum tersedia.');
                     return;
                 }
@@ -893,7 +979,7 @@
                 document.body.style.overflow = 'hidden';
             }
 
-            // Tutup panel
+            // Tutup panel PDF
             function closePdfReaderFunc() {
                 pdfPanel.classList.remove('active');
                 pdfIframe.src = '';
@@ -903,7 +989,7 @@
                 document.body.style.overflow = '';
             }
 
-            // Event listener untuk semua tombol read
+            // Event listener untuk tombol read
             document.querySelectorAll('.read-pdf-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -911,16 +997,13 @@
                     const card = this.closest('.book-card');
                     if (!card) return;
                     
-                    // Ambil data PDF dari atribut tombol
                     const pdfIndo = this.getAttribute('data-pdf-indonesian') || '';
                     const pdfEng = this.getAttribute('data-pdf-english') || '';
                     const title = this.getAttribute('data-title') || card.getAttribute('data-book') || 'Unknown book';
                     
-                    // Cari bahasa yang aktif di card ini
                     const activeLangBtn = card.querySelector('.lang-btn.active');
                     const activeLang = activeLangBtn ? activeLangBtn.getAttribute('data-lang') : 'indonesian';
                     
-                    // Validasi: jika bahasa Inggris dipilih tapi pdfEng kosong, kasih tahu
                     if (activeLang === 'english' && !pdfEng) {
                         alert('English version PDF is not available yet.');
                         return;
@@ -934,17 +1017,17 @@
                 });
             });
 
-            // Tombol close
+            // Tombol close PDF
             closeBtn.addEventListener('click', closePdfReaderFunc);
 
-            // Tekan ESC untuk menutup
+            // Tekan ESC untuk menutup PDF
             window.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && pdfPanel.classList.contains('active')) {
                     closePdfReaderFunc();
                 }
             });
 
-            // Language button selection (hanya visual)
+            // Language button selection
             document.querySelectorAll('.lang-btn:not(.disabled)').forEach(button => {
                 button.addEventListener('click', function() {
                     const parent = this.closest('.language-buttons');
@@ -969,6 +1052,20 @@
                 });
             });
         })();
+
+        // Fungsi global untuk toggle sinopsis (bisa dipanggil dari onclick)
+        function toggleSynopsis(containerId, linkElement) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.classList.toggle('expanded');
+                // Ubah teks link
+                if (container.classList.contains('expanded')) {
+                    linkElement.textContent = 'Tutup';
+                } else {
+                    linkElement.textContent = 'Baca selengkapnya';
+                }
+            }
+        }
     </script>
 </body>
     </html>
