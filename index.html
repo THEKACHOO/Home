@@ -97,23 +97,77 @@
             width: 100%;
         }
 
-        /* Desktop Navigation Menu */
-        .desktop-nav {
-            display: flex;
-            gap: 4px;
-            background: var(--accent-gray);
-            padding: 4px;
-            border-radius: var(--border-radius);
+        /* Desktop Navigation - UPDATED: Now a dropdown menu */
+        .desktop-nav-container {
+            position: relative;
+            display: block; /* Always visible on desktop, hidden on mobile via media query */
         }
 
         @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
+            .desktop-nav-container {
+                display: none; /* Hide desktop dropdown on mobile */
             }
         }
 
-        .nav-button {
+        .desktop-nav-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-gray);
             padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary-black);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .desktop-nav-trigger:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .desktop-nav-trigger i {
+            transition: transform 0.3s ease;
+        }
+
+        .desktop-nav-trigger.active i {
+            transform: rotate(180deg);
+        }
+
+        .desktop-nav-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 280px;
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--hover-shadow);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .desktop-nav-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .desktop-nav-dropdown .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 16px;
             background: transparent;
             border: none;
             border-radius: 8px;
@@ -123,22 +177,24 @@
             color: var(--text-gray);
             cursor: pointer;
             transition: var(--transition);
-            white-space: nowrap;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .nav-button:hover {
-            color: var(--primary-black);
-            background: rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+        .desktop-nav-dropdown .nav-button:last-child {
+            border-bottom: none;
         }
 
-        .nav-button.active {
+        .desktop-nav-dropdown .nav-button:hover {
             color: var(--primary-black);
-            background: var(--primary-white);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: var(--accent-gray);
+            transform: translateX(4px);
+        }
+
+        .desktop-nav-dropdown .nav-button i {
+            width: 20px;
+            color: var(--primary-black);
         }
 
         /* Mobile Menu Button */
@@ -1095,18 +1151,22 @@
                 <div class="logo-text">KACHOO</div>
             </div>
             
-            <!-- Desktop Navigation Menu (visible only on desktop) - MODIFIED -->
-            <nav class="desktop-nav">
-                <a href="kafka.html" class="nav-button">Holding Company</a>
-                <a href="kafkapages.html" class="nav-button" target="_blank">Kafkapages</a>
-                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank">Kazine Collection</a>
-                <a href="kaboom.html" class="nav-button" target="_blank">Kaboom</a>
-                <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank">Kazine Issues</a>
-                <!-- Project/Choredata moved to before Holding Company -->
-                <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank">Choredata</a>
-                <a href="guidelines.html" class="nav-button">Guidelines</a>
-                <!-- AI-Cho/Chobank removed -->
-            </nav>
+            <!-- Desktop Navigation Dropdown (visible only on desktop) - UPDATED -->
+            <div class="desktop-nav-container">
+                <button class="desktop-nav-trigger" id="desktopNavTrigger">
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-nav-dropdown" id="desktopNavDropdown">
+                    <a href="kafka.html" class="nav-button"><i class="fas fa-building"></i> Holding Company</a>
+                    <a href="kafkapages.html" class="nav-button" target="_blank"><i class="fas fa-book"></i> Kafkapages</a>
+                    <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank"><i class="fas fa-tshirt"></i> Kazine Collection</a>
+                    <a href="kaboom.html" class="nav-button" target="_blank"><i class="fas fa-camera"></i> Kaboom</a>
+                    <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank"><i class="fas fa-newspaper"></i> Kazine Issues</a>
+                    <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Choredata</a>
+                    <a href="guidelines.html" class="nav-button"><i class="fas fa-clipboard-check"></i> Guidelines</a>
+                </div>
+            </div>
             
             <!-- Mobile Menu Button (right side, visible only on mobile) -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1115,7 +1175,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu - MODIFIED -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -1152,7 +1212,6 @@
                     Kazine Vol 1
                 </a>
             </li>
-            <!-- Choredata moved to before Holding Company, using new link -->
             <li class="mobile-menu-item">
                 <a href="https://thekachoo.github.io/Datacho/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
                     <i class="fas fa-calendar-alt" style="margin-right: 12px;"></i>
@@ -1165,7 +1224,6 @@
                     Guidelines
                 </a>
             </li>
-            <!-- AI-Cho/Chobank removed -->
         </ul>
     </div>
 
@@ -1180,7 +1238,7 @@
         </div>
     </section>
 
-    <!-- Kazine Promo Section (typo fixed) -->
+    <!-- Kazine Promo Section -->
     <section class="kazine-promo-section">
         <div class="container promo-container">
             <h2 class="promo-title">KAZINE VOLUME 1 ISSUE 2</h2>
@@ -1225,39 +1283,35 @@
         </div>
     </section>
 
-    <!-- Digital Feature Section -->
-<section class="digital-feature-section">
-    <div class="container">
-        <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Digital Features</h2>
-        <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Discover our innovative digital solutions and services</p>
-        
-        <div class="feature-grid">
-            <!-- CHOBANK Card (name updated from aicho/Chobank) -->
-            <div class="feature-card">
-                <a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                    <div class="feature-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3 class="feature-title">CHOBANK</h3>
-                    <p class="feature-description">Our digital banking solution for seamless transactions, payments, and financial management across all KACHOO platforms.</p>
-                    <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
-                </a>
-            </div>
+    <!-- Digital Feature Section - UPDATED with new logos and description -->
+    <section class="digital-feature-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Digital Features</h2>
+            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Discover our innovative digital solutions and services</p>
             
-            <!-- CHONNECT Card -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
+            <div class="feature-grid">
+                <!-- CHOBANK Card with logo -->
+                <div class="feature-card">
+                    <a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;">
+                        <h3 class="feature-title">CHOBANK</h3>
+                        <p class="feature-description">Our digital banking solution for seamless transactions, payments, and financial management across all KACHOO platforms.</p>
+                        <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
+                    </a>
                 </div>
-                <h3 class="feature-title">CHONNECT</h3>
-                <p class="feature-description">This feature serves as a database that collects official roleplay base accounts to make collaboration between roleplayers easier.</p>
-                <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
-                    Coming Soon
+                
+                <!-- CHONNECT Card with logo and updated description -->
+                <div class="feature-card">
+                    <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;">
+                    <h3 class="feature-title">CHONNECT</h3>
+                    <p class="feature-description">This feature serves as a database that collects official base accounts to make collaboration easier.</p>
+                    <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
+                        Coming Soon
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Publish Process Section -->
     <section class="publish-section">
@@ -1294,7 +1348,7 @@
         </div>
     </section>
 
-    <!-- FAQ Form Section - Link to aicho.html removed -->
+    <!-- FAQ Form Section -->
     <section class="faq-form-section" id="contact">
         <div class="container">
             <div class="form-container">
@@ -1322,8 +1376,6 @@
                     <button type="submit" class="submit-button">
                         <i class="fas fa-paper-plane"></i> Submit Question & Rating
                     </button>
-                    
-                    <!-- aicho.html link removed -->
                     
                     <div id="formMessage" class="form-message"></div>
                 </form>
@@ -1431,18 +1483,33 @@
             link.addEventListener('click', closeMobileMenu);
         });
 
-        // Desktop Navigation Active State
-        document.querySelectorAll('.desktop-nav .nav-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Only apply active state for internal links
-                if (!this.getAttribute('href').startsWith('http') || this.getAttribute('href').includes('thekachoo.github.io')) {
-                    document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
+        // Desktop Navigation Dropdown - NEW
+        const desktopNavTrigger = document.getElementById('desktopNavTrigger');
+        const desktopNavDropdown = document.getElementById('desktopNavDropdown');
+
+        if (desktopNavTrigger && desktopNavDropdown) {
+            desktopNavTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                desktopNavDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!desktopNavTrigger.contains(e.target) && !desktopNavDropdown.contains(e.target)) {
+                    desktopNavTrigger.classList.remove('active');
+                    desktopNavDropdown.classList.remove('active');
                 }
             });
-        });
+
+            // Close dropdown when clicking on a link
+            desktopNavDropdown.querySelectorAll('.nav-button').forEach(link => {
+                link.addEventListener('click', function() {
+                    desktopNavTrigger.classList.remove('active');
+                    desktopNavDropdown.classList.remove('active');
+                });
+            });
+        }
 
         // Smooth scroll function for internal links
         function scrollToSection(sectionId) {
@@ -1451,15 +1518,6 @@
                 window.scrollTo({
                     top: section.offsetTop - 100,
                     behavior: 'smooth'
-                });
-                
-                // Update active state for desktop nav
-                document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
-                    if (btn.getAttribute('href') === `#${sectionId}`) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
                 });
             }
         }
@@ -1655,7 +1713,7 @@
             });
         });
 
-        // Handle project/choredata link (now using new href)
+        // Handle project/choredata link
         document.querySelectorAll('a[href="https://thekachoo.github.io/Datacho/"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (!this.getAttribute('target')) {
@@ -1675,16 +1733,6 @@
             });
         });
 
-        // Handle qna link removed
-        // document.querySelectorAll('a[href="aicho.html"]').forEach(link => {
-        //     link.addEventListener('click', function(e) {
-        //         if (!this.getAttribute('target')) {
-        //             e.preventDefault();
-        //             window.location.href = this.href;
-        //         }
-        //     });
-        // });
-
         // Handle CHOBANK link for desktop
         document.querySelectorAll('a[href="https://thekachoo.github.io/payment/"]').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1697,3 +1745,4 @@
     </script>
 </body>
     </html>
+```
