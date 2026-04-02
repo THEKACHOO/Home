@@ -1151,7 +1151,7 @@
                 <div class="logo-text">KACHOO</div>
             </div>
             
-            <!-- Desktop Navigation Dropdown (visible only on desktop) - UPDATED -->
+            <!-- Desktop Navigation Dropdown (visible only on desktop) - UPDATED ORDER -->
             <div class="desktop-nav-container">
                 <button class="desktop-nav-trigger" id="desktopNavTrigger">
                     <span>Menu</span>
@@ -1161,9 +1161,11 @@
                     <a href="kafka.html" class="nav-button"><i class="fas fa-building"></i> Holding Company</a>
                     <a href="kafkapages.html" class="nav-button" target="_blank"><i class="fas fa-book"></i> Kafkapages</a>
                     <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank"><i class="fas fa-tshirt"></i> Kazine Collection</a>
+                    <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank"><i class="fas fa-newspaper"></i> Kazine Vol 1</a>
                     <a href="kaboom.html" class="nav-button" target="_blank"><i class="fas fa-camera"></i> Kaboom</a>
-                    <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank"><i class="fas fa-newspaper"></i> Kazine Issues</a>
-                    <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Choredata</a>
+                    <a href="https://thekachoo.github.io/CHOBANK/index.html" class="nav-button" target="_blank"><i class="fas fa-university"></i> Chobank</a>
+                    <a href="https://thekachoo.github.io/CHONNECT/index.html" class="nav-button" target="_blank"><i class="fas fa-plug"></i> Chonnect</a>
+                    <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a>
                     <a href="guidelines.html" class="nav-button"><i class="fas fa-clipboard-check"></i> Guidelines</a>
                 </div>
             </div>
@@ -1175,7 +1177,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu - UPDATED ORDER -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -1201,15 +1203,27 @@
                 </a>
             </li>
             <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
+                    <i class="fas fa-newspaper" style="margin-right: 12px;"></i>
+                    Kazine Vol 1
+                </a>
+            </li>
+            <li class="mobile-menu-item">
                 <a href="kaboom.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
                     <i class="fas fa-camera" style="margin-right: 12px;"></i>
                     Kaboom
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
-                    <i class="fas fa-newspaper" style="margin-right: 12px;"></i>
-                    Kazine Vol 1
+                <a href="https://thekachoo.github.io/CHOBANK/index.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
+                    <i class="fas fa-university" style="margin-right: 12px;"></i>
+                    Chobank
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/CHONNECT/index.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
+                    <i class="fas fa-plug" style="margin-right: 12px;"></i>
+                    Chonnect
                 </a>
             </li>
             <li class="mobile-menu-item">
@@ -1283,7 +1297,7 @@
         </div>
     </section>
 
-    <!-- Digital Feature Section - UPDATED with new logos and description -->
+    <!-- Digital Feature Section - UPDATED with new logos and description, CHONNECT button changed to Connect Now -->
     <section class="digital-feature-section">
         <div class="container">
             <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Digital Features</h2>
@@ -1300,14 +1314,14 @@
                     </a>
                 </div>
                 
-                <!-- CHONNECT Card with logo and updated description -->
+                <!-- CHONNECT Card - UPDATED: Changed from Coming Soon to Connect Now link -->
                 <div class="feature-card">
-                    <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;">
-                    <h3 class="feature-title">CHONNECT</h3>
-                    <p class="feature-description">This feature serves as a database that collects official base accounts to make collaboration easier.</p>
-                    <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
-                        Coming Soon
-                    </div>
+                    <a href="https://thekachoo.github.io/CHONNECT/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;">
+                        <h3 class="feature-title">CHONNECT</h3>
+                        <p class="feature-description">This feature serves as a database that collects official base accounts to make collaboration easier.</p>
+                        <div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div>
+                    </a>
                 </div>
             </div>
         </div>
