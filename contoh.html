@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KACHOO OFFICIAL</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Google Fonts: Outfit (all weights) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -25,13 +26,19 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background-color: var(--primary-white);
             color: var(--primary-black);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Title & h2: Outfit Bold */
+        h1, h2, .hero h1, .promo-title, .form-title, .platform-title, .feature-title, .step-title, .footer-section h3 {
+            font-weight: 900 !important;
+            font-family: 'Outfit', sans-serif;
         }
 
         .container {
@@ -80,6 +87,7 @@
             letter-spacing: -0.5px;
             color: var(--primary-black);
             position: relative;
+            font-family: 'Outfit', sans-serif;
         }
 
         .logo-text::after {
@@ -97,48 +105,104 @@
             width: 100%;
         }
 
-        /* Desktop Navigation Menu */
-        .desktop-nav {
-            display: flex;
-            gap: 4px;
-            background: var(--accent-gray);
-            padding: 4px;
-            border-radius: var(--border-radius);
+        /* Desktop Navigation - UPDATED: Now a dropdown menu */
+        .desktop-nav-container {
+            position: relative;
+            display: block;
         }
 
         @media (max-width: 768px) {
-            .desktop-nav {
+            .desktop-nav-container {
                 display: none;
             }
         }
 
-        .nav-button {
+        .desktop-nav-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-gray);
             padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary-black);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            white-space: nowrap;
+        }
+
+        .desktop-nav-trigger:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .desktop-nav-trigger i {
+            transition: transform 0.3s ease;
+        }
+
+        .desktop-nav-trigger.active i {
+            transform: rotate(180deg);
+        }
+
+        .desktop-nav-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 280px;
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--hover-shadow);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .desktop-nav-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .desktop-nav-dropdown .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 16px;
             background: transparent;
             border: none;
             border-radius: 8px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-weight: 600;
             font-size: 14px;
             color: var(--text-gray);
             cursor: pointer;
             transition: var(--transition);
-            white-space: nowrap;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .nav-button:hover {
-            color: var(--primary-black);
-            background: rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+        .desktop-nav-dropdown .nav-button:last-child {
+            border-bottom: none;
         }
 
-        .nav-button.active {
+        .desktop-nav-dropdown .nav-button:hover {
             color: var(--primary-black);
-            background: var(--primary-white);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: var(--accent-gray);
+            transform: translateX(4px);
+        }
+
+        .desktop-nav-dropdown .nav-button i {
+            width: 20px;
+            color: var(--primary-black);
         }
 
         /* Mobile Menu Button */
@@ -232,6 +296,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .mobile-menu-link:hover {
@@ -299,6 +364,7 @@
             margin-bottom: 24px;
             letter-spacing: 0.5px;
             animation: fadeIn 0.8s ease-out 0.2s both;
+            font-family: 'Outfit', sans-serif;
         }
 
         @keyframes fadeIn {
@@ -317,6 +383,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fadeInUp 1s ease-out 0.4s both;
+            font-family: 'Outfit', sans-serif;
         }
 
         .hero-subtitle {
@@ -326,9 +393,10 @@
             margin: 0 auto 40px;
             line-height: 1.7;
             animation: fadeInUp 1s ease-out 0.6s both;
+            font-family: 'Outfit', sans-serif;
         }
 
-        /* Kazine Promo Section */
+        /* Kazine Promo Section - MODIFIED for THE KACHOO OFFICE */
         .kazine-promo-section {
             padding: 80px 0;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
@@ -352,6 +420,7 @@
             font-weight: 900;
             margin-bottom: 16px;
             letter-spacing: -0.5px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .promo-subtitle {
@@ -359,6 +428,7 @@
             margin-bottom: 40px;
             font-size: clamp(0.9rem, 3vw, 1.1rem);
             line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
         }
 
         .promo-image {
@@ -381,6 +451,7 @@
             color: rgba(255,255,255,0.6);
             margin-top: 24px;
             font-size: 14px;
+            font-family: 'Outfit', sans-serif;
         }
 
         /* Platform Buttons Section */
@@ -468,6 +539,7 @@
             font-weight: 900;
             margin-bottom: 16px;
             letter-spacing: -1px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .platform-description {
@@ -475,6 +547,7 @@
             color: var(--text-gray);
             margin-bottom: 32px;
             line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
         }
 
         .platform-cta {
@@ -489,6 +562,7 @@
             font-size: 14px;
             transition: var(--transition);
             border: 2px solid transparent;
+            font-family: 'Outfit', sans-serif;
         }
 
         .platform-button:hover .platform-cta {
@@ -564,6 +638,7 @@
             margin-bottom: 16px;
             letter-spacing: -0.5px;
             color: var(--primary-black);
+            font-family: 'Outfit', sans-serif;
         }
 
         .feature-description {
@@ -571,6 +646,7 @@
             color: var(--text-gray);
             margin-bottom: 32px;
             line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
         }
 
         /* Publish Process Section */
@@ -647,6 +723,7 @@
             justify-content: center;
             font-size: 18px;
             font-weight: 700;
+            font-family: 'Outfit', sans-serif;
         }
 
         .step-title {
@@ -654,6 +731,7 @@
             font-weight: 700;
             margin-bottom: 16px;
             color: var(--primary-black);
+            font-family: 'Outfit', sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -666,6 +744,7 @@
             font-size: 16px;
             color: var(--text-gray);
             line-height: 1.7;
+            font-family: 'Outfit', sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -686,6 +765,7 @@
             text-decoration: none;
             transition: var(--transition);
             border: 1px solid transparent;
+            font-family: 'Outfit', sans-serif;
         }
 
         .step-link:hover {
@@ -700,6 +780,7 @@
             font-weight: 600;
             transition: var(--transition);
             border-bottom: 1px dashed #000000;
+            font-family: 'Outfit', sans-serif;
         }
 
         .twitter-link:hover {
@@ -742,6 +823,7 @@
             margin-bottom: 8px;
             text-align: center;
             letter-spacing: -0.5px;
+            font-family: 'Outfit', sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -755,6 +837,7 @@
             color: var(--text-gray);
             text-align: center;
             margin-bottom: 32px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .form-group {
@@ -767,6 +850,7 @@
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--primary-black);
+            font-family: 'Outfit', sans-serif;
         }
 
         .form-input {
@@ -774,7 +858,7 @@
             padding: 16px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: var(--border-radius);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 16px;
             transition: var(--transition);
             background: var(--primary-white);
@@ -819,7 +903,7 @@
             color: var(--primary-white);
             border: none;
             border-radius: var(--border-radius);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
@@ -845,7 +929,7 @@
             color: var(--primary-black);
             border: 2px solid var(--primary-white);
             border-radius: var(--border-radius);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
@@ -921,6 +1005,7 @@
             margin-bottom: 24px;
             position: relative;
             display: inline-block;
+            font-family: 'Outfit', sans-serif;
         }
 
         .footer-section h3::after {
@@ -949,6 +1034,7 @@
             text-decoration: none;
             font-size: 15px;
             transition: var(--transition);
+            font-family: 'Outfit', sans-serif;
         }
 
         .footer-links a:hover {
@@ -981,14 +1067,13 @@
             transform: translateY(-4px);
         }
 
-        /* X Logo Icon - Improved for Mobile */
+        /* X Logo Icon */
         .x-logo {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-weight: 900;
             font-size: 18px;
         }
 
-        /* Mobile-specific X Logo styling */
         @media (max-width: 768px) {
             .footer-section .x-logo {
                 font-size: 16px;
@@ -1016,19 +1101,16 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
+            font-family: 'Outfit', sans-serif;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            /* Mobile Header */
             .logo-container .logo-text {
                 font-size: 20px;
             }
-
             .footer-content {
                 grid-template-columns: 1fr;
             }
-
             .platform-logo {
                 height: 60px;
             }
@@ -1038,27 +1120,22 @@
             .container {
                 padding: 0 16px;
             }
-
             .platform-button,
             .publish-step,
             .feature-card {
                 padding: 24px 20px;
             }
-
             .form-container {
                 padding: 24px;
             }
-
             .platform-logo {
                 height: 50px;
             }
-            
             .promo-title {
                 font-size: 1.5rem;
             }
         }
 
-        /* Animation for mobile menu items */
         @keyframes slideInRight {
             from {
                 opacity: 0;
@@ -1086,122 +1163,79 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-content">
-            <!-- Logo on left (mobile and desktop) -->
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="logo-thekachoo.png" alt="KACHOO Logo" class="logo-img">
                 <div class="logo-text">KACHOO</div>
             </div>
             
-            <!-- Desktop Navigation Menu (visible only on desktop) -->
-            <nav class="desktop-nav">
-                <a href="kafka.html" class="nav-button">Holding Company</a>
-                <a href="kafkapages.html" class="nav-button" target="_blank">Kafkapages</a>
-                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank">Kazine Collection</a>
-                <a href="kaboom.html" class="nav-button" target="_blank">Kaboom</a>
-                <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="nav-button" target="_blank">Kazine Issues</a>
-                <a href="projectkachoo.html" class="nav-button">Project</a>
-                <a href="guidelines.html" class="nav-button">Guidelines</a>
-            </nav>
+            <!-- Desktop Navigation Dropdown - UPDATED: removed Kazine Vol 1, Kazine Collection tetap "Kazine" saja -->
+            <div class="desktop-nav-container">
+                <button class="desktop-nav-trigger" id="desktopNavTrigger">
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-nav-dropdown" id="desktopNavDropdown">
+                    <a href="kafka.html" class="nav-button"><i class="fas fa-building"></i> Holding Company</a>
+                    <a href="kafkapages.html" class="nav-button" target="_blank"><i class="fas fa-book"></i> Kafkapages</a>
+                    <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank"><i class="fas fa-tshirt"></i> Kazine</a>
+                    <a href="kaboom.html" class="nav-button" target="_blank"><i class="fas fa-camera"></i> Kaboom</a>
+                    <a href="https://thekachoo.github.io/CHOBANK/index.html" class="nav-button" target="_blank"><i class="fas fa-university"></i> Chobank</a>
+                    <a href="https://thekachoo.github.io/CHONNECT/index.html" class="nav-button" target="_blank"><i class="fas fa-plug"></i> Chonnect</a>
+                    <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a>
+                    <a href="guidelines.html" class="nav-button"><i class="fas fa-clipboard-check"></i> Guidelines</a>
+                </div>
+            </div>
             
-            <!-- Mobile Menu Button (right side, visible only on mobile) -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu - UPDATED: removed Kazine Vol 1 -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
             <i class="fas fa-times"></i>
         </button>
         <ul class="mobile-menu-list">
-            <li class="mobile-menu-item">
-                <a href="kafka.html" class="mobile-menu-link" onclick="closeMobileMenu()">
-                    <i class="fas fa-building" style="margin-right: 12px;"></i>
-                    Holding Company
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="kafkapages.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
-                    <i class="fas fa-book" style="margin-right: 12px;"></i>
-                    Kafkapages
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
-                    <i class="fas fa-tshirt" style="margin-right: 12px;"></i>
-                    Kazine Collection
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="kaboom.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
-                    <i class="fas fa-camera" style="margin-right: 12px;"></i>
-                    Kaboom
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="https://thekachoo.github.io/KAZINE/volume1.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()">
-                    <i class="fas fa-newspaper" style="margin-right: 12px;"></i>
-                    Kazine Vol 1
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="projectkachoo.html" class="mobile-menu-link" onclick="closeMobileMenu()">
-                    <i class="fas fa-calendar-alt" style="margin-right: 12px;"></i>
-                    Project
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="guidelines.html" class="mobile-menu-link" onclick="closeMobileMenu()">
-                    <i class="fas fa-clipboard-check" style="margin-right: 12px;"></i>
-                    Guidelines
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="aicho.html" class="mobile-menu-link" onclick="closeMobileMenu()">
-                    <i class="fas fa-question-circle" style="margin-right: 12px;"></i>
-                    AI-Cho
-                </a>
-            </li>
+            <li class="mobile-menu-item"><a href="kafka.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-building" style="margin-right: 12px;"></i> Holding Company</a></li>
+            <li class="mobile-menu-item"><a href="kafkapages.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-book" style="margin-right: 12px;"></i> Kafkapages</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-tshirt" style="margin-right: 12px;"></i> Kazine</a></li>
+            <li class="mobile-menu-item"><a href="kaboom.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-camera" style="margin-right: 12px;"></i> Kaboom</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOBANK/index.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-university" style="margin-right: 12px;"></i> Chobank</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHONNECT/index.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-plug" style="margin-right: 12px;"></i> Chonnect</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Datacho/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-alt" style="margin-right: 12px;"></i> Dashboard Admin</a></li>
+            <li class="mobile-menu-item"><a href="guidelines.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-clipboard-check" style="margin-right: 12px;"></i> Guidelines</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-tag">Welcome to Kachoo Official Website</div>
             <h1>WE TURN IDEAS INTO ATTENTION</h1>
-            <p class="hero-subtitle">
-                We are a digital-first media and news publication built to shape conversations in a fast-moving world.
-            </p>
+            <p class="hero-subtitle">We are a digital-first media and news publication built to shape conversations in a fast-moving world.</p>
         </div>
     </section>
 
-    <!-- Kazine Promo Section -->
+    <!-- Kazine Promo Section MODIFIED: title, image, link, caption -->
     <section class="kazine-promo-section">
         <div class="container promo-container">
-            <h2 class="promo-title">KAZINE VOLUME 1 ISSUE 1</h2>
-            <p class="promo-subtitle">
-                Check out our latest publication - available now! Featuring exclusive content and innovative storytelling.
-            </p>
-            <a href="https://thekachoo.github.io/Home/kazinevol1.html" target="_blank">
-                <img src="kazinevol1s1.png" alt="Kazine Vol 1 Issue 1" class="promo-image">
+            <h2 class="promo-title">THE KACHOO OFFICE</h2>
+            <p class="promo-subtitle">Explore the building</p>
+            <a href="https://thekachoo.github.io/Office/" target="_blank">
+                <img src="kachoooffice.png" alt="Kachoo Office" class="promo-image">
             </a>
-            <p class="promo-caption">Click the image to read Kazine Vol 1 Issue 1</p>
+            <p class="promo-caption">Explore the building</p>
         </div>
     </section>
 
-    <!-- Platform Buttons Section -->
     <section class="platforms-section">
         <div class="container">
-            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Our Digital Platforms</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Explore our specialized media platforms</p>
-            
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; font-family:'Outfit',sans-serif;">Our Digital Platforms</h2>
+            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem); font-family:'Outfit',sans-serif;">Explore our specialized media platforms</p>
             <div class="platform-grid">
                 <a href="https://thekachoo.github.io/Home/kafkapages.html" class="platform-button" target="_blank">
                     <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo">
@@ -1209,14 +1243,12 @@
                     <p class="platform-description">The best book publisher.</p>
                     <span class="platform-cta">CHECK THIS OUT <i class="fas fa-arrow-right"></i></span>
                 </a>
-                
                 <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" target="_blank">
                     <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo">
                     <h3 class="platform-title">KAZINE</h3>
                     <p class="platform-description">Digital fashion & lifestyle magazine pushing boundaries in creative publishing.</p>
                     <span class="platform-cta">EXPLORE FASHION <i class="fas fa-arrow-right"></i></span>
                 </a>
-                
                 <a href="https://thekachoo.github.io/Home/kaboom.html" class="platform-button" target="_blank">
                     <img src="kaboom-logo.png" alt="Kaboom Logo" class="platform-logo">
                     <h3 class="platform-title">KABOOM</h3>
@@ -1227,477 +1259,112 @@
         </div>
     </section>
 
-    <!-- Digital Feature Section -->
-<section class="digital-feature-section">
-    <div class="container">
-        <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">Digital Features</h2>
-        <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Discover our innovative digital solutions and services</p>
-        
-        <div class="feature-grid">
-            <!-- CHOBANK Card -->
-            <div class="feature-card">
-                <a href="https://thekachoo.github.io/payment/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                    <div class="feature-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3 class="feature-title">CHOBANK</h3>
-                    <p class="feature-description">Our digital banking solution for seamless transactions, payments, and financial management across all KACHOO platforms.</p>
-                    <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
-                </a>
-            </div>
-            
-            <!-- CHONNECT Card -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3 class="feature-title">CHONNECT</h3>
-                <p class="feature-description">This feature serves as a database that collects official roleplay base accounts to make collaboration between roleplayers easier.</p>
-                <div style="padding: 12px 24px; background: var(--accent-gray); border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; color: var(--primary-black);">
-                    Coming Soon
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Publish Process Section -->
-    <section class="publish-section">
+    <section class="digital-feature-section">
         <div class="container">
-            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px;">How To Work With Us</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem);">Follow these simple steps to collab or get your work published with us</p>
-            
-            <div class="publish-steps">
-                <div class="publish-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Prepare Your Proposal</h3>
-                    <p class="step-description">Prepare your proposal or half-finished manuscript before submitting to Kachoo. Publication proposal guidelines are available in the main menu under <strong>Guidelines</strong>.</p>
-                    <a href="guidelines.html" class="step-link">Check Guidelines Here</a>
-                </div>
-                
-                <div class="publish-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Submit Your Work</h3>
-                    <p class="step-description">Send your proposal via email or direct message to <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a> on X app. Make sure your submission follows our guidelines for faster processing.</p>
-                    <div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
-                        Email or DM <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a>
-                    </div>
-                </div>
-                
-                <div class="publish-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Get Response</h3>
-                    <p class="step-description">We will respond to your submission within maximum <strong>2×24 hours</strong>. Our team will review your proposal and provide feedback or next steps.</p>
-                    <div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">
-                        Max 48 Hours Response
-                    </div>
-                </div>
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; font-family:'Outfit',sans-serif;">Digital Features</h2>
+            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem); font-family:'Outfit',sans-serif;">Discover our innovative digital solutions and services</p>
+            <div class="feature-grid">
+                <div class="feature-card"><a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;"><img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;"><h3 class="feature-title">CHOBANK</h3><p class="feature-description">Our digital banking solution for seamless transactions, payments, and financial management across all KACHOO platforms.</p><span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span></a></div>
+                <div class="feature-card"><a href="https://thekachoo.github.io/CHONNECT/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;"><img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo" style="height: 80px; width: auto; margin-bottom: 24px;"><h3 class="feature-title">CHONNECT</h3><p class="feature-description">This feature serves as a database that collects official base accounts to make collaboration easier.</p><div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div></a></div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Form Section -->
+    <section class="publish-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; font-family:'Outfit',sans-serif;">How To Work With Us</h2>
+            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 40px; font-size: clamp(0.9rem, 3vw, 1.1rem); font-family:'Outfit',sans-serif;">Follow these simple steps to collab or get your work published with us</p>
+            <div class="publish-steps">
+                <div class="publish-step"><div class="step-number">1</div><h3 class="step-title">Prepare Your Proposal</h3><p class="step-description">Prepare your proposal or half-finished manuscript before submitting to Kachoo. Publication proposal guidelines are available in the main menu under <strong>Guidelines</strong>.</p><a href="guidelines.html" class="step-link">Check Guidelines Here</a></div>
+                <div class="publish-step"><div class="step-number">2</div><h3 class="step-title">Submit Your Work</h3><p class="step-description">Send your proposal via email or direct message to <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a> on X app. Make sure your submission follows our guidelines for faster processing.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black); font-family:'Outfit',sans-serif;">Email or DM <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a></div></div>
+                <div class="publish-step"><div class="step-number">3</div><h3 class="step-title">Get Response</h3><p class="step-description">We will respond to your submission within maximum <strong>2×24 hours</strong>. Our team will review your proposal and provide feedback or next steps.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black); font-family:'Outfit',sans-serif;">Max 48 Hours Response</div></div>
+            </div>
+        </div>
+    </section>
+
     <section class="faq-form-section" id="contact">
         <div class="container">
             <div class="form-container">
                 <h2 class="form-title">Have Questions About KACHOO?</h2>
                 <p class="form-subtitle">Submit your questions and rate our platform. All responses will be saved for review.</p>
-                
                 <form id="faqForm">
-                    <div class="form-group">
-                        <label for="question" class="form-label">Your Question</label>
-                        <textarea id="question" name="question" class="form-input form-textarea" placeholder="Type your question here..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Rate Your Experience</label>
-                        <div class="rating-group">
-                            <span class="rating-star" data-rating="1">★</span>
-                            <span class="rating-star" data-rating="2">★</span>
-                            <span class="rating-star" data-rating="3">★</span>
-                            <span class="rating-star" data-rating="4">★</span>
-                            <span class="rating-star" data-rating="5">★</span>
-                        </div>
-                        <input type="hidden" id="rating" name="rating" value="0">
-                    </div>
-                    
-                    <button type="submit" class="submit-button">
-                        <i class="fas fa-paper-plane"></i> Submit Question & Rating
-                    </button>
-                    
-                    <a href="aicho.html" class="qna-link">
-                        <i class="fas fa-question-circle"></i> Check Your Questions & Answers Here
-                    </a>
-                    
+                    <div class="form-group"><label for="question" class="form-label">Your Question</label><textarea id="question" name="question" class="form-input form-textarea" placeholder="Type your question here..." required></textarea></div>
+                    <div class="form-group"><label class="form-label">Rate Your Experience</label><div class="rating-group"><span class="rating-star" data-rating="1">★</span><span class="rating-star" data-rating="2">★</span><span class="rating-star" data-rating="3">★</span><span class="rating-star" data-rating="4">★</span><span class="rating-star" data-rating="5">★</span></div><input type="hidden" id="rating" name="rating" value="0"></div>
+                    <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Submit Question & Rating</button>
                     <div id="formMessage" class="form-message"></div>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>KACHOO</h3>
-                    <p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">
-                        Digital media company turning ideas into attention through innovative publications.
-                    </p>
-                    <div class="social-links">
-                        <a href="mailto:ohkachoo@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://twitter.com/thekachoo" target="_blank" class="social-link">
-                            <span class="x-logo">𝕏</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Platforms</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a>
-                        </li>
-                        <li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE COLLECTION</a>
-                        </li>
-                        <li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/Home/kaboom.html" target="_blank">Kaboom</a>
-                        </li>
-                        <li><i class="fas fa-newspaper" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="https://thekachoo.github.io/Home/kazinevol1.html" target="_blank">Kazine Vol 1</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
-                            <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a>
-                        </li>
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
-                            <a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a>
-                        </li>
-                        <li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Address</h3>
-                    <ul class="footer-links">
-                        <li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">
-                            <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
-                            Jenderal Sudirman Avenue,<br>
-                            Lots 61–62,<br>
-                            South Jakarta 12930,<br>
-                            Indonesia
-                        </li>
-                    </ul>
-                </div>
+                <div class="footer-section"><h3>KACHOO</h3><p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px; font-family:'Outfit',sans-serif;">Digital media company turning ideas into attention through innovative publications.</p><div class="social-links"><a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a></div></div>
+                <div class="footer-section"><h3>Platforms</h3><ul class="footer-links"><li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li><li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li><li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/Home/kaboom.html" target="_blank">KABOOM</a></li></ul></div>
+                <div class="footer-section"><h3>Contact</h3><ul class="footer-links"><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a></li><li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li></ul></div>
+                <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Jenderal Sudirman Avenue,<br>Lots 61–62,<br>South Jakarta 12930,<br>Indonesia</li></ul></div>
             </div>
-            
-            <div class="copyright">
-                &copy; 2026 KACHOO. All rights reserved.
-            </div>
+            <div class="copyright">&copy; 2026 KACHOO. All rights reserved.</div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
+        function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
         mobileMenuBtn.addEventListener('click', openMobileMenu);
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        document.querySelectorAll('.mobile-menu-link').forEach(link => { link.addEventListener('click', closeMobileMenu); });
 
-        // Close menu when clicking on links
-        document.querySelectorAll('.mobile-menu-link').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Desktop Navigation Active State
-        document.querySelectorAll('.desktop-nav .nav-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Only apply active state for internal links
-                if (!this.getAttribute('href').startsWith('http') || this.getAttribute('href').includes('thekachoo.github.io')) {
-                    document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll function for internal links
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-                
-                // Update active state for desktop nav
-                document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
-                    if (btn.getAttribute('href') === `#${sectionId}`) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-            }
+        const desktopNavTrigger = document.getElementById('desktopNavTrigger');
+        const desktopNavDropdown = document.getElementById('desktopNavDropdown');
+        if (desktopNavTrigger && desktopNavDropdown) {
+            desktopNavTrigger.addEventListener('click', function(e) { e.stopPropagation(); this.classList.toggle('active'); desktopNavDropdown.classList.toggle('active'); });
+            document.addEventListener('click', function(e) { if (!desktopNavTrigger.contains(e.target) && !desktopNavDropdown.contains(e.target)) { desktopNavTrigger.classList.remove('active'); desktopNavDropdown.classList.remove('active'); } });
+            desktopNavDropdown.querySelectorAll('.nav-button').forEach(link => { link.addEventListener('click', function() { desktopNavTrigger.classList.remove('active'); desktopNavDropdown.classList.remove('active'); }); });
         }
 
-        // Rating stars functionality
         const stars = document.querySelectorAll('.rating-star');
         const ratingInput = document.getElementById('rating');
-        
         stars.forEach(star => {
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-rating');
-                ratingInput.value = rating;
-                
-                // Update star display
-                stars.forEach(s => {
-                    if (s.getAttribute('data-rating') <= rating) {
-                        s.classList.add('active');
-                    } else {
-                        s.classList.remove('active');
-                    }
-                });
-            });
-            
-            // Hover effect
-            star.addEventListener('mouseover', function() {
-                const rating = this.getAttribute('data-rating');
-                stars.forEach(s => {
-                    if (s.getAttribute('data-rating') <= rating) {
-                        s.style.color = '#FFD700';
-                    } else {
-                        s.style.color = '#E5E5E5';
-                    }
-                });
-            });
-            
-            star.addEventListener('mouseout', function() {
-                const currentRating = ratingInput.value;
-                stars.forEach(s => {
-                    if (s.getAttribute('data-rating') <= currentRating) {
-                        s.style.color = '#FFD700';
-                    } else {
-                        s.style.color = '#E5E5E5';
-                    }
-                });
-            });
+            star.addEventListener('click', function() { const rating = this.getAttribute('data-rating'); ratingInput.value = rating; stars.forEach(s => { if (s.getAttribute('data-rating') <= rating) s.classList.add('active'); else s.classList.remove('active'); }); });
+            star.addEventListener('mouseover', function() { const rating = this.getAttribute('data-rating'); stars.forEach(s => { s.style.color = (s.getAttribute('data-rating') <= rating) ? '#FFD700' : '#E5E5E5'; }); });
+            star.addEventListener('mouseout', function() { const currentRating = ratingInput.value; stars.forEach(s => { s.style.color = (s.getAttribute('data-rating') <= currentRating) ? '#FFD700' : '#E5E5E5'; }); });
         });
 
-        // Form submission to Google Sheets
         document.getElementById('faqForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const question = document.getElementById('question').value;
             const rating = document.getElementById('rating').value;
             const formMessage = document.getElementById('formMessage');
-            
-            if (!question) {
-                formMessage.textContent = 'Please enter your question.';
-                formMessage.className = 'form-message error';
-                return;
-            }
-            
-            if (rating === '0') {
-                formMessage.textContent = 'Please rate your experience.';
-                formMessage.className = 'form-message error';
-                return;
-            }
-            
-            // Create form data
+            if (!question) { formMessage.textContent = 'Please enter your question.'; formMessage.className = 'form-message error'; return; }
+            if (rating === '0') { formMessage.textContent = 'Please rate your experience.'; formMessage.className = 'form-message error'; return; }
             const formData = new FormData();
             formData.append('Timestamp', new Date().toISOString());
             formData.append('Question', question);
             formData.append('Rating', rating);
-            
-            // Google Apps Script Web App URL
             const scriptURL = 'https://script.google.com/macros/s/AKfycby45UHaSRDikGB-_D0jYf3mNfe1Cn_A4juthH_3ahmlT4OKJPRBVK9lDyfI_jRyUG83/exec';
-            
-            // Show loading state
             const submitBtn = this.querySelector('.submit-button');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
-            
-            // Send data to Google Sheets
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                formMessage.textContent = data.message || 'Thank you! Your question and rating have been saved.';
-                formMessage.className = 'form-message success';
-                
-                // Reset form
-                document.getElementById('faqForm').reset();
-                ratingInput.value = '0';
-                stars.forEach(star => {
-                    star.classList.remove('active');
-                    star.style.color = '#E5E5E5';
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                formMessage.textContent = 'There was an error submitting your form. Please try again.';
-                formMessage.className = 'form-message error';
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Auto-hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            });
+            fetch(scriptURL, { method: 'POST', body: formData }).then(response => response.ok ? response.json() : Promise.reject()).then(data => { formMessage.textContent = data.message || 'Thank you! Your question and rating have been saved.'; formMessage.className = 'form-message success'; document.getElementById('faqForm').reset(); ratingInput.value = '0'; stars.forEach(star => { star.classList.remove('active'); star.style.color = '#E5E5E5'; }); }).catch(error => { console.error('Error:', error); formMessage.textContent = 'There was an error submitting your form. Please try again.'; formMessage.className = 'form-message error'; }).finally(() => { submitBtn.innerHTML = originalText; submitBtn.disabled = false; setTimeout(() => { formMessage.style.display = 'none'; }, 5000); });
         });
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Animate publish steps on scroll
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const publishObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.publish-step').forEach(step => {
-            publishObserver.observe(step);
-        });
-
-        // Animate platform buttons on scroll
-        const platformObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                } else {
-                    entry.target.style.animationPlayState = 'paused';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.platform-button').forEach(button => {
-            platformObserver.observe(button);
-        });
-
-        // Animate feature cards on scroll
-        const featureObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            featureObserver.observe(card);
-        });
-
-        // Set initial header state
+        window.addEventListener('scroll', () => { const header = document.querySelector('header'); if (window.scrollY > 100) header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)'; else header.style.boxShadow = 'none'; });
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
+        const publishObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, observerOptions);
+        document.querySelectorAll('.publish-step').forEach(step => publishObserver.observe(step));
+        const platformObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.animationPlayState = 'running'; else entry.target.style.animationPlayState = 'paused'; }); }, observerOptions);
+        document.querySelectorAll('.platform-button').forEach(button => platformObserver.observe(button));
+        const featureObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, observerOptions);
+        document.querySelectorAll('.feature-card').forEach(card => { card.style.opacity = '0'; card.style.transform = 'translateY(30px)'; card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out'; featureObserver.observe(card); });
         window.dispatchEvent(new Event('scroll'));
-        
-        // Handle holding company link for desktop
-        document.querySelectorAll('a[href="https://thekachoo.github.io/Home/kafka.html"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                }
-            });
-        });
-
-        // Handle project link
-        document.querySelectorAll('a[href="projectkachoo.html"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                }
-            });
-        });
-
-        // Handle guidelines link
-        document.querySelectorAll('a[href="guidelines.html"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                }
-            });
-        });
-
-        // Handle qna link
-        document.querySelectorAll('a[href="aicho.html"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                }
-            });
-        });
-
-        // Handle CHOBANK link for desktop
-        document.querySelectorAll('a[href="https://thekachoo.github.io/payment/"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!this.getAttribute('target')) {
-                    e.preventDefault();
-                    window.open(this.href, '_blank');
-                }
-            });
-        });
     </script>
 </body>
-</html>
+    </html>
