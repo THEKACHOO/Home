@@ -516,6 +516,15 @@
             display: block;
         }
 
+        /* --- Aturan baru untuk logo Kadio --- */
+        .kadio-logo {
+            height: 70px;
+            width: auto;
+            margin-bottom: 16px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
         @media (max-width: 768px) {
             .platform-logo {
                 height: 48px;
@@ -523,6 +532,10 @@
             }
             .custom-icon {
                 font-size: 42px;
+                margin-bottom: 10px;
+            }
+            .kadio-logo {
+                height: 48px;
                 margin-bottom: 10px;
             }
         }
@@ -533,6 +546,9 @@
             }
             .custom-icon {
                 font-size: 36px;
+            }
+            .kadio-logo {
+                height: 40px;
             }
         }
 
@@ -911,7 +927,7 @@
     <header>
         <div class="container header-content">
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <img src="logo-thekachoo.png" alt="KACHOO Logo" class="logo-img">
+                <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img">
                 <div class="logo-text">KACHOO</div>
             </div>
             
@@ -997,8 +1013,9 @@
                     <p class="platform-description">Real-time news platform delivering curated content and breaking stories.</p>
                     <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
                 </a>
+                <!-- Perubahan ada di sini: ikon camera diganti dengan gambar Kadio.png -->
                 <div class="platform-button disabled-link">
-                    <i class="fas fa-camera custom-icon"></i>
+                    <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo">
                     <h3 class="platform-title">KADIO</h3>
                     <p class="platform-description">Private media studio & production house</p>
                     <span class="platform-cta">COMING SOON <i class="fas fa-clock"></i></span>
