@@ -14,7 +14,6 @@
             box-sizing: border-box;
         }
 
-        /* GLOBAL: SEMUA elemen pakai Outfit, TANPA sans-serif! */
         body, html, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -31,7 +30,6 @@
             font-family: 'Outfit' !important;
         }
 
-        /* Icon font awesome tetap pakai font awesome */
         i, .fas, .far, .fab, [class*="fa-"] {
             font-family: "Font Awesome 6 Free" !important;
         }
@@ -60,7 +58,6 @@
             padding: 0 24px;
         }
 
-        /* Header */
         header {
             background-color: var(--primary-white);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -116,7 +113,6 @@
             width: 100%;
         }
 
-        /* Desktop Navigation */
         .desktop-nav-container {
             position: relative;
             display: block;
@@ -213,7 +209,6 @@
             color: var(--primary-black);
         }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -236,7 +231,6 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -311,7 +305,6 @@
             transform: translateX(4px);
         }
 
-        /* Hero Section - REDUCED SPACE */
         .hero {
             padding: 120px 0 60px;
             background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
@@ -389,7 +382,6 @@
             line-height: 1.5;
         }
 
-        /* Kazine Promo Section */
         .kazine-promo-section {
             padding: 60px 0;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
@@ -442,7 +434,6 @@
             font-size: 14px;
         }
 
-        /* Platform Buttons Section - Mobile 2x2 grid */
         .platforms-section {
             padding: 80px 0;
             background: var(--accent-gray);
@@ -516,7 +507,6 @@
             display: block;
         }
 
-        /* --- Aturan baru untuk logo Kadio --- */
         .kadio-logo {
             height: 70px;
             width: auto;
@@ -619,7 +609,6 @@
             transform: translateX(3px);
         }
 
-        /* Digital Feature Section - 2 kolom */
         .digital-feature-section {
             padding: 80px 0;
             background: var(--primary-white);
@@ -697,7 +686,6 @@
             line-height: 1.4;
         }
 
-        /* Publish Process Section */
         .publish-section {
             padding: 80px 0;
             background: var(--accent-gray);
@@ -791,7 +779,6 @@
             border-bottom-color: #333333;
         }
 
-        /* FOOTER - DESAIN AWAL */
         footer {
             background: var(--primary-black);
             color: var(--primary-white);
@@ -943,6 +930,9 @@
                     <a href="https://thekachoo.github.io/KABOOM/" class="nav-button" target="_blank"><i class="fas fa-camera"></i> Kaboom</a>
                     <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank"><i class="fas fa-university"></i> Chobank</a>
                     <a href="https://thekachoo.github.io/CHONNECT/" class="nav-button" target="_blank"><i class="fas fa-plug"></i> Chonnect</a>
+                    <a href="https://thekachoo.github.io/CHOSONG/" class="nav-button" target="_blank"><i class="fas fa-music"></i> Chosong</a>
+                    <!-- CHODATE added in nav -->
+                    <a href="https://thekachoo.github.io/CHODATE/" class="nav-button" target="_blank"><i class="fas fa-calendar-day"></i> Chodate</a>
                     <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a>
                     <a href="guidelines.html" class="nav-button"><i class="fas fa-clipboard-check"></i> Guidelines</a>
                 </div>
@@ -966,6 +956,8 @@
             <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KABOOM/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-camera"></i> Kaboom</a></li>
             <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-university"></i> Chobank</a></li>
             <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHONNECT/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-plug"></i> Chonnect</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOSONG/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-music"></i> Chosong</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHODATE/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-day"></i> Chodate</a></li>
             <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Datacho/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a></li>
             <li class="mobile-menu-item"><a href="guidelines.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-clipboard-check"></i> Guidelines</a></li>
         </ul>
@@ -1013,7 +1005,6 @@
                     <p class="platform-description">Real-time news platform delivering curated content and breaking stories.</p>
                     <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <!-- Perubahan ada di sini: ikon camera diganti dengan gambar Kadio.png -->
                 <div class="platform-button disabled-link">
                     <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo">
                     <h3 class="platform-title">KADIO</h3>
@@ -1047,12 +1038,21 @@
                         <div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div>
                     </a>
                 </div>
-                <!-- CHOSONG - Baru, di bawah CHOBANK & CHONNECT, posisi kiri bawah -->
+                <!-- CHOSONG (left bottom) -->
                 <div class="feature-card">
                     <a href="https://thekachoo.github.io/CHOSONG/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
                         <img src="Chosong1.png" alt="CHOSONG Logo" class="platform-logo">
                         <h3 class="feature-title">CHOSONG</h3>
                         <p class="feature-description">Digital platform for music & creative content.</p>
+                        <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Explore Now <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+                <!-- CHODATE (right bottom, added next to CHOSONG) -->
+                <div class="feature-card">
+                    <a href="https://thekachoo.github.io/CHODATE/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="Chodate.png" alt="CHODATE Logo" class="platform-logo">
+                        <h3 class="feature-title">CHODATE</h3>
+                        <p class="feature-description">Share your favorite moments with ease, keeps your content ready for everytime!</p>
                         <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Explore Now <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
