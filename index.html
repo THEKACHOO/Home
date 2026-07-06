@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>KACHOO OFFICIAL</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* reset & base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body, html, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -26,9 +26,8 @@
     figure, figcaption, footer, header, hgroup,
     menu, nav, output, ruby, section, summary,
     time, mark, audio, video, button, input, textarea, select {
-      font-family: 'Outfit' !important;
+      font-family: 'Outfit', sans-serif !important;
     }
-
     i, .fas, .far, .fab, [class*="fa-"] {
       font-family: "Font Awesome 6 Free" !important;
     }
@@ -50,14 +49,13 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* header */
+    /* ----- HEADER : akan hilang saat scroll ke bawah ----- */
     header {
       background-color: var(--primary-white);
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -69,6 +67,18 @@
       z-index: 1000;
       backdrop-filter: blur(10px);
       background-color: rgba(255, 255, 255, 0.98);
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(0);
+    }
+
+    /* saat scroll ke bawah, header sembunyi */
+    header.hide {
+      transform: translateY(-100%);
+    }
+
+    /* beri padding top pada body agar konten tidak ketutupan header */
+    body {
+      padding-top: 80px;
     }
 
     .header-content {
@@ -84,20 +94,17 @@
       gap: 12px;
       cursor: pointer;
     }
-
     .logo-img {
       height: 40px;
       width: auto;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       animation: floatLogo 3s ease-in-out infinite;
     }
-
     @keyframes floatLogo {
       0% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
       100% { transform: translateY(0); }
     }
-
     .logo-text {
       font-size: 24px;
       font-weight: 900;
@@ -105,7 +112,6 @@
       color: var(--primary-black);
       position: relative;
     }
-
     .logo-text::after {
       content: '';
       position: absolute;
@@ -116,23 +122,20 @@
       background-color: var(--primary-black);
       transition: width 0.3s ease;
     }
-
     .logo-container:hover .logo-text::after {
       width: 100%;
     }
 
-    /* desktop nav: NO ICONS, just text */
+    /* desktop nav: text only */
     .desktop-nav-container {
       position: relative;
       display: block;
     }
-
     @media (max-width: 768px) {
       .desktop-nav-container {
         display: none;
       }
     }
-
     .desktop-nav-trigger {
       display: flex;
       align-items: center;
@@ -147,20 +150,16 @@
       transition: var(--transition);
       border: none;
     }
-
     .desktop-nav-trigger:hover {
       background: rgba(0, 0, 0, 0.1);
       transform: translateY(-2px);
     }
-
     .desktop-nav-trigger i {
       transition: transform 0.3s ease;
     }
-
     .desktop-nav-trigger.active i {
       transform: rotate(180deg);
     }
-
     .desktop-nav-dropdown {
       position: absolute;
       top: calc(100% + 8px);
@@ -177,13 +176,11 @@
       z-index: 1001;
       border: 1px solid rgba(0, 0, 0, 0.08);
     }
-
     .desktop-nav-dropdown.active {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
-
     .desktop-nav-dropdown .nav-button {
       display: flex;
       align-items: center;
@@ -202,17 +199,14 @@
       text-align: left;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
-
     .desktop-nav-dropdown .nav-button:last-child {
       border-bottom: none;
     }
-
     .desktop-nav-dropdown .nav-button:hover {
       color: var(--primary-black);
       background: var(--accent-gray);
       transform: translateX(4px);
     }
-
     .desktop-nav-dropdown .nav-button i {
       display: none;
     }
@@ -229,17 +223,14 @@
       border-radius: 8px;
       transition: var(--transition);
     }
-
     @media (max-width: 768px) {
       .mobile-menu-btn {
         display: block;
       }
     }
-
     .mobile-menu-btn:hover {
       background: rgba(0, 0, 0, 0.05);
     }
-
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -253,11 +244,9 @@
       z-index: 999;
       overflow-y: auto;
     }
-
     .mobile-menu.active {
       right: 0;
     }
-
     .mobile-menu-overlay {
       position: fixed;
       top: 0;
@@ -270,12 +259,10 @@
       transition: all 0.3s ease;
       z-index: 998;
     }
-
     .mobile-menu-overlay.active {
       opacity: 1;
       visibility: visible;
     }
-
     .mobile-menu-close {
       position: absolute;
       top: 24px;
@@ -286,15 +273,12 @@
       color: var(--primary-black);
       cursor: pointer;
     }
-
     .mobile-menu-list {
       list-style: none;
     }
-
     .mobile-menu-item {
       margin-bottom: 16px;
     }
-
     .mobile-menu-link {
       display: block;
       padding: 16px;
@@ -308,7 +292,6 @@
       align-items: center;
       gap: 12px;
     }
-
     .mobile-menu-link:hover {
       background: rgba(0, 0, 0, 0.1);
       transform: translateX(4px);
@@ -316,7 +299,7 @@
 
     /* hero */
     .hero {
-      padding: 120px 0 60px;
+      padding: 60px 0 60px;
       background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
       position: relative;
       overflow: hidden;
@@ -324,14 +307,12 @@
       display: flex;
       align-items: center;
     }
-
     @media (max-width: 768px) {
       .hero {
-        padding: 110px 0 40px;
+        padding: 40px 0 40px;
         min-height: auto;
       }
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -341,19 +322,16 @@
       height: 1px;
       background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
     }
-
     .hero-content {
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
       animation: fadeInUp 1s ease-out;
     }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .hero-tag {
       display: inline-block;
       padding: 6px 14px;
@@ -365,7 +343,6 @@
       margin-bottom: 16px;
       letter-spacing: 0.5px;
     }
-
     .hero h1 {
       font-size: clamp(2rem, 7vw, 3.8rem);
       font-weight: 900;
@@ -377,7 +354,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero-subtitle {
       font-size: clamp(0.95rem, 3.5vw, 1.2rem);
       color: var(--text-gray);
@@ -391,19 +367,16 @@
       padding: 60px 0;
       background: linear-gradient(135deg, #000000 0%, #333333 100%);
     }
-
     @media (max-width: 768px) {
       .kazine-promo-section {
         padding: 40px 0;
       }
     }
-
     .promo-container {
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
     }
-
     .promo-title {
       color: white;
       font-size: clamp(1.5rem, 5vw, 2.2rem);
@@ -411,13 +384,11 @@
       margin-bottom: 12px;
       letter-spacing: -0.5px;
     }
-
     .promo-subtitle {
       color: rgba(255,255,255,0.8);
       margin-bottom: 30px;
       font-size: clamp(0.85rem, 3vw, 1rem);
     }
-
     .promo-image {
       max-width: 100%;
       height: auto;
@@ -428,36 +399,31 @@
       display: block;
       margin: 0 auto;
     }
-
     .promo-image:hover {
       transform: translateY(-8px) scale(1.02);
     }
-
     .promo-caption {
       color: rgba(255,255,255,0.6);
       margin-top: 24px;
       font-size: 14px;
     }
 
-    /* PLATFORMS: desktop 4x4 grid (4 atas, 4 bawah) */
+    /* PLATFORMS */
     .platforms-section {
       padding: 80px 0;
       background: var(--accent-gray);
     }
-
     @media (max-width: 768px) {
       .platforms-section {
         padding: 50px 0;
       }
     }
-
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
       margin-top: 40px;
     }
-
     @media (max-width: 768px) {
       .platform-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -465,13 +431,11 @@
         margin-top: 24px;
       }
     }
-
     @media (max-width: 480px) {
       .platform-grid {
         gap: 12px;
       }
     }
-
     .platform-button {
       background: var(--primary-white);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -486,18 +450,15 @@
       transition: var(--transition);
       transform: translateY(0);
     }
-
     @media (max-width: 768px) {
       .platform-button {
         padding: 20px 12px;
       }
     }
-
     .platform-button:hover {
       transform: translateY(-4px);
       box-shadow: var(--hover-shadow);
     }
-
     .platform-logo {
       height: 70px;
       width: auto;
@@ -505,14 +466,12 @@
       object-fit: contain;
       transition: var(--transition);
     }
-
     .custom-icon {
       font-size: 56px;
       color: #000000;
       margin-bottom: 16px;
       display: block;
     }
-
     .kadio-logo {
       height: 70px;
       width: auto;
@@ -520,7 +479,6 @@
       object-fit: contain;
       transition: var(--transition);
     }
-
     @media (max-width: 768px) {
       .platform-logo {
         height: 48px;
@@ -535,7 +493,6 @@
         margin-bottom: 10px;
       }
     }
-
     @media (max-width: 480px) {
       .platform-logo {
         height: 40px;
@@ -547,28 +504,24 @@
         height: 40px;
       }
     }
-
     .platform-title {
       font-size: clamp(1.1rem, 4vw, 1.6rem);
       font-weight: 900;
       margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
-
     .platform-description {
       font-size: clamp(0.7rem, 3vw, 0.9rem);
       color: var(--text-gray);
       margin-bottom: 20px;
       line-height: 1.4;
     }
-
     @media (max-width: 768px) {
       .platform-description {
         margin-bottom: 16px;
         font-size: 11px;
       }
     }
-
     .platform-cta {
       display: inline-flex;
       align-items: center;
@@ -582,21 +535,18 @@
       transition: var(--transition);
       border: 1px solid transparent;
     }
-
     @media (max-width: 768px) {
       .platform-cta {
         padding: 6px 12px;
         font-size: 10px;
       }
     }
-
     .platform-button:hover .platform-cta {
       background: transparent;
       color: var(--primary-black);
       border-color: var(--primary-black);
       transform: translateX(3px);
     }
-
     .platform-button.disabled-link {
       cursor: default;
     }
@@ -615,25 +565,22 @@
       transform: translateX(3px);
     }
 
-    /* FEATURE grid: desktop 4 kolom, mobile tetap 2 kolom */
+    /* FEATURE grid */
     .digital-feature-section {
       padding: 80px 0;
       background: var(--primary-white);
     }
-
     @media (max-width: 768px) {
       .digital-feature-section {
         padding: 50px 0;
       }
     }
-
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
       margin-top: 40px;
     }
-
     @media (max-width: 768px) {
       .feature-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -641,13 +588,11 @@
         margin-top: 24px;
       }
     }
-
     @media (max-width: 480px) {
       .feature-grid {
         gap: 12px;
       }
     }
-
     .feature-card {
       background: var(--primary-white);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -657,36 +602,30 @@
       transition: var(--transition);
       box-shadow: var(--card-shadow);
     }
-
     @media (max-width: 768px) {
       .feature-card {
         padding: 24px 16px;
       }
     }
-
     .feature-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--hover-shadow);
     }
-
     .feature-card .platform-logo {
       height: 70px;
       margin-bottom: 16px;
     }
-
     @media (max-width: 768px) {
       .feature-card .platform-logo {
         height: 48px;
         margin-bottom: 12px;
       }
     }
-
     .feature-title {
       font-size: clamp(1.1rem, 4vw, 1.5rem);
       font-weight: 900;
       margin-bottom: 10px;
     }
-
     .feature-description {
       font-size: clamp(0.7rem, 3vw, 0.9rem);
       color: var(--text-gray);
@@ -699,20 +638,17 @@
       padding: 80px 0;
       background: var(--accent-gray);
     }
-
     @media (max-width: 768px) {
       .publish-section {
         padding: 50px 0;
       }
     }
-
     .publish-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 32px;
       margin-top: 40px;
     }
-
     .publish-step {
       background: var(--primary-white);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -721,12 +657,10 @@
       position: relative;
       transition: var(--transition);
     }
-
     .publish-step:hover {
       transform: translateY(-8px);
       box-shadow: var(--hover-shadow);
     }
-
     .step-number {
       position: absolute;
       top: -20px;
@@ -742,19 +676,16 @@
       font-size: 18px;
       font-weight: 700;
     }
-
     .step-title {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 16px;
     }
-
     .step-description {
       font-size: 16px;
       color: var(--text-gray);
       line-height: 1.7;
     }
-
     .step-link {
       display: inline-block;
       padding: 8px 16px;
@@ -768,13 +699,11 @@
       transition: var(--transition);
       border: 1px solid transparent;
     }
-
     .step-link:hover {
       background: var(--primary-black);
       color: var(--primary-white);
       transform: translateY(-2px);
     }
-
     .twitter-link {
       color: #000000;
       text-decoration: none;
@@ -782,7 +711,6 @@
       transition: var(--transition);
       border-bottom: 1px dashed #000000;
     }
-
     .twitter-link:hover {
       color: #333333;
       border-bottom-color: #333333;
@@ -794,26 +722,22 @@
       color: var(--primary-white);
       padding: 80px 0 40px;
     }
-
     @media (max-width: 768px) {
       footer {
         padding: 60px 0 40px;
       }
     }
-
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 48px;
       margin-bottom: 60px;
     }
-
     @media (max-width: 768px) {
       .footer-content {
         gap: 32px;
       }
     }
-
     .footer-section h3 {
       font-size: 18px;
       font-weight: 700;
@@ -821,7 +745,6 @@
       position: relative;
       display: inline-block;
     }
-
     .footer-section h3::after {
       content: '';
       position: absolute;
@@ -831,36 +754,30 @@
       height: 2px;
       background: var(--primary-white);
     }
-
     .footer-links {
       list-style: none;
     }
-
     .footer-links li {
       margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .footer-links a {
       color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
       font-size: 15px;
       transition: var(--transition);
     }
-
     .footer-links a:hover {
       color: var(--primary-white);
       transform: translateX(4px);
     }
-
     .social-links {
       display: flex;
       gap: 16px;
       margin-top: 24px;
     }
-
     .social-link {
       display: inline-flex;
       align-items: center;
@@ -873,18 +790,15 @@
       text-decoration: none;
       transition: var(--transition);
     }
-
     .social-link:hover {
       background: var(--primary-white);
       color: var(--primary-black);
       transform: translateY(-4px);
     }
-
     .x-logo {
       font-weight: 900;
       font-size: 18px;
     }
-
     @media (max-width: 768px) {
       .footer-section .x-logo {
         font-size: 16px;
@@ -904,7 +818,6 @@
         padding: 3px 5px;
       }
     }
-
     .copyright {
       text-align: center;
       padding-top: 40px;
@@ -912,17 +825,16 @@
       color: rgba(255, 255, 255, 0.5);
       font-size: 14px;
     }
-
     @media (max-width: 768px) {
       .footer-content {
         grid-template-columns: 1fr;
       }
     }
 
-    /* DESKTOP: title lebih luas atas bawah (padding) & feature 4 kolom */
+    /* desktop hero padding */
     @media (min-width: 769px) {
       .hero {
-        padding: 200px 0 140px;  /* lebih luas atas bawah */
+        padding: 100px 0 100px;
       }
       .hero h1 {
         margin-bottom: 28px;
@@ -943,10 +855,11 @@
   </style>
 </head>
 <body>
-  <header>
+  <!-- HEADER akan hilang saat scroll ke bawah -->
+  <header id="mainHeader">
     <div class="container header-content">
       <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img">
+        <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img" />
         <div class="logo-text">KACHOO</div>
       </div>
       
@@ -974,6 +887,7 @@
     </div>
   </header>
 
+  <!-- mobile overlay & menu -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" id="mobileMenuClose">
@@ -992,6 +906,7 @@
     </ul>
   </div>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="container hero-content">
       <div class="hero-tag">Welcome to Kachoo Official Website</div>
@@ -1000,12 +915,13 @@
     </div>
   </section>
 
+  <!-- PROMO -->
   <section class="kazine-promo-section">
     <div class="container promo-container">
       <h2 class="promo-title">THE KACHOO OFFICE</h2>
       <p class="promo-subtitle">Explore the Kachoo Office Building</p>
       <a href="https://thekachoo.github.io/Office/" target="_blank">
-        <img src="kachoooffice.png" alt="Kachoo Office" class="promo-image">
+        <img src="kachoooffice.png" alt="Kachoo Office" class="promo-image" />
       </a>
       <p class="promo-caption">Jenderal Sudirman Avenue, Lots 61–62, South Jakarta</p>
     </div>
@@ -1018,25 +934,25 @@
       <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Explore our projects</p>
       <div class="platform-grid">
         <a href="https://thekachoo.github.io/Home/kafkapages.html" class="platform-button" target="_blank">
-          <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo">
+          <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo" />
           <h3 class="platform-title">KAFKAPAGES</h3>
           <p class="platform-description">The best book publisher and collections</p>
           <span class="platform-cta">PUBLISH NOW <i class="fas fa-arrow-right"></i></span>
         </a>
         <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" target="_blank">
-          <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo">
+          <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo" />
           <h3 class="platform-title">KAZINE</h3>
           <p class="platform-description">Online shop for Kazine brand product & digital magazine</p>
           <span class="platform-cta">CHECK OUT <i class="fas fa-arrow-right"></i></span>
         </a>
         <a href="https://thekachoo.github.io/KABOOM/" class="platform-button" target="_blank">
-          <img src="kaboom-logo.png" alt="Kaboom Logo" class="platform-logo">
+          <img src="kaboom-logo.png" alt="Kaboom Logo" class="platform-logo" />
           <h3 class="platform-title">KABOOM</h3>
           <p class="platform-description">Real-time news platform delivering curated content and trending topic</p>
           <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
         </a>
         <div class="platform-button disabled-link">
-          <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo">
+          <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo" />
           <h3 class="platform-title">KADIO</h3>
           <p class="platform-description">Private media studio & production house for online stream</p>
           <span class="platform-cta">COMING SOON <i class="fas fa-clock"></i></span>
@@ -1045,7 +961,7 @@
     </div>
   </section>
 
-  <!-- FEATURE: desktop 4 kolom -->
+  <!-- FEATURE -->
   <section class="digital-feature-section">
     <div class="container">
       <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">Digital Features</h2>
@@ -1053,7 +969,7 @@
       <div class="feature-grid">
         <div class="feature-card">
           <a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-            <img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo">
+            <img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo" />
             <h3 class="feature-title">CHOBANK</h3>
             <p class="feature-description">Digital banking solution for seamless transactions, payments, and financial management</p>
             <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
@@ -1061,7 +977,7 @@
         </div>
         <div class="feature-card">
           <a href="https://thekachoo.github.io/CHONNECT/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-            <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo">
+            <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo" />
             <h3 class="feature-title">CHONNECT</h3>
             <p class="feature-description">A database that collects official base accounts to make collaboration easier</p>
             <div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div>
@@ -1069,7 +985,7 @@
         </div>
         <div class="feature-card">
           <a href="https://thekachoo.github.io/CHOSONG/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-            <img src="Chosong1.png" alt="CHOSONG Logo" class="platform-logo">
+            <img src="Chosong1.png" alt="CHOSONG Logo" class="platform-logo" />
             <h3 class="feature-title">CHOSONG</h3>
             <p class="feature-description">A lyric image generator feature to match your mood and vibes</p>
             <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Listen Now <i class="fas fa-arrow-right"></i></span>
@@ -1077,7 +993,7 @@
         </div>
         <div class="feature-card">
           <a href="https://thekachoo.github.io/CHODATE/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-            <img src="Chodate.png" alt="CHODATE Logo" class="platform-logo">
+            <img src="Chodate.png" alt="CHODATE Logo" class="platform-logo" />
             <h3 class="feature-title">CHODATE</h3>
             <p class="feature-description">Share your favorite moments with ease, keeps your content ready for everytime!</p>
             <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Update Now <i class="fas fa-arrow-right"></i></span>
@@ -1087,6 +1003,7 @@
     </div>
   </section>
 
+  <!-- PUBLISH -->
   <section class="publish-section">
     <div class="container">
       <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">How To Work With Us</h2>
@@ -1099,19 +1016,21 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-section"><h3>KACHOO</h3><p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">Digital media company turning ideas into attention through innovative publications.</p><div class="social-links"><a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a></div></div>
         <div class="footer-section"><h3>Platforms</h3><ul class="footer-links"><li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li><li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li><li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li></ul></div>
         <div class="footer-section"><h3>Contact</h3><ul class="footer-links"><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a></li><li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li></ul></div>
-        <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Jenderal Sudirman Avenue,<br>Lots 61–62,<br>South Jakarta 12930,<br>Indonesia</li></ul></div>
+        <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Jenderal Sudirman Avenue,<br />Lots 61–62,<br />South Jakarta 12930,<br />Indonesia</li></ul></div>
       </div>
       <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
     </div>
   </footer>
 
   <script>
+    // mobile menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -1124,6 +1043,7 @@
     document.querySelectorAll('.mobile-menu-link').forEach(link => { link.addEventListener('click', closeMobileMenu); });
     window.closeMobileMenu = closeMobileMenu;
 
+    // desktop dropdown
     const desktopNavTrigger = document.getElementById('desktopNavTrigger');
     const desktopNavDropdown = document.getElementById('desktopNavDropdown');
     if (desktopNavTrigger && desktopNavDropdown) {
@@ -1131,7 +1051,31 @@
       document.addEventListener('click', function(e) { if (!desktopNavTrigger.contains(e.target) && !desktopNavDropdown.contains(e.target)) { desktopNavTrigger.classList.remove('active'); desktopNavDropdown.classList.remove('active'); } });
     }
 
-    window.addEventListener('scroll', () => { const header = document.querySelector('header'); if (window.scrollY > 100) header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)'; else header.style.boxShadow = 'none'; });
+    // HEADER HILANG SAAT SCROLL KE BAWAH
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('mainHeader');
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      // jika scroll ke bawah, sembunyiin header
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        header.classList.add('hide');
+      } 
+      // jika scroll ke atas, munculin header
+      else if (currentScrollY < lastScrollY) {
+        header.classList.remove('hide');
+      }
+      
+      // kasih shadow kalo posisi ga di paling atas
+      if (currentScrollY > 100) {
+        header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      
+      lastScrollY = currentScrollY;
+    });
   </script>
 </body>
 </html>
