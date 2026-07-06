@@ -1,1109 +1,1137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>KACHOO OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body, html, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed,
-        figure, figcaption, footer, header, hgroup,
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video, button, input, textarea, select {
-            font-family: 'Outfit' !important;
-        }
-
-        i, .fas, .far, .fab, [class*="fa-"] {
-            font-family: "Font Awesome 6 Free" !important;
-        }
-
-        :root {
-            --primary-black: #000000;
-            --primary-white: #FFFFFF;
-            --accent-gray: #F5F5F7;
-            --text-gray: #6E6E73;
-            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-            --hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body {
-            background-color: var(--primary-white);
-            color: var(--primary-black);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        header {
-            background-color: var(--primary-white);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            padding: 20px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.98);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--primary-black);
-            position: relative;
-        }
-
-        .logo-text::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 24px;
-            height: 3px;
-            background-color: var(--primary-black);
-            transition: width 0.3s ease;
-        }
-
-        .logo-container:hover .logo-text::after {
-            width: 100%;
-        }
-
-        .desktop-nav-container {
-            position: relative;
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .desktop-nav-container {
-                display: none;
-            }
-        }
-
-        .desktop-nav-trigger {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--accent-gray);
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-black);
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
-
-        .desktop-nav-trigger:hover {
-            background: rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .desktop-nav-trigger i {
-            transition: transform 0.3s ease;
-        }
-
-        .desktop-nav-trigger.active i {
-            transform: rotate(180deg);
-        }
-
-        .desktop-nav-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            width: 280px;
-            background: var(--primary-white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--hover-shadow);
-            padding: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: var(--transition);
-            z-index: 1001;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .desktop-nav-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .desktop-nav-dropdown .nav-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            padding: 14px 16px;
-            background: transparent;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            text-align: left;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .desktop-nav-dropdown .nav-button:last-child {
-            border-bottom: none;
-        }
-
-        .desktop-nav-dropdown .nav-button:hover {
-            color: var(--primary-black);
-            background: var(--accent-gray);
-            transform: translateX(4px);
-        }
-
-        .desktop-nav-dropdown .nav-button i {
-            width: 20px;
-            color: var(--primary-black);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary-black);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        .mobile-menu-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100vh;
-            background: var(--primary-white);
-            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
-            padding: 80px 24px 24px;
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 998;
-        }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary-black);
-            cursor: pointer;
-        }
-
-        .mobile-menu-list {
-            list-style: none;
-        }
-
-        .mobile-menu-item {
-            margin-bottom: 16px;
-        }
-
-        .mobile-menu-link {
-            display: block;
-            padding: 16px;
-            background: var(--accent-gray);
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            color: var(--primary-black);
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .mobile-menu-link:hover {
-            background: rgba(0, 0, 0, 0.1);
-            transform: translateX(4px);
-        }
-
-        .hero {
-            padding: 120px 0 60px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
-            position: relative;
-            overflow: hidden;
-            min-height: auto;
-            display: flex;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 110px 0 40px;
-                min-height: auto;
-            }
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: var(--accent-gray);
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-gray);
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 7vw, 3.8rem);
-            font-weight: 900;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.95rem, 3.5vw, 1.2rem);
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 20px;
-            line-height: 1.5;
-        }
-
-        .kazine-promo-section {
-            padding: 60px 0;
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
-        }
-
-        @media (max-width: 768px) {
-            .kazine-promo-section {
-                padding: 40px 0;
-            }
-        }
-
-        .promo-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .promo-title {
-            color: white;
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
-            font-weight: 900;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .promo-subtitle {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 30px;
-            font-size: clamp(0.85rem, 3vw, 1rem);
-        }
-
-        .promo-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            transition: var(--transition);
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .promo-image:hover {
-            transform: translateY(-8px) scale(1.02);
-        }
-
-        .promo-caption {
-            color: rgba(255,255,255,0.6);
-            margin-top: 24px;
-            font-size: 14px;
-        }
-
-        .platforms-section {
-            padding: 80px 0;
-            background: var(--accent-gray);
-        }
-
-        @media (max-width: 768px) {
-            .platforms-section {
-                padding: 50px 0;
-            }
-        }
-
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .platform-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-                margin-top: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .platform-grid {
-                gap: 12px;
-            }
-        }
-
-        .platform-button {
-            background: var(--primary-white);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: var(--border-radius);
-            padding: 32px 20px;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .platform-button {
-                padding: 20px 12px;
-            }
-        }
-
-        .platform-button:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .platform-logo {
-            height: 70px;
-            width: auto;
-            margin-bottom: 16px;
-            object-fit: contain;
-            transition: var(--transition);
-        }
-
-        .custom-icon {
-            font-size: 56px;
-            color: #000000;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .kadio-logo {
-            height: 70px;
-            width: auto;
-            margin-bottom: 16px;
-            object-fit: contain;
-            transition: var(--transition);
-        }
-
-        @media (max-width: 768px) {
-            .platform-logo {
-                height: 48px;
-                margin-bottom: 10px;
-            }
-            .custom-icon {
-                font-size: 42px;
-                margin-bottom: 10px;
-            }
-            .kadio-logo {
-                height: 48px;
-                margin-bottom: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .platform-logo {
-                height: 40px;
-            }
-            .custom-icon {
-                font-size: 36px;
-            }
-            .kadio-logo {
-                height: 40px;
-            }
-        }
-
-        .platform-title {
-            font-size: clamp(1.1rem, 4vw, 1.6rem);
-            font-weight: 900;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .platform-description {
-            font-size: clamp(0.7rem, 3vw, 0.9rem);
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .platform-description {
-                margin-bottom: 16px;
-                font-size: 11px;
-            }
-        }
-
-        .platform-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--primary-black);
-            color: var(--primary-white);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 12px;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        @media (max-width: 768px) {
-            .platform-cta {
-                padding: 6px 12px;
-                font-size: 10px;
-            }
-        }
-
-        .platform-button:hover .platform-cta {
-            background: transparent;
-            color: var(--primary-black);
-            border-color: var(--primary-black);
-            transform: translateX(3px);
-        }
-
-        .platform-button.disabled-link {
-            cursor: default;
-        }
-        .platform-button.disabled-link:hover {
-            transform: translateY(0);
-            box-shadow: var(--card-shadow);
-        }
-        .platform-button.disabled-link .platform-cta {
-            background: var(--primary-black);
-            color: white;
-        }
-        .platform-button.disabled-link:hover .platform-cta {
-            background: transparent;
-            color: var(--primary-black);
-            border-color: var(--primary-black);
-            transform: translateX(3px);
-        }
-
-        .digital-feature-section {
-            padding: 80px 0;
-            background: var(--primary-white);
-        }
-
-        @media (max-width: 768px) {
-            .digital-feature-section {
-                padding: 50px 0;
-            }
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .feature-grid {
-                gap: 16px;
-                margin-top: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .feature-grid {
-                gap: 12px;
-            }
-        }
-
-        .feature-card {
-            background: var(--primary-white);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: var(--border-radius);
-            padding: 40px 24px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--card-shadow);
-        }
-
-        @media (max-width: 768px) {
-            .feature-card {
-                padding: 24px 16px;
-            }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .feature-card .platform-logo {
-            height: 70px;
-            margin-bottom: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .feature-card .platform-logo {
-                height: 48px;
-                margin-bottom: 12px;
-            }
-        }
-
-        .feature-title {
-            font-size: clamp(1.1rem, 4vw, 1.5rem);
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
-        .feature-description {
-            font-size: clamp(0.7rem, 3vw, 0.9rem);
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .publish-section {
-            padding: 80px 0;
-            background: var(--accent-gray);
-        }
-
-        @media (max-width: 768px) {
-            .publish-section {
-                padding: 50px 0;
-            }
-        }
-
-        .publish-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 40px;
-        }
-
-        .publish-step {
-            background: var(--primary-white);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: var(--border-radius);
-            padding: 40px 32px;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .publish-step:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 32px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-black);
-            color: var(--primary-white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .step-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .step-description {
-            font-size: 16px;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        .step-link {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--accent-gray);
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 16px;
-            color: var(--primary-black);
-            text-decoration: none;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .step-link:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            transform: translateY(-2px);
-        }
-
-        .twitter-link {
-            color: #000000;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border-bottom: 1px dashed #000000;
-        }
-
-        .twitter-link:hover {
-            color: #333333;
-            border-bottom-color: #333333;
-        }
-
-        footer {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            padding: 80px 0 40px;
-        }
-
-        @media (max-width: 768px) {
-            footer {
-                padding: 60px 0 40px;
-            }
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 48px;
-            margin-bottom: 60px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                gap: 32px;
-            }
-        }
-
-        .footer-section h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 32px;
-            height: 2px;
-            background: var(--primary-white);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 15px;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-white);
-            transform: translateX(4px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--primary-white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary-white);
-            color: var(--primary-black);
-            transform: translateY(-4px);
-        }
-
-        .x-logo {
-            font-weight: 900;
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-section .x-logo {
-                font-size: 16px;
-                padding: 4px 6px;
-                border-radius: 4px;
-                background: white;
-                color: black;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                min-width: 24px;
-                height: 24px;
-                margin-right: 8px;
-            }
-            .footer-links li span.x-logo {
-                font-size: 14px;
-                padding: 3px 5px;
-            }
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>KACHOO OFFICIAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video, button, input, textarea, select {
+      font-family: 'Outfit' !important;
+    }
+
+    i, .fas, .far, .fab, [class*="fa-"] {
+      font-family: "Font Awesome 6 Free" !important;
+    }
+
+    :root {
+      --primary-black: #000000;
+      --primary-white: #FFFFFF;
+      --accent-gray: #F5F5F7;
+      --text-gray: #6E6E73;
+      --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      background-color: var(--primary-white);
+      color: var(--primary-black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    header {
+      background-color: var(--primary-white);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.98);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* logo + motion */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--primary-black);
+      position: relative;
+    }
+
+    .logo-text::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 24px;
+      height: 3px;
+      background-color: var(--primary-black);
+      transition: width 0.3s ease;
+    }
+
+    .logo-container:hover .logo-text::after {
+      width: 100%;
+    }
+
+    /* desktop nav: NO ICONS, just text */
+    .desktop-nav-container {
+      position: relative;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-nav-container {
+        display: none;
+      }
+    }
+
+    .desktop-nav-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-gray);
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--primary-black);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .desktop-nav-trigger:hover {
+      background: rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .desktop-nav-trigger i {
+      transition: transform 0.3s ease;
+    }
+
+    .desktop-nav-trigger.active i {
+      transform: rotate(180deg);
+    }
+
+    .desktop-nav-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 280px;
+      background: var(--primary-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--hover-shadow);
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: var(--transition);
+      z-index: 1001;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .desktop-nav-dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .desktop-nav-dropdown .nav-button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 16px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-gray);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .desktop-nav-dropdown .nav-button:last-child {
+      border-bottom: none;
+    }
+
+    .desktop-nav-dropdown .nav-button:hover {
+      color: var(--primary-black);
+      background: var(--accent-gray);
+      transform: translateX(4px);
+    }
+
+    .desktop-nav-dropdown .nav-button i {
+      display: none;
+    }
+
+    /* mobile menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--primary-black);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: var(--primary-white);
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+      padding: 80px 24px 24px;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--primary-black);
+      cursor: pointer;
+    }
+
+    .mobile-menu-list {
+      list-style: none;
+    }
+
+    .mobile-menu-item {
+      margin-bottom: 16px;
+    }
+
+    .mobile-menu-link {
+      display: block;
+      padding: 16px;
+      background: var(--accent-gray);
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      color: var(--primary-black);
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-menu-link:hover {
+      background: rgba(0, 0, 0, 0.1);
+      transform: translateX(4px);
+    }
+
+    /* hero */
+    .hero {
+      padding: 120px 0 60px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: auto;
+      display: flex;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 110px 0 40px;
+        min-height: auto;
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent-gray);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-gray);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 7vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #000000 0%, #333333 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+      color: var(--text-gray);
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
+    }
+
+    /* promo */
+    .kazine-promo-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #000000 0%, #333333 100%);
+    }
+
+    @media (max-width: 768px) {
+      .kazine-promo-section {
+        padding: 40px 0;
+      }
+    }
+
+    .promo-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .promo-title {
+      color: white;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .promo-subtitle {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 30px;
+      font-size: clamp(0.85rem, 3vw, 1rem);
+    }
+
+    .promo-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transition: var(--transition);
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .promo-image:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .promo-caption {
+      color: rgba(255,255,255,0.6);
+      margin-top: 24px;
+      font-size: 14px;
+    }
+
+    /* PLATFORMS: desktop 4x4 grid (4 atas, 4 bawah) */
+    .platforms-section {
+      padding: 80px 0;
+      background: var(--accent-gray);
+    }
+
+    @media (max-width: 768px) {
+      .platforms-section {
+        padding: 50px 0;
+      }
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .platform-grid {
+        gap: 12px;
+      }
+    }
+
+    .platform-button {
+      background: var(--primary-white);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--border-radius);
+      padding: 32px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .platform-button {
+        padding: 20px 12px;
+      }
+    }
+
+    .platform-button:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .platform-logo {
+      height: 70px;
+      width: auto;
+      margin-bottom: 16px;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+
+    .custom-icon {
+      font-size: 56px;
+      color: #000000;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .kadio-logo {
+      height: 70px;
+      width: auto;
+      margin-bottom: 16px;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .platform-logo {
+        height: 48px;
+        margin-bottom: 10px;
+      }
+      .custom-icon {
+        font-size: 42px;
+        margin-bottom: 10px;
+      }
+      .kadio-logo {
+        height: 48px;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .platform-logo {
+        height: 40px;
+      }
+      .custom-icon {
+        font-size: 36px;
+      }
+      .kadio-logo {
+        height: 40px;
+      }
+    }
+
+    .platform-title {
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .platform-description {
+      font-size: clamp(0.7rem, 3vw, 0.9rem);
+      color: var(--text-gray);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .platform-description {
+        margin-bottom: 16px;
+        font-size: 11px;
+      }
+    }
+
+    .platform-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-black);
+      color: var(--primary-white);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 12px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    @media (max-width: 768px) {
+      .platform-cta {
+        padding: 6px 12px;
+        font-size: 10px;
+      }
+    }
+
+    .platform-button:hover .platform-cta {
+      background: transparent;
+      color: var(--primary-black);
+      border-color: var(--primary-black);
+      transform: translateX(3px);
+    }
+
+    .platform-button.disabled-link {
+      cursor: default;
+    }
+    .platform-button.disabled-link:hover {
+      transform: translateY(0);
+      box-shadow: var(--card-shadow);
+    }
+    .platform-button.disabled-link .platform-cta {
+      background: var(--primary-black);
+      color: white;
+    }
+    .platform-button.disabled-link:hover .platform-cta {
+      background: transparent;
+      color: var(--primary-black);
+      border-color: var(--primary-black);
+      transform: translateX(3px);
+    }
+
+    /* FEATURE grid: desktop 4 kolom, mobile tetap 2 kolom */
+    .digital-feature-section {
+      padding: 80px 0;
+      background: var(--primary-white);
+    }
+
+    @media (max-width: 768px) {
+      .digital-feature-section {
+        padding: 50px 0;
+      }
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .feature-grid {
+        gap: 12px;
+      }
+    }
+
+    .feature-card {
+      background: var(--primary-white);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--border-radius);
+      padding: 40px 24px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--card-shadow);
+    }
+
+    @media (max-width: 768px) {
+      .feature-card {
+        padding: 24px 16px;
+      }
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .feature-card .platform-logo {
+      height: 70px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .feature-card .platform-logo {
+        height: 48px;
+        margin-bottom: 12px;
+      }
+    }
+
+    .feature-title {
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .feature-description {
+      font-size: clamp(0.7rem, 3vw, 0.9rem);
+      color: var(--text-gray);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    /* publish */
+    .publish-section {
+      padding: 80px 0;
+      background: var(--accent-gray);
+    }
+
+    @media (max-width: 768px) {
+      .publish-section {
+        padding: 50px 0;
+      }
+    }
+
+    .publish-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .publish-step {
+      background: var(--primary-white);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--border-radius);
+      padding: 40px 32px;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .publish-step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 32px;
+      width: 40px;
+      height: 40px;
+      background: var(--primary-black);
+      color: var(--primary-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .step-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .step-description {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+
+    .step-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--accent-gray);
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 16px;
+      color: var(--primary-black);
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .step-link:hover {
+      background: var(--primary-black);
+      color: var(--primary-white);
+      transform: translateY(-2px);
+    }
+
+    .twitter-link {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border-bottom: 1px dashed #000000;
+    }
+
+    .twitter-link:hover {
+      color: #333333;
+      border-bottom-color: #333333;
+    }
+
+    /* footer */
+    footer {
+      background: var(--primary-black);
+      color: var(--primary-white);
+      padding: 80px 0 40px;
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 60px 0 40px;
+      }
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        gap: 32px;
+      }
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 32px;
+      height: 2px;
+      background: var(--primary-white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-white);
+      transform: translateX(4px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--primary-white);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary-white);
+      color: var(--primary-black);
+      transform: translateY(-4px);
+    }
+
+    .x-logo {
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-section .x-logo {
+        font-size: 16px;
+        padding: 4px 6px;
+        border-radius: 4px;
+        background: white;
+        color: black;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+      .footer-links li span.x-logo {
+        font-size: 14px;
+        padding: 3px 5px;
+      }
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* DESKTOP: title lebih luas atas bawah (padding) & feature 4 kolom */
+    @media (min-width: 769px) {
+      .hero {
+        padding: 200px 0 140px;  /* lebih luas atas bawah */
+      }
+      .hero h1 {
+        margin-bottom: 28px;
+      }
+      .hero-subtitle {
+        margin-bottom: 32px;
+      }
+      .header-content {
+        justify-content: space-between;
+      }
+      .logo-container {
+        margin-right: auto;
+      }
+      .desktop-nav-container {
+        margin-left: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img">
-                <div class="logo-text">KACHOO</div>
-            </div>
-            
-            <div class="desktop-nav-container">
-                <button class="desktop-nav-trigger" id="desktopNavTrigger">
-                    <span>Menu</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="desktop-nav-dropdown" id="desktopNavDropdown">
-                    <a href="https://thekachoo.github.io/Office/About.html" class="nav-button"><i class="fas fa-building"></i>About Kachoo</a>
-                    <a href="kafkapages.html" class="nav-button" target="_blank"><i class="fas fa-book"></i> Kafkapages</a>
-                    <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank"><i class="fas fa-tshirt"></i> Kazine</a>
-                    <a href="https://thekachoo.github.io/KABOOM/" class="nav-button" target="_blank"><i class="fas fa-camera"></i> Kaboom</a>
-                    <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank"><i class="fas fa-university"></i> Chobank</a>
-                    <a href="https://thekachoo.github.io/CHONNECT/" class="nav-button" target="_blank"><i class="fas fa-plug"></i> Chonnect</a>
-                    <a href="https://thekachoo.github.io/CHOSONG/" class="nav-button" target="_blank"><i class="fas fa-music"></i> Chosong</a>
-                    <!-- CHODATE added in nav -->
-                    <a href="https://thekachoo.github.io/CHODATE/" class="nav-button" target="_blank"><i class="fas fa-calendar-day"></i> Chodate</a>
-                    <a href="https://thekachoo.github.io/Datacho/" class="nav-button" target="_blank"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a>
-                    <a href="guidelines.html" class="nav-button"><i class="fas fa-clipboard-check"></i> Guidelines</a>
-                </div>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
+  <header>
+    <div class="container header-content">
+      <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img">
+        <div class="logo-text">KACHOO</div>
+      </div>
+      
+      <div class="desktop-nav-container">
+        <button class="desktop-nav-trigger" id="desktopNavTrigger">
+          <span>Menu</span>
+          <i class="fas fa-chevron-down"></i>
         </button>
-        <ul class="mobile-menu-list">
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Office/About.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-building"></i>About Kachoo</a></li>
-            <li class="mobile-menu-item"><a href="kafkapages.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-book"></i> Kafkapages</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-tshirt"></i> Kazine</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KABOOM/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-camera"></i> Kaboom</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-university"></i> Chobank</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHONNECT/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-plug"></i> Chonnect</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOSONG/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-music"></i> Chosong</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHODATE/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-day"></i> Chodate</a></li>
-            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Datacho/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-alt"></i> Dashboard Admin</a></li>
-            <li class="mobile-menu-item"><a href="guidelines.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-clipboard-check"></i> Guidelines</a></li>
-        </ul>
+        <div class="desktop-nav-dropdown" id="desktopNavDropdown">
+          <a href="https://thekachoo.github.io/Office/About.html" class="nav-button">About Kachoo</a>
+          <a href="kafkapages.html" class="nav-button" target="_blank">Kafkapages</a>
+          <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="nav-button" target="_blank">Kazine</a>
+          <a href="https://thekachoo.github.io/KABOOM/" class="nav-button" target="_blank">Kaboom</a>
+          <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank">Chobank</a>
+          <a href="https://thekachoo.github.io/CHONNECT/" class="nav-button" target="_blank">Chonnect</a>
+          <a href="https://thekachoo.github.io/CHOSONG/" class="nav-button" target="_blank">Chosong</a>
+          <a href="https://thekachoo.github.io/CHODATE/" class="nav-button" target="_blank">Chodate</a>
+          <a href="guidelines.html" class="nav-button">Guidelines</a>
+        </div>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
+  </header>
 
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-tag">Welcome to Kachoo Official Website</div>
-            <h1>WE TURN IDEAS INTO ATTENTION</h1>
-            <p class="hero-subtitle">We are a digital-first media and news publication built to shape conversations in a fast-moving world.</p>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="mobile-menu-list">
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Office/About.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-building"></i>About Kachoo</a></li>
+      <li class="mobile-menu-item"><a href="kafkapages.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-book"></i> Kafkapages</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-tshirt"></i> Kazine</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/KABOOM/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-camera"></i> Kaboom</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-university"></i> Chobank</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHONNECT/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-plug"></i> Chonnect</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOSONG/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-music"></i> Chosong</a></li>
+      <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHODATE/" class="mobile-menu-link" target="_blank" onclick="closeMobileMenu()"><i class="fas fa-calendar-day"></i> Chodate</a></li>
+      <li class="mobile-menu-item"><a href="guidelines.html" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fas fa-clipboard-check"></i> Guidelines</a></li>
+    </ul>
+  </div>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-tag">Welcome to Kachoo Official Website</div>
+      <h1>WE TURN IDEAS INTO ATTENTION</h1>
+      <p class="hero-subtitle">We are a digital-first media and news publication built to shape conversations in a fast-moving world.</p>
+    </div>
+  </section>
+
+  <section class="kazine-promo-section">
+    <div class="container promo-container">
+      <h2 class="promo-title">THE KACHOO OFFICE</h2>
+      <p class="promo-subtitle">Explore the Kachoo Office Building</p>
+      <a href="https://thekachoo.github.io/Office/" target="_blank">
+        <img src="kachoooffice.png" alt="Kachoo Office" class="promo-image">
+      </a>
+      <p class="promo-caption">Jenderal Sudirman Avenue, Lots 61–62, South Jakarta</p>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">Digital Platforms</h2>
+      <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Explore our projects</p>
+      <div class="platform-grid">
+        <a href="https://thekachoo.github.io/Home/kafkapages.html" class="platform-button" target="_blank">
+          <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo">
+          <h3 class="platform-title">KAFKAPAGES</h3>
+          <p class="platform-description">The best book publisher and collections</p>
+          <span class="platform-cta">PUBLISH NOW <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" target="_blank">
+          <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo">
+          <h3 class="platform-title">KAZINE</h3>
+          <p class="platform-description">Online shop for Kazine brand product & digital magazine</p>
+          <span class="platform-cta">CHECK OUT <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://thekachoo.github.io/KABOOM/" class="platform-button" target="_blank">
+          <img src="kaboom-logo.png" alt="Kaboom Logo" class="platform-logo">
+          <h3 class="platform-title">KABOOM</h3>
+          <p class="platform-description">Real-time news platform delivering curated content and trending topic</p>
+          <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <div class="platform-button disabled-link">
+          <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo">
+          <h3 class="platform-title">KADIO</h3>
+          <p class="platform-description">Private media studio & production house for online stream</p>
+          <span class="platform-cta">COMING SOON <i class="fas fa-clock"></i></span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="kazine-promo-section">
-        <div class="container promo-container">
-            <h2 class="promo-title">THE KACHOO OFFICE</h2>
-            <p class="promo-subtitle">Explore the Kachoo Office Building</p>
-            <a href="https://thekachoo.github.io/Office/" target="_blank">
-                <img src="kachoooffice.png" alt="Kachoo Office" class="promo-image">
-            </a>
-            <p class="promo-caption">Jenderal Sudirman Avenue, Lots 61–62, South Jakarta</p>
+  <!-- FEATURE: desktop 4 kolom -->
+  <section class="digital-feature-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">Digital Features</h2>
+      <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Discover our digital features</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+            <img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo">
+            <h3 class="feature-title">CHOBANK</h3>
+            <p class="feature-description">Digital banking solution for seamless transactions, payments, and financial management</p>
+            <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
+          </a>
         </div>
-    </section>
-
-    <section class="platforms-section">
-        <div class="container">
-            <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">Digital Platforms</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Explore our projects</p>
-            <div class="platform-grid">
-                <a href="https://thekachoo.github.io/Home/kafkapages.html" class="platform-button" target="_blank">
-                    <img src="kafkapages-logo.png" alt="KAFKAPAGES Logo" class="platform-logo">
-                    <h3 class="platform-title">KAFKAPAGES</h3>
-                    <p class="platform-description">The best book publisher.</p>
-                    <span class="platform-cta">PUBLISH NOW <i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" target="_blank">
-                    <img src="kazine-logo.png" alt="KAZINE Logo" class="platform-logo">
-                    <h3 class="platform-title">KAZINE</h3>
-                    <p class="platform-description">Digital fashion & lifestyle magazine and brand.</p>
-                    <span class="platform-cta">CHECK OUT <i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href="https://thekachoo.github.io/KABOOM/" class="platform-button" target="_blank">
-                    <img src="kaboom-logo.png" alt="Kaboom Logo" class="platform-logo">
-                    <h3 class="platform-title">KABOOM</h3>
-                    <p class="platform-description">Real-time news platform delivering curated content and breaking stories.</p>
-                    <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
-                </a>
-                <div class="platform-button disabled-link">
-                    <img src="Kadio.png" alt="Kadio Logo" class="kadio-logo">
-                    <h3 class="platform-title">KADIO</h3>
-                    <p class="platform-description">Private media studio & production house</p>
-                    <span class="platform-cta">COMING SOON <i class="fas fa-clock"></i></span>
-                </div>
-            </div>
+        <div class="feature-card">
+          <a href="https://thekachoo.github.io/CHONNECT/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+            <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo">
+            <h3 class="feature-title">CHONNECT</h3>
+            <p class="feature-description">A database that collects official base accounts to make collaboration easier</p>
+            <div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div>
+          </a>
         </div>
-    </section>
-
-    <section class="digital-feature-section">
-        <div class="container">
-            <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">Digital Features</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Discover our digital features</p>
-            <div class="feature-grid">
-                <!-- CHOBANK -->
-                <div class="feature-card">
-                    <a href="https://thekachoo.github.io/CHOBANK/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                        <img src="logochobank.png" alt="CHOBANK Logo" class="platform-logo">
-                        <h3 class="feature-title">CHOBANK</h3>
-                        <p class="feature-description">Digital banking solution for seamless transactions, payments, and financial management.</p>
-                        <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Transaction Now <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                </div>
-                <!-- CHONNECT -->
-                <div class="feature-card">
-                    <a href="https://thekachoo.github.io/CHONNECT/index.html" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                        <img src="logochonnect1.png" alt="CHONNECT Logo" class="platform-logo">
-                        <h3 class="feature-title">CHONNECT</h3>
-                        <p class="feature-description">This feature serves as a database that collects official base accounts to make collaboration easier.</p>
-                        <div class="platform-cta" style="margin: 0 auto; display: inline-flex;">Connect Now <i class="fas fa-arrow-right"></i></div>
-                    </a>
-                </div>
-                <!-- CHOSONG (left bottom) -->
-                <div class="feature-card">
-                    <a href="https://thekachoo.github.io/CHOSONG/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                        <img src="Chosong1.png" alt="CHOSONG Logo" class="platform-logo">
-                        <h3 class="feature-title">CHOSONG</h3>
-                        <p class="feature-description">A lyric image generator feature to match your mood</p>
-                        <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Explore Now <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                </div>
-                <!-- CHODATE (right bottom, added next to CHOSONG) -->
-                <div class="feature-card">
-                    <a href="https://thekachoo.github.io/CHODATE/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                        <img src="Chodate.png" alt="CHODATE Logo" class="platform-logo">
-                        <h3 class="feature-title">CHODATE</h3>
-                        <p class="feature-description">Share your favorite moments with ease, keeps your content ready for everytime!</p>
-                        <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Update Now <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                </div>
-            </div>
+        <div class="feature-card">
+          <a href="https://thekachoo.github.io/CHOSONG/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+            <img src="Chosong1.png" alt="CHOSONG Logo" class="platform-logo">
+            <h3 class="feature-title">CHOSONG</h3>
+            <p class="feature-description">A lyric image generator feature to match your mood and vibes</p>
+            <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Listen Now <i class="fas fa-arrow-right"></i></span>
+          </a>
         </div>
-    </section>
-
-    <section class="publish-section">
-        <div class="container">
-            <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">How To Work With Us</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Follow these simple steps to collab or get your work published with us</p>
-            <div class="publish-steps">
-                <div class="publish-step"><div class="step-number">1</div><h3 class="step-title">Prepare Your Proposal</h3><p class="step-description">Prepare your proposal or half-finished manuscript before submitting to Kachoo. Publication proposal guidelines are available in the main menu under <strong>Guidelines</strong>.</p><a href="guidelines.html" class="step-link">Check Guidelines Here</a></div>
-                <div class="publish-step"><div class="step-number">2</div><h3 class="step-title">Submit Your Work</h3><p class="step-description">Send your proposal via email or direct message to <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a> on X app. Make sure your submission follows our guidelines for faster processing.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">Email or DM <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a></div></div>
-                <div class="publish-step"><div class="step-number">3</div><h3 class="step-title">Get Response</h3><p class="step-description">We will respond to your submission within maximum <strong>2×24 hours</strong>. Our team will review your proposal and provide feedback or next steps.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">Max 48 Hours Response</div></div>
-            </div>
+        <div class="feature-card">
+          <a href="https://thekachoo.github.io/CHODATE/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+            <img src="Chodate.png" alt="CHODATE Logo" class="platform-logo">
+            <h3 class="feature-title">CHODATE</h3>
+            <p class="feature-description">Share your favorite moments with ease, keeps your content ready for everytime!</p>
+            <span class="platform-cta" style="margin: 0 auto; display: inline-flex;">Update Now <i class="fas fa-arrow-right"></i></span>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section"><h3>KACHOO</h3><p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">Digital media company turning ideas into attention through innovative publications.</p><div class="social-links"><a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a></div></div>
-                <div class="footer-section"><h3>Platforms</h3><ul class="footer-links"><li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li><li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li><li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li></ul></div>
-                <div class="footer-section"><h3>Contact</h3><ul class="footer-links"><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a></li><li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li></ul></div>
-                <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Jenderal Sudirman Avenue,<br>Lots 61–62,<br>South Jakarta 12930,<br>Indonesia</li></ul></div>
-            </div>
-            <div class="copyright">&copy; 2026 KACHOO. All rights reserved.</div>
-        </div>
-    </footer>
+  <section class="publish-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; margin-bottom: 12px;">How To Work With Us</h2>
+      <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 32px;">Follow these simple steps to collab or get your work published with us</p>
+      <div class="publish-steps">
+        <div class="publish-step"><div class="step-number">1</div><h3 class="step-title">Prepare Your Proposal</h3><p class="step-description">Prepare your proposal or half-finished manuscript before submitting to Kachoo. Publication proposal guidelines are available in the main menu under <strong>Guidelines</strong>.</p><a href="guidelines.html" class="step-link">Check Guidelines Here</a></div>
+        <div class="publish-step"><div class="step-number">2</div><h3 class="step-title">Submit Your Work</h3><p class="step-description">Send your proposal via email or direct message to <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a> on X app. Make sure your submission follows our guidelines for faster processing.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">Email or DM <a href="https://twitter.com/HaiKachoo" target="_blank" class="twitter-link">@HAIKACHOO</a></div></div>
+        <div class="publish-step"><div class="step-number">3</div><h3 class="step-title">Get Response</h3><p class="step-description">We will respond to your submission within maximum <strong>2×24 hours</strong>. Our team will review your proposal and provide feedback or next steps.</p><div style="padding: 8px 16px; background: var(--primary-white); border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 16px; color: var(--primary-black);">Max 48 Hours Response</div></div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-        document.querySelectorAll('.mobile-menu-link').forEach(link => { link.addEventListener('click', closeMobileMenu); });
-        window.closeMobileMenu = closeMobileMenu;
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h3>KACHOO</h3><p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">Digital media company turning ideas into attention through innovative publications.</p><div class="social-links"><a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a></div></div>
+        <div class="footer-section"><h3>Platforms</h3><ul class="footer-links"><li><i class="fas fa-book" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li><li><i class="fas fa-tshirt" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li><li><i class="fas fa-camera" style="color: rgba(255,255,255,0.7);"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li></ul></div>
+        <div class="footer-section"><h3>Contact</h3><ul class="footer-links"><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li><li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a></li><li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li></ul></div>
+        <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Jenderal Sudirman Avenue,<br>Lots 61–62,<br>South Jakarta 12930,<br>Indonesia</li></ul></div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </footer>
 
-        const desktopNavTrigger = document.getElementById('desktopNavTrigger');
-        const desktopNavDropdown = document.getElementById('desktopNavDropdown');
-        if (desktopNavTrigger && desktopNavDropdown) {
-            desktopNavTrigger.addEventListener('click', function(e) { e.stopPropagation(); this.classList.toggle('active'); desktopNavDropdown.classList.toggle('active'); });
-            document.addEventListener('click', function(e) { if (!desktopNavTrigger.contains(e.target) && !desktopNavDropdown.contains(e.target)) { desktopNavTrigger.classList.remove('active'); desktopNavDropdown.classList.remove('active'); } });
-        }
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.mobile-menu-link').forEach(link => { link.addEventListener('click', closeMobileMenu); });
+    window.closeMobileMenu = closeMobileMenu;
 
-        window.addEventListener('scroll', () => { const header = document.querySelector('header'); if (window.scrollY > 100) header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)'; else header.style.boxShadow = 'none'; });
-    </script>
+    const desktopNavTrigger = document.getElementById('desktopNavTrigger');
+    const desktopNavDropdown = document.getElementById('desktopNavDropdown');
+    if (desktopNavTrigger && desktopNavDropdown) {
+      desktopNavTrigger.addEventListener('click', function(e) { e.stopPropagation(); this.classList.toggle('active'); desktopNavDropdown.classList.toggle('active'); });
+      document.addEventListener('click', function(e) { if (!desktopNavTrigger.contains(e.target) && !desktopNavDropdown.contains(e.target)) { desktopNavTrigger.classList.remove('active'); desktopNavDropdown.classList.remove('active'); } });
+    }
+
+    window.addEventListener('scroll', () => { const header = document.querySelector('header'); if (window.scrollY > 100) header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)'; else header.style.boxShadow = 'none'; });
+  </script>
 </body>
-    </html>
+</html>
