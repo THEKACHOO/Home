@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Kachoo Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (max-width: 640px) {
+      .container { padding: 0 16px; }
+    }
+
+    /* header */
+    header {
+      padding: 24px 0 14px;
+      border-bottom: 1px solid #000;
+      margin-bottom: 20px;
+    }
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    .logo-wrapper a {
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      line-height: 0;
+    }
+    .logo-wrapper a:hover {
+      transform: scale(1.06) rotate(-1deg);
+    }
+    .logo-wrapper a:active {
+      transform: scale(0.94);
+    }
+    .logo-wrapper img {
+      display: block;
+      max-height: 52px;
+      width: auto;
+    }
+
+    /* main */
+    .review-section {
+      max-width: 780px;
+      margin: 0 auto 32px;
+      padding: 0 4px;
+    }
+    @media (max-width: 640px) {
+      .review-section { padding: 0 2px; }
+    }
+    .page-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.3px;
+      margin-bottom: 22px;
+      color: #000;
+      animation: titleFade 0.6s ease;
+    }
+    @keyframes titleFade {
+      0% { opacity: 0; transform: translateY(-12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 1.7rem; }
+    }
+
+    /* stars */
+    .stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 420px) {
+      .stars-row { gap: 10px; }
+      .star-btn { width: 42px; height: 42px; font-size: 24px; }
+      .star-btn .star-icon { font-size: 24px; }
+    }
+    .star-btn {
+      background: #fff;
+      border: 2px solid #000;
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      padding: 0;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+    }
+    .star-btn .star-icon {
+      font-size: 30px;
+      color: #fff;
+      display: inline-block;
+      -webkit-text-stroke: 1.8px #000;
+      text-stroke: 1.8px #000;
+      transition: all 0.25s ease;
+    }
+    @media (max-width: 420px) {
+      .star-btn { width: 42px; height: 42px; font-size: 24px; }
+      .star-btn .star-icon { font-size: 24px; -webkit-text-stroke: 1.5px #000; }
+    }
+    .star-btn.active .star-icon {
+      color: #000;
+      -webkit-text-stroke: 0px #000;
+      text-stroke: 0px #000;
+    }
+    .star-btn:hover {
+      transform: scale(1.12) rotate(-4deg);
+      border-color: #000;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .star-btn.active {
+      border-color: #000;
+      background: #fff;
+      transform: scale(1.05);
+    }
+    .star-btn:active { transform: scale(0.92); }
+
+    /* fields */
+    .field-group { margin-bottom: 18px; }
+    .field-label {
+      font-weight: 600;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 6px;
+      color: #000;
+    }
+    .field-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      background: #fff;
+      color: #000;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.02);
+    }
+    .field-input:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+      transform: scale(1.01);
+    }
+    .field-input::placeholder { color: #a0a0a0; opacity: 0.6; }
+
+    /* checkboxes horizontal */
+    .checkbox-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding: 6px 0 4px;
+    }
+    @media (max-width: 480px) {
+      .checkbox-grid { gap: 8px 14px; }
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 2px 0;
+    }
+    .checkbox-item:hover { transform: translateX(4px); }
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #000;
+      border: 2px solid #000;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .checkbox-item input[type="checkbox"]:hover { transform: scale(1.12); }
+    @media (max-width: 400px) {
+      .checkbox-item { font-size: 14px; }
+      .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; }
+    }
+
+    .review-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 16px 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      border: 2px solid #000;
+      border-radius: 12px;
+      background: #fff;
+      color: #000;
+      resize: vertical;
+      margin-bottom: 20px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.02);
+    }
+    .review-textarea:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+      transform: scale(1.005);
+    }
+
+    .submit-btn {
+      background: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 15px 32px;
+      border: 2px solid #000;
+      border-radius: 60px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .submit-btn:hover::after {
+      width: 400px;
+      height: 400px;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+      transform: scale(1.02) translateY(-3px);
+    }
+    .submit-btn:active {
+      transform: scale(0.96) translateY(0px);
+    }
+
+    /* toast */
+    .toast-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      z-index: 999;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .toast-overlay.show { display: flex; }
+    .toast-card {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 28px;
+      padding: 44px 40px 38px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.2);
+      animation: toastPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes toastPop {
+      0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @media (max-width: 480px) {
+      .toast-card { padding: 32px 24px 28px; }
+    }
+    .toast-title {
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      color: #000;
+    }
+    @media (max-width: 480px) {
+      .toast-title { font-size: 1.8rem; }
+    }
+    .toast-message {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #000;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    @media (max-width: 480px) {
+      .toast-message { font-size: 0.95rem; }
+    }
+
+    /* FOOTER compact */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 40px 0 28px;
+      margin-top: auto;
+    }
+    @media (max-width: 768px) { footer { padding: 32px 0 24px; } }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 24px 32px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 640px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 24px;
+      }
+    }
+    @media (max-width: 420px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+    }
+
+    .footer-section h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+      color: #fff;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.25s ease;
+    }
+    .footer-links a:hover {
+      color: #fff;
+      transform: translateX(4px);
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .social-link:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+    }
+    .x-logo { font-weight: 900; font-size: 15px; }
+    .footer-section p {
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      max-width: 200px;
+      line-height: 1.5;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+    }
+    .footer-links li i { color: rgba(255,255,255,0.5); width: 18px; font-size: 13px; }
+    .footer-links li .x-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .footer-section .x-logo {
+        font-size: 12px;
+        padding: 2px 5px;
+        border-radius: 3px;
+        background: white;
+        color: black;
+        min-width: 20px;
+        height: 20px;
+        margin-right: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container logo-wrapper">
+      <a href="https://thekachoo.github.io/Home" target="_blank">
+        <img src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo logo">
+      </a>
+    </div>
+  </header>
+
+  <main class="review-section container">
+    <h1 class="page-title">Kachoo Review</h1>
+
+    <!-- stars -->
+    <div class="stars-row" id="starsRow">
+      <button class="star-btn" data-value="1"><span class="star-icon">★</span></button>
+      <button class="star-btn" data-value="2"><span class="star-icon">★</span></button>
+      <button class="star-btn" data-value="3"><span class="star-icon">★</span></button>
+      <button class="star-btn" data-value="4"><span class="star-icon">★</span></button>
+      <button class="star-btn" data-value="5"><span class="star-icon">★</span></button>
+    </div>
+
+    <!-- Name (optional) -->
+    <div class="field-group">
+      <label class="field-label" for="reviewerName">Name (optional)</label>
+      <input type="text" id="reviewerName" class="field-input" placeholder="Your name" maxlength="60">
+    </div>
+
+    <!-- checkboxes horizontal -->
+    <div class="field-group">
+      <span class="field-label">Categories</span>
+      <div class="checkbox-grid" id="categoryGroup">
+        <label class="checkbox-item"><input type="checkbox" value="General"> General</label>
+        <label class="checkbox-item"><input type="checkbox" value="Kafkapages"> Kafkapages</label>
+        <label class="checkbox-item"><input type="checkbox" value="Kazine"> Kazine</label>
+        <label class="checkbox-item"><input type="checkbox" value="Kaboom"> Kaboom</label>
+        <label class="checkbox-item"><input type="checkbox" value="Kadio"> Kadio</label>
+        <label class="checkbox-item"><input type="checkbox" value="Chobank"> Chobank</label>
+        <label class="checkbox-item"><input type="checkbox" value="Chonnect"> Chonnect</label>
+        <label class="checkbox-item"><input type="checkbox" value="Chosong"> Chosong</label>
+        <label class="checkbox-item"><input type="checkbox" value="Chodate"> Chodate</label>
+        <label class="checkbox-item"><input type="checkbox" value="Choosic"> Choosic</label>
+        <label class="checkbox-item"><input type="checkbox" value="Chozy"> Chozy</label>
+        <label class="checkbox-item"><input type="checkbox" value="Choffee"> Choffee</label>
+        <label class="checkbox-item"><input type="checkbox" value="Book"> Book</label>
+      </div>
+    </div>
+
+    <textarea class="review-textarea" id="reviewInput" placeholder="Write your review here (max 1000 words)..." maxlength="1000"></textarea>
+
+    <button class="submit-btn" id="submitReview">Submit Review</button>
+  </main>
+
+  <!-- toast -->
+  <div class="toast-overlay" id="toastOverlay">
+    <div class="toast-card">
+      <div class="toast-title">Thank you</div>
+      <div class="toast-message">The Kachoo will continue striving to create quality digital media and news for everyone.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Digital media company turning ideas into attention.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:1px 5px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:1px 5px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color:rgba(255,255,255,0.6);font-size:13px;line-height:1.5;"><i class="fas fa-map-marker-alt" style="margin-right:6px;"></i>Jenderal Sudirman Ave,<br>Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 KACHOO. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const starBtns = document.querySelectorAll('.star-btn');
+      const reviewInput = document.getElementById('reviewInput');
+      const submitBtn = document.getElementById('submitReview');
+      const toastOverlay = document.getElementById('toastOverlay');
+      const reviewerName = document.getElementById('reviewerName');
+
+      let selectedRating = 0;
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const val = parseInt(this.getAttribute('data-value'), 10);
+          for (let i = 0; i < starBtns.length; i++) {
+            const starVal = parseInt(starBtns[i].getAttribute('data-value'), 10);
+            if (starVal <= val) starBtns[i].classList.add('active');
+            else starBtns[i].classList.remove('active');
+          }
+          selectedRating = val;
+        });
+      });
+
+      function getSelectedCategories() {
+        const checkboxes = document.querySelectorAll('#categoryGroup input[type="checkbox"]:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
+      }
+
+      function submitReview() {
+        const name = reviewerName.value.trim() || 'Anonymous';
+        const reviewText = reviewInput.value.trim() || '(empty)';
+        const categories = getSelectedCategories();
+        const data = {
+          rating: selectedRating,
+          name: name,
+          categories: categories,
+          review: reviewText
+        };
+
+        toastOverlay.classList.add('show');
+        setTimeout(() => { toastOverlay.classList.remove('show'); }, 4500);
+
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/your-apps-script-id/exec';
+        if (APPS_SCRIPT_URL.includes('your-apps-script-id')) {
+          console.log('📊 Review data (simulation):', data);
+        } else {
+          fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          }).catch(err => console.warn('Fetch error (no-cors):', err));
+        }
+
+        reviewInput.value = '';
+        reviewerName.value = '';
+        document.querySelectorAll('#categoryGroup input[type="checkbox"]').forEach(cb => cb.checked = false);
+      }
+
+      submitBtn.addEventListener('click', submitReview);
+
+      toastOverlay.addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('show');
+      });
+    })();
+  </script>
+</body>
+</html>
