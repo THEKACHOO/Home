@@ -92,7 +92,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
   }
   .logo-container:hover .logo-text::after { width: 100%; }
 
-  /* desktop nav */
   .desktop-nav-container { position: relative; display: block; }
 
   .desktop-nav-trigger {
@@ -164,7 +163,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     transform: translateX(4px);
   }
 
-  /* mobile */
   .mobile-menu-btn {
     display: none;
     background: none;
@@ -233,7 +231,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     transform: translateX(4px);
   }
 
-  /* hero */
   .hero {
     padding: 100px 0;
     background: linear-gradient(135deg, #fcfcfc 0%, #f7f7f9 100%);
@@ -427,7 +424,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     transform: translateX(3px);
   }
 
-  /* features */
   .digital-feature-section {
     padding: 80px 0;
     background: var(--putih);
@@ -464,7 +460,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     line-height: 1.45;
   }
 
-  /* publish */
   .publish-section {
     padding: 80px 0;
     background: var(--abu);
@@ -922,7 +917,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
 </footer>
 
 <script>
-  // mobile menu
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -947,7 +941,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     link.addEventListener('click', closeMobileMenu);
   });
 
-  // desktop dropdown
   const desktopNavTrigger = document.getElementById('desktopNavTrigger');
   const desktopNavDropdown = document.getElementById('desktopNavDropdown');
 
@@ -966,7 +959,6 @@ body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
     });
   }
 
-  // header hide on scroll
   let lastScrollY = window.scrollY;
   const header = document.getElementById('mainHeader');
 
