@@ -5,7 +5,7 @@
   <header id="mainHeader">
     <div class="container header-content">
       <div class="logo-container" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        <img src="Kachoo.png" alt="KACHOO Logo" class="logo-img" />
+        <img src="../Style/Kachoo.png" alt="KACHOO Logo" class="logo-img" />
         <div class="logo-text">KACHOO</div>
       </div>
 
