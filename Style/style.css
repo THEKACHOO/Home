@@ -182,16 +182,15 @@ body {
   transition: all 0.3s ease;
 }
 
-/* KAZINE — lebih kecil */
 .kazine-logo {
   height: 36px;
   width: auto;
   margin-bottom: 16px;
+  margin-top: 16px; 
   object-fit: contain;
   transition: all 0.3s ease;
 }
 
-/* KPAGES — lebih besar */
 .kpages-logo {
   height: 100px;
   width: auto;
