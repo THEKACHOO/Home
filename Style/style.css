@@ -165,6 +165,7 @@ body {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
+
 .platform-logo {
   height: 68px;
   width: auto;
@@ -172,12 +173,23 @@ body {
   object-fit: contain;
   transition: all 0.3s ease;
 }
-.kadio-logo {
-  height: 68px;
+
+.kazine-logo {
+  height: 44px;
   width: auto;
   margin-bottom: 16px;
   object-fit: contain;
+  transition: all 0.3s ease;
 }
+
+.kpages-logo {
+  height: 92px;
+  width: auto;
+  margin-bottom: 16px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
 .platform-title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -245,6 +257,8 @@ body {
   box-shadow: 0 8px 28px rgba(0,0,0,0.11);
 }
 .feature-card .platform-logo { height: 68px; margin-bottom: 16px; }
+.feature-card .kazine-logo { height: 44px; margin-bottom: 16px; }
+.feature-card .kpages-logo { height: 92px; margin-bottom: 16px; }
 .feature-title {
   font-size: 1.4rem;
   font-weight: 700;
@@ -356,14 +370,17 @@ body {
 
   .section-title { font-size: 1.7rem; }
 
-  .platform-logo,
-  .kadio-logo { height: 48px; margin-bottom: 10px; }
+  .platform-logo { height: 48px; margin-bottom: 10px; }
+  .kazine-logo { height: 34px; margin-bottom: 10px; }
+  .kpages-logo { height: 66px; margin-bottom: 10px; }
   .platform-title { font-size: 1.15rem; }
   .platform-description { font-size: 11.5px; margin-bottom: 16px; }
   .platform-cta { padding: 6px 12px; font-size: 10.5px; }
 
   .feature-card { padding: 24px 16px; }
   .feature-card .platform-logo { height: 48px; margin-bottom: 12px; }
+  .feature-card .kazine-logo { height: 34px; margin-bottom: 12px; }
+  .feature-card .kpages-logo { height: 66px; margin-bottom: 12px; }
   .feature-title { font-size: 1.15rem; }
   .feature-description { font-size: 11.5px; }
 
@@ -380,6 +397,7 @@ body {
   .platform-grid,
   .feature-grid { gap: 12px; }
   .platform-button { padding: 20px 12px; }
-  .platform-logo,
-  .kadio-logo { height: 40px; }
+  .platform-logo { height: 40px; }
+  .kazine-logo { height: 30px; }
+  .kpages-logo { height: 56px; }
 }
