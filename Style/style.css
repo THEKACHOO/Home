@@ -191,11 +191,11 @@ body {
   transition: all 0.3s ease;
 }
 
-/* KPAGES: tetap persegi, teks ditarik naik menimpa bawah logo */
 .kpages-logo {
   height: 140px;
   width: auto;
-  margin-bottom: -70px;
+  margin-top: -30px;
+  margin-bottom: -50px;
   object-fit: contain;
   position: relative;
   z-index: 0;
@@ -208,9 +208,8 @@ body {
   z-index: 1;
 }
 
-/* KABOOM: diperbesar */
 .kaboom-logo {
-  height: 140px;
+  height: 180px;
   width: auto;
   margin-bottom: 16px;
   object-fit: contain;
@@ -286,7 +285,7 @@ body {
 .feature-card .platform-logo { height: 68px; margin-bottom: 16px; }
 .feature-card .kadio-logo { height: 68px; margin-bottom: 16px; }
 .feature-card .kazine-logo { height: 36px; margin-bottom: 16px; }
-.feature-card .kpages-logo { height: 100px; margin-bottom: 16px; }
+.feature-card .kpages-logo { height: 100px; margin-bottom: 16px; margin-top: 0; }
 .feature-card .kaboom-logo { height: 100px; margin-bottom: 16px; }
 .feature-title {
   font-size: 1.4rem;
@@ -402,8 +401,8 @@ body {
   .platform-logo,
   .kadio-logo { height: 48px; margin-bottom: 10px; }
   .kazine-logo { height: 28px; margin-bottom: 10px; margin-top: 16px; }
-  .kpages-logo { height: 100px; margin-bottom: -50px; }
-  .kaboom-logo { height: 100px; margin-bottom: 10px; }
+  .kpages-logo { height: 110px; margin-top: -20px; margin-bottom: -40px; }
+  .kaboom-logo { height: 130px; margin-bottom: 10px; }
   .platform-title { font-size: 1.15rem; }
   .platform-description { font-size: 11.5px; margin-bottom: 16px; }
   .platform-cta { padding: 6px 12px; font-size: 10.5px; }
@@ -412,7 +411,7 @@ body {
   .feature-card .platform-logo { height: 48px; margin-bottom: 12px; }
   .feature-card .kadio-logo { height: 48px; margin-bottom: 12px; }
   .feature-card .kazine-logo { height: 28px; margin-bottom: 12px; }
-  .feature-card .kpages-logo { height: 72px; margin-bottom: 12px; }
+  .feature-card .kpages-logo { height: 72px; margin-bottom: 12px; margin-top: 0; }
   .feature-card .kaboom-logo { height: 72px; margin-bottom: 12px; }
   .feature-title { font-size: 1.15rem; }
   .feature-description { font-size: 11.5px; }
@@ -433,6 +432,6 @@ body {
   .platform-logo,
   .kadio-logo { height: 40px; }
   .kazine-logo { height: 24px; margin-top: 14px; }
-  .kpages-logo { height: 80px; margin-bottom: -40px; }
-  .kaboom-logo { height: 80px; }
+  .kpages-logo { height: 90px; margin-top: -16px; margin-bottom: -30px; }
+  .kaboom-logo { height: 100px; }
 }
