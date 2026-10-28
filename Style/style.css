@@ -1,0 +1,385 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body, html, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, button {
+  font-family: 'Poppins', sans-serif;
+}
+
+i, .fas, .far, .fab, [class*="fa-"] {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+:root {
+  --hitam: #0b0b0b;
+  --putih: #fcfcfc;
+  --abu: #f1f1f3;
+  --teks: #6b6b6b;
+  --shadow: 0 4px 20px rgba(0,0,0,0.07);
+  --radius: 10px;
+}
+
+body {
+  background: var(--putih);
+  color: var(--hitam);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 76px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+.hero {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #fcfcfc 0%, #f7f7f9 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 50%, transparent 100%);
+}
+.hero-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--abu);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teks);
+  margin-bottom: 16px;
+  letter-spacing: 0.4px;
+}
+.hero h1 {
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  margin-bottom: 26px;
+  background: linear-gradient(135deg, #0b0b0b 0%, #2e2e2e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--teks);
+  max-width: 580px;
+  margin: 0 auto 30px;
+  line-height: 1.55;
+}
+
+.kazine-promo-section {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #0b0b0b 0%, #2e2e2e 100%);
+}
+.promo-container {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+.promo-title {
+  color: #fcfcfc;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.promo-subtitle {
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 28px;
+  font-size: 1rem;
+}
+.promo-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+.promo-image:hover { transform: translateY(-8px) scale(1.02); }
+.promo-caption {
+  color: rgba(255,255,255,0.55);
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.section-sub {
+  text-align: center;
+  color: var(--teks);
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+
+.platforms-section {
+  padding: 80px 0;
+  background: var(--abu);
+}
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 38px;
+}
+.platform-button {
+  background: var(--putih);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius);
+  padding: 30px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.platform-button:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.platform-logo {
+  height: 68px;
+  width: auto;
+  margin-bottom: 16px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+.kadio-logo {
+  height: 68px;
+  width: auto;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+.platform-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.platform-description {
+  font-size: 0.88rem;
+  color: var(--teks);
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
+.platform-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--hitam);
+  color: var(--putih);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+.platform-button:hover .platform-cta {
+  background: transparent;
+  color: var(--hitam);
+  border-color: var(--hitam);
+  transform: translateX(3px);
+}
+.platform-button.disabled-link { cursor: default; }
+.platform-button.disabled-link:hover {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.platform-button.disabled-link:hover .platform-cta {
+  background: transparent;
+  color: var(--hitam);
+  border-color: var(--hitam);
+  transform: translateX(3px);
+}
+
+.digital-feature-section {
+  padding: 80px 0;
+  background: var(--putih);
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 38px;
+}
+.feature-card {
+  background: var(--putih);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius);
+  padding: 38px 22px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: var(--shadow);
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+}
+.feature-card .platform-logo { height: 68px; margin-bottom: 16px; }
+.feature-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.feature-description {
+  font-size: 0.88rem;
+  color: var(--teks);
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
+
+.publish-section {
+  padding: 80px 0;
+  background: var(--abu);
+}
+.publish-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 38px;
+}
+.publish-step {
+  background: var(--putih);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius);
+  padding: 38px 30px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.publish-step:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+}
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  background: var(--hitam);
+  color: var(--putih);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.step-description {
+  font-size: 15px;
+  color: var(--teks);
+  line-height: 1.7;
+}
+.step-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--abu);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 16px;
+  color: var(--hitam);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+.step-link:hover {
+  background: var(--hitam);
+  color: var(--putih);
+  transform: translateY(-2px);
+}
+.twitter-link {
+  color: var(--hitam);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--hitam);
+  transition: border-color 0.25s ease;
+}
+.twitter-link:hover { border-bottom-color: #555; }
+
+@media (max-width: 992px) {
+  .platform-grid,
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 820px) {
+  body { padding-top: 68px; }
+
+  .hero { padding: 50px 0; }
+  .hero h1 { font-size: 2.4rem; margin-bottom: 18px; letter-spacing: -0.8px; }
+  .hero-subtitle { font-size: 1rem; margin-bottom: 22px; }
+  .hero-tag { font-size: 12px; }
+
+  .kazine-promo-section { padding: 45px 0; }
+  .promo-title { font-size: 1.7rem; }
+
+  .platforms-section,
+  .digital-feature-section,
+  .publish-section { padding: 55px 0; }
+
+  .section-title { font-size: 1.7rem; }
+
+  .platform-logo,
+  .kadio-logo { height: 48px; margin-bottom: 10px; }
+  .platform-title { font-size: 1.15rem; }
+  .platform-description { font-size: 11.5px; margin-bottom: 16px; }
+  .platform-cta { padding: 6px 12px; font-size: 10.5px; }
+
+  .feature-card { padding: 24px 16px; }
+  .feature-card .platform-logo { height: 48px; margin-bottom: 12px; }
+  .feature-title { font-size: 1.15rem; }
+  .feature-description { font-size: 11.5px; }
+
+  .publish-step { padding: 30px 22px; }
+  .step-title { font-size: 19px; }
+  .step-description { font-size: 14px; }
+}
+
+@media (max-width: 560px) {
+  .container { padding: 0 18px; }
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+
+  .platform-grid,
+  .feature-grid { gap: 12px; }
+  .platform-button { padding: 20px 12px; }
+  .platform-logo,
+  .kadio-logo { height: 40px; }
+}
