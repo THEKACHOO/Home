@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kachoo Guidelines 2026 | Design System</title>
+    <title>Kachoo Guidelines</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+
+    <link rel="stylesheet" href="Style/header-footer.css" />
+    <script src="Style/header-footer.js" defer></script>
+
     <style>
         * {
             margin: 0;
@@ -29,51 +33,9 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            padding-top: 76px; 
         }
 
-        /* Header */
-        .main-header {
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--primary-white);
-            border-bottom: 1px solid var(--gray-border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-kachoo {
-            height: 50px;
-            width: auto;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--primary-black);
-            letter-spacing: -0.5px;
-        }
-
-        .year-badge {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            padding: 0.4rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        /* Hero Section */
         .hero-section {
             padding: 4rem 5% 3rem;
             text-align: center;
@@ -98,7 +60,6 @@
             font-weight: 500;
         }
 
-        /* Heyzine Flipbook Section */
         .heyzine-section {
             padding: 2rem 5% 5rem;
             background: var(--primary-white);
@@ -122,8 +83,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
-        /* HEYZINE FLIPBOOK CONTAINER */
+        
         .heyzine-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -183,7 +143,6 @@
             transform: scale(1.05);
         }
 
-        /* HEYZINE FRAME */
         .heyzine-frame-container {
             position: relative;
             width: 100%;
@@ -265,7 +224,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Contact Section */
         .contact-section {
             padding: 5rem 5%;
             background: var(--gray-light);
@@ -356,34 +314,10 @@
             transform: translateX(5px);
         }
 
-        /* Footer */
-        .main-footer {
-            padding: 2.5rem 5%;
-            text-align: center;
-            background: var(--primary-black);
-            color: var(--primary-white);
-        }
-
-        .footer-logo {
-            height: 35px;
-            margin-bottom: 1.2rem;
-            filter: invert(1);
-        }
-
-        .footer-text {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-title {
                 font-size: 3.5rem;
             }
-            
             .heyzine-frame-container {
                 height: 65vh;
             }
@@ -393,34 +327,28 @@
             .hero-title {
                 font-size: 2.8rem;
             }
-            
             .hero-subtitle {
                 font-size: 1.1rem;
             }
-            
             .heyzine-header {
                 flex-direction: column;
                 gap: 1.2rem;
                 padding: 1.2rem;
             }
-            
             .heyzine-frame-container {
                 height: 55vh;
                 min-height: 450px;
             }
-            
             .flipbook-info {
                 flex-direction: column;
                 gap: 1.2rem;
                 text-align: center;
                 padding: 1.2rem;
             }
-            
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
             .contact-card {
                 padding: 2.5rem;
             }
@@ -430,24 +358,16 @@
             .hero-title {
                 font-size: 2.3rem;
             }
-            
             .hero-subtitle {
                 font-size: 1rem;
             }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
             .heyzine-frame-container {
                 height: 45vh;
                 min-height: 350px;
             }
-            
             .section-title h2 {
                 font-size: 2.2rem;
             }
-            
             .contact-title {
                 font-size: 2.2rem;
             }
@@ -455,261 +375,223 @@
     </style>
 </head>
 <body>
-    <!-- Header with Kachoo Logo -->
-    <header class="main-header">
-        <div class="logo-container">
-            <!-- Replace with your logo: logo-thekachoo.png -->
-            <img src="logo-thekachoo.png" alt="Kachoo Logo" class="logo-kachoo" 
-                 onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMTUiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTMwIDMwTDcwIDMwTDcwIDcwTDMwIDcwTDMwIDMwWiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI2Ii8+PGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iNSIgZmlsbD0id2hpdGUiLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjY1IiByPSI1IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0yNSAyNUw3NSA3NSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=';">
-            <div class="logo-text">KACHOO</div>
-        </div>
-        <div class="year-badge">2026</div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1 class="hero-title">GUIDELINES</h1>
-        <p class="hero-subtitle">Comprehensive design system and visual standards for all Kachoo projects and collaborations</p>
-    </section>
+<section class="hero-section">
+    <h1 class="hero-title">GUIDELINES</h1>
+    <p class="hero-subtitle">Comprehensive design system and visual standards for all Kachoo projects and collaborations</p>
+</section>
 
-    <!-- Heyzine Flipbook Section -->
-    <section class="heyzine-section">
-        <div class="section-title">
-            <h2>Guidelines Kachoo</h2>
-            <p>Browse through our design guidelines using the interactive flipbook below</p>
-        </div>
-        
-        <div class="heyzine-container">
-            <div class="heyzine-header">
-                <div class="heyzine-title">
-                    <i class="fas fa-book-open"></i> Read me!
-                </div>
-                <div class="heyzine-controls">
-                    <button class="control-btn" id="btnFullscreen" title="Fullscreen">
-                        <i class="fas fa-expand"></i>
-                    </button>
-                    <button class="control-btn" id="btnReload" title="Reload">
-                        <i class="fas fa-redo"></i>
-                    </button>
-                </div>
+<section class="heyzine-section">
+    <div class="section-title">
+        <h2>Guidelines Kachoo</h2>
+        <p>Browse through our design guidelines using the interactive flipbook below</p>
+    </div>
+
+    <div class="heyzine-container">
+        <div class="heyzine-header">
+            <div class="heyzine-title">
+                <i class="fas fa-book-open"></i> Read me!
             </div>
-            
-            <!-- HEYZINE FLIPBOOK FRAME -->
-            <!-- REPLACE THE URL BELOW WITH YOUR HEYZINE FLIPBOOK LINK -->
-            <div class="heyzine-frame-container">
-                <div class="loading-container" id="loadingContainer">
-                    <i class="fas fa-spinner loading-spinner"></i>
-                    <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Loading Heyzine Flipbook</h3>
-                    <p style="color: var(--gray-medium); text-align: center; max-width: 400px;">
-                        Loading interactive guidelines flipbook. This may take a moment...
-                    </p>
-                </div>
-                
-                <!-- 
-                    IMPORTANT: REPLACE THE SRC ATTRIBUTE BELOW WITH YOUR ACTUAL HEYZINE FLIPBOOK URL
-                    Example: https://heyzine.com/flip-book/your-flipbook-id.html
-                -->
-                <iframe id="heyzineFrame" 
-                        src="https://heyzine.com/flip-book/ae81134e66.html" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        allowfullscreen 
-                        allow="autoplay; fullscreen"
-                        title="Kachoo Design Guidelines Flipbook">
-                </iframe>
-            </div>
-            
-            <div class="flipbook-info">
-                <div class="page-info">
-                    <i class="fas fa-book"></i>
-                    <span>Design Guidelines & Standards</span>
-                </div>
-                <button class="download-btn" id="downloadBtn">
-                    <i class="fas fa-download"></i> Download Guidelines PDF
+            <div class="heyzine-controls">
+                <button class="control-btn" id="btnFullscreen" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="control-btn" id="btnReload" title="Reload">
+                    <i class="fas fa-redo"></i>
                 </button>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-container">
-            <h2 class="contact-title">Contact Information</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <!-- Icon X Twitter yang benar -->
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                    <h3 class="contact-text">Twitter / X</h3>
-                    <p class="contact-desc">For direct communication and inquiries</p>
-                    <a href="https://x.com/HaiKachoo" target="_blank" class="contact-link">
-                        @HaiKachoo
-                    </a>
+        <div class="heyzine-frame-container">
+            <div class="loading-container" id="loadingContainer">
+                <i class="fas fa-spinner loading-spinner"></i>
+                <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Loading Heyzine Flipbook</h3>
+                <p style="color: var(--gray-medium); text-align: center; max-width: 400px;">
+                    Loading interactive guidelines flipbook. This may take a moment...
+                </p>
+            </div>
+
+            <iframe id="heyzineFrame"
+                    src="https://heyzine.com/flip-book/ae81134e66.html"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen
+                    allow="autoplay; fullscreen"
+                    title="Kachoo Design Guidelines Flipbook">
+            </iframe>
+        </div>
+
+        <div class="flipbook-info">
+            <div class="page-info">
+                <i class="fas fa-book"></i>
+                <span>Design Guidelines &amp; Standards</span>
+            </div>
+            <button class="download-btn" id="downloadBtn">
+                <i class="fas fa-download"></i> Download Guidelines PDF
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="contact-container">
+        <h2 class="contact-title">Contact Information</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-twitter"></i>
                 </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="contact-text">Email</h3>
-                    <p class="contact-desc">For business inquiries and collaboration proposals</p>
-                    <a href="mailto:ohkachoo@gmail.com" class="contact-link">
-                        ohkachoo@gmail.com
-                    </a>
+                <h3 class="contact-text">Twitter / X</h3>
+                <p class="contact-desc">For direct communication and inquiries</p>
+                <a href="https://x.com/HaiKachoo" target="_blank" class="contact-link">
+                    @HaiKachoo
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
                 </div>
+                <h3 class="contact-text">Email</h3>
+                <p class="contact-desc">For business inquiries and collaboration proposals</p>
+                <a href="mailto:ohkachoo@gmail.com" class="contact-link">
+                    ohkachoo@gmail.com
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer - FULL BLACK, NO BLUE -->
-    <footer class="main-footer">
-        <img src="logo-thekachoo.png" alt="Kachoo Logo" class="footer-logo" 
-             onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMTAiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTMwIDMwTDcwIDMwTDcwIDcwTDMwIDcwTDMwIDMwWiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSI1Ii8+PGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iNCIgZmlsbD0iYmxhY2siLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjY1IiByPSI0IiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik0yNSAyNUw3NSA3NSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=';">
-        <p class="footer-text">
-            © 2026 Kachoo Design Guidelines. All rights reserved.<br>
-            Design system and visual standards are proprietary property of Kachoo.
-        </p>
-    </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heyzineFrame = document.getElementById('heyzineFrame');
+        const loadingContainer = document.getElementById('loadingContainer');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const btnFullscreen = document.getElementById('btnFullscreen');
+        const btnReload = document.getElementById('btnReload');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const heyzineFrame = document.getElementById('heyzineFrame');
-            const loadingContainer = document.getElementById('loadingContainer');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const btnFullscreen = document.getElementById('btnFullscreen');
-            const btnReload = document.getElementById('btnReload');
-            
-            // Hide loading when Heyzine is loaded
-            heyzineFrame.onload = function() {
+        heyzineFrame.onload = function() {
+            setTimeout(() => {
+                loadingContainer.style.opacity = '0';
+                loadingContainer.style.transition = 'opacity 0.5s ease';
+
                 setTimeout(() => {
-                    loadingContainer.style.opacity = '0';
-                    loadingContainer.style.transition = 'opacity 0.5s ease';
-                    
-                    setTimeout(() => {
-                        loadingContainer.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            };
-            
-            // Handle loading errors
-            heyzineFrame.onerror = function() {
-                loadingContainer.innerHTML = `
-                    <i class="fas fa-exclamation-triangle" style="color: #ff4444; font-size: 3.5rem; margin-bottom: 1.5rem;"></i>
-                    <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Unable to Load Flipbook</h3>
-                    <p style="color: var(--gray-medium); text-align: center; max-width: 500px; margin-bottom: 2rem;">
-                        There was an error loading the Heyzine flipbook. Please check the URL or try the following:
-                    </p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                        <button onclick="window.location.reload()" style="background: var(--primary-black); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                            <i class="fas fa-redo"></i> Reload Page
-                        </button>
-                        <button onclick="openDirectLink()" style="background: var(--primary-white); color: var(--primary-black); border: 1px solid var(--gray-border); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                            <i class="fas fa-external-link-alt"></i> Open Direct Link
-                        </button>
-                    </div>
-                `;
-            };
-            
-            function openDirectLink() {
-                // Replace with your actual Heyzine URL
-                window.open('https://heyzine.com/flip-book/ae81134e66.html', '_blank');
-            }
-            
-            // Fullscreen functionality
-            let isFullscreen = false;
-            
-            btnFullscreen.addEventListener('click', () => {
-                const container = document.querySelector('.heyzine-frame-container');
-                
-                if (!isFullscreen) {
-                    if (container.requestFullscreen) {
-                        container.requestFullscreen();
-                    } else if (container.webkitRequestFullscreen) {
-                        container.webkitRequestFullscreen();
-                    } else if (container.msRequestFullscreen) {
-                        container.msRequestFullscreen();
-                    }
-                    btnFullscreen.innerHTML = '<i class="fas fa-compress"></i>';
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                    btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+                    loadingContainer.style.display = 'none';
+                }, 500);
+            }, 1000);
+        };
+
+        heyzineFrame.onerror = function() {
+            loadingContainer.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="color: #ff4444; font-size: 3.5rem; margin-bottom: 1.5rem;"></i>
+                <h3 style="margin-bottom: 1rem; color: var(--gray-dark);">Unable to Load Flipbook</h3>
+                <p style="color: var(--gray-medium); text-align: center; max-width: 500px; margin-bottom: 2rem;">
+                    There was an error loading the Heyzine flipbook. Please check the URL or try the following:
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <button onclick="window.location.reload()" style="background: var(--primary-black); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        <i class="fas fa-redo"></i> Reload Page
+                    </button>
+                    <button onclick="openDirectLink()" style="background: var(--primary-white); color: var(--primary-black); border: 1px solid var(--gray-border); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        <i class="fas fa-external-link-alt"></i> Open Direct Link
+                    </button>
+                </div>
+            `;
+        };
+
+        function openDirectLink() {
+            window.open('https://heyzine.com/flip-book/ae81134e66.html', '_blank');
+        }
+
+        let isFullscreen = false;
+
+        btnFullscreen.addEventListener('click', () => {
+            const container = document.querySelector('.heyzine-frame-container');
+
+            if (!isFullscreen) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
                 }
-                
-                isFullscreen = !isFullscreen;
-            });
-            
-            // Reload functionality
-            btnReload.addEventListener('click', () => {
-                loadingContainer.style.display = 'flex';
-                loadingContainer.style.opacity = '1';
-                
-                setTimeout(() => {
-                    heyzineFrame.src = heyzineFrame.src;
-                }, 1000);
-            });
-            
-            // Download button functionality
-            downloadBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const originalText = downloadBtn.innerHTML;
-                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
-                downloadBtn.disabled = true;
-                
-                setTimeout(() => {
-                    downloadBtn.innerHTML = '<i class="fas fa-check"></i> Download Ready!';
-                    
-                    setTimeout(() => {
-                        downloadBtn.innerHTML = originalText;
-                        downloadBtn.disabled = false;
-                        alert('Guidelines PDF download is ready. Please check your downloads folder.');
-                    }, 1500);
-                }, 2000);
-            });
-            
-            // Handle fullscreen change events
-            document.addEventListener('fullscreenchange', handleFullscreenChange);
-            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-            document.addEventListener('msfullscreenchange', handleFullscreenChange);
-            
-            function handleFullscreenChange() {
-                if (!document.fullscreenElement && 
-                    !document.webkitFullscreenElement && 
-                    !document.msFullscreenElement) {
-                    isFullscreen = false;
-                    btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+                btnFullscreen.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
                 }
+                btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
             }
-            
-            // Smooth scroll for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    
-                    const targetId = href.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        e.preventDefault();
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+
+            isFullscreen = !isFullscreen;
+        });
+
+        btnReload.addEventListener('click', () => {
+            loadingContainer.style.display = 'flex';
+            loadingContainer.style.opacity = '1';
+
+            setTimeout(() => {
+                heyzineFrame.src = heyzineFrame.src;
+            }, 1000);
+        });
+
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+            downloadBtn.disabled = true;
+
+            setTimeout(() => {
+                downloadBtn.innerHTML = '<i class="fas fa-check"></i> Download Ready!';
+
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalText;
+                    downloadBtn.disabled = false;
+                    alert('Guidelines PDF download is ready. Please check your downloads folder.');
+                }, 1500);
+            }, 2000);
+        });
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement &&
+                !document.webkitFullscreenElement &&
+                !document.msFullscreenElement) {
+                isFullscreen = false;
+                btnFullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
