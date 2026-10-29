@@ -244,7 +244,7 @@ body {
   transform: translateX(3px);
 }
 
-/* Disabled card: tetap bisa hover, tapi cursor default */
+/* Disabled card: cursor default, tetap bisa hover preview */
 .platform-button.disabled-link { cursor: default; }
 .platform-button.disabled-link:hover {
   transform: translateY(0);
@@ -455,12 +455,12 @@ body {
     justify-content: center;
   }
 
-  /* Sembunyikan logo di mobile */
+  /* Sembunyikan logo di card mobile */
   .platform-button .platform-logo {
     display: none !important;
   }
 
-  /* Konten langsung tampil penuh (bukan hover) */
+  /* Konten langsung tampil penuh */
   .platform-content {
     opacity: 1 !important;
     transform: none !important;
@@ -482,6 +482,9 @@ body {
   .publish-step { padding: 30px 22px; }
   .step-title { font-size: 19px; }
   .step-description { font-size: 14px; }
+
+  /* Loader logo sedikit lebih kecil di mobile */
+  .page-loader-logo { height: 90px; }
 }
 
 @media (max-width: 560px) {
