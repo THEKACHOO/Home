@@ -138,6 +138,7 @@ body {
   margin: 0 auto 32px;
 }
 
+/* ===== PLATFORMS ===== */
 .platforms-section {
   padding: 80px 0;
   background: var(--abu);
@@ -148,6 +149,8 @@ body {
   gap: 30px;
   margin-top: 38px;
 }
+
+/* === BASE CARD (desktop) === */
 .platform-button {
   background: var(--putih);
   border: 1px solid rgba(0,0,0,0.07);
@@ -162,23 +165,51 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  min-height: 220px;
-  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  min-height: 260px;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
 }
 .platform-button:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
 
+/* Logo — center, tampil default di desktop */
 .platform-button .platform-logo {
   height: 120px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 2px;
-  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 1;
 }
+
+/* Konten (title + desc + status) — tersembunyi default */
+.platform-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 2;
+}
+
+/* Hover desktop: logo hilang, konten muncul */
 .platform-button:hover .platform-logo {
-  transform: scale(1.06);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+}
+.platform-button:hover .platform-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .platform-title {
@@ -193,7 +224,7 @@ body {
   margin-bottom: 20px;
   line-height: 1.45;
 }
-.platform-cta {
+.platform-status {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -203,27 +234,30 @@ body {
   border-radius: 50px;
   font-weight: 600;
   font-size: 12px;
-  transition: all 0.25s ease;
   border: 1px solid transparent;
+  transition: all 0.25s ease;
 }
-.platform-button:hover .platform-cta {
-  background: transparent;
-  color: var(--hitam);
-  border-color: var(--hitam);
-  transform: translateX(3px);
-}
-.platform-button.disabled-link { cursor: default; }
-.platform-button.disabled-link:hover {
-  transform: translateY(0);
-  box-shadow: none;
-}
-.platform-button.disabled-link:hover .platform-cta {
+.platform-button:hover .platform-status {
   background: transparent;
   color: var(--hitam);
   border-color: var(--hitam);
   transform: translateX(3px);
 }
 
+/* Disabled card: tetap bisa hover, tapi cursor default */
+.platform-button.disabled-link { cursor: default; }
+.platform-button.disabled-link:hover {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.platform-button.disabled-link:hover .platform-status {
+  background: transparent;
+  color: var(--hitam);
+  border-color: var(--hitam);
+  transform: translateX(3px);
+}
+
+/* ===== DIGITAL FEATURE ===== */
 .digital-feature-section {
   padding: 80px 0;
   background: var(--putih);
@@ -247,7 +281,15 @@ body {
   transform: translateY(-6px);
   box-shadow: 0 8px 28px rgba(0,0,0,0.11);
 }
-.feature-card .platform-logo { height: 68px; margin-bottom: 16px; }
+.feature-card .platform-logo {
+  height: 68px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+  position: static;
+  transform: none;
+  opacity: 1;
+}
 .feature-title {
   font-size: 1.4rem;
   font-weight: 700;
@@ -259,7 +301,21 @@ body {
   margin-bottom: 20px;
   line-height: 1.45;
 }
+.feature-card .platform-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--hitam);
+  color: var(--putih);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 12px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
 
+/* ===== PUBLISH ===== */
 .publish-section {
   padding: 80px 0;
   background: var(--abu);
@@ -334,6 +390,39 @@ body {
 }
 .twitter-link:hover { border-bottom-color: #555; }
 
+/* ===== PAGE LOADER (mobile) ===== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--putih);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  pointer-events: none;
+}
+.page-loader.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.page-loader-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.page-loader.active .page-loader-logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .platform-grid,
   .feature-grid {
@@ -359,11 +448,31 @@ body {
 
   .section-title { font-size: 1.7rem; }
 
-  .platform-button { min-height: 200px; padding: 24px 16px; }
-  .platform-button .platform-logo { height: 48px; margin-bottom: 12px; }
+  /* === MOBILE: kartu tampil seperti semula (tanpa logo, tanpa tombol) === */
+  .platform-button {
+    min-height: 200px;
+    padding: 24px 16px;
+    justify-content: center;
+  }
+
+  /* Sembunyikan logo di mobile */
+  .platform-button .platform-logo {
+    display: none !important;
+  }
+
+  /* Konten langsung tampil penuh (bukan hover) */
+  .platform-content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Sembunyikan tombol status di mobile */
+  .platform-status {
+    display: none !important;
+  }
+
   .platform-title { font-size: 1.15rem; }
-  .platform-description { font-size: 11.5px; margin-bottom: 16px; }
-  .platform-cta { padding: 6px 12px; font-size: 10.5px; }
+  .platform-description { font-size: 11.5px; margin-bottom: 0; }
 
   .feature-card { padding: 24px 16px; }
   .feature-card .platform-logo { height: 48px; margin-bottom: 12px; }
@@ -382,5 +491,5 @@ body {
 
   .platform-grid,
   .feature-grid { gap: 12px; }
-  .platform-button { padding: 20px 12px; min-height: 250px; }
+  .platform-button { padding: 20px 12px; min-height: 180px; }
 }
