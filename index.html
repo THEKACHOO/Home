@@ -36,30 +36,43 @@
     <h2 class="section-title">Digital Platforms</h2>
     <p class="section-sub">Explore our projects</p>
     <div class="platform-grid">
-      <div class="platform-button disabled-link">
+
+      <div class="platform-button disabled-link" data-logo="Logo/Kpages.png">
         <img src="Logo/Kpages.png" alt="KPAGES Logo" class="platform-logo" />
-        <h3 class="platform-title">KPAGES</h3>
-        <p class="platform-description">The best book publisher and collections</p>
-        <span class="platform-cta">MAINTENANCE <i class="fas fa-tools"></i></span>
+        <div class="platform-content">
+          <h3 class="platform-title">KPAGES</h3>
+          <p class="platform-description">The best book publisher and collections</p>
+          <span class="platform-status">MAINTENANCE <i class="fas fa-tools"></i></span>
+        </div>
       </div>
-      <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" target="_blank">
+
+      <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" class="platform-button" data-logo="Logo/Kazine.png" target="_blank">
         <img src="Logo/Kazine.png" alt="KAZINE Logo" class="platform-logo" />
-        <h3 class="platform-title">KAZINE</h3>
-        <p class="platform-description">Online shop for Kazine brand product & digital magazine</p>
-        <span class="platform-cta">CHECK OUT <i class="fas fa-arrow-right"></i></span>
+        <div class="platform-content">
+          <h3 class="platform-title">KAZINE</h3>
+          <p class="platform-description">Online shop for Kazine brand product & digital magazine</p>
+          <span class="platform-status">CHECK OUT <i class="fas fa-arrow-right"></i></span>
+        </div>
       </a>
-      <a href="https://thekachoo.github.io/KABOOM/" class="platform-button" target="_blank">
+
+      <a href="https://thekachoo.github.io/KABOOM/" class="platform-button" data-logo="Logo/Kaboom.png" target="_blank">
         <img src="Logo/Kaboom.png" alt="KABOOM Logo" class="platform-logo" />
-        <h3 class="platform-title">KABOOM</h3>
-        <p class="platform-description">Real-time news platform delivering curated content and trending topic</p>
-        <span class="platform-cta">READ MORE <i class="fas fa-arrow-right"></i></span>
+        <div class="platform-content">
+          <h3 class="platform-title">KABOOM</h3>
+          <p class="platform-description">Real-time news platform delivering curated content and trending topic</p>
+          <span class="platform-status">READ MORE <i class="fas fa-arrow-right"></i></span>
+        </div>
       </a>
-      <div class="platform-button disabled-link">
+
+      <div class="platform-button disabled-link" data-logo="Logo/Kadio.png">
         <img src="Logo/Kadio.png" alt="KADIO Logo" class="platform-logo" />
-        <h3 class="platform-title">KADIO</h3>
-        <p class="platform-description">Private media studio & production house for online stream</p>
-        <span class="platform-cta">COMING SOON <i class="fas fa-clock"></i></span>
+        <div class="platform-content">
+          <h3 class="platform-title">KADIO</h3>
+          <p class="platform-description">Private media studio & production house for online stream</p>
+          <span class="platform-status">COMING SOON <i class="fas fa-clock"></i></span>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -131,6 +144,41 @@
     </div>
   </div>
 </section>
+
+<div id="pageLoader" class="page-loader">
+  <img src="" alt="Loading" class="page-loader-logo" id="pageLoaderLogo" />
+</div>
+
+<script>
+(function () {
+  const isMobile = () => window.matchMedia('(max-width: 820px)').matches;
+
+  const loader = document.getElementById('pageLoader');
+  const loaderLogo = document.getElementById('pageLoaderLogo');
+
+  document.querySelectorAll('.platform-button[href]').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (!isMobile()) return; 
+
+      e.preventDefault();
+      const target = card.getAttribute('href');
+      const logoSrc = card.getAttribute('data-logo');
+
+      if (!logoSrc) {
+        window.location.href = target;
+        return;
+      }
+
+      loaderLogo.src = logoSrc;
+      loader.classList.add('active');
+
+      setTimeout(function () {
+        window.location.href = target;
+      }, 550);
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
