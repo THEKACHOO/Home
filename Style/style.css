@@ -174,7 +174,7 @@ body {
   height: 120px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   transition: transform 0.3s ease;
 }
 .platform-button:hover .platform-logo {
@@ -382,5 +382,5 @@ body {
 
   .platform-grid,
   .feature-grid { gap: 12px; }
-  .platform-button { padding: 20px 12px; min-height: 220px; }
+  .platform-button { padding: 20px 12px; min-height: 250px; }
 }
